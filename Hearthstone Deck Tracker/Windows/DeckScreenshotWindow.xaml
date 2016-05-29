@@ -51,7 +51,7 @@
             <!-- Deck Title/Header -->
             <Border BorderBrush="Black" BorderThickness="1" Height="40" Width="217" x:Name="DeckTitleContainer">
                 <DockPanel Name="DeckTitlePanel" Height="40" Width="217" LastChildFill="True">
-                    <local:HearthstoneTextBlock x:Name="LblDeckTitle" FontSize="16" Margin="4,2" Text="Deck title" TextAlignment="Left" VerticalAlignment="Bottom"/>
+                    <local:HearthstoneTextBlock x:Name="LblDeckTitle" FontSize="16" Margin="4,2" Text="卡组名字" TextAlignment="Left" VerticalAlignment="Bottom"/>
                 </DockPanel>
             </Border>
             <!-- Format/Tags -->
@@ -88,8 +88,8 @@
                         </Rectangle.Fill>
                     </Rectangle>
                 </StackPanel>
-                <TextBlock x:Name="LblDeckFormat" Margin="0,0,2,0" FontSize="14" Height="20" Foreground="White">Wild</TextBlock>
-                <TextBlock x:Name="LblDeckTag" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="4,0" FontSize="14" Height="20" Foreground="White">MidRange</TextBlock>
+                <TextBlock x:Name="LblDeckFormat" Margin="0,0,2,0" FontSize="14" Height="20" Foreground="White">狂野</TextBlock>
+                <TextBlock x:Name="LblDeckTag" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="4,0" FontSize="14" Height="20" Foreground="White">中间排名</TextBlock>
             </DockPanel>
             <!-- Card List -->
             <Viewbox Name="ViewBoxPlayer" StretchDirection="DownOnly" Stretch="Fill" 

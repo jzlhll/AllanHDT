@@ -11,58 +11,58 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
                     <DockPanel Margin="10,5,10,0">
-                        <Label Content="Speed:" />
+                        <Label Content="速度:" />
                         <ComboBox Name="ComboboxExportSpeed" SelectedIndex="1"
                                   HorizontalAlignment="Right" Width="150"
                                   SelectionChanged="ComboboxExportSpeed_SelectionChanged">
-                            <system:String>Very Fast (20ms)</system:String>
-                            <system:String>Fast (40ms)</system:String>
-                            <system:String>Normal (60ms)</system:String>
-                            <system:String>Slow (100ms)</system:String>
-                            <system:String>Very Slow (150ms)</system:String>
+                            <system:String>非常快 (20ms)</system:String>
+                            <system:String>快 (40ms)</system:String>
+                            <system:String>正常 (60ms)</system:String>
+                            <system:String>慢 (100ms)</system:String>
+                            <system:String>非常慢 (150ms)</system:String>
                         </ComboBox>
                     </DockPanel>
                     <StackPanel Orientation="Horizontal" Margin="10,5,0,0">
-                        <Label Content="Wait" />
+                        <Label Content="等待" />
                         <TextBox x:Name="TextboxExportDelay"
                                  HorizontalAlignment="Right" Height="23" HorizontalContentAlignment="Center"
                                  TextWrapping="Wrap" Text="0" VerticalAlignment="Top"
                                  Width="27" TextChanged="TextboxExportDelay_TextChanged"
                                  PreviewTextInput="TextboxExportDelay_PreviewTextInput" />
-                        <Label Content="seconds before starting" />
+                        <Label Content="开始前的描述" />
                     </StackPanel>
-                    <CheckBox x:Name="CheckboxPrioGolden" Content="Prioritize golden cards"
+                    <CheckBox x:Name="CheckboxPrioGolden" Content="优先金卡"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxPrioGolden_Checked"
                               Unchecked="CheckboxPrioGolden_Unchecked" />
-                    <CheckBox x:Name="CheckboxExportName" Content="Set deck name"
+                    <CheckBox x:Name="CheckboxExportName" Content="设置卡组名字"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxExportName_Checked"
                               Unchecked="CheckboxExportName_Unchecked" />
-                    <CheckBox x:Name="CheckboxExportAddVersion" Content="Include version number in name"
+                    <CheckBox x:Name="CheckboxExportAddVersion" Content="包括名称版本号"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxExportAddVersion_Checked"
                               Unchecked="CheckboxExportAddVersion_Unchecked" />
-                    <CheckBox x:Name="CheckboxAutoClear" Content="Auto clear cards"
+                    <CheckBox x:Name="CheckboxAutoClear" Content="自动清除卡牌"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxAutoClear_Checked"
                               Unchecked="CheckboxAutoClear_Unchecked" />
-                    <CheckBox x:Name="CheckboxAutoClearFilters" Content="Auto clear filters"
+                    <CheckBox x:Name="CheckboxAutoClearFilters" Content="自动清除过滤"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxAutoClearFilters_Checked"
                               Unchecked="CheckboxAutoClearFilters_Unchecked" />
-                    <CheckBox x:Name="CheckboxForceClear" Content="Force clear searchbox between cards"
+                    <CheckBox x:Name="CheckboxForceClear" Content="强制清除卡之间的搜索框"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxForceClear_Checked"
                               Unchecked="CheckboxForceClear_Unchecked" />
                     <CheckBox x:Name="CheckboxExportPasteClipboard"
-                              Content="Paste names from clipboard"
-                              ToolTip="Try this if you have problems exporting certain card/deck names - May not work with all keyboard layouts"
+                              Content="从剪贴板粘贴名字"
+                              ToolTip="试试这个，如果你导出某些卡牌/卡组名有问题 - 可能无法与所有的键盘布局有关"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top"
                               Checked="CheckboxExportPasteClipboard_Checked"
                               Unchecked="CheckboxExportPasteClipboard_Unchecked" />
-                    <CheckBox x:Name="CheckboxShowDialog" Content="Show dialog before exporting"
+                    <CheckBox x:Name="CheckboxShowDialog" Content="导出之前显示对话框"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxShowDialog_OnChecked"
                               Unchecked="CheckboxShowDialog_OnUnchecked" />

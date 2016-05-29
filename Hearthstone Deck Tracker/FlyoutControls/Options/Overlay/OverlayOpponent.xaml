@@ -14,7 +14,7 @@
                 <StackPanel>
                     <CheckBox x:Name="CheckboxSameScaling"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
-                              Content="Use same scaling for player/opponent"
+                              Content="使用相同的缩放对于玩家/对手"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top" IsChecked="True"
@@ -22,7 +22,7 @@
                               Unchecked="CheckboxSameScaling_Unchecked" />
                     <DockPanel Margin="10,5,10,0"
                                Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}">
-                        <Label Content="Scaling:"
+                        <Label Content="缩放:"
                                Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}" />
                         <TextBox Name="TextBoxScaling" PreviewTextInput="TextBoxScaling_OnPreviewTextInput"
                                  Text="{Binding OpponentScaling, RelativeSource={RelativeSource AncestorType=overlay:OverlayOpponent}}"
@@ -34,7 +34,7 @@
                     </DockPanel>
                     <DockPanel Margin="10,5,10,0"
                                Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}">
-                        <Label Content="Opacity:" HorizontalAlignment="Left"
+                        <Label Content="不透明度:" HorizontalAlignment="Left"
                                Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                                VerticalAlignment="Top" />
                         <Slider x:Name="SliderOpponentOpacity" HorizontalAlignment="Right"
@@ -43,7 +43,7 @@
                     </DockPanel>
                     <DockPanel Margin="10,5,10,0"
                                Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}">
-                        <Label Content="Secret scaling:"
+                        <Label Content="奥秘缩放:"
                                Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}" />
                         <TextBox Name="TextBoxSecretScaling" PreviewTextInput="TextBoxScaling_OnPreviewTextInput"
                                  Text="{Binding SecretScaling, RelativeSource={RelativeSource AncestorType=overlay:OverlayOpponent}}"
@@ -55,7 +55,7 @@
                     </DockPanel>
                     <DockPanel Margin="10,5,10,0"
                                Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}">
-                        <Label Content="Secret opacity:"
+                        <Label Content="奥秘不透明度:"
                                Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Top" />
@@ -64,35 +64,35 @@
                                 ValueChanged="SliderSecretOpacity_ValueChanged" />
                     </DockPanel>
                     <DockPanel Margin="5,5,5,0">
-                        <Label Content="Show C'Thun counter:" Width="155"/>
+                        <Label Content="显示克苏恩计数:" Width="155"/>
                         <ComboBox x:Name="ComboBoxCthun" HorizontalAlignment="Right"
                                   Margin="5,0,0,0" VerticalAlignment="Top" Width="150"
                                   SelectionChanged="ComboBoxCthun_SelectionChanged"/>
                     </DockPanel>
                     <DockPanel Margin="5,5,5,0">
-                        <Label Content="Show Yogg-Saron counter:" Width="155"/>
+                        <Label Content="显示尤格萨隆计数:" Width="155"/>
                         <ComboBox x:Name="ComboBoxSpells" HorizontalAlignment="Right"
                                   Margin="5,0,0,0" VerticalAlignment="Top" Width="150"
                                   SelectionChanged="ComboBoxSpells_SelectionChanged"/>
                     </DockPanel>
                     <CheckBox x:Name="CheckBoxAttack"
-                              Content="Show board attack counter" HorizontalAlignment="Left"
+                              Content="显示战场攻击计数" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckBoxAttack_Checked"
                               Unchecked="CheckBoxAttack_Unchecked" />
                     <CheckBox x:Name="CheckBoxCenterDeckVertically"
-                              Content="Center deck vertically" HorizontalAlignment="Left"
-                              ToolTip="Center cards and information panels vertically within the selected region for the deck. Region can be changed via 'overlay > general > unlock'."
+                              Content="卡组中心垂直" HorizontalAlignment="Left"
+                              ToolTip="卡组垂直于所选区域内的中心卡和信息面板。区域，可以通过【覆盖】>【常规】>【解锁】来改变。"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckBoxCenterDeckVertically_Checked"
                               Unchecked="CheckBoxCenterDeckVertically_Unchecked" />
                     <CheckBox x:Name="CheckboxIncludeCreated"
-                              Content="Include created cards" HorizontalAlignment="Left"
+                              Content="包含生成的卡牌" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxIncludeCreated_Checked"
                               Unchecked="CheckboxIncludeCreated_Unchecked" />
                     <CheckBox x:Name="CheckboxHighlightDiscarded"
-                              Content="Highlight discarded from deck" HorizontalAlignment="Left"
+                              Content="从卡组中高亮移除" HorizontalAlignment="Left"
                               Margin="10,5,0,10" VerticalAlignment="Top"
                               Checked="CheckboxHighlightDiscarded_Checked"
                               Unchecked="CheckboxHighlightDiscarded_Unchecked" />

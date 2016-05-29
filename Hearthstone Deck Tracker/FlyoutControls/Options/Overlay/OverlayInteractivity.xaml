@@ -9,27 +9,27 @@
     <Grid>
         <GroupBox Header="Interactivity">
             <StackPanel>
-                <Label Content="WARNING:" FontWeight="Bold" Foreground="Red" />
-                <Label Content="May cause the cursor to freeze occasionally" Margin="0,-10,0,0" Foreground="Red" />
+                <Label Content="警告:" FontWeight="Bold" Foreground="Red" />
+                <Label Content="可能导致光标偶尔卡住" Margin="0,-10,0,0" Foreground="Red" />
                 <controls:ToggleSwitch x:Name="ToggleSwitchExtraFeatures" Margin="10,0,0,0"
                                        OnLabel="Enabled" OffLabel="Disabled"
                                        Checked="ToggleSwitchExtraFeatures_Checked"
                                        Unchecked="ToggleSwitchExtraFeatures_Unchecked" />
-                <CheckBox Name="CheckBoxForceExtraFeatures" Content="Force on (don't use this unless you need to)"
+                <CheckBox Name="CheckBoxForceExtraFeatures" Content="强制开启/使用（除非你需要不使用这个）"
                           Margin="10,0,5,0"
                           Checked="CheckBoxForceExtraFeatures_OnChecked"
                           Unchecked="CheckBoxForceExtraFeatures_OnUnchecked"
                           IsEnabled="{Binding ElementName=ToggleSwitchExtraFeatures, Path=IsChecked}" />
                 <Separator Margin="0,20,0,10" />
-                <Label Content="FEATURES:" FontWeight="Bold" />
-                <CheckBox Name="CheckBoxFriendslist" Content="Hide deck when friendslist is open"
+                <Label Content="功能:" FontWeight="Bold" />
+                <CheckBox Name="CheckBoxFriendslist" Content="隐藏卡组当好友列表打开"
                           Checked="CheckBoxFriendslist_OnChecked" Unchecked="CheckBoxFriendslist_OnUnchecked"
                           Margin="10,5,0,0" IsEnabled="{Binding ElementName=ToggleSwitchExtraFeatures, Path=IsChecked}" />
-                <CheckBox Name="CheckBoxSecrets" Content="Click secrets to gray out"
+                <CheckBox Name="CheckBoxSecrets" Content="点击奥秘去灰掉"
                           Checked="CheckBoxSecrets_OnChecked" Unchecked="CheckBoxSecrets_OnUnchecked" Margin="10,5,0,0"
                           IsEnabled="{Binding ElementName=ToggleSwitchExtraFeatures, Path=IsChecked}" />
                 <TextBlock
-                    Text="NOTE: May not work correctly if &quot;options > overlay > general > automatically gray out secrets&quot; is enabled."
+                    Text="注意：可能无法正常工作，如果【选项】>【覆盖】>【常规】>【奥秘自动变灰】已启用。"
                     TextWrapping="Wrap" FontStyle="Italic" Margin="34,0,0,0" />
             </StackPanel>
         </GroupBox>

@@ -18,29 +18,29 @@
                 <StackPanel>
                     <GroupBox Header="Alerts">
                         <StackPanel>
-                            <CheckBox x:Name="CheckboxFlashHs" Content="Flash Hearthstone on your turn start"
+                            <CheckBox x:Name="CheckboxFlashHs" Content="在你的回合开始时闪烁炉石"
                                   HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"
                                   Checked="CheckboxFlashHs_Checked"
                                   Unchecked="CheckboxFlashHs_Unchecked" />
                             <CheckBox x:Name="CheckboxBringHsToForegorund"
-                                  Content="Popup Hearthstone on turn start" HorizontalAlignment="Left"
+                                  Content="在你的回合开始时弹炉石" HorizontalAlignment="Left"
                                   Margin="10,5,0,0" VerticalAlignment="Top"
                                   Checked="CheckboxBringHsToForegorund_Checked"
                                   Unchecked="CheckboxBringHsToForegorund_Unchecked" />
                             <DockPanel Margin="10,5,10,0" Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}">
                                 <CheckBox x:Name="CheckboxTimerAlert"
                                       HorizontalAlignment="Left" Margin="0,5,0,0"
-                                      ToolTip="Sound an alert and flash when you have X seconds remaining"
+                                      ToolTip="当你只剩下X秒的时间，你会发出警报和闪光"
                                       VerticalAlignment="Top" Checked="CheckboxTimerAlert_Checked"
                                       Unchecked="CheckboxTimerAlert_Unchecked">
                                     <StackPanel Orientation="Horizontal" Margin="0,-5,0,0">
-                                        <Label Content="Alert at" Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"/>
+                                        <Label Content="如下情况下警报：" Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"/>
                                         <TextBox x:Name="TextboxTimerAlert"
                                          HorizontalAlignment="Right" Height="23" HorizontalContentAlignment="Center"
                                          Margin="10,0,0,0" TextWrapping="Wrap" Text="30" VerticalAlignment="Top"
                                          Width="60" TextChanged="TextboxTimerAlert_TextChanged"
                                          PreviewTextInput="TextboxTimerAlert_PreviewTextInput" />
-                                        <Label Content="seconds." Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"/>
+                                        <Label Content="秒。" Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"/>
                                     </StackPanel>
                                 </CheckBox>
                             </DockPanel>
@@ -49,7 +49,7 @@
                     <GroupBox Header="Card Language">
                         <StackPanel>
                             <DockPanel Margin="0,5,0,0">
-                                <Label Content="Primary:" HorizontalAlignment="Left"
+                                <Label Content="主要的:" HorizontalAlignment="Left"
                                        VerticalAlignment="Top" />
                                 <ComboBox x:Name="ComboboxLanguages" HorizontalAlignment="Right"
                                           VerticalAlignment="Top" Width="170"
@@ -57,72 +57,72 @@
                             </DockPanel>
                             <DockPanel Margin="0,5,0,0">
                                 <StackPanel>
-                                    <Label Content="Secondary:" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                                    <Label Content="(tooltips)" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                                    <Label Content="次要的:" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                                    <Label Content="(提示)" HorizontalAlignment="Left" VerticalAlignment="Top" />
                                 </StackPanel>
                                 <ListBox x:Name="ListBoxAlternativeLanguages" Height="120" Width="170"
                                          HorizontalAlignment="Right" />
                             </DockPanel>
-                            <CheckBox Name="CheckBoxDefaultFont" Content="Use default font for non-latin languages"
+                            <CheckBox Name="CheckBoxDefaultFont" Content="对非拉丁语系语言使用默认字体"
                                       Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                                       Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                                       Margin="5,5,0,0" Checked="CheckBoxDefaultFont_OnChecked"
                                       Unchecked="CheckBoxDefaultFont_OnUnchecked" />
-                            <Label Visibility="{Binding RestartLabelVisibility, RelativeSource={RelativeSource AncestorType=UserControl}}" Foreground="Red" Content="Restart to apply language changes." />
+                            <Label Visibility="{Binding RestartLabelVisibility, RelativeSource={RelativeSource AncestorType=UserControl}}" Foreground="Red" Content="重启来适配语言的修改" />
                         </StackPanel>
                     </GroupBox>
                     <CheckBox x:Name="CheckBoxAutoUse" Margin="10,5,0,0"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
-                              Content="Automatically &quot;USE&quot; decks. (disables button on decks)"
+                              Content="自动【使用】卡组。 （禁止卡组上的按钮）"
                               Checked="CheckBoxAutoUse_OnChecked" Unchecked="CheckBoxAutoUse_OnUnchecked" />
                     <CheckBox x:Name="CheckboxAutoSelectDeck"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
-                              Content="Autoselect deck if only one possible" HorizontalAlignment="Left"
+                              Content="自动选择卡组如果只有一个可能的" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxAutoSelectDeck_Checked"
                               Unchecked="CheckboxAutoSelectDeck_Unchecked" />
                     <CheckBox x:Name="CheckboxSpectatorUseNoDeck"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
-                              Content="Use no-deck mode when spectating" HorizontalAlignment="Left"
+                              Content="使用【无卡组】模式当在观众模式下。" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxSpectatorUseNoDeck_Checked"
                               Unchecked="CheckboxSpectatorUseNoDeck_Unchecked" />
                     <CheckBox x:Name="CheckBoxClassCardsFirst" Margin="10,5,0,0"
-                              Content="Card sorting: Class cards first"
+                              Content="卡片分类：第一类卡片"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               Checked="CheckBoxClassCardsFirst_Checked"
                               Unchecked="CheckBoxClassCardsFirst_Unchecked" />
-                    <CheckBox x:Name="CheckboxTrackerCardToolTips" Content="Show card tooltips"
+                    <CheckBox x:Name="CheckboxTrackerCardToolTips" Content="显示卡片提示工具"
                               HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxTrackerCardToolTips_Checked"
                               Unchecked="CheckboxTrackerCardToolTips_Unchecked" />
                     <CheckBox x:Name="CheckboxHideManaCurveMyDecks"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
-                              Content="Show mana curve" HorizontalAlignment="Left"
+                              Content="显示的法力曲线" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxManaCurveMyDecks_Checked"
                               Unchecked="CheckboxManaCurveMyDecks_Unchecked" />
                     <CheckBox x:Name="CheckboxFullTextSearch"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
-                              Content="Full text search in deck builder" HorizontalAlignment="Left"
+                              Content="在卡组构筑使用全文搜索" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxFullTextSearch_Checked"
                               Unchecked="CheckboxFullTextSearch_Unchecked" />
                     <Separator Margin="0,5,0,0" Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}" />
-                    <CheckBox x:Name="CheckboxDeckPickerCaps" Content="Use upper case deck names"
+                    <CheckBox x:Name="CheckboxDeckPickerCaps" Content="使用大写的卡牌名称"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxDeckPickerCaps_Checked"
                               Unchecked="CheckboxDeckPickerCaps_Unchecked"
-                              ToolTip="Uncheck to use normal case in Deck Picker." />
-                    <CheckBox x:Name="CheckBoxShowLastPlayedDate" Content="Show last played date on decks"
+                              ToolTip="在卡组选择器下，取消使用正常的情况。" />
+                    <CheckBox x:Name="CheckBoxShowLastPlayedDate" Content="在卡组上显示最后一个播放日期"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckBoxShowLastPlayedDate_Checked"
                               Unchecked="CheckBoxShowLastPlayedDate_Unchecked" />
@@ -135,7 +135,7 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <Label Content="Format:"/>
+                        <Label Content="格式化:"/>
                     </DockPanel>
                 </StackPanel>
             </ScrollViewer>

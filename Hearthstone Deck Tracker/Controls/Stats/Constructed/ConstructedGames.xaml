@@ -17,11 +17,11 @@
                                 <VisualBrush Visual="{Binding AddIconVisual, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
                             </Rectangle.Fill>
                         </Rectangle>
-                        <TextBlock Text="ADD NEW GAME TO ACTIVE DECK" Margin="4,0,0,0"/>
+                        <TextBlock Text="添加新游戏到载入卡组" Margin="4,0,0,0"/>
                     </StackPanel>
                 </Button>
                 <StackPanel Orientation="Horizontal" Visibility="{Binding MultiSelectPanelVisibility, RelativeSource={RelativeSource AncestorType=UserControl}}">
-                    <Button Margin="4,4,0,4" MinWidth="120" Click="ButtonMultiMove_OnClick" ToolTip="All selected games must have the same player hero."
+                    <Button Margin="4,4,0,4" MinWidth="120" Click="ButtonMultiMove_OnClick" ToolTip="所有被选中的游戏必须有相同的玩家英雄。"
                         ToolTipService.ShowOnDisabled="True" IsEnabled="{Binding ButtonMultiMoveEnabled, RelativeSource={RelativeSource AncestorType=UserControl}}">
                         <StackPanel Orientation="Horizontal">
                             <Rectangle Width="12">
@@ -29,7 +29,7 @@
                                     <VisualBrush Visual="{Binding MoveIconVisual, RelativeSource={RelativeSource AncestorType=UserControl}}"></VisualBrush>
                                 </Rectangle.Fill>
                             </Rectangle>
-                            <TextBlock Text="MOVE SELECTED" Margin="4,0,0,0"/>
+                            <TextBlock Text="移动已选择" Margin="4,0,0,0"/>
                         </StackPanel>
                     </Button>
                     <Button Margin="4,4,0,4" MinWidth="120" Click="ButtonMultiDelete_OnClick" Background="Red">
@@ -39,7 +39,7 @@
                                     <VisualBrush Visual="{Binding DeleteIconVisual, RelativeSource={RelativeSource AncestorType=UserControl}}"></VisualBrush>
                                 </Rectangle.Fill>
                             </Rectangle>
-                            <TextBlock Text="DELETE SELECTED" Margin="4,0,0,0"/>
+                            <TextBlock Text="删除已选择" Margin="4,0,0,0"/>
                         </StackPanel>
                     </Button>
                 </StackPanel>
@@ -156,7 +156,7 @@
                                             <VisualBrush Visual="{Binding ReplayIconVisual, RelativeSource={RelativeSource AncestorType=UserControl}}"></VisualBrush>
                                         </Rectangle.Fill>
                                     </Rectangle>
-                                    <TextBlock Text="REPLAY" Margin="4,0,0,0"/>
+                                    <TextBlock Text="回放" Margin="4,0,0,0"/>
                                 </StackPanel>
                             </Button>
                             <Button Margin="4,4,0,4" MinWidth="70" Click="ButtonShowOppDeck_OnClick" IsEnabled="{Binding Path=CanGetOpponentDeck}">
@@ -166,7 +166,7 @@
                                             <VisualBrush Visual="{Binding OppDeckIconVisual, RelativeSource={RelativeSource AncestorType=UserControl}}"></VisualBrush>
                                         </Rectangle.Fill>
                                     </Rectangle>
-                                    <TextBlock Text="OPP. DECK" Margin="4,0,0,0"/>
+                                    <TextBlock Text="对手卡组" Margin="4,0,0,0"/>
                                 </StackPanel>
                             </Button>
                             <Button Margin="4,4,0,4" MinWidth="70" Click="ButtonSelectDeck_OnClick" IsEnabled="{Binding Path=CanSelectDeck}">
@@ -176,7 +176,7 @@
                                             <VisualBrush Visual="{Binding OppDeckIconVisual, RelativeSource={RelativeSource AncestorType=UserControl}}"></VisualBrush>
                                         </Rectangle.Fill>
                                     </Rectangle>
-                                    <TextBlock Text="SELECT DECK" Margin="4,0,0,0"/>
+                                    <TextBlock Text="选择卡组" Margin="4,0,0,0"/>
                                 </StackPanel>
                             </Button>
                             <Button Margin="4,4,0,4" MinWidth="70" Click="ButtonEdit_OnClick">
@@ -186,7 +186,7 @@
                                             <VisualBrush Visual="{Binding EditIconVisual, RelativeSource={RelativeSource AncestorType=UserControl}}"></VisualBrush>
                                         </Rectangle.Fill>
                                     </Rectangle>
-                                    <TextBlock Text="EDIT" Margin="4,0,0,0"/>
+                                    <TextBlock Text="编辑" Margin="4,0,0,0"/>
                                 </StackPanel>
                             </Button>
                             <Button Margin="4,4,0,4" MinWidth="70" Click="ButtonEditNote_OnClick">
@@ -196,7 +196,7 @@
                                             <VisualBrush Visual="{Binding NoteIconVisual, RelativeSource={RelativeSource AncestorType=UserControl}}"></VisualBrush>
                                         </Rectangle.Fill>
                                     </Rectangle>
-                                    <TextBlock Text="NOTE" Margin="4,0,0,0"/>
+                                    <TextBlock Text="备注" Margin="4,0,0,0"/>
                                 </StackPanel>
                             </Button>
                             <Button Margin="4,4,0,4" MinWidth="70" Click="ButtonMove_OnClick">
@@ -206,7 +206,7 @@
                                             <VisualBrush Visual="{Binding MoveIconVisual, RelativeSource={RelativeSource AncestorType=UserControl}}"></VisualBrush>
                                         </Rectangle.Fill>
                                     </Rectangle>
-                                    <TextBlock Text="MOVE" Margin="4,0,0,0"/>
+                                    <TextBlock Text="移动" Margin="4,0,0,0"/>
                                 </StackPanel>
                             </Button>
                             <Button Margin="4,4,0,4" MinWidth="70" Click="ButtonDelete_OnClick" Background="Red">
@@ -216,7 +216,7 @@
                                             <VisualBrush Visual="{Binding DeleteIconVisual, RelativeSource={RelativeSource AncestorType=UserControl}}"></VisualBrush>
                                         </Rectangle.Fill>
                                     </Rectangle>
-                                    <TextBlock Text="DELETE" Margin="4,0,0,0"/>
+                                    <TextBlock Text="删除" Margin="4,0,0,0"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>

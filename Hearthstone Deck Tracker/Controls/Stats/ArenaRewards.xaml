@@ -16,7 +16,7 @@
     <StackPanel>
         <UniformGrid Rows="1">
             <GroupBox Header="Gold">
-                <TextBox Name="TextBoxGold" ToolTip="You can enter values as e.g. 50+125" TextChanged="TextBoxGold_OnTextChanged"/>
+                <TextBox Name="TextBoxGold" ToolTip="你可以输入值类似 50+125" TextChanged="TextBoxGold_OnTextChanged"/>
             </GroupBox>
             <GroupBox Header="Dust">
                 <TextBox Name="TextBoxDust" TextChanged="TextBoxDust_OnTextChanged"/>
@@ -50,31 +50,31 @@
             <StackPanel>
                 <DockPanel Margin="0,2,0,0">
                     <Label Content="#1:" DockPanel.Dock="Left"/>
-                    <CheckBox Name="CheckBoxGolden1" Content="Golden" Margin="5,0,2,0" DockPanel.Dock="Right" Checked="CheckBoxGolden_OnChecked" Unchecked="CheckBoxGolden_OnUnchecked"/>
-                    <TextBox Name="TextBoxCard1" controls:TextBoxHelper.Watermark="None" Margin="2,0,0,0" TextChanged="CardNamePrediction" PreviewKeyDown="TextBoxCard_OnPreviewKeyDown"/>
+                    <CheckBox Name="CheckBoxGolden1" Content="金" Margin="5,0,2,0" DockPanel.Dock="Right" Checked="CheckBoxGolden_OnChecked" Unchecked="CheckBoxGolden_OnUnchecked"/>
+                    <TextBox Name="TextBoxCard1" controls:TextBoxHelper.Watermark="空" Margin="2,0,0,0" TextChanged="CardNamePrediction" PreviewKeyDown="TextBoxCard_OnPreviewKeyDown"/>
                 </DockPanel>
                 <DockPanel Margin="0,2,0,0">
                     <Label Content="#2:" DockPanel.Dock="Left"/>
-                    <CheckBox Name="CheckBoxGolden2" Content="Golden" Margin="5,0,2,0" DockPanel.Dock="Right" Checked="CheckBoxGolden_OnChecked" Unchecked="CheckBoxGolden_OnUnchecked"/>
-                    <TextBox Name="TextBoxCard2" controls:TextBoxHelper.Watermark="None" Margin="2,0,0,0" TextChanged="CardNamePrediction" PreviewKeyDown="TextBoxCard_OnPreviewKeyDown"/>
+                    <CheckBox Name="CheckBoxGolden2" Content="金" Margin="5,0,2,0" DockPanel.Dock="Right" Checked="CheckBoxGolden_OnChecked" Unchecked="CheckBoxGolden_OnUnchecked"/>
+                    <TextBox Name="TextBoxCard2" controls:TextBoxHelper.Watermark="空" Margin="2,0,0,0" TextChanged="CardNamePrediction" PreviewKeyDown="TextBoxCard_OnPreviewKeyDown"/>
                 </DockPanel>
                 <DockPanel Margin="0,2,0,0">
                     <Label Content="#3:" DockPanel.Dock="Left"/>
-                    <CheckBox Name="CheckBoxGolden3" Content="Golden" Margin="5,0,2,0" DockPanel.Dock="Right" Checked="CheckBoxGolden_OnChecked" Unchecked="CheckBoxGolden_OnUnchecked"/>
-                    <TextBox Name="TextBoxCard3" controls:TextBoxHelper.Watermark="None" Margin="2,0,0,0" TextChanged="CardNamePrediction" PreviewKeyDown="TextBoxCard_OnPreviewKeyDown"/>
+                    <CheckBox Name="CheckBoxGolden3" Content="金" Margin="5,0,2,0" DockPanel.Dock="Right" Checked="CheckBoxGolden_OnChecked" Unchecked="CheckBoxGolden_OnUnchecked"/>
+                    <TextBox Name="TextBoxCard3" controls:TextBoxHelper.Watermark="空" Margin="2,0,0,0" TextChanged="CardNamePrediction" PreviewKeyDown="TextBoxCard_OnPreviewKeyDown"/>
                 </DockPanel>
             </StackPanel>
         </GroupBox>
         <UniformGrid>
             <GroupBox Header="Payment method">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <RadioButton Name="RadioButtonPaymentGold" Content="Gold" IsChecked="True" Checked="RadioButtonPaymentGold_OnChecked"/>
-                    <RadioButton Name="RadioButtonPaymentMoney" Content="Money" Margin="10,0,0,0" Checked="RadioButtonPaymentMoney_OnChecked"/>
+                    <RadioButton Name="RadioButtonPaymentGold" Content="金币" IsChecked="True" Checked="RadioButtonPaymentGold_OnChecked"/>
+                    <RadioButton Name="RadioButtonPaymentMoney" Content="钱" Margin="10,0,0,0" Checked="RadioButtonPaymentMoney_OnChecked"/>
                 </StackPanel>
             </GroupBox>
             <StackPanel VerticalAlignment="Center">
-                <CheckBox Name="CheckBoxShowAutomatically" Content="Show automatically" HorizontalAlignment="Center" IsChecked="{Binding Path=ArenaRewardDialog, Source={StaticResource ConfigWrapper}}"/>
-                <Button Style="{DynamicResource AccentedSquareButtonStyle}" Margin="5,5,5,0" Content="Save" Click="ButtonSave_OnClick"/>
+                <CheckBox Name="CheckBoxShowAutomatically" Content="自动显示" HorizontalAlignment="Center" IsChecked="{Binding Path=ArenaRewardDialog, Source={StaticResource ConfigWrapper}}"/>
+                <Button Style="{DynamicResource AccentedSquareButtonStyle}" Margin="5,5,5,0" Content="保存" Click="ButtonSave_OnClick"/>
             </StackPanel>
             <Grid/>
         </UniformGrid>

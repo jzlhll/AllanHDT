@@ -13,7 +13,7 @@
             <Grid Width="46" Height="46" Margin="5,1,10,0">
                 <Image DockPanel.Dock="Left" Width="46" Height="46" Source="{Binding ClassImage}" RenderOptions.BitmapScalingMode="Fant" />
                 <hearthstoneDeckTracker:HearthstoneTextBlock Text="s" FontSize="14" Fill="LimeGreen" Width="10" Height="18" TextAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,2,0" Visibility="{Binding StandardViableVisibility}"
-                                                             ToolTip="This deck can be used in 'Standard' mode."/>
+                                                             ToolTip="这副卡牌可以用在[标准]模式。"/>
             </Grid>
             <Grid DockPanel.Dock="Right" Width="65">
                 <Grid.RowDefinitions>
@@ -42,7 +42,7 @@
                 <TextBlock Grid.Row="1" Text="{Binding LastPlayed, Converter={StaticResource DateConverter}}" HorizontalAlignment="Right"
                            Foreground="{DynamicResource GrayTextColorBrush}" FontSize="11" Margin="0, 0, 10, 3"
                            Visibility="{Binding Source={x:Static utility:ConfigWrapper.ShowLastPlayedDateOnDeckVisibility}}"
-                               ToolTip="Last time played" />
+                               ToolTip="最后一次玩过" />
             </Grid>
             
             <StackPanel Margin="0,5">
@@ -50,7 +50,7 @@
                     <Image DockPanel.Dock="Left" Source="{x:Static utility:ImageCache.Archived}" Width="16"
                            Height="16" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Left"
                            Visibility="{Binding ArchivedVisibility}"
-                           ToolTip="Archived" />
+                           ToolTip="存档" />
                     <DockPanel>
                         <TextBlock Text="{Binding NameAndVersion}" Margin="0,0,15,0" DockPanel.Dock="Left"
                                    FontSize="17" TextTrimming="CharacterEllipsis"

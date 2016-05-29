@@ -11,7 +11,7 @@
         <Border
             Visibility="{Binding VisibilitySearchBar, RelativeSource={RelativeSource AncestorType=deckPicker:DeckPicker}}"
             BorderThickness="1" DockPanel.Dock="Top" Margin="0,0,0,2" BorderBrush="{DynamicResource TextBrush}">
-            <TextBox Name="TextBoxSearchBar" controls1:TextBoxHelper.Watermark="Search..."
+            <TextBox Name="TextBoxSearchBar" controls1:TextBoxHelper.Watermark="搜索..."
                      controls1:TextBoxHelper.IsWaitingForData="True" PreviewKeyDown="TextBoxSearchBar_OnPreviewKeyDown" />
         </Border>
         <Border BorderThickness="1"
@@ -115,7 +115,7 @@
                         </Style.Triggers>
                     </Style>
                 </Grid.Style>
-                <TextBlock Text="NO-DECK MODE"  Margin="6,0"  FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"
+                <TextBlock Text="非载入卡组模式"  Margin="6,0"  FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"
                            Foreground="{Binding BorderDeckModeTextBrush, RelativeSource={RelativeSource AncestorType=deckPicker:DeckPicker}}"/>
             </Grid>
         </Border>
@@ -131,22 +131,22 @@
                         </Style.Triggers>
                     </Style>
                 </Grid.Style>
-                <TextBlock Text="AUTO"  Margin="6,0"  FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"
-                           Foreground="{Binding BorderAutoSelectTextBrush, RelativeSource={RelativeSource AncestorType=deckPicker:DeckPicker}}" ToolTip="Auto deck selection. Requires an active deck."/>
+                <TextBlock Text="自动"  Margin="6,0"  FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"
+                           Foreground="{Binding BorderAutoSelectTextBrush, RelativeSource={RelativeSource AncestorType=deckPicker:DeckPicker}}" ToolTip="自动选择卡组. 需要载入卡组"/>
             </Grid>
         </Border>
         <Border BorderThickness="1" Margin="0,2,0,0" BorderBrush="{DynamicResource TextBrush}"
             PreviewMouseDown="ActiveDeckPanel_OnPreviewMouseDown" Height="26">
             <DockPanel>
-                <TextBlock Name="TextBlockLabelActiveDeck" Text="ACTIVE DECK: " FontWeight="SemiBold" FontSize="14"
+                <TextBlock Name="TextBlockLabelActiveDeck" Text="载入的卡组: " FontWeight="SemiBold" FontSize="14"
                        VerticalAlignment="Center" Margin="5,0,0,0" DockPanel.Dock="Left" />
                 <Image
                 Source="{Binding ActiveDeck.ClassImage, RelativeSource={RelativeSource AncestorType=deckPicker:DeckPicker}}"
                 DockPanel.Dock="Left" Margin="5,1" RenderOptions.BitmapScalingMode="Fant" />
                 <Grid Margin="0,0,5,0">
-                    <TextBlock Text="NONE   -   CLICK &quot;USE&quot; ON DECK TO ACTIVATE" FontSize="14" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"
+                    <TextBlock Text="空   -   在卡组中点击【使用】来载入" FontSize="14" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"
                            HorizontalAlignment="Left" Visibility="{Binding VisibilityNoDeck, RelativeSource={RelativeSource AncestorType=deckPicker:DeckPicker}}"
-                               ToolTip="CLICK &quot;USE&quot; ON DECK TO ACTIVATE"/>
+                               ToolTip="在卡组中点击【使用】来载入"/>
                     <DockPanel>
                         <DockPanel.Resources>
                             <deckPicker:MarginConverterNegativeLeft x:Key="MarginConverterLeft" />
@@ -191,7 +191,7 @@
                           Click="BtnMoveDeckToConstructed_Click" Visibility="Collapsed" />
                 <Separator Name="SeparatorDeck1" />
                 <MenuItem Name="MenuItemMissingCards" Header="SHOW _MISSING CARDS"
-                          ToolTip="this information is based on your last export" Click="MenuItemMissingDust_OnClick" />
+                          ToolTip="此信息是基于你的最后一次导出" Click="MenuItemMissingDust_OnClick" />
                 <MenuItem Name="MenuItemUpdateDeck" Header="_UPDATE (WEB)" Click="BtnUpdateDeck_Click" />
                 <MenuItem Name="MenuItemSetDeckUrl" Header="" Click="BtnSetDeckUrl_Click" />
                 <MenuItem Name="MenuItemOpenUrl" Header="OPEN _WEBSITE" Click="BtnOpenDeckUrl_Click" />

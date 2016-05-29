@@ -36,14 +36,14 @@
         </StackPanel>
         <StackPanel>
             <StackPanel Orientation="Horizontal" Visibility="{Binding Path=ImageVisiblity, RelativeSource={RelativeSource AncestorType=UserControl}}">
-                <TextBlock VerticalAlignment="Center" Text="Deck: "/>
+                <TextBlock VerticalAlignment="Center" Text="卡组: "/>
                 <TextBlock VerticalAlignment="Center" Style="{StaticResource StyleVisibilityCollapsedIfDataContextNull}"
                            Text="{Binding DeckName}" TextTrimming="CharacterEllipsis">
                 </TextBlock>
                 <TextBlock VerticalAlignment="Center" Text="-" Style="{StaticResource StyleVisibilityCollapsedIfDataContextNotNull}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock VerticalAlignment="Center" Text="Win rate: "/>
+                <TextBlock VerticalAlignment="Center" Text="胜率: "/>
                 <TextBlock VerticalAlignment="Center" Foreground="{Binding WinRateTextBrush}" Style="{StaticResource StyleVisibilityCollapsedIfDataContextNull}">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{}{0}-{1} ({2}%)">
@@ -56,7 +56,7 @@
                 <TextBlock VerticalAlignment="Center" Text="-" Style="{StaticResource StyleVisibilityCollapsedIfDataContextNotNull}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock VerticalAlignment="Center" Text="Time played: "/>
+                <TextBlock VerticalAlignment="Center" Text="玩的时间: "/>
                 <TextBlock VerticalAlignment="Center">
                     <TextBlock.Text>
                         <Binding StringFormat="{}{0:0.0} hours" Path="TotalDuration.TotalHours" FallbackValue="0"/>
@@ -64,7 +64,7 @@
                 </TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock VerticalAlignment="Center" Text="Average game: "/>
+                <TextBlock VerticalAlignment="Center" Text="游戏平均: "/>
                 <TextBlock VerticalAlignment="Center">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{}{0:0.0} min, {1:0.0} turns">
@@ -75,7 +75,7 @@
                 </TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock VerticalAlignment="Center" Text="Best matchup: "/>
+                <TextBlock VerticalAlignment="Center" Text="最好对阵: "/>
                 <TextBlock VerticalAlignment="Center" Foreground="{Binding BestMatchup.WinRateTextBrush}" Style="{StaticResource StyleVisibilityCollapsedIfDataContextNull}">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{}{0} ({1}-{2}, {3}%)">
@@ -86,10 +86,10 @@
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
-                <TextBlock VerticalAlignment="Center" Text="None" Style="{StaticResource StyleVisibilityCollapsedIfDataContextNotNull}"/>
+                <TextBlock VerticalAlignment="Center" Text="空" Style="{StaticResource StyleVisibilityCollapsedIfDataContextNotNull}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock VerticalAlignment="Center" Text="Worst matchup: "/>
+                <TextBlock VerticalAlignment="Center" Text="最坏对阵: "/>
                 <TextBlock VerticalAlignment="Center" Foreground="{Binding WorstMatchup.WinRateTextBrush}" Style="{StaticResource StyleVisibilityCollapsedIfDataContextNull}">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{}{0} ({1}-{2}, {3}%)">
@@ -100,7 +100,7 @@
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
-                <TextBlock VerticalAlignment="Center" Text="None" Style="{StaticResource StyleVisibilityCollapsedIfDataContextNotNull}"/>
+                <TextBlock VerticalAlignment="Center" Text="空" Style="{StaticResource StyleVisibilityCollapsedIfDataContextNotNull}"/>
             </StackPanel>
         </StackPanel>
     </StackPanel>

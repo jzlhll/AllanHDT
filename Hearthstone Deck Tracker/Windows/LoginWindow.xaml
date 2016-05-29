@@ -17,12 +17,12 @@
                     <VisualBrush Visual="{StaticResource hdticon_black}" />
                 </Rectangle.Fill>
             </Rectangle>
-            <TextBlock HorizontalAlignment="Center" FontSize="14" FontWeight="SemiBold" Text="Hearthstone Deck Tracker"/>
+            <TextBlock HorizontalAlignment="Center" FontSize="14" FontWeight="SemiBold" Text="Hearthstone Deck Tracker 汉化"/>
             <Button Name="ButtonExpandLogin" Margin="20,20,20,10" Style="{StaticResource SquareButtonStyle}">
-                <TextBlock Text="LOGIN WITH HEARTHSTATS"/>
+                <TextBlock Text="登陆HEARTHSTATS"/>
             </Button>
             <Button Click="Button_Continue" Margin="20,0,20,10" Style="{StaticResource AccentedSquareButtonStyle}">
-                <TextBlock Text="CONTINUE"/>
+                <TextBlock Text="跳过"/>
             </Button>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Width="0" Name="StackPanelLogin">
@@ -50,7 +50,7 @@
                     <TabItem Header="LOGIN" Visibility="Collapsed">
                         <StackPanel Margin="0,0,0,0" Width="250">
                             <TextBox Name="TextBoxEmail" controls:TextBoxHelper.Watermark="Email" TabIndex="0" />
-                            <PasswordBox Name="TextBoxPassword" controls:TextBoxHelper.Watermark="Password" Margin="0,5,0,0" TabIndex="1" />
+                            <PasswordBox Name="TextBoxPassword" controls:TextBoxHelper.Watermark="密码" Margin="0,5,0,0" TabIndex="1" />
                             <DockPanel Margin="0,5,0,0">
                                 <CheckBox Name="CheckBoxRememberLogin" Content="Remember me" IsChecked="True"
                                           Checked="CheckBoxRememberLogin_Checked" Unchecked="CheckBoxRememberLogin_OnUnchecked" TabIndex="2" />
@@ -58,34 +58,34 @@
                             </DockPanel>
                             <TextBlock>
                                 <Bold>
-                                    <Run Text="Forgot your password?" />
+                                    <Run Text="忘记密码?" />
                                 </Bold>
                                 <LineBreak />
-                                <Run Text="No worries, click" />
+                                <Run Text="别担心，点击" />
                                 <Hyperlink
                                     NavigateUri="http://www.hearthstats.net/users/sign_in"
                                     RequestNavigate="Hyperlink_RequestNavigate">
                                     here
                                 </Hyperlink>
-                                <Run Text="to reset your password." />
+                                <Run Text="重置你的密码。" />
                             </TextBlock>
                             <TextBlock>
                                 <Bold>
-                                    <Run Text="Not yet registered?" />
+                                    <Run Text="没有注册？" />
                                 </Bold>
                                 <Run Text="Click" />
                                 <Hyperlink Click="BtnShowRegister_OnClick">
                                     here
                                 </Hyperlink>
-                                <Run Text="to register." />
+                                <Run Text="去注册。" />
                             </TextBlock>
                         </StackPanel>
                     </TabItem>
                     <TabItem Header="REGISTER" Visibility="Collapsed">
                         <StackPanel Width="250">
                             <TextBox Name="TextBoxRegisterEmail" controls:TextBoxHelper.Watermark="Email" TabIndex="5" />
-                            <PasswordBox Name="TextBoxRegisterPassword" controls:TextBoxHelper.Watermark="Password" Margin="0,5,0,0" TabIndex="6" />
-                            <PasswordBox Name="TextBoxRegisterPasswordConfirm" controls:TextBoxHelper.Watermark="Confirm Password" Margin="0,5,0,0" TabIndex="7" />
+                            <PasswordBox Name="TextBoxRegisterPassword" controls:TextBoxHelper.Watermark="密码" Margin="0,5,0,0" TabIndex="6" />
+                            <PasswordBox Name="TextBoxRegisterPasswordConfirm" controls:TextBoxHelper.Watermark="确认密码" Margin="0,5,0,0" TabIndex="7" />
                             <CheckBox Name="CheckBoxPrivacyPolicy" IsChecked="False" Margin="0,5,0,0" Checked="CheckBoxPrivacyPolicy_Checked" 
                                       Unchecked="CheckBoxPrivacyPolicy_OnUnchecked" TabIndex="8">
                                 <TextBlock>
@@ -98,9 +98,9 @@
                                 </TextBlock>
                             </CheckBox>
                             <DockPanel Margin="0,5,0,0">
-                                <CheckBox Name="CheckBoxRegisterRememberLogin" Content="Remember me" IsChecked="True"
+                                <CheckBox Name="CheckBoxRegisterRememberLogin" Content="记住我" IsChecked="True"
                                           Checked="CheckBoxRememberLogin_Checked" Unchecked="CheckBoxRememberLogin_OnUnchecked" TabIndex="9" />
-                                <Button Name="BtnRegister" Content="Register" Margin="16,0,0,0" Click="BtnRegister_Click" 
+                                <Button Name="BtnRegister" Content="注册" Margin="16,0,0,0" Click="BtnRegister_Click" 
                                         IsDefault="True" TabIndex="10" IsEnabled="False" />
                             </DockPanel>
                         </StackPanel>

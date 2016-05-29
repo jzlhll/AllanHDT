@@ -108,14 +108,14 @@
                         <RowDefinition Height="16"/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Column="0" Grid.ColumnSpan="2">
-                        <Button Margin="4,0" Content="Edit rewards" Click="ButtonEditRewards_OnClick"/>
-                        <Button Margin="4,4,4,0" Content="Show own deck" Click="ButtonShowDeck_OnClick"/>
-                        <Button Margin="4,4,4,0" Content="Show opp. deck" Click="ButtonShowOppDeck_OnClick" IsEnabled="{Binding Path=SelectedItem.CanGetOpponentDeck, ElementName=DataGridGames}"/>
-                        <Button Margin="4,4,4,0" Content="Show replay" Click="ButtonShowReplay_OnClick"
+                        <Button Margin="4,0" Content="编辑奖励" Click="ButtonEditRewards_OnClick"/>
+                        <Button Margin="4,4,4,0" Content="显示自己卡组" Click="ButtonShowDeck_OnClick"/>
+                        <Button Margin="4,4,4,0" Content="显示对手卡组" Click="ButtonShowOppDeck_OnClick" IsEnabled="{Binding Path=SelectedItem.CanGetOpponentDeck, ElementName=DataGridGames}"/>
+                        <Button Margin="4,4,4,0" Content="显示回放" Click="ButtonShowReplay_OnClick"
                                 IsEnabled="{Binding Path=SelectedItem.HasReplayFile, ElementName=DataGridGames}" />
-                        <Button Margin="4,4,4,0" Content="Add game" Click="ButtonAddGame_OnClick"/>
-                        <Button Margin="4,4,4,0" Content="Edit game" Click="ButtonEditGame_OnClick" IsEnabled="{Binding Path=SelectedItem, ElementName=DataGridGames, Converter={StaticResource NotNullToBooleanConverter}}"/>
-                        <Button Margin="4,4,4,4" Content="Delete game" Click="ButtonDeleteGame_OnClick" IsEnabled="{Binding Path=SelectedItem, ElementName=DataGridGames, Converter={StaticResource NotNullToBooleanConverter}}"/>
+                        <Button Margin="4,4,4,0" Content="添加游戏" Click="ButtonAddGame_OnClick"/>
+                        <Button Margin="4,4,4,0" Content="编辑游戏" Click="ButtonEditGame_OnClick" IsEnabled="{Binding Path=SelectedItem, ElementName=DataGridGames, Converter={StaticResource NotNullToBooleanConverter}}"/>
+                        <Button Margin="4,4,4,4" Content="删除游戏" Click="ButtonDeleteGame_OnClick" IsEnabled="{Binding Path=SelectedItem, ElementName=DataGridGames, Converter={StaticResource NotNullToBooleanConverter}}"/>
                     </StackPanel>
                     <DataGrid Name="DataGridGames" SelectedIndex="-1" SelectedItem="{Binding SelectedGame, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWayToSource}" ItemsSource="{Binding Source={StaticResource ArenaGamesViewSource}}" AutoGenerateColumns="False" Grid.Column="2"  CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" PreviewMouseWheel="ForwardScrollEvent">
                         <DataGrid.Columns>

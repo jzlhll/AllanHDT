@@ -18,7 +18,7 @@
                                 </Rectangle.Fill>
                             </Rectangle>
                         </Button>
-                        <Label Content="These charts render a bit slow. Press refresh to update them."/>
+                        <Label Content="这些图表渲染速度有点慢。按【刷新】来更新它们。"/>
                     </StackPanel>
                 </GroupBox>
                 <GroupBox Header="Class distribution by wins" Height="400" MaxWidth="700">

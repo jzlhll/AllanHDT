@@ -17,7 +17,7 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
                     <DockPanel Margin="10,5,10,0">
-                        <Label Content="Theme:" HorizontalAlignment="Left"
+                        <Label Content="主题:" HorizontalAlignment="Left"
                                VerticalAlignment="Top" />
                         <ComboBox x:Name="ComboboxTheme" HorizontalAlignment="Right"
                                   VerticalAlignment="Top" Width="150"
@@ -30,7 +30,7 @@
                         </ComboBox>
                     </DockPanel>
                     <DockPanel Margin="10,5,10,0">
-                        <Label Content="Accent:" HorizontalAlignment="Left"
+                        <Label Content="音调:" HorizontalAlignment="Left"
                                VerticalAlignment="Top" />
                         <ComboBox x:Name="ComboboxAccent" HorizontalAlignment="Right"
                                   VerticalAlignment="Top" Width="150"
@@ -43,14 +43,14 @@
                         </ComboBox>
                     </DockPanel>
                     <DockPanel Margin="10,5,10,0">
-                        <Label Content="Class Icons:" HorizontalAlignment="Left"
+                        <Label Content="英雄图标:" HorizontalAlignment="Left"
                                VerticalAlignment="Top" />
                         <ComboBox x:Name="ComboBoxIconSet" HorizontalAlignment="Right"
                                   VerticalAlignment="Top" Width="150"
                                   SelectionChanged="ComboboxIconSet_SelectionChanged" />
                     </DockPanel>
                     <DockPanel Margin="10,5,10,0">
-                        <Label Content="Class colors:" HorizontalAlignment="Left"
+                        <Label Content="英雄颜色:" HorizontalAlignment="Left"
                                VerticalAlignment="Top" />
                         <ComboBox x:Name="ComboBoxClassColors" HorizontalAlignment="Right"
                                   VerticalAlignment="Top" Width="150"
@@ -63,14 +63,14 @@
                         </ComboBox>
                     </DockPanel>
                     <DockPanel Margin="10,5,10,0">
-                        <Label Content="Card theme:" HorizontalAlignment="Left"
+                        <Label Content="卡牌主题:" HorizontalAlignment="Left"
                                VerticalAlignment="Top" />
                         <ComboBox x:Name="ComboBoxCardTheme" HorizontalAlignment="Right"
                                   VerticalAlignment="Top" Width="150"
                                   SelectionChanged="ComboBoxCardTheme_SelectionChanged" />
                     </DockPanel>
                     <DockPanel Margin="10,5,10,0">
-                        <Label Content="Deck layout:" HorizontalAlignment="Left"
+                        <Label Content="卡组布局:" HorizontalAlignment="Left"
                                VerticalAlignment="Top" />
                         <ComboBox x:Name="ComboBoxDeckLayout" HorizontalAlignment="Right"
                                   VerticalAlignment="Top" Width="150"
@@ -82,27 +82,27 @@
                             </ComboBox.ItemTemplate>
                         </ComboBox>
                     </DockPanel>
-                    <CheckBox x:Name="CheckboxCardFrameRarity" Content="Rarity-colored card frames"
+                    <CheckBox x:Name="CheckboxCardFrameRarity" Content="稀有色卡牌框架 frames"
                               HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxCardFrameRarity_OnChecked"
                               Unchecked="CheckboxCardFrameRarity_OnUnchecked" />
-                    <CheckBox x:Name="CheckboxCardGemRarity" Content="Rarity-colored card gems"
+                    <CheckBox x:Name="CheckboxCardGemRarity" Content="稀有色卡宝石、gems"
                               HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxCardGemRarity_OnChecked"
                               Unchecked="CheckboxCardGemRarity_OnUnchecked" />
-                    <CheckBox x:Name="CheckBoxArenaStatsTextColoring" Content="Red/green text color in stats summary"
+                    <CheckBox x:Name="CheckBoxArenaStatsTextColoring" Content="在统计总结使用红/绿颜色的文字"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckBoxArenaStatsTextColoring_Checked"
                               Unchecked="CheckBoxArenaStatsTextColoring_Unchecked" />
-                    <CheckBox x:Name="CheckboxUseAnimations" Content="Use metro animations"
+                    <CheckBox x:Name="CheckboxUseAnimations" Content="使用win8动画"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top"
                               Unchecked="CheckboxUseAnimations_Unchecked"
-                              ToolTip="Uncheck to disable most animations for popup dialogs and flyouts"
+                              ToolTip="取消选中禁用大多数动画的弹出对话框和弹出按钮"
                               Checked="CheckboxUseAnimations_Checked" />
                 </StackPanel>
             </ScrollViewer>

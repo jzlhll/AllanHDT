@@ -19,8 +19,8 @@
             <Expander Name="ExpanderCharts" IsExpanded="{Binding ArenaSummaryChartsExpanded, Source={StaticResource ConfigWrapper}}" DockPanel.Dock="Top" BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="CHARTS" Foreground="White"/>
-                        <CheckBox Name="CheckBoxShowLegends" Content="show legends" Margin="20,0,0,0" Foreground="White" IsChecked="{Binding Path=ArenaStatsShowLegends, Source={StaticResource ConfigWrapper}}"/>
+                        <TextBlock Text="图表" Foreground="White"/>
+                        <CheckBox Name="CheckBoxShowLegends" Content="显示传说" Margin="20,0,0,0" Foreground="White" IsChecked="{Binding Path=ArenaStatsShowLegends, Source={StaticResource ConfigWrapper}}"/>
                     </StackPanel>
                 </Expander.Header>
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" PreviewMouseWheel="ForwardScrollEvent">
@@ -32,7 +32,7 @@
                             <ColumnDefinition Width="1.6667*"/>
                         </Grid.ColumnDefinitions>
                         <DockPanel Height="300" MinWidth="300" Grid.Column="0">
-                            <TextBlock Text="Played" Foreground="#FF666666" FontFamily="Segoe UI" FontSize="18" DockPanel.Dock="Top" Margin="20,0,0,0"/>
+                            <TextBlock Text="自己玩过" Foreground="#FF666666" FontFamily="Segoe UI" FontSize="18" DockPanel.Dock="Top" Margin="20,0,0,0"/>
                             <metroChart:DoughnutChart Background="Transparent" Margin="0,0,0,-10"  ChartTitleVisibility="Collapsed" SelectedBrush="Transparent" ChartLegendVisibility="{Binding ElementName=CheckBoxShowLegends, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <metroChart:DoughnutChart.Series>
                                     <metroChart:ChartSeries SeriesTitle="Played(%)" DisplayMember="Name" ValueMember="Value" BrushMember="Brush"  ItemsSource="{Binding Path=PlayedClassesPercent, Source={x:Static compiledStats:ArenaStats.Instance}, IsAsync=True}"/>
@@ -40,7 +40,7 @@
                             </metroChart:DoughnutChart>
                         </DockPanel>
                         <DockPanel Height="300" MinWidth="300" Grid.Column="1">
-                            <TextBlock Text="Opponents" Foreground="#FF666666" FontFamily="Segoe UI" FontSize="18" DockPanel.Dock="Top" Margin="20,0,0,0"/>
+                            <TextBlock Text="对手" Foreground="#FF666666" FontFamily="Segoe UI" FontSize="18" DockPanel.Dock="Top" Margin="20,0,0,0"/>
                             <metroChart:DoughnutChart Background="Transparent" Margin="0,0,0,-10"  ChartTitleVisibility="Collapsed" SelectedBrush="Transparent" ChartLegendVisibility="{Binding ElementName=CheckBoxShowLegends, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <metroChart:DoughnutChart.Series>
                                     <metroChart:ChartSeries SeriesTitle="Opponents" DisplayMember="Name" ValueMember="Value" BrushMember="Brush"  ItemsSource="{Binding Path=OpponentClassesPercent, Source={x:Static compiledStats:ArenaStats.Instance}, IsAsync=True}"/>
@@ -48,7 +48,7 @@
                             </metroChart:DoughnutChart>
                         </DockPanel>
                         <DockPanel Height="300" MinWidth="300" Grid.Column="2">
-                            <TextBlock Text="Average wins per class" Foreground="#FF666666" FontFamily="Segoe UI" FontSize="18" DockPanel.Dock="Top" Margin="20,0,0,0"/>
+                            <TextBlock Text="对阵每个职业的平均胜率" Foreground="#FF666666" FontFamily="Segoe UI" FontSize="18" DockPanel.Dock="Top" Margin="20,0,0,0"/>
                             <metroChart:ClusteredColumnChart Background="Transparent" ChartLegendVisibility="Collapsed" Margin="0,0,0,-30" ChartTitleVisibility="Collapsed" SelectedBrush="Transparent">
                                 <metroChart:ClusteredColumnChart.Series>
                                     <metroChart:ChartSeries SeriesTitle=" " DisplayMember="Name" ValueMember="Value" BrushMember="Brush"  ItemsSource="{Binding Path=AvgWinsPerClass, Source={x:Static compiledStats:ArenaStats.Instance}, IsAsync=True}"/>
@@ -56,7 +56,7 @@
                             </metroChart:ClusteredColumnChart>
                         </DockPanel>
                         <DockPanel Height="300" MinWidth="500" Grid.Column="3">
-                            <TextBlock Text="Wins" Foreground="#FF666666" FontFamily="Segoe UI" FontSize="18" DockPanel.Dock="Top" Margin="20,0,0,0"/>
+                            <TextBlock Text="胜场" Foreground="#FF666666" FontFamily="Segoe UI" FontSize="18" DockPanel.Dock="Top" Margin="20,0,0,0"/>
                             <Grid>
                                 <metroChart:ClusteredColumnChart Name="ClusteredColumnChartWins" Background="Transparent" ChartTitleVisibility="Collapsed" SelectedBrush="Transparent" ChartLegendVisibility="Collapsed" Margin="0,0,0,-30" >
                                     <metroChart:ClusteredColumnChart.Series>

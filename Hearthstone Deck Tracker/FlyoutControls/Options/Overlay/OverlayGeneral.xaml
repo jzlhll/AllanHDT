@@ -10,63 +10,63 @@
         <GroupBox Header="General">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
-                    <CheckBox x:Name="CheckboxHideOverlay" Content="Hide (completely)"
+                    <CheckBox x:Name="CheckboxHideOverlay" Content="完全隐藏"
                               HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxHideOverlay_Checked"
                               Unchecked="CheckboxHideOverlay_Unchecked" />
-                    <CheckBox x:Name="CheckboxHideOverlayInMenu" Content="Hide in menu"
+                    <CheckBox x:Name="CheckboxHideOverlayInMenu" Content="在菜单中隐藏"
                               HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxHideOverlayInMenu_Checked"
                               Unchecked="CheckboxHideOverlayInMenu_Unchecked" />
-                    <CheckBox x:Name="CheckboxHideOverlayInSpectator" Content="Hide in spectator"
+                    <CheckBox x:Name="CheckboxHideOverlayInSpectator" Content="在旁观时隐藏"
                               HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxHideOverlayInSpectator_Checked"
                               Unchecked="CheckboxHideOverlayInSpectator_Unchecked" />
                     <CheckBox x:Name="CheckboxHideOverlayInBackground"
-                              Content="Hide if HS in background" HorizontalAlignment="Left"
+                              Content="炉石在后台时隐藏" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxHideOverlayInBackground_Checked"
                               Unchecked="CheckboxHideOverlayInBackground_Unchecked" />
-                    <CheckBox x:Name="CheckboxHideDecksInOverlay" Content="Hide decks"
+                    <CheckBox x:Name="CheckboxHideDecksInOverlay" Content="隐藏卡组"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top"
                               Checked="CheckboxHideDecksInOverlay_Checked"
                               Unchecked="CheckboxHideDecksInOverlay_Unchecked" />
-                    <CheckBox x:Name="CheckboxHideTimers" Content="Hide timers"
+                    <CheckBox x:Name="CheckboxHideTimers" Content="隐藏计时器"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Top" Checked="CheckboxHideTimers_Checked"
                               Unchecked="CheckboxHideTimers_Unchecked" Margin="10,5,0,0" />
-                    <CheckBox x:Name="CheckboxHideOpponentCardAge" Content="Hide card-age"
+                    <CheckBox x:Name="CheckboxHideOpponentCardAge" Content="隐藏卡牌年龄"
                               HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxHideOpponentCardAge_Checked"
                               Unchecked="CheckboxHideOpponentCardAge_Unchecked" />
-                    <CheckBox x:Name="CheckboxHideOpponentCardMarks" Content="Hide card-marks"
+                    <CheckBox x:Name="CheckboxHideOpponentCardMarks" Content="隐藏卡牌标记mark"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxHideOpponentCardMarks_Checked"
                               Unchecked="CheckboxHideOpponentCardMarks_Unchecked"
                               HorizontalAlignment="Left" Width="114" />
-                    <CheckBox x:Name="CheckboxHideSecrets" Content="Hide secrets"
+                    <CheckBox x:Name="CheckboxHideSecrets" Content="隐藏奥秘（可能提示）"
                               HorizontalAlignment="Left" Grid.Column="0" Grid.Row="0"
                               VerticalAlignment="Top" Checked="CheckboxHideSecrets_Checked"
                               Unchecked="CheckboxHideSecrets_Unchecked" Margin="10,5,0,0" />
-                    <CheckBox x:Name="CheckboxOverlayCardToolTips" Content="Card tooltips"
+                    <CheckBox x:Name="CheckboxOverlayCardToolTips" Content="卡牌提示"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxOverlayCardToolTips_Checked"
                               Unchecked="CheckboxOverlayCardToolTips_Unchecked"
                               HorizontalAlignment="Left" Width="114" />
                     <CheckBox x:Name="CheckboxOverlaySecretToolTipsOnly"
-                              Content="For secrets only" Margin="30,5,0,0"
+                              Content="仅仅奥秘" Margin="30,5,0,0"
                               VerticalAlignment="Top"
                               Checked="CheckboxOverlaySecretToolTipsOnly_Checked"
                               Unchecked="CheckboxOverlaySecretToolTipsOnly_Unchecked"
                               HorizontalAlignment="Left" />
                     <CheckBox x:Name="CheckboxOverlayAdditionalCardToolTips"
-                              Content="Additional card tooltips" Margin="30,5,0,0"
+                              Content="附加卡提示" Margin="30,5,0,0"
                               VerticalAlignment="Top"
                               Checked="CheckboxOverlayAdditionalCardToolTips_Checked"
                               Unchecked="CheckboxOverlayAdditionalCardToolTips_Unchecked"
                               HorizontalAlignment="Left" />
-                    <CheckBox x:Name="CheckBoxOverlayUseAnimations" Content="Use card animations"
+                    <CheckBox x:Name="CheckBoxOverlayUseAnimations" Content="使用卡片动画"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               Margin="10,5,0,0" VerticalAlignment="Top"
@@ -74,57 +74,57 @@
                               Unchecked="CheckboxOverlayUseAnimations_Unchecked"
                               HorizontalAlignment="Left" />
                     <CheckBox x:Name="CheckBoxOverlayUseAnimationsOpacity"
-                              ToolTip="Disable this if you want to capture and chromakey the deck windows."
-                              Content="Transition opacity" Margin="30,5,0,0"
+                              ToolTip="禁用这个，如果你想对卡组窗口截图和抠像。"
+                              Content="过渡的透明度" Margin="30,5,0,0"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               VerticalAlignment="Top"
                               Checked="CheckBoxOverlayUseAnimationsOpacity_Checked"
                               Unchecked="CheckBoxOverlayUseAnimationsOpacityy_Unchecked"
                               HorizontalAlignment="Left" />
-                    <CheckBox x:Name="CheckboxOverlayCardMarkToolTips" Content="Card mark tooltips"
+                    <CheckBox x:Name="CheckboxOverlayCardMarkToolTips" Content="卡标记提示"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               Margin="10,5,0,0" VerticalAlignment="Top"
-                              ToolTip="Displays the created/returned card, if the information is available."
+                              ToolTip="显示创建/返回卡，如果该信息是可用的。"
                               Checked="CheckboxOverlayCardMarkToolTips_Checked"
                               Unchecked="CheckboxOverlayCardMarkToolTips_Unchecked"
                               HorizontalAlignment="Left" />
                     <CheckBox x:Name="CheckboxAutoGrayoutSecrets"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
-                              Content="Automatically gray out secrets"
+                              Content="自动变灰的奥秘"
                               HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxAutoGrayoutSecrets_Checked"
                               Unchecked="CheckboxAutoGrayoutSecrets_Unchecked" />
                     <CheckBox x:Name="CheckboxKeepDecksVisible"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
-                              Content="Don't reset decks after a game" HorizontalAlignment="Left"
+                              Content="比赛后并不会复位卡组" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top" Width="200"
                               Checked="CheckboxKeepDecksVisible_Checked"
                               Unchecked="CheckboxKeepDecksVisible_Unchecked" />
                     <CheckBox x:Name="CheckboxAlwaysShowGoldProgress"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
-                              Content="Gold progress always visible (in menu)" HorizontalAlignment="Left"
+                              Content="金币进度始终可见（在菜单中）" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxAlwaysShowGoldProgress_Checked"
                               Unchecked="CheckboxAlwaysShowGoldProgress_Unchecked" />
-                    <CheckBox Name="CheckBoxFlavorText" Content="Show card flavor text on mouseover (board/hand)"
+                    <CheckBox Name="CheckBoxFlavorText" Content="鼠标悬停显示卡的味道文本（战场/手牌）"
                               HorizontalAlignment="Left"
-                              ToolTip="Will only appear if the cursor stays still on a card for a short period of time."
+                              ToolTip="如果光标停留仍然很短的时间周期内卡上才会出现。"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckBoxFlavorText_Checked"
                               Unchecked="CheckBoxFlavorText_Unchecked" />
-                    <CheckBox Name="CheckBoxBatteryStatus" Content="Show battery status*" HorizontalAlignment="Left"
-                              ToolTip="Works for mobile devices (Laptop, Tablet, ...) only."
+                    <CheckBox Name="CheckBoxBatteryStatus" Content="显示电池状态" HorizontalAlignment="Left"
+                              ToolTip="仅适用于移动设备（笔记本电脑，平板电脑，...）"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckBoxBatteryStatus_Checked"
                               Unchecked="CheckBoxBatteryStatus_Unchecked" />
                     <CheckBox x:Name="CheckBoxBatteryStatusText"
                               IsEnabled="{Binding Path=IsChecked, ElementName=CheckBoxBatteryStatus}"
-                              Content="Show percent" Margin="30,5,0,0"
+                              Content="显示百分比" Margin="30,5,0,0"
                               VerticalAlignment="Top"
                               Checked="CheckBoxBatteryStatusText_Checked"
                               Unchecked="CheckBoxBatteryStatusText_Unchecked"
@@ -133,20 +133,20 @@
                         <Slider x:Name="SliderOverlayOpacity" Margin="5,5,0,0" VerticalAlignment="Center" Value="100"
                                 Width="150"
                                 ValueChanged="SliderOverlayOpacity_ValueChanged" DockPanel.Dock="Right" />
-                        <Label Content="Opacity:"
+                        <Label Content="不透明度:"
                                Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                                HorizontalAlignment="Left" Margin="5,5,0,0"
                                VerticalAlignment="Center" DockPanel.Dock="Left" />
                     </DockPanel>
                     <DockPanel Margin="5,5,0,0">
-                        <Button Name="BtnUnlockOverlay" Content="Unlock Overlay" Width="150"
+                        <Button Name="BtnUnlockOverlay" Content="解锁悬浮" Width="150"
                                 Click="BtnUnlockOverlay_Click" DockPanel.Dock="Right" />
-                        <Label Content="Move/resize objects:" DockPanel.Dock="Left" />
+                        <Label Content="移动/调整对象：" DockPanel.Dock="Left" />
                     </DockPanel>
                     <DockPanel Margin="5,5,0,0">
-                        <Button x:Name="BtnResetOverlay" Content="Reset" Width="150" Click="BtnResetOverlay_Click"
+                        <Button x:Name="BtnResetOverlay" Content="重置" Width="150" Click="BtnResetOverlay_Click"
                                 DockPanel.Dock="Right" />
-                        <Label Content="Reset positions:" DockPanel.Dock="Left" />
+                        <Label Content="重置位置:" DockPanel.Dock="Left" />
                     </DockPanel>
                 </StackPanel>
             </ScrollViewer>
