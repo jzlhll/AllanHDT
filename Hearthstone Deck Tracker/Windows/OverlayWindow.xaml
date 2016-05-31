@@ -152,7 +152,7 @@
             <StackPanel>
                 <StackPanel Orientation="Horizontal" Name="StackPanelWarning" Visibility="Collapsed">
                     <local:HearthstoneTextBlock Text="警告!" Margin="3" FontSize="16" Fill="Red"/>
-                    <local:HearthstoneTextBlock x:Name="LblWarning" Text="Cards not found in deck:" Margin="3" FontSize="16" Fill="White"/>
+                    <local:HearthstoneTextBlock x:Name="LblWarning" Text="在卡组中没有找到这些卡:" Margin="3" FontSize="16" Fill="White"/>
                     <local:HearthstoneTextBlock x:Name="LblWarningCards" Text="" Margin="3" FontSize="16" Fill="White"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Name="StackPanelFriendsListWarning" Visibility="Collapsed">

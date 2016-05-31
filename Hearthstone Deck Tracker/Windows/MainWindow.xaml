@@ -54,7 +54,7 @@
                             <VisualBrush Visual="{StaticResource appbar_settings}" />
                         </Rectangle.Fill>
                     </Rectangle>
-                    <TextBlock Margin="4" VerticalAlignment="Center" Text="options" />
+                    <TextBlock Margin="4" VerticalAlignment="Center" Text="选项" />
                 </StackPanel>
             </Button>
             <Button Click="BtnHelp_OnClick">
@@ -467,11 +467,9 @@
             <Rectangle Name="DeckPickerListCover" HorizontalAlignment="Stretch" Margin="6,6,0,6" Grid.Column="0"
                        Grid.Row="2" Panel.ZIndex="1"
                        Height="auto" Width="auto" Fill="#7F000000" Visibility="Hidden" />
-<<<<<<< HEAD
-            <Label Content="添加新卡组通过【新建】或者【导入】" Foreground="DarkGray" 
-=======
+
             <Label Content="{Binding IntroductionLabelText, RelativeSource={RelativeSource AncestorType=controls:MetroWindow}}" Foreground="DarkGray" 
->>>>>>> 6bd4fa5... update master to v0.15.2
+
                    FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2" 
                    Visibility="{Binding IntroductionLabelVisibility, RelativeSource={RelativeSource AncestorType=controls:MetroWindow}}" />
             <Menu Name="MenuNewDeck" Grid.Column="2" Grid.Row="1" Visibility="Collapsed">
