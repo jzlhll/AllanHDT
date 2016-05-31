@@ -118,6 +118,9 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue("Arena {Date dd-MM hh:mm}")]
 		public string ArenaDeckNameTemplate = "Arena {Date dd-MM hh:mm}";
 
+		[DefaultValue("Brawl {Date dd-MM hh:mm}")]
+		public string BrawlDeckNameTemplate = "Brawl {Date dd-MM hh:mm}";
+
 		[DefaultValue(false)]
 		public bool BringHsToForeground = false;
 
@@ -141,6 +144,12 @@ namespace Hearthstone_Deck_Tracker
 
 		[DefaultValue(true)]
 		public bool CardDbIncludeWildOnlyCards = true;
+
+		[DefaultValue(true)]
+		public bool ConstructedAutoImportNew = true;
+
+		[DefaultValue(true)]
+		public bool ConstructedAutoUpdate = true;
 
 		[DefaultValue(false)]
 		public bool ConstructedStatsAsPercent = false;
@@ -220,9 +229,6 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(false)]
 		public bool StartHearthstoneWithHDT = false;
 
-		[DefaultValue(new string[0])]
-		public string[] ConstructedImportingIgnoreCachedIds = new string[0];
-
 		[DefaultValue("")]
 		public string CreatedByVersion = "";
 
@@ -265,8 +271,8 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(GameMode.All)]
 		public GameMode DisplayedMode = GameMode.All;
 
-		[DefaultValue(DisplayedStats.Selected)]
-		public DisplayedStats DisplayedStats = DisplayedStats.Selected;
+		[DefaultValue(DisplayedStats.All)]
+		public DisplayedStats DisplayedStats = DisplayedStats.All;
 
 		[DefaultValue(DisplayedTimeFrame.AllTime)]
 		public DisplayedTimeFrame DisplayedTimeFrame = DisplayedTimeFrame.AllTime;
@@ -773,8 +779,8 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(5)]
 		public double SecretsTop = 5;
 
-		[DefaultValue(ArenaImportingBehaviour.AutoAsk)]
-		public ArenaImportingBehaviour? SelectedArenaImportingBehaviour = ArenaImportingBehaviour.AutoAsk;
+		[DefaultValue(ArenaImportingBehaviour.AutoImportSave)]
+		public ArenaImportingBehaviour? SelectedArenaImportingBehaviour = ArenaImportingBehaviour.AutoImportSave;
 
 		[DefaultValue(new[] {HeroClassAll.All})]
 		public HeroClassAll[] SelectedDeckPickerClasses = {HeroClassAll.All};
@@ -821,8 +827,8 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(false)]
 		public bool ShowBatteryLifePercent = false;
 
-		[DefaultValue(true)]
-		public bool ShowConstructedImportMessage = true;
+		[DefaultValue(false)]
+		public bool ShowCapturableOverlay = false;
 
 		[DefaultValue(false)]
 		public bool ShowDeckTitle = false;
@@ -917,6 +923,9 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(510)]
 		public int StatsWindowWidth = 510;
 
+		[DefaultValue("#FF00FF")]
+		public string StreamingOverlayBackground = "#FF00FF";
+
 		[DefaultValue(true)]
 		public bool TagDecksOnImport = true;
 
@@ -982,9 +991,6 @@ namespace Hearthstone_Deck_Tracker
 
 		[DefaultValue(false)]
 		public bool UseFullTextSearch = false;
-
-		[DefaultValue(false)]
-		public bool UseOldArenaImporting = false;
 
 		[DefaultValue(true)]
 		public bool UseSameScaling = true;

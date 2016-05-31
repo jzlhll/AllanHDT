@@ -82,6 +82,10 @@
     <Reference Include="HearthDb">
       <HintPath>..\lib\HearthDb.dll</HintPath>
     </Reference>
+    <Reference Include="HearthMirror, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\HearthMirror.dll</HintPath>
+    </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
@@ -150,6 +154,9 @@
     </Compile>
     <Compile Include="Controls\ChartWinsByClass.xaml.cs">
       <DependentUpon>ChartWinsByClass.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DeckImportingControl.xaml.cs">
+      <DependentUpon>DeckImportingControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\DeckPicker\DateConverter.cs" />
     <Compile Include="Controls\DeckPicker\DeckPickerClassItem.xaml.cs">
@@ -295,6 +302,7 @@
     <Compile Include="Enums\TagFilterOperation.cs" />
     <Compile Include="Enums\TimeFrame.cs" />
     <Compile Include="Enums\YesNo.cs" />
+    <Compile Include="Importing\Game\ImportOptions\ExistingDeck.cs" />
     <Compile Include="Exporting\ExportingActions.cs" />
     <Compile Include="Exporting\ExportingHelper.cs" />
     <Compile Include="Exporting\ExportingInfo.cs" />
@@ -306,14 +314,20 @@
       <DependentUpon>OptionsSearch.xaml</DependentUpon>
     </Compile>
     <Compile Include="FlyoutControls\Options\AdvancedOptions.cs" />
+    <Compile Include="FlyoutControls\Options\Overlay\OverlayStreaming.xaml.cs">
+      <DependentUpon>OverlayStreaming.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FlyoutControls\Options\Tracker\TrackerNotifications.xaml.cs">
       <DependentUpon>TrackerNotifications.xaml</DependentUpon>
     </Compile>
     <Compile Include="DeckManager.cs" />
     <Compile Include="Hearthstone\DeckState.cs" />
     <Compile Include="Hearthstone\PredictedCard.cs" />
+    <Compile Include="Importing\Game\ImportOptions\IImportOption.cs" />
     <Compile Include="Importing\Websites\Manacrystals.cs" />
     <Compile Include="LogReader\Handlers\FullScreenFxHandler.cs" />
+    <Compile Include="Importing\Game\ImportOptions\NewDeck.cs" />
+    <Compile Include="Importing\Game\ImportedDeck.cs" />
     <Compile Include="Stats\CompiledStats\ConstructedDeckDetails.cs" />
     <Compile Include="Stats\CompiledStats\ConstructedDeckStats.cs" />
     <Compile Include="Stats\CompiledStats\ConstructedMatchup.cs" />
@@ -439,8 +453,6 @@
     <Compile Include="Hearthstone\Mechanic.cs" />
     <Compile Include="Hearthstone\Player.cs" />
     <Compile Include="LogReader\Handlers\ArenaHandler.cs" />
-    <Compile Include="LogReader\Handlers\AssetHandler.cs" />
-    <Compile Include="LogReader\Handlers\BobHandler.cs" />
     <Compile Include="LogReader\Handlers\PowerHandler.cs" />
     <Compile Include="LogReader\HsGameState.cs" />
     <Compile Include="LogReader\HsLogReaderConstants.cs" />
@@ -458,13 +470,9 @@
     <Compile Include="Plugins\PluginSettings.cs" />
     <Compile Include="Plugins\PluginWrapper.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="Protocol\JsonCard.cs" />
-    <Compile Include="Protocol\JsonDeck.cs" />
-    <Compile Include="Protocol\JsonDecksWrapper.cs" />
     <Compile Include="Replay\TurnViewItem.cs" />
     <Compile Include="Stats\CompiledStats\ArenaStats.cs" />
     <Compile Include="Utility\ConfigWrapper.cs" />
-    <Compile Include="Utility\RankDetection.cs" />
     <Compile Include="Utility\ScreenCapture.cs" />
     <Compile Include="Utility\Themes\CardTextImageBuilder.cs" />
     <Compile Include="Utility\Themes\ClassicImageBuilder.cs" />
@@ -487,6 +495,9 @@
     <Compile Include="Utility\HotKeys\KeyPressedEventArgs.cs" />
     <Compile Include="Utility\HotKeys\ModifierKeys.cs" />
     <Compile Include="Utility\HotKeys\PredefinedHotKeyActions.cs" />
+    <Compile Include="Windows\CapturableOverlayWindow.xaml.cs">
+      <DependentUpon>CapturableOverlayWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\DeckScreenshotWindow.xaml.cs">
       <DependentUpon>DeckScreenshotWindow.xaml</DependentUpon>
     </Compile>
@@ -501,7 +512,6 @@
     </Compile>
     <Compile Include="TrayIcon.cs" />
     <Compile Include="Utility\BackupManager.cs" />
-    <Compile Include="Protocol\PipeServer.cs" />
     <Compile Include="Utility\ConfigManager.cs" />
     <Compile Include="Utility\DataIssueResolver.cs" />
     <Compile Include="Utility\ImageCache.cs" />
@@ -698,6 +708,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\DeckImportingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\DeckPicker\DeckPickerClassItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -858,6 +872,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FlyoutControls\Options\Overlay\OverlayStreaming.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="FlyoutControls\Options\Tracker\TrackerAppearance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -933,6 +951,10 @@
     <Page Include="Windows\ArenaRewardDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\CapturableOverlayWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\DeckScreenshotWindow.xaml">
       <SubType>Designer</SubType>
@@ -1090,31 +1112,6 @@
     <Resource Include="Images\gold_progress_frame_center.png" />
     <Resource Include="Images\gold_progress_frame_left.png" />
     <Resource Include="Images\gold_progress_frame_right.png" />
-    <Resource Include="Resources\Ranks\1.bmp" />
-    <Resource Include="Resources\Ranks\10.bmp" />
-    <Resource Include="Resources\Ranks\11.bmp" />
-    <Resource Include="Resources\Ranks\12.bmp" />
-    <Resource Include="Resources\Ranks\13.bmp" />
-    <Resource Include="Resources\Ranks\14.bmp" />
-    <Resource Include="Resources\Ranks\15.bmp" />
-    <Resource Include="Resources\Ranks\16.bmp" />
-    <Resource Include="Resources\Ranks\17.bmp" />
-    <Resource Include="Resources\Ranks\18.bmp" />
-    <Resource Include="Resources\Ranks\19.bmp" />
-    <Resource Include="Resources\Ranks\2.bmp" />
-    <Resource Include="Resources\Ranks\20.bmp" />
-    <Resource Include="Resources\Ranks\21.bmp" />
-    <Resource Include="Resources\Ranks\22.bmp" />
-    <Resource Include="Resources\Ranks\23.bmp" />
-    <Resource Include="Resources\Ranks\24.bmp" />
-    <Resource Include="Resources\Ranks\25.bmp" />
-    <Resource Include="Resources\Ranks\3.bmp" />
-    <Resource Include="Resources\Ranks\4.bmp" />
-    <Resource Include="Resources\Ranks\5.bmp" />
-    <Resource Include="Resources\Ranks\6.bmp" />
-    <Resource Include="Resources\Ranks\7.bmp" />
-    <Resource Include="Resources\Ranks\8.bmp" />
-    <Resource Include="Resources\Ranks\9.bmp" />
     <Content Include="Images\HearthstoneDeckTracker.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1229,12 +1226,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\HDTHelper\HDTHelper.csproj">
-      <Project>{a2a7984f-d059-4259-bcb7-b63828f03c50}</Project>
-      <Name>HDTHelper</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
@@ -1257,9 +1248,9 @@
     xcopy /Y "HtmlAgilityPack.dll" "..\Hearthstone Deck Tracker"
     xcopy /Y "MahApps.Metro.dll" "..\Hearthstone Deck Tracker"
     xcopy /Y "Newtonsoft.Json.dll" "..\Hearthstone Deck Tracker"
+    xcopy /Y "HearthMirror.dll" "..\Hearthstone Deck Tracker"
     xcopy /Y "System.Windows.Interactivity.dll" "..\Hearthstone Deck Tracker"
     xcopy /Y "..\..\..\HDTUpdate\bin\Release\HDTUpdate.exe" "..\Hearthstone Deck Tracker"
-    xcopy /Y "..\..\..\HDTHelper\bin\Release\HDTHelper.exe" "..\Hearthstone Deck Tracker"
     xcopy /Y "..\..\..\HDTUninstaller\bin\Release\HDTUninstaller.exe" "..\Hearthstone Deck Tracker" )</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>

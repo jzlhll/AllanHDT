@@ -131,20 +131,17 @@ namespace Hearthstone_Deck_Tracker.Utility.HotKeys
 		}
 
 		[PredefinedHotKeyAction("Import from game: arena", "Starts the webimport process with all dialogs.")]
-		public static async void ImportFromArena()
+		public static void ImportFromArena()
 		{
-			if(!Core.Game.TempArenaDeck.Cards.Any())
-				await Core.MainWindow.ShowMessageAsync("No arena deck found", "Please enter the arena screen (and build your deck).");
-			else
-				Core.MainWindow.SetNewDeck(Core.Game.TempArenaDeck);
+			Core.MainWindow.StartArenaImporting().Forget();
 			Core.MainWindow.ActivateWindow();
 		}
 
 		[PredefinedHotKeyAction("Import from game: constructed", "Starts the webimport process with all dialogs.")]
 		public static void ImportFromConstructed()
 		{
-			Core.MainWindow.ImportDeck();
-			Core.MainWindow.ImportConstructedDeck().Forget();
+			Core.MainWindow.ShowImportDialog(false);
+			Core.MainWindow.ActivateWindow();
 		}
 
 		[PredefinedHotKeyAction("Import from web", "Starts the webimport process with all dialogs.")]
