@@ -58,7 +58,7 @@
     <TabControl Name="TabControl">
         <TabItem>
             <DockPanel>
-                <GroupBox DockPanel.Dock="Bottom" Header="Continue...">
+                <GroupBox DockPanel.Dock="Bottom" Header="继续...">
                     <StackPanel Margin="5">
                         <TextBlock Text="如果你喜欢我的工作，请考虑帮助我证明的时间把这和点击一个按钮下或小标题栏支持我的心。谢谢你！" Margin="10,5,10,10" FontWeight="SemiBold" TextWrapping="Wrap"/>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

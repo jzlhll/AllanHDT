@@ -11,7 +11,7 @@
                       xmlns:windows="clr-namespace:Hearthstone_Deck_Tracker.Windows"
                       xmlns:stats="clr-namespace:Hearthstone_Deck_Tracker.Controls.Stats"
                       xmlns:utility="clr-namespace:Hearthstone_Deck_Tracker.Utility"
-                      Title="Hearthstone Deck Tracker" Height="603" Width="720"
+                      Title="HDT汉化" Height="603" Width="720"
                       MinHeight="584" MinWidth="720"
                       Closing="Window_Closing"
                       Icon="{StaticResource AppIcon}"
@@ -99,44 +99,44 @@
     </controls:MetroWindow.RightWindowCommands>
     <controls:MetroWindow.Flyouts>
         <controls:FlyoutsControl Margin="{Binding TitleBarMargin, RelativeSource={RelativeSource AncestorType=windows:MainWindow}}">
-            <controls:Flyout x:Name="FlyoutOptions" Position="Left" Panel.ZIndex="102" Header="Options"
+            <controls:Flyout x:Name="FlyoutOptions" Position="Left" Panel.ZIndex="102" Header="选项"
                          Width="515">
                 <flyoutControls:OptionsMain x:Name="Options"/>
             </controls:Flyout>
-            <controls:Flyout x:Name="FlyoutHelp" Position="Left" Panel.ZIndex="102" Header="Help"
+            <controls:Flyout x:Name="FlyoutHelp" Position="Left" Panel.ZIndex="102" Header="帮助"
                          Width="{Binding Width, RelativeSource={RelativeSource AncestorType=windows:MainWindow}}">
                 <local:Help x:Name="Help" />
             </controls:Flyout>
-            <controls:Flyout x:Name="FlyoutDeck" Position="Left" Panel.ZIndex="102" Width="250" Header="Opponent Deck">
+            <controls:Flyout x:Name="FlyoutDeck" Position="Left" Panel.ZIndex="102" Width="250" Header="对手卡组">
                     <flyoutControls:DeckPanel x:Name="DeckFlyout" />
              </controls:Flyout>
-            <controls:Flyout x:Name="FlyoutSortFilter" Header="Sort / Filter Decks" Position="Right" Width="245" Height="auto" Panel.ZIndex="100">
+            <controls:Flyout x:Name="FlyoutSortFilter" Header="排序/过滤卡组" Position="Right" Width="245" Height="auto" Panel.ZIndex="100">
                 <local:SortFilterDecks Width="auto" Height="auto" x:Name="SortFilterDecksFlyout" />
             </controls:Flyout>
-            <controls:Flyout x:Name="FlyoutNotes" Header="Notes" Position="Right" Width="255" Height="auto"
+            <controls:Flyout x:Name="FlyoutNotes" Header="备注" Position="Right" Width="255" Height="auto"
                          Panel.ZIndex="100">
                 <local:DeckNotes Width="auto" Height="auto" x:Name="DeckNotesEditor" Margin="3,0,0,0" />
             </controls:Flyout>
-            <controls:Flyout x:Name="FlyoutMyDecksSetTags" Header="Set tags" Position="Right" Width="255"
+            <controls:Flyout x:Name="FlyoutMyDecksSetTags" Header="设置标签" Position="Right" Width="255"
                          Height="auto" Panel.ZIndex="100">
                 <local:SortFilterDecks Width="auto" Height="auto" x:Name="TagControlEdit" />
             </controls:Flyout>
             <controls:Flyout x:Name="FlyoutHearthStatsLogin" Position="Top" Panel.ZIndex="1" Margin="0,50,0,0" CloseButtonVisibility="Collapsed">
                 <hearthStats:LoginControl x:Name="HearthstatsLoginControl" Margin="0,32,0,32"/>
             </controls:Flyout>
-            <controls:Flyout x:Name="FlyoutHearthStatsDownload" Header="Download decks" Position="Left" CloseButtonVisibility="Collapsed" Panel.ZIndex="1" Width="{Binding Width, RelativeSource={RelativeSource AncestorType=windows:MainWindow}}">
+            <controls:Flyout x:Name="FlyoutHearthStatsDownload" Header="下载卡组" Position="Left" CloseButtonVisibility="Collapsed" Panel.ZIndex="1" Width="{Binding Width, RelativeSource={RelativeSource AncestorType=windows:MainWindow}}">
                 <hearthStats:DownloadDecksControl x:Name="HearthStatsDownloadDecksControl"/>
             </controls:Flyout>
-            <controls:Flyout x:Name="FlyoutHearthStatsUpload" Header="Upload decks" Position="Left" CloseButtonVisibility="Collapsed" Panel.ZIndex="1" Width="{Binding Width, RelativeSource={RelativeSource AncestorType=windows:MainWindow}}">
+            <controls:Flyout x:Name="FlyoutHearthStatsUpload" Header="上传卡组" Position="Left" CloseButtonVisibility="Collapsed" Panel.ZIndex="1" Width="{Binding Width, RelativeSource={RelativeSource AncestorType=windows:MainWindow}}">
                 <hearthStats:UploadDecksControl x:Name="HearthStatsUploadDecksControl"/>
             </controls:Flyout>
-            <controls:Flyout x:Name="FlyoutErrors" Position="Top" Header="Errors">
+            <controls:Flyout x:Name="FlyoutErrors" Position="Top" Header="错误">
                 <error:ErrorList DataContext="{Binding Errors, RelativeSource={RelativeSource AncestorType=windows:MainWindow}}" VerticalAlignment="Center" MaxHeight="400"/>
             </controls:Flyout>
-            <controls:Flyout x:Name="FlyoutUpdateNotes" Header="Update Notes" CloseButtonVisibility="Collapsed" Position="Left" Panel.ZIndex="1" Width="{Binding Width, RelativeSource={RelativeSource AncestorType=windows:MainWindow}}">
+            <controls:Flyout x:Name="FlyoutUpdateNotes" Header="上传备注" CloseButtonVisibility="Collapsed" Position="Left" Panel.ZIndex="1" Width="{Binding Width, RelativeSource={RelativeSource AncestorType=windows:MainWindow}}">
                 <flyoutControls:UpdateNotes x:Name="UpdateNotesControl"/>
             </controls:Flyout>
-            <controls:Flyout x:Name="FlyoutDeckImporting" Header="Deck Importing" Position="Left" Panel.ZIndex="1" Width="{Binding Width, RelativeSource={RelativeSource AncestorType=windows:MainWindow}}">
+            <controls:Flyout x:Name="FlyoutDeckImporting" Header="卡组导入" Position="Left" Panel.ZIndex="1" Width="{Binding Width, RelativeSource={RelativeSource AncestorType=windows:MainWindow}}">
                 <controls1:DeckImportingControl x:Name="DeckImportingFlyout"/>
             </controls:Flyout>
             <controls:Flyout x:Name="FlyoutStats" Position="Left" Panel.ZIndex="1" Width="{Binding Width, RelativeSource={RelativeSource AncestorType=windows:MainWindow}}">
@@ -194,7 +194,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Menu Grid.Row="1" Grid.ColumnSpan="3">
-                <MenuItem Header="_NEW">
+                <MenuItem Header="新建">
                     <MenuItem.Icon>
                         <Rectangle Width="16" Height="16" Margin="0,0,-10,0">
                             <Rectangle.Fill>
@@ -202,53 +202,53 @@
                             </Rectangle.Fill>
                         </Rectangle>
                     </MenuItem.Icon>
-                    <MenuItem Header="_DRUID" Click="BtnNewDeckDruid_Click">
+                    <MenuItem Header="德鲁伊" Click="BtnNewDeckDruid_Click">
                         <MenuItem.Icon>
                             <Image Source="/HearthstoneDeckTracker;component/Resources/ClassIcons/Round/druid.png" Width="24" Height="24" Margin="3,0,0,0" RenderOptions.BitmapScalingMode="Fant" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="_HUNTER" Click="BtnNewDeckHunter_Click">
+                    <MenuItem Header="猎人" Click="BtnNewDeckHunter_Click">
                         <MenuItem.Icon>
                             <Image Source="/HearthstoneDeckTracker;component/Resources/ClassIcons/Round/hunter.png" Width="24" Height="24" Margin="3,0,0,0" RenderOptions.BitmapScalingMode="Fant" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="_MAGE" Click="BtnNewDeckMage_Click">
+                    <MenuItem Header="法师" Click="BtnNewDeckMage_Click">
                         <MenuItem.Icon>
                             <Image Source="/HearthstoneDeckTracker;component/Resources/ClassIcons/Round/mage.png" Width="24" Height="24" Margin="3,0,0,0" RenderOptions.BitmapScalingMode="Fant"/>
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="_PRIEST" Click="BtnNewDeckPriest_Click">
+                    <MenuItem Header="牧师" Click="BtnNewDeckPriest_Click">
                         <MenuItem.Icon>
                             <Image Source="/HearthstoneDeckTracker;component/Resources/ClassIcons/Round/priest.png" Width="24" Height="24" Margin="3,0,0,0" RenderOptions.BitmapScalingMode="Fant" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="_PALADIN" Click="BtnNewDeckPaladin_Click">
+                    <MenuItem Header="圣骑士" Click="BtnNewDeckPaladin_Click">
                         <MenuItem.Icon>
                             <Image Source="/HearthstoneDeckTracker;component/Resources/ClassIcons/Round/paladin.png" Width="24" Height="24" Margin="3,0,0,0" RenderOptions.BitmapScalingMode="Fant" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="_ROGUE" Click="BtnNewDeckRogue_Click">
+                    <MenuItem Header="潜行者" Click="BtnNewDeckRogue_Click">
                         <MenuItem.Icon>
                             <Image Source="/HearthstoneDeckTracker;component/Resources/ClassIcons/Round/rogue.png" Width="24" Height="24" Margin="3,0,0,0" RenderOptions.BitmapScalingMode="Fant" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="_SHAMAN" Click="BtnNewDeckShaman_Click">
+                    <MenuItem Header="萨满" Click="BtnNewDeckShaman_Click">
                         <MenuItem.Icon>
                             <Image Source="/HearthstoneDeckTracker;component/Resources/ClassIcons/Round/shaman.png" Width="24" Height="24" Margin="3,0,0,0" RenderOptions.BitmapScalingMode="Fant" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="_WARLOCK" Click="BtnNewDeckWarlock_Click">
+                    <MenuItem Header="术士" Click="BtnNewDeckWarlock_Click">
                         <MenuItem.Icon>
                             <Image Source="/HearthstoneDeckTracker;component/Resources/ClassIcons/Round/warlock.png" Width="24" Height="24" Margin="3,0,0,0" RenderOptions.BitmapScalingMode="Fant" />
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="_WARRIOR" Click="BtnNewDeckWarrior_Click">
+                    <MenuItem Header="战士" Click="BtnNewDeckWarrior_Click">
                         <MenuItem.Icon>
                             <Image Source="/HearthstoneDeckTracker;component/Resources/ClassIcons/Round/warrior.png" Width="24" Height="24" Margin="3,0,0,0" RenderOptions.BitmapScalingMode="Fant" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
-                <MenuItem Header="_DECK" Name="MenuItemEdit">
+                <MenuItem Header="卡组" Name="MenuItemEdit">
                     <MenuItem.Icon>
                         <Rectangle Width="16" Height="16" Margin="0,0,-10,0">
                             <Rectangle.Fill>
@@ -256,35 +256,35 @@
                             </Rectangle.Fill>
                         </Rectangle>
                     </MenuItem.Icon>
-                    <MenuItem Header="EDIT _DECK" Click="BtnEditDeck_Click" />
-                    <MenuItem Header="EDIT NA_ME" Click="BtnName_Click" />
-                    <MenuItem Header="EDIT _NOTES" Click="BtnNotes_Click" />
-                    <MenuItem Header="EDIT _TAGS" Click="BtnTags_Click" />
-                    <MenuItem Name="MenuItemQuickSetTag" Header="_QUICK SET TAG">
+                    <MenuItem Header="编辑卡组" Click="BtnEditDeck_Click" />
+                    <MenuItem Header="编辑名字" Click="BtnName_Click" />
+                    <MenuItem Header="编辑备注" Click="BtnNotes_Click" />
+                    <MenuItem Header="编辑标签" Click="BtnTags_Click" />
+                    <MenuItem Name="MenuItemQuickSetTag" Header="快速设置标签">
                         <MenuItem.ItemTemplate>
                             <DataTemplate>
                                 <CheckBox Content="{Binding Name}" IsChecked="{Binding Selected}" Margin="-24,0,0,0" />
                             </DataTemplate>
                         </MenuItem.ItemTemplate>
                     </MenuItem>
-                    <MenuItem Name="MenuItemMoveDecktoArena" Header="MOVE TO ARENA" Click="BtnMoveDeckToArena_Click" Visibility="Collapsed"/>
-                    <MenuItem Name="MenuItemMoveDeckToConstructed" Header="MOVE TO CONSTRUCTED" Click="BtnMoveDeckToConstructed_Click" Visibility="Collapsed"/>
+                    <MenuItem Name="MenuItemMoveDecktoArena" Header="移动到竞技场" Click="BtnMoveDeckToArena_Click" Visibility="Collapsed"/>
+                    <MenuItem Name="MenuItemMoveDeckToConstructed" Header="移动到构筑" Click="BtnMoveDeckToConstructed_Click" Visibility="Collapsed"/>
                     <Separator Name="SeparatorDeck1"/>
-                    <MenuItem Name="MenuItemMissingCards" Header="SHOW _MISSING CARDS" ToolTip="该信息是基于你最近的导出" Click="MenuItemMissingDust_OnClick"/>
-                    <MenuItem Name="MenuItemUpdateDeck" Header="_UPDATE (WEB)" Click="BtnUpdateDeck_Click" />
+                    <MenuItem Name="MenuItemMissingCards" Header="显示丢失的卡牌" ToolTip="该信息是基于你最近的导出" Click="MenuItemMissingDust_OnClick"/>
+                    <MenuItem Name="MenuItemUpdateDeck" Header="网络上传" Click="BtnUpdateDeck_Click" />
                     <MenuItem Name="MenuItemSetDeckUrl" Header="" Click="BtnSetDeckUrl_Click" />
-                    <MenuItem Name="MenuItemOpenUrl" Header="OPEN _WEBSITE" Click="BtnOpenDeckUrl_Click" />
-                    <MenuItem Name="MenuItemOpenHearthStats" Header="OPEN _HEARTHSTATS" Click="BtnOpenHearthStats_Click" />
+                    <MenuItem Name="MenuItemOpenUrl" Header="打开网站" Click="BtnOpenDeckUrl_Click" />
+                    <MenuItem Name="MenuItemOpenHearthStats" Header="打开HEARTHSTATS" Click="BtnOpenHearthStats_Click" />
                     <Separator />
-                    <MenuItem Header="_ARCHIVE" Name="MenuItemArchive" Click="BtnArchiveDeck_Click" />
-                    <MenuItem Header="UN_ARCHIVE" Name="MenuItemUnarchive" Click="BtnUnarchiveDeck_Click" />
-                    <MenuItem Header="DELETE" Click="BtnDeleteDeck_Click" />
-                    <MenuItem Header="CLONE">
-                        <MenuItem Header="ENTIRE DECK" Click="BtnCloneDeck_Click" />
-                        <MenuItem Header="SELECTED VERSION" Click="BtnCloneSelectedVersion_Click" />
+                    <MenuItem Header="压缩/存档" Name="MenuItemArchive" Click="BtnArchiveDeck_Click" />
+                    <MenuItem Header="解压缩" Name="MenuItemUnarchive" Click="BtnUnarchiveDeck_Click" />
+                    <MenuItem Header="删除" Click="BtnDeleteDeck_Click" />
+                    <MenuItem Header="克隆">
+                        <MenuItem Header="整个卡组" Click="BtnCloneDeck_Click" />
+                        <MenuItem Header="选择版本" Click="BtnCloneSelectedVersion_Click" />
                     </MenuItem>
                 </MenuItem>
-                <MenuItem Header="_IMPORT">
+                <MenuItem Header="导入">
                     <MenuItem.Icon>
                         <Rectangle Width="16" Height="16"  Margin="0,0,-10,0">
                             <Rectangle.Fill>
@@ -292,20 +292,20 @@
                             </Rectangle.Fill>
                         </Rectangle>
                     </MenuItem.Icon>
-                    <MenuItem Header="FROM _WEB" Click="BtnWeb_Click" />
+                    <MenuItem Header="从网站" Click="BtnWeb_Click" />
                     <Separator/>
-                    <MenuItem Header="FROM GAME: _CONSTRUCTED" Click="BtnConstructed_Click" Name="MenuItemImportConstructed" />
-                    <MenuItem Header="FROM GAME: _ARENA" Click="BtnArena_Click" Name="MenuItemImportArena" />
-                    <MenuItem Header="FROM GAME: _TAVERN BRAWL" Click="BtnBrawl_Click" Name="MenuItemImportBrawl" />
+                    <MenuItem Header="从游戏: 构筑" Click="BtnConstructed_Click" Name="MenuItemImportConstructed" />
+                    <MenuItem Header="从游戏: 竞技场" Click="BtnArena_Click" Name="MenuItemImportArena" />
+                    <MenuItem Header="从游戏: 乱斗" Click="BtnBrawl_Click" Name="MenuItemImportBrawl" />
                     <Separator/>
-                    <MenuItem Header="OTHER">
-                        <MenuItem Header="FROM _FILE" Click="BtnFile_Click" />
-                        <MenuItem Header="FROM _ID STRING" Click="BtnIdString_Click" />
-                        <MenuItem Header="FROM CLIPBOARD: _CARD NAMES" Click="BtnClipboardText_Click" />
-                        <MenuItem Header="FROM LAST _GAME" Click="BtnLastGame_Click" />
+                    <MenuItem Header="其他">
+                        <MenuItem Header="从 文件" Click="BtnFile_Click" />
+                        <MenuItem Header="从 ID字串" Click="BtnIdString_Click" />
+                        <MenuItem Header="从 剪贴板: 卡牌名字" Click="BtnClipboardText_Click" />
+                        <MenuItem Header="从 上次游戏" Click="BtnLastGame_Click" />
                     </MenuItem>
                 </MenuItem>
-                <MenuItem Header="E_XPORT" Name="MenuItemExport">
+                <MenuItem Header="导出" Name="MenuItemExport">
                     <MenuItem.Icon>
                         <Rectangle Width="16" Height="16" Margin="0,0,-10,0">
                             <Rectangle.Fill>
@@ -313,15 +313,15 @@
                             </Rectangle.Fill>
                         </Rectangle>
                     </MenuItem.Icon>
-                    <MenuItem Name="MenuItemExportToHs" Header="TO _HEARTHSTONE" Click="BtnExport_Click" />
-                    <MenuItem Header="TO HEARTHSTONE FROM _WEB" Click="BtnExportFromWeb_Click" ToolTip="这不会保存卡组" />
-                    <MenuItem Name="MenuItemExportXml" Header="SAVE AS _XML" Click="BtnSaveToFile_OnClick" />
-                    <MenuItem Name="MenuItemExportIds" Header="COPY IDS TO _CLIPBOARD" Click="BtnClipboard_OnClick" />
-                    <MenuItem Name="MenuItemExportNames" Header="COPY _NAMES TO CLIPBOARD" Click="BtnClipboardNames_OnClick" />
-                    <MenuItem Name="MenuItemExportScreenshot" Header="_SCREENSHOT" Click="BtnScreenhot_Click" />
-                    <MenuItem Name="MenuItemExportScreenshotWithInfo" Header="SCREENSHOT (WITH _INFO)" Click="BtnScreenhotWithInfo_Click" />
+                    <MenuItem Name="MenuItemExportToHs" Header="到 炉石" Click="BtnExport_Click" />
+                    <MenuItem Header="到炉石 从网站" Click="BtnExportFromWeb_Click" ToolTip="这不会保存卡组" />
+                    <MenuItem Name="MenuItemExportXml" Header="保存为xml" Click="BtnSaveToFile_OnClick" />
+                    <MenuItem Name="MenuItemExportIds" Header="拷贝ID字串到剪贴板" Click="BtnClipboard_OnClick" />
+                    <MenuItem Name="MenuItemExportNames" Header="拷贝名字到剪贴板" Click="BtnClipboardNames_OnClick" />
+                    <MenuItem Name="MenuItemExportScreenshot" Header="截图" Click="BtnScreenhot_Click" />
+                    <MenuItem Name="MenuItemExportScreenshotWithInfo" Header="截图带信息" Click="BtnScreenhotWithInfo_Click" />
                 </MenuItem>
-                <MenuItem Header="_STATS">
+                <MenuItem Header="统计">
                     <MenuItem.Icon>
                         <Rectangle Width="16" Height="16" Margin="0,0,-10,0">
                             <Rectangle.Fill>
@@ -329,14 +329,14 @@
                             </Rectangle.Fill>
                         </Rectangle>
                     </MenuItem.Icon>
-                    <MenuItem Header="_ARENA"  Click="BtnArenaStats_Click"/>
-                    <MenuItem Header="_CONSTRUCTED"  Click="BtnConstructedStats_Click"/>
+                    <MenuItem Header="竞技场"  Click="BtnArenaStats_Click"/>
+                    <MenuItem Header="构筑"  Click="BtnConstructedStats_Click"/>
                     <Separator/>
-                    <MenuItem Header="_LATEST REPLAY" Click="MenuItemReplayLastGame_OnClick"/>
-                    <MenuItem Header="_SELECT REPLAY" Click="MenuItemReplaySelectGame_OnClick" />
-                    <MenuItem Header="LOAD REPLAY FROM _FILE" Click="MenuItemReplayFromFile_OnClick"/>
+                    <MenuItem Header="最新的回放" Click="MenuItemReplayLastGame_OnClick"/>
+                    <MenuItem Header="已选的回放" Click="MenuItemReplaySelectGame_OnClick" />
+                    <MenuItem Header="从文件中加载回放" Click="MenuItemReplayFromFile_OnClick"/>
                 </MenuItem>
-                <MenuItem Header="_HEARTHSTATS" SubmenuOpened="MenuItemHearthStats_OnSubmenuOpened">
+                <MenuItem Header="HEARTHSTATS" SubmenuOpened="MenuItemHearthStats_OnSubmenuOpened">
                     <MenuItem.Icon>
                         <Rectangle Width="16" Height="16" Margin="0,0,-10,0">
                             <Rectangle.Fill>
@@ -344,7 +344,7 @@
                             </Rectangle.Fill>
                         </Rectangle>
                     </MenuItem.Icon>
-                    <MenuItem Name="MenuItemLogin" Header="LOGIN" Click="MenuItemLogin_OnClick"/>
+                    <MenuItem Name="MenuItemLogin" Header="登陆" Click="MenuItemLogin_OnClick"/>
                     <MenuItem Name="MenuItemDashboard" Header="DASHBOARD (WEB)" Click="MenuItemDashboard_OnClick"/>
                     <MenuItem Name="MenuItemHearthStatsSync" Click="MenuItemHearthStatsSync_OnClick">
                         <MenuItem.Header>
@@ -354,7 +354,7 @@
                             </StackPanel>
                         </MenuItem.Header>
                     </MenuItem>
-                    <MenuItem Name="MenuItemHearthStatsForceFullSync"  Header="FORCE FULL SYNC" Click="MenuItemHearthStatsForceFullSync_OnClick"/>
+                    <MenuItem Name="MenuItemHearthStatsForceFullSync"  Header="强制全部同步" Click="MenuItemHearthStatsForceFullSync_OnClick"/>
                     <Separator/>
                     <CheckBox Name="MenuItemCheckBoxSyncOnStart" Content="开始时同步" Margin="-24,0,0,0" FontSize="14" Checked="MenuItemCheckBoxSyncOnStart_OnChecked" Unchecked="MenuItemCheckBoxSyncOnStart_OnUnchecked"/>
                     <CheckBox Name="MenuItemCheckBoxAutoUploadDecks" Content="自动上传新卡组" ToolTip="也适用于对卡组和新版本的更改" Margin="-24,0,0,0" FontSize="14" Checked="MenuItemCheckBoxAutoUploadDecks_OnChecked" Unchecked="MenuItemCheckBoxAutoUploadDecks_OnUnchecked"/>
@@ -363,13 +363,13 @@
                     <CheckBox Name="MenuItemCheckBoxAutoDeleteGames" Content="自动删除游戏" Margin="-24,0,0,0" FontSize="14" Checked="MenuItemCheckBoxAutoDeleteGames_OnChecked" Unchecked="MenuItemCheckBoxAutoDeleteGames_OnUnchecked"/>
                     <CheckBox Name="MenuItemCheckBoxAutoSyncBackground" Content="在后台自动同步" ToolTip="将执行【同步】每5分钟的背景。除非你运行HDT多台电脑上同时有你并不真的需要这个。" Margin="-24,0,0,0" FontSize="14" Checked="MenuItemCheckBoxAutoSyncBackground_OnChecked" Unchecked="MenuItemCheckBoxAutoSyncBackground_OnUnchecked"/>
                     <Separator/>
-                    <MenuItem Name="MenuItemDeleteHearthStatsDeck" Header="DELETE SELECTED DECKS" ToolTip="这将删除选定的卡组和所有比赛的hearthstats以及删除所有存储的ID。当地的卡组将保持不变!" Click="MenuItemDeleteHearthStatsDeck_OnClick"/>
+                    <MenuItem Name="MenuItemDeleteHearthStatsDeck" Header="删除已选择卡组" ToolTip="这将删除选定的卡组和所有比赛的hearthstats以及删除所有存储的ID。当地的卡组将保持不变!" Click="MenuItemDeleteHearthStatsDeck_OnClick"/>
                     <Separator Name="SeparatorLogout" Visibility="Collapsed"/>
-                    <MenuItem Name="MenuItemLogout" Header="LOGOUT" Click="MenuItemLogout_OnClick" Visibility="Collapsed"/>
+                    <MenuItem Name="MenuItemLogout" Header="登出" Click="MenuItemLogout_OnClick" Visibility="Collapsed"/>
                 </MenuItem>
                 <!--<MenuItem Header="MENUITEM">
                 </MenuItem>-->
-                <MenuItem Header="_PLUGINS" Name="MenuItemPlugins">
+                <MenuItem Header="插件" Name="MenuItemPlugins">
                     <MenuItem.Icon>
                         <Rectangle Width="16" Height="16" Margin="0,0,-10,0">
                             <Rectangle.Fill>
@@ -377,7 +377,7 @@
                             </Rectangle.Fill>
                         </Rectangle>
                     </MenuItem.Icon>
-                    <MenuItem Header="EMPTY..." IsEnabled="False" Name="MenuItemPluginsEmpty"/>
+                    <MenuItem Header="空..." IsEnabled="False" Name="MenuItemPluginsEmpty"/>
                 </MenuItem>
             </Menu>
             <Separator Grid.Row="1" Grid.ColumnSpan="4" Margin="0,29,0,0" Panel.ZIndex="2" />
@@ -473,7 +473,7 @@
                    FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2" 
                    Visibility="{Binding IntroductionLabelVisibility, RelativeSource={RelativeSource AncestorType=controls:MetroWindow}}" />
             <Menu Name="MenuNewDeck" Grid.Column="2" Grid.Row="1" Visibility="Collapsed">
-                <MenuItem Header="SAVE" Name="MenuItemSave" SubmenuOpened="MenuItem_OnSubmenuOpened">
+                <MenuItem Header="保存" Name="MenuItemSave" SubmenuOpened="MenuItem_OnSubmenuOpened">
                     <MenuItem.Icon>
                         <Rectangle Width="16" Height="16">
                             <Rectangle.Fill>
@@ -484,9 +484,9 @@
                     <MenuItem Name="MenuItemSaveVersionCurrent" Header="v1.0 (current)" Click="MenuItemSaveVersionCurrent_OnClick"/>
                     <MenuItem Name="MenuItemSaveVersionMinor" Header="v1.1" Click="MenuItemSaveVersionMinor_OnClick"/>
                     <MenuItem Name="MenuItemSaveVersionMajor" Header="v2.0" Click="MenuItemSaveVersionMajor_OnClick"/>
-                    <MenuItem Name="MenuItemSaveAsNew" Header="SAVE AS NEW (v1.0)" Click="MenuItemSaveAsNew_OnClick"/>
+                    <MenuItem Name="MenuItemSaveAsNew" Header="保存成为新的 (v1.0)" Click="MenuItemSaveAsNew_OnClick"/>
                 </MenuItem>
-                <MenuItem Header="CANCEL" Click="BtnCancelEdit_Click">
+                <MenuItem Header="取消" Click="BtnCancelEdit_Click">
                     <MenuItem.Icon>
                         <Rectangle Width="16" Height="16">
                             <Rectangle.Fill>
@@ -506,7 +506,7 @@
                             </Rectangle.Fill>
                         </Rectangle>
                     </MenuItem.Icon>
-                    <MenuItem Name="MenuFilterMana" Header="MANA">
+                    <MenuItem Name="MenuFilterMana" Header="费用">
                         <RadioButton Content="全部" IsChecked="True" Click="BtnFilter_OnClick" Margin="-24,0,0,0"
                                      FontSize="14" />
                         <RadioButton Content="0" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
@@ -520,13 +520,13 @@
                         <RadioButton Content="8" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
                         <RadioButton Content="9+" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
                     </MenuItem>
-                    <MenuItem Name="MenuFilterType" Header="TYPE">
+                    <MenuItem Name="MenuFilterType" Header="类型">
                         <RadioButton Content="全部" IsChecked="True" Click="BtnFilter_OnClick" Margin="-24,0,0,0"
                                      FontSize="14" />
                         <RadioButton Content="职业卡" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
                         <RadioButton Content="中立卡" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
                     </MenuItem>
-                    <MenuItem Name="MenuFilterSet" Header="SET">
+                    <MenuItem Name="MenuFilterSet" Header="卡集">
                         <RadioButton Content="全部" IsChecked="True" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
                         <RadioButton Content="经典" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
                         <RadioButton Content="扩展" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />

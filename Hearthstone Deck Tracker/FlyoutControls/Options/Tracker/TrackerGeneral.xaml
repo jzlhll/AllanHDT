@@ -13,10 +13,10 @@
         <enums:EnumDescriptionConverter x:Key="EnumDescriptionConverter"/>
     </UserControl.Resources>
     <Grid>
-        <GroupBox Header="General">
+        <GroupBox Header="一般">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
-                    <GroupBox Header="Alerts">
+                    <GroupBox Header="提示">
                         <StackPanel>
                             <CheckBox x:Name="CheckboxFlashHs" Content="在你的回合开始时闪烁炉石"
                                   HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"
@@ -46,7 +46,7 @@
                             </DockPanel>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Header="Card Language">
+                    <GroupBox Header="卡牌语言">
                         <StackPanel>
                             <DockPanel Margin="0,5,0,0">
                                 <Label Content="主要的:" HorizontalAlignment="Left"

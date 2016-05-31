@@ -49,32 +49,32 @@
         </Canvas>
     </UserControl.Resources>
     <StackPanel Orientation="Horizontal">
-        <Rectangle Name="RectIconNaxx" Width="16" Height="16" Margin="2,0" ToolTip="Deck contains cards from the Curse of Naxxramas expansion.">
+        <Rectangle Name="RectIconNaxx" Width="16" Height="16" Margin="2,0" ToolTip="卡组包含纳克萨玛斯的诅咒卡。">
             <Rectangle.Fill>
                 <VisualBrush Stretch="Uniform" Visual="{StaticResource set_naxx}" />
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="RectIconGvg" Width="16" Height="16" Margin="2,0" ToolTip="Deck contains cards from the Goblins vs Gnomes expansion.">
+        <Rectangle Name="RectIconGvg" Width="16" Height="16" Margin="2,0" ToolTip="卡组包含GVG卡。">
             <Rectangle.Fill>
                 <VisualBrush Stretch="Uniform" Visual="{StaticResource set_gvg}" />
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="RectIconBrm" Width="16" Height="16" Margin="2,0" ToolTip="Deck contains cards from the Blackrock Mountain expansion.">
+        <Rectangle Name="RectIconBrm" Width="16" Height="16" Margin="2,0" ToolTip="卡组包含黑石山卡.">
             <Rectangle.Fill>
                 <VisualBrush Stretch="Uniform" Visual="{StaticResource set_brm}" />
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="RectIconTgt" Width="16" Height="16" Margin="2,0" ToolTip="Deck contains cards from The Grand Tournament expansion.">
+        <Rectangle Name="RectIconTgt" Width="16" Height="16" Margin="2,0" ToolTip="卡组包含冠军试炼卡.">
             <Rectangle.Fill>
                 <VisualBrush Stretch="Uniform" Visual="{StaticResource set_tgt}" />
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="RectIconLoe" Width="16" Height="16" Margin="2,0" ToolTip="Deck contains cards from the League of Explorers expansion.">
+        <Rectangle Name="RectIconLoe" Width="16" Height="16" Margin="2,0" ToolTip="卡组包含探险者协会卡.">
             <Rectangle.Fill>
                 <VisualBrush Stretch="Uniform" Visual="{StaticResource set_loe}" />
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle Name="RectIconOg" Width="16" Height="16" Margin="2,0" ToolTip="Deck contains cards from the Whispers of the Old Gods expansion.">
+        <Rectangle Name="RectIconOg" Width="16" Height="16" Margin="2,0" ToolTip="卡组包含上古之神卡.">
             <Rectangle.Fill>
                 <VisualBrush Stretch="Uniform" Visual="{StaticResource set_og}" />
             </Rectangle.Fill>

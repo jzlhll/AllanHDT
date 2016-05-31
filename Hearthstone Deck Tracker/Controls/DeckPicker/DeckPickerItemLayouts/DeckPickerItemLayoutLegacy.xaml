@@ -34,9 +34,9 @@
                         </Viewbox>
                     </Border>
                     <TextBlock Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Center" TextAlignment="Center" Foreground="Black" FontSize="12" Visibility="{Binding VisibilityNoStats}">
-                        <Run>NO</Run>
+                        <Run>无</Run>
                         <LineBreak/>
-                        <Run>STATS</Run>
+                        <Run>统计</Run>
                     </TextBlock>
                 </Grid>
             </Border>

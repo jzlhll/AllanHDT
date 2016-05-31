@@ -9,7 +9,7 @@
     <DockPanel>
         <Label Content="介绍卡牌的主题和动画！" FontWeight="SemiBold" DockPanel.Dock="Top" FontSize="18" HorizontalAlignment="Center"/>
         <Separator DockPanel.Dock="Top"/>
-        <Label Content="Select your preferred theme:" FontSize="14" DockPanel.Dock="Top" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+        <Label Content="选择你喜欢的主题:" FontSize="14" DockPanel.Dock="Top" FontWeight="SemiBold" HorizontalAlignment="Center"/>
         <Grid DockPanel.Dock="Top" HorizontalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>

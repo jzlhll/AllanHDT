@@ -11,33 +11,33 @@
              d:DesignHeight="800" d:DesignWidth="800">
     <DockPanel>
         <DockPanel>
-            <GroupBox Header="MENU" DockPanel.Dock="Top">
+            <GroupBox Header="菜单" DockPanel.Dock="Top">
                 <TreeView Name="TreeViewStats" Height="200" SelectedItemChanged="TreeViewStats_OnSelectedItemChanged">
                     <TreeViewItem Name="TreeViewItemArenaRuns" IsExpanded="True"
-                                  Selected="TreeViewItemArenaRuns_OnSelected" Header="Arena Runs"
+                                  Selected="TreeViewItemArenaRuns_OnSelected" Header="竞技场运行"
                                   DataContext="{Binding ArenaStatsSummary, RelativeSource={RelativeSource AncestorType=UserControl}}">
                         <TreeViewItem Name="TreeViewItemArenaRunsSummary"
-                                      Selected="TreeViewItemArenaRunsSummary_OnSelected" Header="Summary"
+                                      Selected="TreeViewItemArenaRunsSummary_OnSelected" Header="摘要"
                                       IsSelected="True"
                                       DataContext="{Binding ArenaStatsSummary, RelativeSource={RelativeSource AncestorType=UserControl}}" />
                         <TreeViewItem Name="TreeViewItemArenaRunsOverview"
-                                      Selected="TreeViewItemArenaRunsOverview_OnSelected" Header="Runs &amp; matches"
+                                      Selected="TreeViewItemArenaRunsOverview_OnSelected" Header="运行 &amp; 对阵"
                                       DataContext="{Binding ArenaRuns, RelativeSource={RelativeSource AncestorType=UserControl}}" />
                         <TreeViewItem Name="TreeViewItemArenaRunsAdvanced"
-                                      Selected="TreeViewItemArenaRunsAdvanced_OnSelected" Header="Advanced charts"
+                                      Selected="TreeViewItemArenaRunsAdvanced_OnSelected" Header="高级图表"
                                       DataContext="{Binding ArenaAdvancedCharts, RelativeSource={RelativeSource AncestorType=UserControl}}" />
                     </TreeViewItem>
-                    <TreeViewItem Name="TreeViewItemConstructed" Header="Constructed" IsExpanded="True"
+                    <TreeViewItem Name="TreeViewItemConstructed" Header="构筑" IsExpanded="True"
                                       Selected="TreeViewItemConstructedSummary_OnSelected"
                                       DataContext="{Binding ConstructedSummary, RelativeSource={RelativeSource AncestorType=UserControl}}" >
                         <TreeViewItem Name="TreeViewItemConstructedSummary" 
-                                      Selected="TreeViewItemConstructedSummary_OnSelected" Header="Summary"
+                                      Selected="TreeViewItemConstructedSummary_OnSelected" Header="摘要"
                                       DataContext="{Binding ConstructedSummary, RelativeSource={RelativeSource AncestorType=UserControl}}" />
                         <TreeViewItem Name="TreeViewItemConstructedGames" 
-                                      Selected="TreeViewItemConstructedGames_OnSelected" Header="Matches"
+                                      Selected="TreeViewItemConstructedGames_OnSelected" Header="对阵"
                                       DataContext="{Binding ConstructedGames, RelativeSource={RelativeSource AncestorType=UserControl}}" />
                         <TreeViewItem Name="TreeViewItemConstructedCharts" 
-                                      Selected="TreeViewItemConstructedCharts_OnSelected" Header="Charts"
+                                      Selected="TreeViewItemConstructedCharts_OnSelected" Header="图表"
                                       DataContext="{Binding ConstructedCharts, RelativeSource={RelativeSource AncestorType=UserControl}}" />
                     </TreeViewItem>
                 </TreeView>
@@ -51,7 +51,7 @@
                                 <ContextMenu Name="ButtonMoreContextMenu">
                                     <CheckBox Name="CheckBoxPercent" DockPanel.Dock="Right" Content="AUTO REFRESH" Margin="-25,0,5,0" Foreground="{DynamicResource TextBrush}" 
                                   IsChecked="{Binding Path=StatsAutoRefresh, Source={StaticResource ConfigWrapper}}"/>
-                                    <MenuItem Header="RESET" Click="MenuItemReset_OnClick"/>
+                                    <MenuItem Header="重置" Click="MenuItemReset_OnClick"/>
                                 </ContextMenu>
                             </Button.ContextMenu>
                         </Button>
@@ -62,7 +62,7 @@
                                 </Rectangle.Fill>
                             </Rectangle>
                         </Button>
-                        <TextBlock Text="FILTERS" Foreground="White"/>
+                        <TextBlock Text="过滤" Foreground="White"/>
                     </DockPanel>
                 </GroupBox.Header>
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">

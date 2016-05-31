@@ -7,10 +7,10 @@
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="300" Loaded="TrackerSettings_Loaded">
     <Grid>
-        <GroupBox Header="Settings">
+        <GroupBox Header="设置">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
-                    <GroupBox Header="Google Analytics">
+                    <GroupBox Header="提交google分析">
                         <StackPanel>
                             <CheckBox Name="CheckBoxAnalytics" Content="提交匿名数据"
                                       Checked="CheckBoxAnalytics_OnChecked" Unchecked="CheckBoxAnalytics_OnUnchecked" />

@@ -9,7 +9,7 @@
              d:DesignHeight="600" d:DesignWidth="300">
     <Grid>
         <DockPanel Margin="6,0,6,6">
-            <GroupBox Name="GroupBoxSortingAllConstructed" Header="Deck sorting: All/Constructed" DockPanel.Dock="Top">
+            <GroupBox Name="GroupBoxSortingAllConstructed" Header="卡组排序：全部/构筑" DockPanel.Dock="Top">
                 <StackPanel>
                     <CheckBox Name="CheckBoxSortByClass" Content="按英雄排序"
                         Checked="CheckBoxSortByClass_OnChecked" Unchecked="CheckBoxSortByClass_OnUnchecked" />
@@ -24,7 +24,7 @@
                     </ComboBox>
                 </StackPanel>
             </GroupBox>
-            <GroupBox Name="GroupBoxSortingArena" Header="Deck sorting: Arena" DockPanel.Dock="Top">
+            <GroupBox Name="GroupBoxSortingArena" Header="卡组排序：竞技场" DockPanel.Dock="Top">
                 <StackPanel>
                     <CheckBox Name="CheckBoxSortByClassArena" Content="按英雄排序"
                             Checked="CheckBoxSortByClassArena_OnChecked" Unchecked="CheckBoxSortByClassArena_OnUnchecked" />
@@ -39,7 +39,7 @@
                         </ComboBox>
                     </StackPanel>
             </GroupBox>
-            <GroupBox Header="Filter">
+            <GroupBox Header="过滤">
                 <DockPanel>
 
                     <Grid Margin="0,3,0,0" DockPanel.Dock="Bottom">

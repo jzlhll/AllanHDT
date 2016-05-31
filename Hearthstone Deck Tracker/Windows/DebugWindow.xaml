@@ -2,10 +2,10 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
-        Title="DebugWindow" Height="300" Width="300">
+        Title="调试窗口" Height="300" Width="300">
     <Grid>
         <TabControl Name="TabControlDebug">
-            <TabItem Header="Cards">
+            <TabItem Header="卡牌">
                 <DockPanel Margin="0,2">
                     <WrapPanel DockPanel.Dock="Top">
                         <Button Name="ExpandAllBtn" Click="ExpandAllBtn_Click" Margin="2,0">展开全部</Button>
@@ -14,18 +14,18 @@
                     <TreeView Name="TreeViewCards"/>
                 </DockPanel>
             </TabItem>
-            <TabItem Header="Entites">
+            <TabItem Header="实体Entites">
                 <DockPanel>
                     <ComboBox DockPanel.Dock="Top" SelectedIndex="0" Name="ComboBoxData">
                         <ComboBox.Items>
-                            <system:String>Game</system:String>
-                            <system:String>Entities</system:String>
+                            <system:String>游戏</system:String>
+                            <system:String>实体Entites</system:String>
                         </ComboBox.Items>
                     </ComboBox>
                     <DataGrid Name="DataGridProperties" AutoGenerateColumns="True"/>
                 </DockPanel>
             </TabItem>
-            <TabItem Header="Damage">
+            <TabItem Header="伤害">
                 <StackPanel Name="DamageView">
                     <DockPanel>
                         <TextBlock Name="OpponentHeader" DockPanel.Dock="Top" Text="对手" FontSize="18" Margin="0,4"/>

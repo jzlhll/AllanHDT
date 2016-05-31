@@ -9,7 +9,7 @@
              xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="300">
-    <GroupBox Header="Hotkeys">
+    <GroupBox Header="热键">
         <GroupBox.Resources>
             <hotKeys:HotKeyManager x:Key="HotKeyManager" />
             <hotKeys:PredefinedHotKeyActions x:Key="PredefinedHotKeyActions" />
@@ -33,13 +33,13 @@
                       CanUserDeleteRows="False" CanUserResizeColumns="False" CanUserResizeRows="False"
                       CanUserSortColumns="False" IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Mod" Binding="{Binding Key.Mod}" />
-                    <DataGridTextColumn Header="Key" Binding="{Binding Key.Key}" />
-                    <DataGridTextColumn Header="Action" Binding="{Binding Value}" />
+                    <DataGridTextColumn Header="修改" Binding="{Binding Key.Mod}" />
+                    <DataGridTextColumn Header="按键" Binding="{Binding Key.Key}" />
+                    <DataGridTextColumn Header="动作" Binding="{Binding Value}" />
                 </DataGrid.Columns>
             </DataGrid>
             <Button Margin="0,5" Content="删除已选" Click="ButtonDelete_OnClick" />
-            <GroupBox Header="New">
+            <GroupBox Header="新建">
                 <StackPanel>
                     <Grid>
                         <Grid.ColumnDefinitions>

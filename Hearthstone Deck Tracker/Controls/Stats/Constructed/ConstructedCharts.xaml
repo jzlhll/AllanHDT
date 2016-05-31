@@ -10,7 +10,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <StackPanel>
-            <GroupBox Header="Winrate">
+            <GroupBox Header="胜率">
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" PreviewMouseWheel="ForwardScrollEvent">
                     <DockPanel Height="300" MinWidth="300">
                         <metroChart:RadialGaugeChart Background="Transparent" Margin="0,0,0,-10" ChartTitleVisibility="Collapsed" SelectedBrush="Transparent" ChartLegendVisibility="Collapsed">
@@ -21,7 +21,7 @@
                     </DockPanel>
                 </ScrollViewer>
             </GroupBox>
-            <GroupBox Header="BY CLASS">
+            <GroupBox Header="按英雄">
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" PreviewMouseWheel="ForwardScrollEvent">
                     <Grid>
                         <Grid.ColumnDefinitions>

@@ -6,7 +6,7 @@
              mc:Ignorable="d" Loaded="TrackerBackups_OnLoaded"
              d:DesignHeight="600" d:DesignWidth="300">
     <Grid>
-        <GroupBox Header="Backups">
+        <GroupBox Header="备份">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel Margin="10">
                     <ListBox Name="ListBoxBackups" Height="200" SelectionMode="Extended">

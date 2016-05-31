@@ -166,8 +166,8 @@
                                         <Rectangle Width="Auto" Height="20" Stroke="{DynamicResource AccentColorBrush}" Fill="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" Grid.ColumnSpan="3" Visibility="{Binding VisibilityTurnRow}">
                                             <Rectangle.ContextMenu>
                                                 <ContextMenu>
-                                                    <MenuItem Header="SHOW ALL" Visibility="{Binding VisibilityShowAll}" Click="MenuItemShowAll_OnClick"/>
-                                                    <MenuItem Header="SHOW FILTERED" Visibility="{Binding VisibilityShowFiltered}" Click="MenuItemShowFiltered_OnClick"/>
+                                                    <MenuItem Header="显示全部" Visibility="{Binding VisibilityShowAll}" Click="MenuItemShowAll_OnClick"/>
+                                                    <MenuItem Header="显示过滤后" Visibility="{Binding VisibilityShowFiltered}" Click="MenuItemShowFiltered_OnClick"/>
                                                 </ContextMenu>
                                             </Rectangle.ContextMenu>
                                         </Rectangle>

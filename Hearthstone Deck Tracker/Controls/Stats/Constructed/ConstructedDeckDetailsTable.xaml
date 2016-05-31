@@ -11,7 +11,7 @@
     <DataGrid Name="DataGridMatchups" ItemsSource="{Binding Path=DeckDetails, Source={x:Static compiledStats:ConstructedStats.Instance}, IsAsync=True, NotifyOnTargetUpdated=True}" 
                AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" CanUserSortColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False">
         <DataGrid.Columns>
-            <DataGridTextColumn Binding="{Binding Version}" Header="Ver.">
+            <DataGridTextColumn Binding="{Binding Version}" Header="版本">
                 <DataGridTextColumn.ElementStyle>
                     <Style TargetType="TextBlock">
                         <Setter Property="HorizontalAlignment" Value="Center" />

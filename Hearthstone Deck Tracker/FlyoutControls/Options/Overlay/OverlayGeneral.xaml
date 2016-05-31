@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="300">
     <Grid>
-        <GroupBox Header="General">
+        <GroupBox Header="一般">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
                     <CheckBox x:Name="CheckboxHideOverlay" Content="完全隐藏"

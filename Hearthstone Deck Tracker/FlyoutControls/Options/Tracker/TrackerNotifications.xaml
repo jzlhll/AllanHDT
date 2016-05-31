@@ -9,13 +9,13 @@
              xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="300">
-    <GroupBox Header="Notifications">
+    <GroupBox Header="通知">
         <GroupBox.Resources>
             <hotKeys:HotKeyManager x:Key="HotKeyManager" />
             <hotKeys:PredefinedHotKeyActions x:Key="PredefinedHotKeyActions" />
         </GroupBox.Resources>
         <StackPanel>
-            <GroupBox Header="Game result">
+            <GroupBox Header="游戏结果">
                 <StackPanel>
                     <CheckBox Name="CheckBoxShowNotifications" Content="显示通知"
                               Checked="CheckBoxShowNotifications_OnChecked"

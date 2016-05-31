@@ -5,14 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <GroupBox Header="Streaming">
+    <GroupBox Header="媒体">
         <StackPanel>
-            <CheckBox Margin="5,5,0,0" Name="CheckBoxShowCapOverlay" Content="Show capturable overlay window" 
+            <CheckBox Margin="5,5,0,0" Name="CheckBoxShowCapOverlay" Content="显示可截图窗口" 
                       Checked="CheckBoxShowCapOverlay_OnChecked" Unchecked="CheckBoxShowCapOverlay_OnUnchecked"/>
-            <CheckBox Margin="5,5,0,0" Name="CheckBoxDisableOpacityTransition" Content="Disable card opacity transitions (recommended)" 
+            <CheckBox Margin="5,5,0,0" Name="CheckBoxDisableOpacityTransition" Content="禁用卡不透明转换（建议）" 
                               Checked="CheckBoxDisableOpacityTransition_Checked" Unchecked="CheckBoxDisableOpacityTransition_Unchecked" />
             <DockPanel Margin="0,5,0,0">
-                <Label Content="Background:" DockPanel.Dock="Left" />
+                <Label Content="背景色:" DockPanel.Dock="Left" />
                 <Border Width="26" Height="26" Background="{Binding SelectedColor, RelativeSource={RelativeSource AncestorType=UserControl}}" 
                         BorderThickness="1" BorderBrush="{DynamicResource ControlBorderBrush}" DockPanel.Dock="Right" Margin="2,0,0,0"/>
                 <TextBox x:Name="TextboxCustomBackground" HorizontalAlignment="Right"
@@ -21,14 +21,14 @@
                                  Width="127" TextChanged="TextboxBackground_TextChanged" />
             </DockPanel>
             <TextBlock Margin="5,15,5,5" TextWrapping="Wrap">
-                <Run>This will add a chroma-key-able copy of the overlay behind your Hearthstone window.</Run>
+                <Run>这将添加一个色度键可以复制你的炉石窗后的叠加。</Run>
                 <LineBreak/>
                 <LineBreak/>
-                <Run>Note: The overlay copy may show up in front Hearthstone once. Clicking it will hide it for the rest of the session.</Run>
+                <Run>注意：覆盖拷贝可能出现在前一次的炉石。单击它将隐藏它的会话的其余部分。</Run>
             </TextBlock>
             <TextBlock Margin="5,5,0,0" FontWeight="SemiBold">
                 <Hyperlink Click="Hyperlink_OnClick">
-                    Show instructions for getting started (opens wiki)
+                    显示指令开始（打开维基百科）
                 </Hyperlink>
             </TextBlock>
         </StackPanel>

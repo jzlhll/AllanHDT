@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="300">
     <Grid>
-        <GroupBox Header="Exporting to Hearthstone">
+        <GroupBox Header="导出到炉石">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
                     <DockPanel Margin="10,5,10,0">

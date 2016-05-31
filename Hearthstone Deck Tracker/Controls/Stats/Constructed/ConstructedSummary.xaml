@@ -51,7 +51,7 @@
                     </Grid>
                 </ScrollViewer>
             </Expander>
-            <GroupBox Header="Highlights" DockPanel.Dock="Top" PreviewMouseWheel="ForwardScrollEvent">
+            <GroupBox Header="高亮" DockPanel.Dock="Top" PreviewMouseWheel="ForwardScrollEvent">
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                     <StackPanel Orientation="Horizontal">
                         <DockPanel>

@@ -15,14 +15,14 @@
     </UserControl.Resources>
     <StackPanel>
         <UniformGrid Rows="1">
-            <GroupBox Header="Gold">
+            <GroupBox Header="金币">
                 <TextBox Name="TextBoxGold" ToolTip="你可以输入值类似 50+125" TextChanged="TextBoxGold_OnTextChanged"/>
             </GroupBox>
-            <GroupBox Header="Dust">
+            <GroupBox Header="尘">
                 <TextBox Name="TextBoxDust" TextChanged="TextBoxDust_OnTextChanged"/>
             </GroupBox>
         </UniformGrid>
-        <GroupBox Header="Packs">
+        <GroupBox Header="卡包">
             <StackPanel>
             <DockPanel>
                 <Label Content="#1:"/>
@@ -46,7 +46,7 @@
                 </DockPanel>
             </StackPanel>
         </GroupBox>
-        <GroupBox Header="Cards">
+        <GroupBox Header="卡牌">
             <StackPanel>
                 <DockPanel Margin="0,2,0,0">
                     <Label Content="#1:" DockPanel.Dock="Left"/>
@@ -66,7 +66,7 @@
             </StackPanel>
         </GroupBox>
         <UniformGrid>
-            <GroupBox Header="Payment method">
+            <GroupBox Header="支持手段">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <RadioButton Name="RadioButtonPaymentGold" Content="金币" IsChecked="True" Checked="RadioButtonPaymentGold_OnChecked"/>
                     <RadioButton Name="RadioButtonPaymentMoney" Content="钱" Margin="10,0,0,0" Checked="RadioButtonPaymentMoney_OnChecked"/>

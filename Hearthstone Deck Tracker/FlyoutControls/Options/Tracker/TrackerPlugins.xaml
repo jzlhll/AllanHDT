@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="300">
     <Grid>
-        <GroupBox Header="Plugins">
+        <GroupBox Header="插件">
             <DockPanel>
                 <DockPanel DockPanel.Dock="Top" Height="150">
                     <StackPanel DockPanel.Dock="Right" Margin="5,0,0,0">

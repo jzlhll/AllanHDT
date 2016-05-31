@@ -6,7 +6,7 @@
                       BorderThickness="1" BorderBrush="{DynamicResource AccentColorBrush}"
                       WindowStyle="None" ShowTitleBar="False"
                       ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Topmost="True"
-                      Title="Hearthstone Deck Tracker" SizeToContent="WidthAndHeight">
+                      Title="HDT汉化" SizeToContent="WidthAndHeight">
     <controls:MetroWindow.Resources>
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" />
     </controls:MetroWindow.Resources>

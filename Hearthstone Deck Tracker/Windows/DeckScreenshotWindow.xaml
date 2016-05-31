@@ -6,7 +6,7 @@
                       xmlns:windows="clr-namespace:Hearthstone_Deck_Tracker.Windows"
                       xmlns:controls1="clr-namespace:Hearthstone_Deck_Tracker.Controls"
                       xmlns:themes="clr-namespace:Hearthstone_Deck_Tracker.Utility.Themes"
-                      Title="Screenshot" Height="440" Width="230" MinWidth="226" MaxWidth="230"
+                      Title="截图" Height="440" Width="230" MinWidth="226" MaxWidth="230"
                       Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"
                       SizeToContent="Height" Icon="{StaticResource AppIcon}">
     <controls:MetroWindow.Resources>

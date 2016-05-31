@@ -10,10 +10,10 @@
         <enums:EnumDescriptionConverter x:Key="EnumDescriptionConverter" />
     </UserControl.Resources>
     <Grid>
-        <GroupBox Header="Importing">
+        <GroupBox Header="导入">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
-                    <GroupBox Header="Constructed">
+                    <GroupBox Header="构筑">
                         <StackPanel>
                             <TextBlock TextWrapping="Wrap" Text="每一次你进入【游戏】菜单，这将检查新的和（或）修改后的卡组。." Margin="5,0,5,0"/>
                             <CheckBox x:Name="CheckBoxConstructedImportNew" Content="自动导入新卡组" Margin="10,5,0,0"
@@ -22,7 +22,7 @@
                                       Checked="CheckBoxConstrucedUpdate_Checked" Unchecked="CheckBoxConstrucedUpdate_Unchecked" />
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Header="Arena">
+                    <GroupBox Header="竞技场">
                         <StackPanel>
                             <DockPanel Margin="10,5,10,0">
                                 <TextBlock DockPanel.Dock="Left" Text="导入的行为:" VerticalAlignment="Center" />
@@ -36,7 +36,7 @@
                                     </ComboBox.ItemTemplate>
                                 </ComboBox>
                             </DockPanel>
-                            <GroupBox Header="Arena deck name template">
+                            <GroupBox Header="竞技场卡组名字模板">
                                 <DockPanel>
                                     <TextBlock Text="模板：{英雄}，{日期格式}" DockPanel.Dock="Bottom"
                                                Margin="0,5,0,0" TextWrapping="Wrap"
@@ -53,7 +53,7 @@
                             </GroupBox>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Header="Web">
+                    <GroupBox Header="网络">
                         <StackPanel>
 
                             <CheckBox x:Name="CheckboxTagOnImport" Content="导入标签"

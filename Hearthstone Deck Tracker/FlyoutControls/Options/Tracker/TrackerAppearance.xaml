@@ -13,7 +13,7 @@
         <enums:EnumDescriptionConverter x:Key="EnumDescriptionConverter"/>
     </UserControl.Resources>
     <Grid>
-        <GroupBox Header="Settings">
+        <GroupBox Header="设置">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
                     <DockPanel Margin="10,5,10,0">

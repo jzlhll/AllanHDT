@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:dialogs="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
-             mc:Ignorable="d" Title="Select Deck Type" 
+             mc:Ignorable="d" Title="选择卡组类型" 
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
         <StackPanel Margin="0,20,0,0">

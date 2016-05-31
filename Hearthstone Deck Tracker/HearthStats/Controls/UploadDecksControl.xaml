@@ -5,14 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="600">
-    <GroupBox Header="LOCAL DECKS" Width="550">
+    <GroupBox Header="本地卡组" Width="550">
         <DockPanel HorizontalAlignment="Center">
             <DockPanel DockPanel.Dock="Bottom" Margin="0,6,0,6">
                 <Button Content="取消" Width="80" DockPanel.Dock="Right" Margin="6,0,0,0" Click="ButtonCancel_OnClick" Style="{StaticResource SquareButtonStyle}"/>
                 <Button Content="同步" Click="Button_Click" Style="{StaticResource AccentedSquareButtonStyle}"/>
             </DockPanel>
             <StackPanel Orientation="Horizontal">
-                <GroupBox Header="IGNORE" Margin="0">
+                <GroupBox Header="忽略" Margin="0">
                     <DockPanel>
                         <Button Name="BtnSyncAll" DockPanel.Dock="Bottom" Content="全选" Margin="0,6,0,0"
                                 Click="BtnSyncAll_Click" Style="{StaticResource SquareButtonStyle}" />
@@ -29,7 +29,7 @@
                         </ListView>
                     </DockPanel>
                 </GroupBox>
-                <GroupBox Header="UPLOAD" Grid.Column="1" Margin="10,0,0,0">
+                <GroupBox Header="上传" Grid.Column="1" Margin="10,0,0,0">
                     <DockPanel>
                         <Button Name="BtnSyncNone" DockPanel.Dock="Bottom" Content="反选" Margin="0,6,0,0"
                                 Click="BtnSyncNone_Click" Style="{StaticResource SquareButtonStyle}" />

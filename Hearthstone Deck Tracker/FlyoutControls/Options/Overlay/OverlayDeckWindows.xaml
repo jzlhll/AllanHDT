@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              d:DesignHeight="400" d:DesignWidth="300">
     <Grid>
-        <GroupBox Header="Deck Windows">
+        <GroupBox Header="卡组窗口">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
                     <CheckBox x:Name="CheckboxPlayerWindowOpenAutomatically"

@@ -9,7 +9,7 @@
     <DockPanel>
         <ScrollViewer>
             <StackPanel>
-                <GroupBox Header="Note" MaxWidth="700">
+                <GroupBox Header="备注" MaxWidth="700">
                     <StackPanel Orientation="Horizontal">
                         <Button Style="{DynamicResource MetroCircleButtonStyle}" Width="36" Height="36" Margin="-5" Click="Button_Click">
                             <Rectangle Width="14" Height="16">
@@ -21,10 +21,10 @@
                         <Label Content="这些图表渲染速度有点慢。按【刷新】来更新它们。"/>
                     </StackPanel>
                 </GroupBox>
-                <GroupBox Header="Class distribution by wins" Height="400" MaxWidth="700">
+                <GroupBox Header="英雄分布按胜场" Height="400" MaxWidth="700">
                     <charts:ChartWinsByClass/>
                 </GroupBox>
-                <GroupBox Header="Win/Loss vs class" Height="400" MaxWidth="700">
+                <GroupBox Header="赢/输vs英雄" Height="400" MaxWidth="700">
                     <charts:ChartWinsLossVsClass/>
                 </GroupBox>
             </StackPanel>

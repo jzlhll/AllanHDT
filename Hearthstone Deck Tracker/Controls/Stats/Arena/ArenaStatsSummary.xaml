@@ -85,7 +85,7 @@
                 </ScrollViewer>
             </Expander>
             <DockPanel DockPanel.Dock="Top">
-                <GroupBox Header="Highlights">
+                <GroupBox Header="高亮">
                     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" PreviewMouseWheel="ForwardScrollEvent">
                         <arena:ArenaStatsSummaryHighlights Margin="0,0,0,5"/>
                     </ScrollViewer>
@@ -93,7 +93,7 @@
                 <Grid/>
             </DockPanel>
             <DockPanel DockPanel.Dock="Top">
-                <GroupBox Header="Classes" DockPanel.Dock="Top">
+                <GroupBox Header="英雄" DockPanel.Dock="Top">
                     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" PreviewMouseWheel="ForwardScrollEvent">
                         <arena:ArensStatsSummaryClasses  Margin="0,0,0,5"/>
                     </ScrollViewer>
@@ -101,7 +101,7 @@
                 <Grid/>
             </DockPanel>
             <DockPanel DockPanel.Dock="Top">
-                <GroupBox Header="Rewards">
+                <GroupBox Header="奖励">
                     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" PreviewMouseWheel="ForwardScrollEvent">
                         <arena:ArenaRewardsSummary/>
                     </ScrollViewer>

@@ -11,10 +11,10 @@
         <enums:EnumDescriptionConverter x:Key="EnumDescriptionConverter" />
     </UserControl.Resources>
     <Grid>
-        <GroupBox Header="Stats">
+        <GroupBox Header="统计">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
-                    <GroupBox Header="RECORD">
+                    <GroupBox Header="录制">
                         <StackPanel>
                             <CheckBox x:Name="CheckboxRecordRanked" Content="天梯"
                                       HorizontalAlignment="Left" Margin="0,0,0,0"
@@ -50,7 +50,7 @@
                                       Unchecked="CheckboxRecordOther_Unchecked" />
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox Header="Display">
+                    <GroupBox Header="显示">
                         <StackPanel>
                             <Label Content="(在开组中并在覆盖下on decks and in overlay)" Margin="0,-8,0,0" />
                             <DockPanel>

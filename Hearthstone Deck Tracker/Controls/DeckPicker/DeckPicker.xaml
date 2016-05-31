@@ -172,37 +172,37 @@
               SelectionMode="Extended" BorderThickness="1" MouseDoubleClick="ListViewDecks_OnMouseDoubleClick" PreviewMouseRightButtonUp="ListViewDecks_OnPreviewMouseRightButtonUp">
         <ListView.ContextMenu>
             <ContextMenu Opened="ContextMenu_OnOpened">
-                <MenuItem Name="MenuItemUseDeck" Header="_USE DECK" Click="BtnUseDeck_Click"/>
+                <MenuItem Name="MenuItemUseDeck" Header="[使用]中的卡组" Click="BtnUseDeck_Click"/>
                 <Separator Name="SeparatorUseDeck" />
-                <MenuItem Header="EDIT _DECK" Click="BtnEditDeck_Click" />
-                <MenuItem Header="EDIT NA_ME" Click="BtnName_Click" />
-                <MenuItem Header="EDIT _NOTES" Click="BtnNotes_Click" />
-                <MenuItem Header="EDIT _TAGS" Click="BtnTags_Click" />
-                <MenuItem Name="MenuItemQuickSetTag" Header="_QUICK SET TAG">
+                <MenuItem Header="编辑卡组" Click="BtnEditDeck_Click" />
+                <MenuItem Header="编辑名字" Click="BtnName_Click" />
+                <MenuItem Header="编辑备注" Click="BtnNotes_Click" />
+                <MenuItem Header="编辑标签" Click="BtnTags_Click" />
+                <MenuItem Name="MenuItemQuickSetTag" Header="快速设置标签">
                     <MenuItem.ItemTemplate>
                         <DataTemplate>
                             <CheckBox Content="{Binding Name}" IsChecked="{Binding Selected}" Margin="-24,0,0,0" />
                         </DataTemplate>
                     </MenuItem.ItemTemplate>
                 </MenuItem>
-                <MenuItem Name="MenuItemMoveDecktoArena" Header="MOVE TO ARENA" Click="BtnMoveDeckToArena_Click"
+                <MenuItem Name="MenuItemMoveDecktoArena" Header="移动到竞技场" Click="BtnMoveDeckToArena_Click"
                           Visibility="Collapsed" />
-                <MenuItem Name="MenuItemMoveDeckToConstructed" Header="MOVE TO CONSTRUCTED"
+                <MenuItem Name="MenuItemMoveDeckToConstructed" Header="移动到构筑"
                           Click="BtnMoveDeckToConstructed_Click" Visibility="Collapsed" />
                 <Separator Name="SeparatorDeck1" />
-                <MenuItem Name="MenuItemMissingCards" Header="SHOW _MISSING CARDS"
+                <MenuItem Name="MenuItemMissingCards" Header="显示缺失的卡牌"
                           ToolTip="此信息是基于你的最后一次导出" Click="MenuItemMissingDust_OnClick" />
-                <MenuItem Name="MenuItemUpdateDeck" Header="_UPDATE (WEB)" Click="BtnUpdateDeck_Click" />
+                <MenuItem Name="MenuItemUpdateDeck" Header="更新(网络)" Click="BtnUpdateDeck_Click" />
                 <MenuItem Name="MenuItemSetDeckUrl" Header="" Click="BtnSetDeckUrl_Click" />
-                <MenuItem Name="MenuItemOpenUrl" Header="OPEN _WEBSITE" Click="BtnOpenDeckUrl_Click" />
-                <MenuItem Name="MenuItemOpenHearthStats" Header="OPEN _HEARTHSTATS" Click="BtnOpenHearthStats_Click" />
+                <MenuItem Name="MenuItemOpenUrl" Header="打开网址" Click="BtnOpenDeckUrl_Click" />
+                <MenuItem Name="MenuItemOpenHearthStats" Header="打开HEARTHSTATS网站" Click="BtnOpenHearthStats_Click" />
                 <Separator />
-                <MenuItem Name="MenuItemArchive" Header="_ARCHIVE" Click="BtnArchiveDeck_Click" />
-                <MenuItem Name="MenuItemUnarchive" Header="UN_ARCHIVE" Click="BtnUnarchiveDeck_Click" />
-                <MenuItem Header="DELETE" Click="BtnDeleteDeck_Click" />
-                <MenuItem Header="CLONE">
-                    <MenuItem Header="ENTIRE DECK" Click="BtnCloneDeck_Click" />
-                    <MenuItem Header="SELECTED VERSION" Click="BtnCloneSelectedVersion_Click" />
+                <MenuItem Name="MenuItemArchive" Header="归档/压缩" Click="BtnArchiveDeck_Click" />
+                <MenuItem Name="MenuItemUnarchive" Header="解压缩" Click="BtnUnarchiveDeck_Click" />
+                <MenuItem Header="删除" Click="BtnDeleteDeck_Click" />
+                <MenuItem Header="克隆">
+                    <MenuItem Header="整个卡组" Click="BtnCloneDeck_Click" />
+                    <MenuItem Header="已选版本" Click="BtnCloneSelectedVersion_Click" />
                 </MenuItem>
             </ContextMenu>
         </ListView.ContextMenu>
