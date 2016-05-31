@@ -15,22 +15,22 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 		public static readonly Dictionary<int, string> SetDict = new Dictionary<int, string>
 		{
 			{0, null},
-			{2, "Basic"},
-			{3, "Classic"},
+			{2, Core.BASIC},
+			{3, Core.CLASSIC},
 			{4, "Reward"},
 			{5, "Missions"},
 			{7, "System"},
 			{8, "Debug"},
-			{11, "Promotion"},
-			{12, "Curse of Naxxramas"},
-			{13, "Goblins vs Gnomes"},
-			{14, "Blackrock Mountain"},
-			{15, "The Grand Tournament"},
+			{11, Core.PROMOTION},
+			{12, Core.CURSE_OF_NAXXRAMAS},
+			{13, Core.GOBLINS_VS_GNOMES},
+			{14, Core.BLACKROCK_MOUNTAIN},
+			{15, Core.THE_GRAND_TOURNAMENT},
 			{16, "Credits"},
 			{17, "Hero Skins"},
 			{18, "Tavern Brawl"},
-			{20, "League of Explorers"},
-			{21, "Whispers of the Old Gods"}
+			{20, Core.LEAGUE_OF_EXPLORERS},
+			{21, Core.WHISPERS_OF_THE_OLD_GODS}
 		};
 
 		public static string ConvertClass(CardClass cardClass) => (int)cardClass < 2 || (int)cardClass > 10

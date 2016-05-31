@@ -25,12 +25,12 @@ namespace Hearthstone_Deck_Tracker.Controls
 
 		public void Update(Deck deck)
 		{
-			RectIconOg.Visibility = deck?.ContainsSet("Whispers of the Old Gods") ?? false ? Visible : Collapsed;
-			RectIconLoe.Visibility = deck?.ContainsSet("League of Explorers") ?? false ? Visible : Collapsed;
-			RectIconTgt.Visibility = deck?.ContainsSet("The Grand Tournament") ?? false ? Visible : Collapsed;
-			RectIconBrm.Visibility = deck?.ContainsSet("Blackrock Mountain") ?? false ? Visible : Collapsed;
-			RectIconGvg.Visibility = deck?.ContainsSet("Goblins vs Gnomes") ?? false ? Visible : Collapsed;
-			RectIconNaxx.Visibility = deck?.ContainsSet("Curse of Naxxramas") ?? false ? Visible : Collapsed;
+			RectIconOg.Visibility = deck?.ContainsSet(Core.WHISPERS_OF_THE_OLD_GODS) ?? false ? Visible : Collapsed;
+			RectIconLoe.Visibility = deck?.ContainsSet(Core.LEAGUE_OF_EXPLORERS) ?? false ? Visible : Collapsed;
+			RectIconTgt.Visibility = deck?.ContainsSet(Core.THE_GRAND_TOURNAMENT) ?? false ? Visible : Collapsed;
+			RectIconBrm.Visibility = deck?.ContainsSet(Core.BLACKROCK_MOUNTAIN) ?? false ? Visible : Collapsed;
+			RectIconGvg.Visibility = deck?.ContainsSet(Core.GOBLINS_VS_GNOMES) ?? false ? Visible : Collapsed;
+			RectIconNaxx.Visibility = deck?.ContainsSet(Core.CURSE_OF_NAXXRAMAS) ?? false ? Visible : Collapsed;
 		}
 	}
 }

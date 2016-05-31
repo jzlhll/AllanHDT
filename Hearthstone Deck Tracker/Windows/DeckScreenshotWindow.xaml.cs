@@ -110,10 +110,10 @@ namespace Hearthstone_Deck_Tracker.Windows
 		private int TotalDust(Deck deck)
 		{
 			var nonCraftableSets = new List<string>() {
-				"Curse of Naxxramas",
-				"Blackrock Mountain",
-				"League of Explorers",
-				"Basic"
+				Core.CURSE_OF_NAXXRAMAS,
+				Core.BLACKROCK_MOUNTAIN,
+				Core.LEAGUE_OF_EXPLORERS,
+				Core.BASIC
 			};
 			var nonCraftableCards = new List<string>() {
 				Neutral.Cthun,
