@@ -8,8 +8,8 @@
             <TabItem Header="Cards">
                 <DockPanel Margin="0,2">
                     <WrapPanel DockPanel.Dock="Top">
-                        <Button Name="ExpandAllBtn" Click="ExpandAllBtn_Click" Margin="2,0">Expand All</Button>
-                        <Button Name="CollapseAllBtn" Click="CollapseAllBtn_Click" Margin="2,0">Collapse All</Button>
+                        <Button Name="ExpandAllBtn" Click="ExpandAllBtn_Click" Margin="2,0">展开全部</Button>
+                        <Button Name="CollapseAllBtn" Click="CollapseAllBtn_Click" Margin="2,0">收起全部</Button>
                     </WrapPanel>
                     <TreeView Name="TreeViewCards"/>
                 </DockPanel>

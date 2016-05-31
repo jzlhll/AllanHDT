@@ -12,7 +12,7 @@
                 <Button Name="ButtonUpdateNotes" Content="Show update notes" Click="ButtonUpdateNotes_OnClick"
                         DockPanel.Dock="Right" Margin="2" Width="200"
                         Style="{DynamicResource AccentedSquareButtonStyle}" />
-                <TextBlock Name="TxtblockVersion" Text="Version:" VerticalAlignment="Center" Margin="10,0,0,0" />
+                <TextBlock Name="TxtblockVersion" Text="版本:" VerticalAlignment="Center" Margin="10,0,0,0" />
             </DockPanel>
         </Border>
         <ScrollViewer>
@@ -49,55 +49,55 @@
                         </GroupBox>
                         <GroupBox Header="Percentages">
                             <StackPanel Margin="10,0">
-                                <TextBlock Text="General:" FontWeight="Bold" />
+                                <TextBlock Text="一般的:" FontWeight="Bold" />
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/HearthstoneDeckTracker;component/Resources/overlay_1.png"
                                            Height="13" Margin="5,0,0,0" RenderOptions.BitmapScalingMode="Fant" />
                                     <TextBlock Text=" /" VerticalAlignment="Center" />
                                     <Image Source="/HearthstoneDeckTracker;component/Resources/overlay_2.png"
                                            Height="13" Margin="5,0,0,0" RenderOptions.BitmapScalingMode="Fant" />
-                                    <TextBlock Text=" The number of copies left in the deck for a specific card."
+                                    <TextBlock Text=" 在卡组中剩下的某张卡的数量."
                                                VerticalAlignment="Center" />
                                 </StackPanel>
-                                <TextBlock Text="Draw chance:" FontWeight="Bold" Margin="0,5,0,0"/>
+                                <TextBlock Text="抽牌的机会:" FontWeight="Bold" Margin="0,5,0,0"/>
                                 <StackPanel Orientation="Horizontal" Margin="0,5">
                                     <Image Source="/HearthstoneDeckTracker;component/Resources/overlay_deck.png"
                                            Width="18" Margin="5,0,0,0" RenderOptions.BitmapScalingMode="Fant" />
-                                    <TextBlock Text="The chance of drawing a card with X copies left in the deck."
+                                    <TextBlock Text="在卡组中抽一张牌的机会."
                                                Margin="5,0,0,0" VerticalAlignment="Center" />
                                 </StackPanel>
-                                <TextBlock Text="Holding chance:" FontWeight="Bold" />
+                                <TextBlock Text="在手里的可能性:" FontWeight="Bold" />
                                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                                     <Image Source="/HearthstoneDeckTracker;component/Resources/overlay_hand.png"
                                            Width="18" Margin="5,0,0,0" RenderOptions.BitmapScalingMode="Fant" />
                                     <TextBlock Margin="5,0,0,0"
-                                               Text="The chance of your opponent holding a card at the start of the next turn with X copies left in play."
+                                               Text="在下一回合开始时，你的对手拿着一张牌的机会。"
                                                VerticalAlignment="Center" />
                                 </StackPanel>
                                 <TextBlock Margin="28,0,0,0"
-                                           Text="This includes the next draw but nothing beyond that."
+                                           Text="这包括了下一次抽牌，但没有什么超越。"
                                            FontStyle="Italic" />
                             </StackPanel>
                         </GroupBox>
                         <GroupBox Header="Customization">
                             <StackPanel Margin="10, 0">
                                 <TextBlock
-                                    Text="Almost everything in the overlay can be turn on or off, moved and resized." />
-                                <TextBlock Text="On/off: " FontWeight="Bold" Margin="0,5,0,0" />
+                                    Text="几乎所有的界面都可以打开或关闭，移动和缩放。" />
+                                <TextBlock Text="开/关: " FontWeight="Bold" Margin="0,5,0,0" />
                                 <TextBlock>
-                                    <Run>Options for this can be found under </Run>
+                                    <Run>在这里可以找到这个选项</Run>
                                     <Italic>
-                                        <Run>options > overlay > general / player / opponent</Run>
+                                        <Run>【选项】> 【窗口】 > 【一般】 / 【玩家】 / 【对手】</Run>
                                     </Italic>
                                     <Run>.</Run>
                                 </TextBlock>
-                                <TextBlock Text="Moving/resizing: " FontWeight="Bold" Margin="0,5,0,0" />
+                                <TextBlock Text="移动/缩放: " FontWeight="Bold" Margin="0,5,0,0" />
                                 <TextBlock>
-                                    <Run>The overlay can be unlocked via </Run>
+                                    <Run>覆盖可以通过解锁</Run>
                                     <Italic>
-                                        <Run>options > overlay > general > unlock </Run>
+                                        <Run>【选项】>【窗口】>【一般】>【解锁】 </Run>
                                     </Italic>
-                                    <Run>(button at the bottom).</Run>
+                                    <Run>(按钮在底部).</Run>
                                 </TextBlock>
                             </StackPanel>
                         </GroupBox>
@@ -113,7 +113,7 @@
                 </GroupBox>
                 <GroupBox Header="Reporting bugs / requesting features">
                     <TextBlock Margin="10,0,10,0" VerticalAlignment="Top" Width="auto" TextWrapping="Wrap">
-                        <Run Text="Two options:" />
+                        <Run Text="2个选择:" />
                         <LineBreak />
                         <Run Text="1) Check out the" />
                         <Hyperlink
@@ -122,7 +122,7 @@
                             issues on GitHub.
                         </Hyperlink>
                         <Run
-                            Text="If there's no issue on the topic feel free to open a new one and/or even fix it yourself and create a pull request. For some futher information on what you might want to include in the issue " />
+                            Text="如果这个主题没有问题，请随意打开一个新的和/或修复它自己，并创建一个拉请求。一些更多的信息对你可能希望包含在问题" />
                         <Hyperlink
                             NavigateUri="https://github.com/HearthSim/Hearthstone-Deck-Tracker/wiki/Reporting-Issues"
                             RequestNavigate="Hyperlink_RequestNavigate">
@@ -135,7 +135,7 @@
                 <GroupBox Header="GitHub Project">
                     <StackPanel>
                         <TextBlock Margin="10,0,10,0" VerticalAlignment="Top">
-                            <Run Text="The project can be found" />
+                            <Run Text="project找不到" />
                             <Hyperlink NavigateUri="https://github.com/HearthSim/Hearthstone-Deck-Tracker/"
                                        RequestNavigate="Hyperlink_RequestNavigate">
                                 here.
@@ -148,7 +148,7 @@
                                 readme
                             </Hyperlink>
                             <Run
-                                Text="contains a brief overview of all the features." />
+                                Text="包含所有功能的简要概述。" />
                         </TextBlock>
                     </StackPanel>
                 </GroupBox>

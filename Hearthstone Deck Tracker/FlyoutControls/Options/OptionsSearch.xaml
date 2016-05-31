@@ -10,8 +10,8 @@
     <GroupBox Header="Search">
         <DockPanel>
             <DockPanel DockPanel.Dock="Top">
-                    <Button Name="ButtonSearch" Content="Search" Width="100" Margin="5,0,0,0" IsDefault="True" Click="ButtonSearch_OnClick" DockPanel.Dock="Right"/>
-                <TextBox Name="TextBoxSearch" controls:TextBoxHelper.Watermark="Checkbox name/description..."/>
+                    <Button Name="ButtonSearch" Content="搜索" Width="100" Margin="5,0,0,0" IsDefault="True" Click="ButtonSearch_OnClick" DockPanel.Dock="Right"/>
+                <TextBox Name="TextBoxSearch" controls:TextBoxHelper.Watermark="勾选框名称/描述……"/>
             </DockPanel>
             <ListBox Name="ListBoxSearchResult" Margin="0,5,0,0" MouseDoubleClick="ListBoxSearchResult_OnMouseDoubleClick"/>
         </DockPanel>

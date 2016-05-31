@@ -60,7 +60,7 @@
             <DockPanel>
                 <GroupBox DockPanel.Dock="Bottom" Header="Continue...">
                     <StackPanel Margin="5">
-                        <TextBlock Text="If you like my work please consider helping me justify the time I put into making this and support me by clicking one of the button belows or the little heart the title bar. Thank you!" Margin="10,5,10,10" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                        <TextBlock Text="如果你喜欢我的工作，请考虑帮助我证明的时间把这和点击一个按钮下或小标题栏支持我的心。谢谢你！" Margin="10,5,10,10" FontWeight="SemiBold" TextWrapping="Wrap"/>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <Button Name="ButtonPatreon" Width="120" Height="30" Style="{DynamicResource AccentedSquareButtonStyle}" Click="ButtonPatreon_Click">
                                 <Button.Content>
@@ -82,8 +82,8 @@
                                     </StackPanel>
                                 </Button.Content>
                             </Button>
-                            <Button Name="ButtonShowGithub" Content="Show Releases on GitHub" Margin="10,0,10,0" Width="160" Height="30" Click="ButtonShowGithub_OnClick" Style="{DynamicResource SquareButtonStyle}"/>
-                            <Button Name="ButtonClose" Content="close" Width="160" Height="30" Style="{DynamicResource SquareButtonStyle}" Click="ButtonClose_Click"/>
+                            <Button Name="ButtonShowGithub" Content="在GitHub显示releases" Margin="10,0,10,0" Width="160" Height="30" Click="ButtonShowGithub_OnClick" Style="{DynamicResource SquareButtonStyle}"/>
+                            <Button Name="ButtonClose" Content="关闭" Width="160" Height="30" Style="{DynamicResource SquareButtonStyle}" Click="ButtonClose_Click"/>
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>
@@ -104,7 +104,7 @@
         </TabItem>
         <TabItem>
             <DockPanel>
-                <Button Name="ButtonContinue" DockPanel.Dock="Bottom" HorizontalAlignment="Center" Content="continue to update notes" Margin="5" Style="{DynamicResource AccentedSquareButtonStyle}" Click="ButtonContinue_OnClick"/>
+                <Button Name="ButtonContinue" DockPanel.Dock="Bottom" HorizontalAlignment="Center" Content="点击继续去更新日志" Margin="5" Style="{DynamicResource AccentedSquareButtonStyle}" Click="ButtonContinue_OnClick"/>
                 <Border BorderThickness="1" BorderBrush="{DynamicResource AccentColorBrush}" Margin="5">
                     <ScrollViewer>
                         <ContentControl Name="ContentControlHighlight"/>

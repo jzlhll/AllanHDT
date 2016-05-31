@@ -8,13 +8,13 @@
     <GroupBox Header="LOCAL DECKS" Width="550">
         <DockPanel HorizontalAlignment="Center">
             <DockPanel DockPanel.Dock="Bottom" Margin="0,6,0,6">
-                <Button Content="CANCEL" Width="80" DockPanel.Dock="Right" Margin="6,0,0,0" Click="ButtonCancel_OnClick" Style="{StaticResource SquareButtonStyle}"/>
-                <Button Content="SYNC" Click="Button_Click" Style="{StaticResource AccentedSquareButtonStyle}"/>
+                <Button Content="取消" Width="80" DockPanel.Dock="Right" Margin="6,0,0,0" Click="ButtonCancel_OnClick" Style="{StaticResource SquareButtonStyle}"/>
+                <Button Content="同步" Click="Button_Click" Style="{StaticResource AccentedSquareButtonStyle}"/>
             </DockPanel>
             <StackPanel Orientation="Horizontal">
                 <GroupBox Header="IGNORE" Margin="0">
                     <DockPanel>
-                        <Button Name="BtnSyncAll" DockPanel.Dock="Bottom" Content="SELECT ALL" Margin="0,6,0,0"
+                        <Button Name="BtnSyncAll" DockPanel.Dock="Bottom" Content="全选" Margin="0,6,0,0"
                                 Click="BtnSyncAll_Click" Style="{StaticResource SquareButtonStyle}" />
                         <ListView Name="ListViewLocalDecksNoSync" Width="250" BorderThickness="1">
                             <ListView.ItemTemplate>
@@ -31,7 +31,7 @@
                 </GroupBox>
                 <GroupBox Header="UPLOAD" Grid.Column="1" Margin="10,0,0,0">
                     <DockPanel>
-                        <Button Name="BtnSyncNone" DockPanel.Dock="Bottom" Content="DESELECT ALL" Margin="0,6,0,0"
+                        <Button Name="BtnSyncNone" DockPanel.Dock="Bottom" Content="反选" Margin="0,6,0,0"
                                 Click="BtnSyncNone_Click" Style="{StaticResource SquareButtonStyle}" />
                         <ListView Name="ListViewLocalDecksSync" Width="250" BorderThickness="1">
                             <ListView.ItemTemplate>

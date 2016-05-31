@@ -15,17 +15,17 @@
                 <StackPanel>
                     <GroupBox Header="Constructed">
                         <StackPanel>
-                            <TextBlock TextWrapping="Wrap" Text="This will check for new and/or modified decks each time you enter the 'Play' menu." Margin="5,0,5,0"/>
-                            <CheckBox x:Name="CheckBoxConstructedImportNew" Content="Auto import new decks" Margin="10,5,0,0"
+                            <TextBlock TextWrapping="Wrap" Text="每一次你进入【游戏】菜单，这将检查新的和（或）修改后的卡组。." Margin="5,0,5,0"/>
+                            <CheckBox x:Name="CheckBoxConstructedImportNew" Content="自动导入新卡组" Margin="10,5,0,0"
                                       Checked="CheckBoxConstructedImportNew_Checked" Unchecked="CheckBoxConstructedImportNew_Unchecked" />
-                            <CheckBox x:Name="CheckBoxConstrucedUpdate" Content="Auto update modified decks" Margin="10,5,0,5"
+                            <CheckBox x:Name="CheckBoxConstrucedUpdate" Content="自动更新修改的卡组" Margin="10,5,0,5"
                                       Checked="CheckBoxConstrucedUpdate_Checked" Unchecked="CheckBoxConstrucedUpdate_Unchecked" />
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Arena">
                         <StackPanel>
                             <DockPanel Margin="10,5,10,0">
-                                <TextBlock DockPanel.Dock="Left" Text="Importing Behaviour:" VerticalAlignment="Center" />
+                                <TextBlock DockPanel.Dock="Left" Text="导入的行为:" VerticalAlignment="Center" />
                                 <ComboBox Name="ComboboxArenaImportingBehaviour" Margin="5,0,0,0"
                                           SelectionChanged="ComboboxArenaImportingBehaviour_OnSelectionChanged">
                                     <ComboBox.ItemTemplate>
@@ -38,14 +38,14 @@
                             </DockPanel>
                             <GroupBox Header="Arena deck name template">
                                 <DockPanel>
-                                    <TextBlock Text="Templates: {Class}, {Date FORMAT}" DockPanel.Dock="Bottom"
+                                    <TextBlock Text="模板：{英雄}，{日期格式}" DockPanel.Dock="Bottom"
                                                Margin="0,5,0,0" TextWrapping="Wrap"
-                                               ToolTip="For more information on date formats google &quot;C# date format&quot;." />
+                                               ToolTip="在谷歌上寻找更多关于C#的日期格式的信息。" />
                                     <DockPanel DockPanel.Dock="Bottom" Margin="0,5,0,0">
-                                        <TextBlock Text="Preview:" />
+                                        <TextBlock Text="预览:" />
                                         <TextBlock Name="TextBlockNamePreview" Margin="5,0,0,0" />
                                     </DockPanel>
-                                    <Button Name="BtnEditTemplate" Content="EDIT" DockPanel.Dock="Right"
+                                    <Button Name="BtnEditTemplate" Content="编辑" DockPanel.Dock="Right"
                                             Margin="5,0,0,0" Click="BtnEditTemplate_Click" />
                                     <TextBox Name="TextBoxArenaTemplate" IsEnabled="False"
                                              TextChanged="TextBoxArenaTemplate_OnTextChanged" />
@@ -56,20 +56,20 @@
                     <GroupBox Header="Web">
                         <StackPanel>
 
-                            <CheckBox x:Name="CheckboxTagOnImport" Content="Tag decks on import"
+                            <CheckBox x:Name="CheckboxTagOnImport" Content="导入标签"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxTagOnImport_Checked"
                               Unchecked="CheckboxTagOnImport_Unchecked" />
-                            <CheckBox Name="CheckboxAutoSaveOnImport" Content="Auto save deck on import" Margin="10,5,0,0"
+                            <CheckBox Name="CheckboxAutoSaveOnImport" Content="当导入时自动保存卡组" Margin="10,5,0,0"
                               Checked="CheckboxAutoSaveOnImport_OnChecked"
                               Unchecked="CheckboxAutoSaveOnImport_OnUnchecked" />
-                            <CheckBox Name="CheckboxImportNetDeck" Content="Auto import via NetDeck" Margin="10,5,0,0"
+                            <CheckBox Name="CheckboxImportNetDeck" Content="自动导入网络卡组" Margin="10,5,0,0"
                               Checked="CheckboxImportNetDeck_OnChecked" Unchecked="CheckboxImportNetDeck_OnUnchecked" />
                             <TextBlock Margin="10,2,0,0">
                         <Hyperlink
                             NavigateUri="https://chrome.google.com/webstore/detail/netdeck/lpdbiakcpmcppnpchohihcbdnojlgeel"
                             RequestNavigate="Hyperlink_RequestNavigate">
-                            Download NetDeck (Chrome ext.)
+                            下载网络卡组(chrome插件)
                         </Hyperlink>
                             </TextBlock>
                         </StackPanel>

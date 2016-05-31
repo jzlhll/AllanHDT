@@ -12,16 +12,16 @@
                 <StackPanel>
                     <GroupBox Header="Google Analytics">
                         <StackPanel>
-                            <CheckBox Name="CheckBoxAnalytics" Content="Submit anonymous data"
+                            <CheckBox Name="CheckBoxAnalytics" Content="提交匿名数据"
                                       Checked="CheckBoxAnalytics_OnChecked" Unchecked="CheckBoxAnalytics_OnUnchecked" />
                             <TextBlock
-                                Text="This only tracks two things: App starts, where the version number and login mode is submitted, as well as information about crashes."
+                                Text="这只跟踪2件事：应用程序启动，其中的版本号和登录模式提交，以及有关崩溃的信息。"
                                 TextWrapping="Wrap" />
                         </StackPanel>
                     </GroupBox>
                     <DockPanel Margin="10,5,10,0"
                                Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}">
-                        <Label Content="Key on game start:" HorizontalAlignment="Right"
+                        <Label Content="游戏开始的按键:" HorizontalAlignment="Right"
                                Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                                VerticalAlignment="Top" />
                         <ComboBox x:Name="ComboboxKeyPressGameStart" HorizontalAlignment="Right"
@@ -30,101 +30,101 @@
                     </DockPanel>
                     <DockPanel Margin="10,5,10,0"
                                Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}">
-                        <Label Content="Key on game end:" HorizontalAlignment="Left"
+                        <Label Content="游戏结束的按键:" HorizontalAlignment="Left"
                                Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                                VerticalAlignment="Top" />
                         <ComboBox x:Name="ComboboxKeyPressGameEnd" HorizontalAlignment="Right"
                                   VerticalAlignment="Top" Width="150"
                                   SelectionChanged="ComboboxKeyPressGameEnd_SelectionChanged" />
                     </DockPanel>
-                    <CheckBox x:Name="CheckboxConfigSaveAppData" Content="Save config in AppData"
+                    <CheckBox x:Name="CheckboxConfigSaveAppData" Content="在AppData中保存数据"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxConfigSaveAppData_Checked"
                               Unchecked="CheckboxConfigSaveAppData_Unchecked" />
-                    <CheckBox x:Name="CheckboxDataSaveAppData" Content="Save data in AppData"
+                    <CheckBox x:Name="CheckboxDataSaveAppData" Content="在AppData中保存数据"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxDataSaveAppData_Checked"
                               Unchecked="CheckboxDataSaveAppData_Unchecked" />
-                    <CheckBox x:Name="CheckboxStartWithWindows" Content="Start with windows"
+                    <CheckBox x:Name="CheckboxStartWithWindows" Content="窗口化运行"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxStartWithWindows_Checked"
                               Unchecked="CheckboxStartWithWindows_Unchecked" />
-                    <CheckBox x:Name="CheckboxStartMinimized" Content="Start minimized"
+                    <CheckBox x:Name="CheckboxStartMinimized" Content="最小化运行"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxStartMinimized_Checked"
                               Unchecked="CheckboxStartMinimized_Unchecked" />
-                    <CheckBox x:Name="CheckboxMinimizeTray" Content="Minimize to tray"
+                    <CheckBox x:Name="CheckboxMinimizeTray" Content="最小化到托盘"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxMinimizeTray_Checked"
                               Unchecked="CheckboxMinimizeTray_Unchecked" />
-                    <CheckBox x:Name="CheckBoxShowLoginDialog" Content="Show login dialog"
+                    <CheckBox x:Name="CheckBoxShowLoginDialog" Content="显示登陆对话框"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxShowLoginDialog_Checked"
                               Unchecked="CheckboxShowLoginDialog_Unchecked" />
-                    <CheckBox x:Name="CheckBoxShowSplashScreen" Content="Show the loading splash screen"
+                    <CheckBox x:Name="CheckBoxShowSplashScreen" Content="显示加载过程界面"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxShowSplashScreen_Checked"
                               Unchecked="CheckboxShowSplashScreen_Unchecked" />
                     <CheckBox x:Name="CheckboxCloseWithHearthstone"
-                              Content="Close with Hearthstone" HorizontalAlignment="Left"
+                              Content="跟随炉石一起关闭" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxCloseWithHearthstone_Checked"
                               Unchecked="CheckboxCloseWithHearthstone_Unchecked" />
                     <CheckBox x:Name="CheckboxStartHearthstoneWithHDT"
-                              Content="Start Hearthstone with HDT" HorizontalAlignment="Left"
+                              Content="启动游戏当打开HDT" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxStartHearthstoneWithHDT_Checked"
                               Unchecked="CheckboxStartHearthstoneWithHDT_Unchecked" />
-                    <CheckBox x:Name="CheckboxCheckForUpdates" Content="Check for updates"
+                    <CheckBox x:Name="CheckboxCheckForUpdates" Content="检查更新"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxCheckForUpdates_Checked"
                               Unchecked="CheckboxCheckForUpdates_Unchecked" />
-                    <CheckBox x:Name="CheckboxCheckForBetaUpdates" Content="Check for BETA updates"
+                    <CheckBox x:Name="CheckboxCheckForBetaUpdates" Content="检查beta更新"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxCheckForBetaUpdates_Checked"
                               Unchecked="CheckboxCheckForBetaUpdates_Unchecked" />
-                    <CheckBox x:Name="CheckboxAdvancedWindowSearch" Content="Advanced window search"
+                    <CheckBox x:Name="CheckboxAdvancedWindowSearch" Content="高级的窗口搜索"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxAdvancedWindowSearch_Checked"
                               Unchecked="CheckboxAdvancedWindowSearch_Unchecked"
-                              ToolTip="This can be turned off if the overlay shows up in non-Hearthstone windows." />
-                    <CheckBox x:Name="CheckboxAlternativeScreenCapture" Content="Alternative screen capture"
+                              ToolTip="当在非炉石游戏窗口的时候，关闭显示。This can be turned off if the overlay shows up in non-Hearthstone windows." />
+                    <CheckBox x:Name="CheckboxAlternativeScreenCapture" Content="选择屏幕捕捉"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxAlternativeScreenCapture_Checked"
                               Unchecked="CheckboxAlternativeScreenCapture_Unchecked"
-                              ToolTip="Try enabling this if you are having trouble with rank(ed) detection." />
-                    <CheckBox x:Name="CheckboxShowNewsBar" Content="Show news bar"
+                              ToolTip="如果你在天梯中有检测问题的话，试着开启这个。" />
+                    <CheckBox x:Name="CheckboxShowNewsBar" Content="显示新闻条"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Click="CheckboxShowNewsBar_OnClick" />
-                    <CheckBox x:Name="CheckboxLogTab" Content="Show Log"
+                    <CheckBox x:Name="CheckboxLogTab" Content="显示log"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxLogTab_Checked"
                               Unchecked="CheckboxLogTab_Unchecked" />
-                    <Button Name="ButtonGamePath" Margin="10,5,10,0" Content="set hearthstone path"
+                    <Button Name="ButtonGamePath" Margin="10,5,10,0" Content="设置炉石路径"
                             Click="ButtonGamePath_OnClick" />
-                    <Button Name="ButtonOpenAppData" Margin="10,5,10,0" Content="open appdata folder"
+                    <Button Name="ButtonOpenAppData" Margin="10,5,10,0" Content="打开appdata的目录"
                             Click="ButtonOpenAppData_OnClick" />
-                    <Button Name="SelectSaveDataPath" Margin="10,5,10,0" Content="set data path"
+                    <Button Name="SelectSaveDataPath" Margin="10,5,10,0" Content="设置数据路径"
                             Click="SelectSaveDataPath_Click"
                             Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                             Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}" />
-                    <Button Name="ButtonRestart" Margin="10,15,10,0" Content="restart hdt"
+                    <Button Name="ButtonRestart" Margin="10,15,10,0" Content="重启HDT"
                             Click="ButtonRestart_OnClick" />
                 </StackPanel>
             </ScrollViewer>

@@ -10,40 +10,40 @@
     <StackPanel Margin="10">
         <Image Source="../Resources/hearthstats_logo.png" Width="64" Height="64" Margin="16"/>
         <TextBlock HorizontalAlignment="Center" FontSize="18">
-            <Run Text="Login to your account"/>
+            <Run Text="登陆你的账号"/>
         </TextBlock>
         <StackPanel Margin="0,16,0,0">
             <TextBox Name="TextBoxEmail" controls:TextBoxHelper.Watermark="Email" TabIndex="0"/>
-            <PasswordBox Name="TextBoxPassword" controls:TextBoxHelper.Watermark="Password" Margin="0,5,0,0" TabIndex="1"/>
+            <PasswordBox Name="TextBoxPassword" controls:TextBoxHelper.Watermark="密码" Margin="0,5,0,0" TabIndex="1"/>
             <DockPanel Margin="0,5,0,0">
-                <CheckBox Name="CheckBoxRememberLogin" Content="Remember me" IsChecked="True" Checked="CheckBoxRememberLogin_Checked" Unchecked="CheckBoxRememberLogin_OnUnchecked" TabIndex="2"/>
-                <Button Name="BtnLogin" Content="Login" Margin="16,0,0,0" Click="BtnLogin_Click" IsDefault="True" TabIndex="3"/>
+                <CheckBox Name="CheckBoxRememberLogin" Content="记住我" IsChecked="True" Checked="CheckBoxRememberLogin_Checked" Unchecked="CheckBoxRememberLogin_OnUnchecked" TabIndex="2"/>
+                <Button Name="BtnLogin" Content="登陆" Margin="16,0,0,0" Click="BtnLogin_Click" IsDefault="True" TabIndex="3"/>
             </DockPanel>
         </StackPanel>
         <StackPanel Margin="0,10,0,0">
             <TextBlock Name="TextBlockErrorMessage" Foreground="Red" Visibility="Collapsed" TextWrapping="Wrap"/>
             <TextBlock>
                 <Bold>
-                    <Run Text="Forgot your password?" />
+                    <Run Text="忘记密码?" />
                 </Bold>
                 <LineBreak />
-                <Run Text="no worries, click "/>
+                <Run Text="别担心点击 "/>
                 <Hyperlink
                     NavigateUri="http://www.hearthstats.net/users/sign_in"
                     RequestNavigate="Hyperlink_RequestNavigate">
-                    here
+                    这里
                 </Hyperlink>
-                <Run Text="to reset your password." />
+                <Run Text="来重置你的密码." />
             </TextBlock>
             <Separator Margin="0,4,0,4"/>
             <TextBlock>
                 <Bold>
-                    <Run Text="Don't have an account yet? " />
+                    <Run Text="没有账号? " />
                 </Bold>
                 <Hyperlink
                     NavigateUri="http://www.hearthstats.net/users/sign_up"
                     RequestNavigate="Hyperlink_RequestNavigate">
-                    Create an account
+                    创建一个账号
                 </Hyperlink>
             </TextBlock>
         </StackPanel>

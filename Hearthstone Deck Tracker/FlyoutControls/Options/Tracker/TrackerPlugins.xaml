@@ -11,8 +11,8 @@
             <DockPanel>
                 <DockPanel DockPanel.Dock="Top" Height="150">
                     <StackPanel DockPanel.Dock="Right" Margin="5,0,0,0">
-                        <Button Click="ButtonAvailablePlugins_OnClick" Content="Available Plugins" />
-                        <Button Click="ButtonOpenPluginsFolder_OnClick" Content="Plugins Folder" Margin="0,5,0,0" />
+                        <Button Click="ButtonAvailablePlugins_OnClick" Content="可用插件" />
+                        <Button Click="ButtonOpenPluginsFolder_OnClick" Content="插件文件夹" Margin="0,5,0,0" />
                     </StackPanel>
                     <Border BorderThickness="1" BorderBrush="{DynamicResource AccentColorBrush}">
                         <ListBox Name="ListBoxPlugins" SelectionChanged="ListBoxPlugins_OnSelectionChanged"
@@ -43,7 +43,7 @@
                                                IsChecked="{Binding ElementName=ListBoxPlugins, Path=SelectedItem.IsEnabled}" />
                         <Separator DockPanel.Dock="Top" Margin="0,0,0,5" />
                         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
-                            <TextBlock Text="Created by" TextWrapping="Wrap" />
+                            <TextBlock Text="被创建" TextWrapping="Wrap" />
                             <TextBlock Text="{Binding ElementName=ListBoxPlugins, Path=SelectedItem.Plugin.Author}"
                                        TextWrapping="Wrap" Margin="2,0,0,0" />
                         </StackPanel>

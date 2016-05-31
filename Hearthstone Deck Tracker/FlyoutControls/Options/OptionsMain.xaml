@@ -10,7 +10,7 @@
         <Border Margin="5,5,0,5" BorderThickness="1" BorderBrush="{DynamicResource AccentColorBrush}">
             <DockPanel>
                 <Border DockPanel.Dock="Bottom" Margin="-1,0,-1,-1" BorderThickness="1" BorderBrush="{DynamicResource AccentColorBrush}">
-                    <CheckBox Content="Advanced options" Margin="5" IsChecked="{Binding Show, Source={x:Static options:AdvancedOptions.Instance}}"/>
+                    <CheckBox Content="高级选项" Margin="5" IsChecked="{Binding Show, Source={x:Static options:AdvancedOptions.Instance}}"/>
                 </Border>
                 <TreeView Name="TreeViewOptions" Width="150">
                     <TreeViewItem Name="TreeViewItemSearch" Header="Search" Selected="TreeViewItemSearch_OnSelected"></TreeViewItem>
