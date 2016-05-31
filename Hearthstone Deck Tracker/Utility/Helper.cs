@@ -141,6 +141,7 @@ namespace Hearthstone_Deck_Tracker
 		}
 
 		public static int CurrentSeason => (DateTime.Now.Year - 2014) * 12 - 3 + DateTime.Now.Month;
+		public static WindowState GameWindowState { get; internal set; } = WindowState.Normal;
 
 		// A bug in the SerializableVersion.ToString() method causes this to load Version.xml incorrectly.
 		// The build and revision numbers are swapped (i.e. a Revision of 21 in Version.xml loads to Version.Build == 21).
@@ -299,7 +300,7 @@ namespace Hearthstone_Deck_Tracker
 
 		public static void UpdateEverything(GameV2 game)
 		{
-			if(Core.Overlay.IsVisible)
+			if(Core.Overlay.IsVisible || Core.Windows.CapturableOverlay != null)
 				Core.Overlay.Update(false);
 
 			var gameStarted = !game.IsInMenu && game.Entities.Count >= 67;
@@ -373,22 +374,6 @@ namespace Hearthstone_Deck_Tracker
 		{
 			long time;
 			return long.TryParse(unixTime, out time) ? FromUnixTime(time) : DateTime.Now;
-		}
-
-		public static async Task SetupConstructedImporting(GameV2 game)
-		{
-			var settings = new MessageDialogs.Settings {AffirmativeButtonText = "continue"};
-			if(!game.IsRunning)
-				await Core.MainWindow.ShowMessageAsync("Step 0:", "Start Hearthstone", settings: settings);
-			await Core.MainWindow.ShowMessageAsync("Step 1:", "Go to the main menu", settings: settings);
-			SettingUpConstructedImporting = true;
-			await
-				Core.MainWindow.ShowMessageAsync("Step 2:",
-												 "Open \"My Collection\" and click each class icon at the top once.\n\n- Do not click on neutral\n- Do not open any decks\n- Do not flip the pages.",
-												 settings: new MessageDialogs.Settings {AffirmativeButtonText = "done"});
-			Config.Instance.ConstructedImportingIgnoreCachedIds = game.PossibleConstructedCards.Select(c => c.Id).ToArray();
-			Config.Save();
-			SettingUpConstructedImporting = false;
 		}
 
 		public static Rectangle GetHearthstoneRect(bool dpiScaling) => User32.GetHearthstoneRect(dpiScaling);
@@ -763,6 +748,16 @@ namespace Hearthstone_Deck_Tracker
 				return Region.CHINA;
 			Log.Warn("Unknown IP: " + ip);
 			return Region.UNKNOWN;
+		}
+
+		public static SolidColorBrush BrushFromHex(string hex)
+		{
+			if(hex.StartsWith("#"))
+				hex = hex.Remove(0, 1);
+			if(string.IsNullOrEmpty(hex) || hex.Length != 6 || !Helper.IsHex(hex))
+				return null;
+			var color = ColorTranslator.FromHtml("#" + hex);
+			return new SolidColorBrush(MediaColor.FromRgb(color.R, color.G, color.B));
 		}
 	}
 }

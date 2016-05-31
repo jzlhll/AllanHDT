@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
+using HearthMirror.Enums;
 using Hearthstone_Deck_Tracker.Controls.Stats;
 using Hearthstone_Deck_Tracker.Enums;
 using Hearthstone_Deck_Tracker.Controls.Information;
@@ -120,6 +121,12 @@ namespace Hearthstone_Deck_Tracker
 
 			UpdateOverlayAsync();
 
+			if(Config.Instance.ShowCapturableOverlay)
+			{
+				Windows.CapturableOverlay = new CapturableOverlayWindow();
+				Windows.CapturableOverlay.Show();
+			}
+
 			if(LogConfigUpdater.LogConfigUpdateFailed)
 				MainWindow.ShowLogConfigUpdateFailedMessage().Forget();
 			else if(LogConfigUpdater.LogConfigUpdated && Game.IsRunning)
@@ -159,6 +166,18 @@ namespace Hearthstone_Deck_Tracker
 							BackupManager.Run();
 							Game.MetaData.HearthstoneBuild = null;
 						}
+						var status = HearthMirror.Status.GetStatus();
+						if(status.MirrorStatus == MirrorStatus.Error)
+						{
+							Log.Error(status.Exception);
+							LogReaderManager.Stop(true).Forget();
+							MainWindow.ActivateWindow();
+							while(MainWindow.Visibility != Visibility.Visible || MainWindow.WindowState == WindowState.Minimized)
+								await Task.Delay(100);
+							await MainWindow.ShowMessage("Uneven permissions",
+									"It appears that Hearthstone (Battle.net) and HDT do not have the same permissions.\n\nPlease run both as administrator or local user.\n\nIf you don't know what any of this means, just run HDT as administrator.");
+							return;
+						}
 					}
 					Overlay.UpdatePosition();
 
@@ -166,13 +185,19 @@ namespace Hearthstone_Deck_Tracker
 						Updater.CheckForUpdates();
 
 					if(!Game.IsRunning)
+					{
 						Overlay.Update(true);
+						Windows.CapturableOverlay?.UpdateContentVisibility();
+					}
 
 					MainWindow.BtnStartHearthstone.Visibility = Visibility.Collapsed;
 					TrayIcon.NotifyIcon.ContextMenu.MenuItems[useNoDeckMenuItem].Visible = false;
 
 					Game.IsRunning = true;
-					if(User32.IsHearthstoneInForeground())
+
+					Helper.GameWindowState = User32.GetHearthstoneWindowState();
+					Windows.CapturableOverlay?.Update();
+					if(User32.IsHearthstoneInForeground() && Helper.GameWindowState != WindowState.Minimized)
 					{
 						if(hsForegroundChanged)
 						{
@@ -200,26 +225,30 @@ namespace Hearthstone_Deck_Tracker
 						hsForegroundChanged = true;
 					}
 				}
-				else
+				else if(Game.IsRunning)
 				{
-					Overlay.ShowOverlay(false);
-					if(Game.IsRunning)
-					{
-						Log.Info("Exited game");
-						Game.CurrentRegion = Region.UNKNOWN;
-						Log.Info("Reset region");
-						await Reset();
-						Game.IsInMenu = true;
-						Overlay.HideRestartRequiredWarning();
-						TurnTimer.Instance.Stop();
-
-						MainWindow.BtnStartHearthstone.Visibility = Visibility.Visible;
-						TrayIcon.NotifyIcon.ContextMenu.MenuItems[useNoDeckMenuItem].Visible = true;
-
-						if(Config.Instance.CloseWithHearthstone)
-							MainWindow.Close();
-					}
 					Game.IsRunning = false;
+					Overlay.ShowOverlay(false);
+					if(Windows.CapturableOverlay != null)
+					{
+						Windows.CapturableOverlay.UpdateContentVisibility();
+						await Task.Delay(100);
+						Windows.CapturableOverlay.ForcedWindowState = WindowState.Minimized;
+						Windows.CapturableOverlay.WindowState = WindowState.Minimized;
+					}
+					Log.Info("Exited game");
+					Game.CurrentRegion = Region.UNKNOWN;
+					Log.Info("Reset region");
+					await Reset();
+					Game.IsInMenu = true;
+					Overlay.HideRestartRequiredWarning();
+					TurnTimer.Instance.Stop();
+
+					MainWindow.BtnStartHearthstone.Visibility = Visibility.Visible;
+					TrayIcon.NotifyIcon.ContextMenu.MenuItems[useNoDeckMenuItem].Visible = true;
+
+					if(Config.Instance.CloseWithHearthstone)
+						MainWindow.Close();
 				}
 
 				if(Config.Instance.NetDeckClipboardCheck.HasValue && Config.Instance.NetDeckClipboardCheck.Value && Initialized
@@ -293,6 +322,7 @@ namespace Hearthstone_Deck_Tracker
 			public static OpponentWindow OpponentWindow => _opponentWindow ?? (_opponentWindow = new OpponentWindow(Game));
 			public static TimerWindow TimerWindow => _timerWindow ?? (_timerWindow = new TimerWindow(Config.Instance));
 			public static StatsWindow StatsWindow => _statsWindow ?? (_statsWindow = new StatsWindow());
+			public static CapturableOverlayWindow CapturableOverlay;
 		}
 	}
 }

@@ -73,16 +73,8 @@
                               Checked="CheckboxOverlayUseAnimations_Checked"
                               Unchecked="CheckboxOverlayUseAnimations_Unchecked"
                               HorizontalAlignment="Left" />
-                    <CheckBox x:Name="CheckBoxOverlayUseAnimationsOpacity"
-                              ToolTip="禁用这个，如果你想对卡组窗口截图和抠像。"
-                              Content="过渡的透明度" Margin="30,5,0,0"
-                              Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
-                              Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
-                              VerticalAlignment="Top"
-                              Checked="CheckBoxOverlayUseAnimationsOpacity_Checked"
-                              Unchecked="CheckBoxOverlayUseAnimationsOpacityy_Unchecked"
-                              HorizontalAlignment="Left" />
-                    <CheckBox x:Name="CheckboxOverlayCardMarkToolTips" Content="卡标记提示"
+
+                              <CheckBox x:Name="CheckboxOverlayCardMarkToolTips" Content="Card mark tooltips"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               Margin="10,5,0,0" VerticalAlignment="Top"

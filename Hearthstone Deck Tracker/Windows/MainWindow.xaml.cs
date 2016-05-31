@@ -415,8 +415,13 @@ namespace Hearthstone_Deck_Tracker.Windows
 		public int StatusBarNewsHeight => 20;
 
 		public bool ShowToolTip => Config.Instance.TrackerCardToolTips;
-		
+
+		public string IntroductionLabelText
+			=> Config.Instance.ConstructedAutoImportNew ? "ENTER THE 'PLAY' MENU TO AUTOMATICALLY IMPORT YOUR DECKS" : "ADD NEW DECKS BY CLICKING 'NEW' OR 'IMPORT'";
+
 		public Visibility IntroductionLabelVisibility => DeckList.Instance.Decks.Any() ? Collapsed : Visible;
+
+		public void UpdateIntroLabelVisibility() => OnPropertyChanged(nameof(IntroductionLabelVisibility));
 
 		public string LastSync
 		{
@@ -735,7 +740,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 						DeckList.Save();
 					}
 
-					Log.Info("Switched to deck: " + deck.Name);
+					Log.Info($"Switched to deck: {deck.Name} ({deck.SelectedVersion.ShortVersionString})");
 
 					int useNoDeckMenuItem = Core.TrayIcon.NotifyIcon.ContextMenu.MenuItems.IndexOfKey(TrayIcon.UseNoDeckMenuItemName);
 					Core.TrayIcon.NotifyIcon.ContextMenu.MenuItems[useNoDeckMenuItem].Checked = false;

@@ -136,6 +136,9 @@
             <controls:Flyout x:Name="FlyoutUpdateNotes" Header="Update Notes" CloseButtonVisibility="Collapsed" Position="Left" Panel.ZIndex="1" Width="{Binding Width, RelativeSource={RelativeSource AncestorType=windows:MainWindow}}">
                 <flyoutControls:UpdateNotes x:Name="UpdateNotesControl"/>
             </controls:Flyout>
+            <controls:Flyout x:Name="FlyoutDeckImporting" Header="Deck Importing" Position="Left" Panel.ZIndex="1" Width="{Binding Width, RelativeSource={RelativeSource AncestorType=windows:MainWindow}}">
+                <controls1:DeckImportingControl x:Name="DeckImportingFlyout"/>
+            </controls:Flyout>
             <controls:Flyout x:Name="FlyoutStats" Position="Left" Panel.ZIndex="1" Width="{Binding Width, RelativeSource={RelativeSource AncestorType=windows:MainWindow}}">
                 <controls:Flyout.HeaderTemplate>
                     <DataTemplate>
@@ -290,12 +293,17 @@
                         </Rectangle>
                     </MenuItem.Icon>
                     <MenuItem Header="FROM _WEB" Click="BtnWeb_Click" />
-                    <MenuItem Header="FROM GAME: _ARENA" Click="BtnArena_Click" Name="MenuItemImportArena" ToolTip="说明可以在【选项】中找到【导入】"/>
-                    <MenuItem Header="FROM GAME: _CONSTRUCTED (UNSTABLE)" Click="BtnConstructed_Click" Name="MenuItemImportConstructed" ToolTip="说明可以在【选项】中找到【导入】" />
-                    <MenuItem Header="FROM _FILE" Click="BtnFile_Click" />
-                    <MenuItem Header="FROM _ID STRING" Click="BtnIdString_Click" />
-                    <MenuItem Header="FROM CLIPBOARD: _CARD NAMES" Click="BtnClipboardText_Click" />
-                    <MenuItem Header="FROM LAST _GAME" Click="BtnLastGame_Click" />
+                    <Separator/>
+                    <MenuItem Header="FROM GAME: _CONSTRUCTED" Click="BtnConstructed_Click" Name="MenuItemImportConstructed" />
+                    <MenuItem Header="FROM GAME: _ARENA" Click="BtnArena_Click" Name="MenuItemImportArena" />
+                    <MenuItem Header="FROM GAME: _TAVERN BRAWL" Click="BtnBrawl_Click" Name="MenuItemImportBrawl" />
+                    <Separator/>
+                    <MenuItem Header="OTHER">
+                        <MenuItem Header="FROM _FILE" Click="BtnFile_Click" />
+                        <MenuItem Header="FROM _ID STRING" Click="BtnIdString_Click" />
+                        <MenuItem Header="FROM CLIPBOARD: _CARD NAMES" Click="BtnClipboardText_Click" />
+                        <MenuItem Header="FROM LAST _GAME" Click="BtnLastGame_Click" />
+                    </MenuItem>
                 </MenuItem>
                 <MenuItem Header="E_XPORT" Name="MenuItemExport">
                     <MenuItem.Icon>
@@ -459,7 +467,11 @@
             <Rectangle Name="DeckPickerListCover" HorizontalAlignment="Stretch" Margin="6,6,0,6" Grid.Column="0"
                        Grid.Row="2" Panel.ZIndex="1"
                        Height="auto" Width="auto" Fill="#7F000000" Visibility="Hidden" />
+<<<<<<< HEAD
             <Label Content="添加新卡组通过【新建】或者【导入】" Foreground="DarkGray" 
+=======
+            <Label Content="{Binding IntroductionLabelText, RelativeSource={RelativeSource AncestorType=controls:MetroWindow}}" Foreground="DarkGray" 
+>>>>>>> 6bd4fa5... update master to v0.15.2
                    FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2" 
                    Visibility="{Binding IntroductionLabelVisibility, RelativeSource={RelativeSource AncestorType=controls:MetroWindow}}" />
             <Menu Name="MenuNewDeck" Grid.Column="2" Grid.Row="1" Visibility="Collapsed">
