@@ -91,9 +91,9 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats.Constructed
 			var settings = new MessageDialogs.Settings {DefaultText = SelectedGame.Note};
 			string newNote;
 			if(Config.Instance.StatsInWindow)
-				newNote = await Core.Windows.StatsWindow.ShowInputAsync("Note", "", settings);
+				newNote = await Core.Windows.StatsWindow.ShowInputAsync("备注", "", settings);
 			else
-				newNote = await Core.MainWindow.ShowInputAsync("Note", "", settings);
+				newNote = await Core.MainWindow.ShowInputAsync("备注", "", settings);
 			if(newNote == null)
 				return;
 			SelectedGame.Note = newNote;

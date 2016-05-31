@@ -44,8 +44,8 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 				return;
 			var result =
 				await
-				Core.MainWindow.ShowMessageAsync("Restore backup " + selected.DisplayName,
-												 "This can not be undone! Make sure you have a current backup (if necessary). To create one, CANCEL and click \"CREATE NEW\".",
+				Core.MainWindow.ShowMessageAsync("恢复备份" + selected.DisplayName,
+                                                 "这是无法挽回的！确保你有一个当前备份（如果需要）。创建一个，取消和点击新建。",
 												 MessageDialogStyle.AffirmativeAndNegative);
 			if(result != MessageDialogResult.Affirmative)
 				return;
@@ -74,10 +74,10 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 			if(ListBoxBackups.SelectedItems.Count == 0)
 				return;
 			var msg = ListBoxBackups.SelectedItems.Count == 1
-				          ? "Delete backup " + ((BackupFile)ListBoxBackups.SelectedItem).DisplayName
-				          : "Delete " + ListBoxBackups.SelectedItems.Count + " backups";
+				          ? "删除备份 " + ((BackupFile)ListBoxBackups.SelectedItem).DisplayName
+				          : "删除 " + ListBoxBackups.SelectedItems.Count + " 个备份";
 			var result =
-				await Core.MainWindow.ShowMessageAsync(msg, "Are you sure? This can not be undone!", MessageDialogStyle.AffirmativeAndNegative);
+				await Core.MainWindow.ShowMessageAsync(msg, "你确定吗? 这无法挽回!", MessageDialogStyle.AffirmativeAndNegative);
 			if(result == MessageDialogResult.Affirmative)
 			{
 				foreach(var backupFile in ListBoxBackups.SelectedItems.OfType<BackupFile>())

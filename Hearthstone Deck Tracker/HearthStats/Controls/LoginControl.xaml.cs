@@ -37,12 +37,12 @@ namespace Hearthstone_Deck_Tracker.HearthStats.Controls
 			var email = TextBoxEmail.Text;
 			if(string.IsNullOrEmpty(email) || !Regex.IsMatch(email, @".*@.*\..*"))
 			{
-				DisplayLoginError("Please enter an valid email address");
+				DisplayLoginError("请输入有效的电子邮件地址");
 				return;
 			}
 			if(string.IsNullOrEmpty(TextBoxPassword.Password))
 			{
-				DisplayLoginError("Please enter a password");
+				DisplayLoginError("请输入密码");
 				return;
 			}
 			IsEnabled = false;
@@ -59,9 +59,9 @@ namespace Hearthstone_Deck_Tracker.HearthStats.Controls
 
 				var dialogResult =
 					await
-					Core.MainWindow.ShowMessageAsync("Sync now?", "Do you want to sync with HearthStats now?",
+					Core.MainWindow.ShowMessageAsync("现在同步?", "你想跟HearthStats现在同步?",
 					                                 MessageDialogStyle.AffirmativeAndNegative,
-					                                 new MessageDialogs.Settings {AffirmativeButtonText = "sync now", NegativeButtonText = "later"});
+					                                 new MessageDialogs.Settings {AffirmativeButtonText = "现在同步", NegativeButtonText = "稍后"});
 				if(dialogResult == MessageDialogResult.Affirmative)
 					HearthStatsManager.SyncAsync();
 			}
@@ -71,7 +71,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.Controls
 
 		private void DisplayLoginError(string error)
 		{
-			TextBlockErrorMessage.Text = "Error:\n" + error;
+			TextBlockErrorMessage.Text = "错误:\n" + error;
 			TextBlockErrorMessage.Visibility = Visibility.Visible;
 			IsEnabled = true;
 		}

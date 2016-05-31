@@ -84,8 +84,8 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 		{
 			var result =
 				await
-				Core.MainWindow.ShowMessageAsync("Resetting overlay to default",
-				                                 "Positions of: Player Deck, Opponent deck, Timers and Secrets will be reset to default. Are you sure?",
+				Core.MainWindow.ShowMessageAsync("重置界面到默认",
+                                                 "位置：玩家卡组，对手卡组，计时器和奥秘将被复位到默认值。你确定吗？",
 				                                 MessageDialogStyle.AffirmativeAndNegative);
 			if(result != MessageDialogResult.Affirmative)
 				return;

@@ -51,7 +51,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 					SaveDeckWithOverwriteCheck();
 			}
 			else
-				await this.ShowMessageAsync("Error", "Could not load deck from specified url");
+				await this.ShowMessageAsync("错误", "不能从url中加载卡组");
 		}
 
 		private async Task<string> InputDeckURL()
@@ -74,18 +74,18 @@ namespace Hearthstone_Deck_Tracker.Windows
 			{
 				var result =
 					await
-					this.ShowMessageAsync("NetDeck",
-					                      "For easier (one-click!) web importing check out the NetDeck Chrome Extension!\n\n(This message will not be displayed again, no worries.)",
+					this.ShowMessageAsync("网络卡组",
+                                          "更容易（一次点击！）网络导入检查出Chrome扩展！（此消息不会再显示，别担心。）",
 					                      MessageDialogStyle.AffirmativeAndNegative,
-					                      new MessageDialogs.Settings {AffirmativeButtonText = "Show me!", NegativeButtonText = "No thanks"});
+					                      new MessageDialogs.Settings {AffirmativeButtonText = "显示!", NegativeButtonText = "不，谢谢"});
 
 				if(result == MessageDialogResult.Affirmative)
 				{
 					Helper.TryOpenUrl("https://chrome.google.com/webstore/detail/netdeck/lpdbiakcpmcppnpchohihcbdnojlgeel");
 					var enableOptionResult =
 						await
-						this.ShowMessageAsync("Enable one-click importing?",
-						                      "Would you like to enable one-click importing via NetDeck?\n(options > other > importing)",
+						this.ShowMessageAsync("启用一键导入?",
+                                              "要启用一键导入通过【网络卡组】？（选项>其他>输入）",
 						                      MessageDialogStyle.AffirmativeAndNegative,
 						                      new MessageDialogs.Settings {AffirmativeButtonText = "Yes", NegativeButtonText = "No"});
 					if(enableOptionResult == MessageDialogResult.Affirmative)
@@ -103,13 +103,13 @@ namespace Hearthstone_Deck_Tracker.Windows
 
 			//import dialog
 			var url =
-				await this.ShowInputAsync("Import deck", "Supported websites:\n" + validUrls.Aggregate((x, next) => x + ", " + next), settings);
+				await this.ShowInputAsync("导入卡组", "支持的网站:\n" + validUrls.Aggregate((x, next) => x + ", " + next), settings);
 			return url;
 		}
 
 		private async Task<Deck> ImportDeckFromURL(string url)
 		{
-			var controller = await this.ShowProgressAsync("Loading Deck...", "please wait");
+			var controller = await this.ShowProgressAsync("加载中", "请等待");
 
 			//var deck = await this._deckImporter.Import(url);
 			var deck = await DeckImporter.Import(url);
@@ -133,8 +133,8 @@ namespace Hearthstone_Deck_Tracker.Windows
 				//import dialog
 				var idString =
 					await
-					this.ShowInputAsync("Import deck",
-					                    "id:count;id2:count2;... (e.g. EX1_050:2;EX1_556:1;)\nObtained from: \nEXPORT > COPY IDS TO CLIPBOARD",
+					this.ShowInputAsync("导入卡组",
+                                        "id:count;id2:count2;... (例如 EX1_050:2;EX1_556:1;)\n来自：\n导出 >复制ID字串到剪贴板",
 					                    settings);
 				if(string.IsNullOrEmpty(idString))
 					return;
@@ -275,13 +275,13 @@ namespace Hearthstone_Deck_Tracker.Windows
 			if(!Core.Game.IsRunning)
 			{
 				Log.Info("Waiting for game...");
-				var result = await this.ShowMessageAsync("Importing arena deck", "Start Hearthstone and enter the 'Arena' screen.",
+				var result = await this.ShowMessageAsync("导入竞技场卡组", "打开炉石并且进入竞技场界面",
 					MessageDialogStyle.AffirmativeAndNegative,
 					new MessageDialogs.Settings() {AffirmativeButtonText = "Start Hearthstone", NegativeButtonText = "Cancel"});
 				if(result == MessageDialogResult.Negative)
 					return;
 				Helper.StartHearthstoneAsync().Forget();
-				controller = await this.ShowProgressAsync("Importing arena deck", "Waiting for Hearthstone...", true);
+				controller = await this.ShowProgressAsync("导入竞技场卡牌中", "等待炉石。。.", true);
 				while(!Core.Game.IsRunning)
 				{
 					if(controller.IsCanceled)
@@ -295,7 +295,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			if(Core.Game.CurrentMode != Mode.DRAFT)
 			{
 				if(controller == null)
-					controller = await this.ShowProgressAsync("Importing arena deck", "", true);
+					controller = await this.ShowProgressAsync("导入竞技场卡牌中", "", true);
 				controller.SetMessage("Enter the 'Arena' screen.");
 				Log.Info("Waiting for DRAFT screen...");
 				while(Core.Game.CurrentMode != Mode.DRAFT)
@@ -312,7 +312,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			while(deck == null || deck.Cards.Sum(x => x.Count) < 30)
 			{
 				if(controller == null)
-					controller = await this.ShowProgressAsync("Importing arena deck", "", true);
+					controller = await this.ShowProgressAsync("导入竞技场卡牌中", "", true);
 				if(controller.IsCanceled)
 				{
 					await controller.CloseAsync();
@@ -328,9 +328,9 @@ namespace Hearthstone_Deck_Tracker.Windows
 			var existing = recentArenaDecks.FirstOrDefault(d => d.Cards.All(c => deck.Cards.Any(c2 => c.Id == c2.Id && c.Count == c2.Count)));
 			if(existing != null)
 			{
-				var result = await this.ShowMessageAsync("Deck already exists", "You seem to already have this deck.",
+				var result = await this.ShowMessageAsync("卡组已经存在", "你好像有这个卡组了。",
 					MessageDialogStyle.AffirmativeAndNegative,
-					new MessageDialogs.Settings() { AffirmativeButtonText = "Use existing", NegativeButtonText = "Import anyway" });
+					new MessageDialogs.Settings() { AffirmativeButtonText = "用现在的", NegativeButtonText = "继续导入" });
 				if(result == MessageDialogResult.Affirmative)
 				{
 					SelectDeck(existing, true);

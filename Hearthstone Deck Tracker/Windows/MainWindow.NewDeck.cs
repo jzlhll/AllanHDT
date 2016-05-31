@@ -126,7 +126,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			{
 				var settings = new MessageDialogs.Settings {AffirmativeButtonText = "Set", DefaultText = deckName};
 
-				var name = await this.ShowInputAsync("No name set", "Please set a name for the deck", settings);
+				var name = await this.ShowInputAsync("没名字", "设置卡组名字", settings);
 
 				if(string.IsNullOrEmpty(name))
 					return;
@@ -141,8 +141,8 @@ namespace Hearthstone_Deck_Tracker.Windows
 
 				var result =
 					await
-					this.ShowMessageAsync("Not 30 cards",
-										  $"Deck contains {_newDeck.Cards.Sum(c => c.Count)} cards. Is this what you want to save anyway?", MessageDialogStyle.AffirmativeAndNegative, settings);
+					this.ShowMessageAsync("不是30张卡",
+										  $"卡组包含 {_newDeck.Cards.Sum(c => c.Count)} 张卡. 继续保存?", MessageDialogStyle.AffirmativeAndNegative, settings);
 				if(result != MessageDialogResult.Affirmative)
 					return;
 			}
@@ -525,8 +525,8 @@ namespace Hearthstone_Deck_Tracker.Windows
 			{
 				var result =
 					await
-					this.ShowMessageAsync(EditingDeck ? "Cancel editing" : "Cancel deck creation",
-					                      EditingDeck ? "All changes made to the deck will be lost." : "The new deck will be lost.",
+					this.ShowMessageAsync(EditingDeck ? "取消编辑" : "取消卡组创建",
+					                      EditingDeck ? "所有的改动将会取消" : "新卡组将被删除.",
 					                      MessageDialogStyle.AffirmativeAndNegative);
 				if(result != MessageDialogResult.Affirmative)
 					return;

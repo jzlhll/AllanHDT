@@ -35,12 +35,12 @@ namespace Hearthstone_Deck_Tracker.Windows
 
 			var settings = new MessageDialogs.Settings {AffirmativeButtonText = "Yes", NegativeButtonText = "No"};
 			var keepStatsInfo = Config.Instance.KeepStatsWhenDeletingDeck
-				                    ? "The stats will be kept (can be changed in options)"
-				                    : "The stats will be deleted (can be changed in options)";
+				                    ? "统计会被保留（可以被改变在【选项】中）"
+				                    : "统计会被删除(可以被改变在【选项中】)";
 			var result =
 				await
-				this.ShowMessageAsync("Deleting " + (decks.Count == 1 ? decks.First().Name : decks.Count + " decks"),
-				                      "Are you Sure?\n" + keepStatsInfo, MessageDialogStyle.AffirmativeAndNegative, settings);
+				this.ShowMessageAsync("删除 " + (decks.Count == 1 ? decks.First().Name : decks.Count + " 卡组"),
+				                      "你确定吗?\n" + keepStatsInfo, MessageDialogStyle.AffirmativeAndNegative, settings);
 			if(result == MessageDialogResult.Negative)
 				return;
 			DeckManagerEvents.OnDeckDeleted.Execute(decks);
@@ -180,7 +180,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 				return;
 			var cloneStats =
 				(await
-				 this.ShowMessageAsync("Clone game history?", "(Cloned games do not count towards class or overall stats.)",
+				 this.ShowMessageAsync("克隆游戏历史?", "(克隆游戏不算对英雄或整体统计.)",
 				                       MessageDialogStyle.AffirmativeAndNegative,
 				                       new MessageDialogs.Settings
 				                       {
@@ -231,7 +231,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 
 			var cloneStats =
 				(await
-				 this.ShowMessageAsync("Clone game history?", "(Cloned games do not count towards class or overall stats.)",
+				 this.ShowMessageAsync("克隆游戏历史?", "(克隆游戏不算对英雄或整体统计.)",
 				                       MessageDialogStyle.AffirmativeAndNegative,
 				                       new MessageDialogs.Settings
 				                       {
@@ -296,13 +296,13 @@ namespace Hearthstone_Deck_Tracker.Windows
 			var deck = await DeckImporter.Import(selectedDeck.Url);
 			if(deck == null)
 			{
-				await this.ShowMessageAsync("Error", "Could not load deck from specified url.");
+				await this.ShowMessageAsync("错误", "不能加载卡组从url.");
 				return;
 			}
 			//this could be expanded to check against the last version of the deck that was not modified after downloading
 			if(deck.Cards.All(c1 => selectedDeck.GetSelectedDeckVersion().Cards.Any(c2 => c1.Name == c2.Name && c1.Count == c2.Count)))
 			{
-				await this.ShowMessageAsync("Already up to date.", "No changes found.");
+				await this.ShowMessageAsync("已经最新", "没有更新可以找到.");
 				return;
 			}
 
@@ -365,8 +365,8 @@ namespace Hearthstone_Deck_Tracker.Windows
 			var deck = DeckPickerList.SelectedDecks.FirstOrDefault();
 			if(deck == null)
 				return;
-			var settings = new MessageDialogs.Settings {AffirmativeButtonText = "set", NegativeButtonText = "cancel", DefaultText = deck.Name};
-			var newName = await this.ShowInputAsync("Set deck name", "", settings);
+			var settings = new MessageDialogs.Settings {AffirmativeButtonText = "设置", NegativeButtonText = "取消", DefaultText = deck.Name};
+			var newName = await this.ShowInputAsync("设置卡组名字", "", settings);
 			if(string.IsNullOrEmpty(newName) || deck.Name == newName)
 				return;
 			deck.Name = newName;

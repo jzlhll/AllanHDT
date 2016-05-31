@@ -59,8 +59,8 @@ namespace Hearthstone_Deck_Tracker.HearthStats.Controls
 			//show warning
 			var result =
 				await
-				Core.MainWindow.ShowMessageAsync("Delete " + deck.Name,
-				                                 "This will permanentely delete the deck and all associated stats. Are you sure?",
+				Core.MainWindow.ShowMessageAsync("删除 " + deck.Name,
+                                                 "这将永远的删除卡组和所有相关数据。你肯定吗？",
 				                                 MessageDialogStyle.AffirmativeAndNegative,
 				                                 new MessageDialogs.Settings {AffirmativeButtonText = "delete", NegativeButtonText = "cancel"});
 			if(result == MessageDialogResult.Affirmative)

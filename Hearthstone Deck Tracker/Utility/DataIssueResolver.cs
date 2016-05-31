@@ -70,8 +70,8 @@ namespace Hearthstone_Deck_Tracker.Utility
 					Log.Info(numMatches + " duplicate matches found.");
 					var result =
 						await
-						Core.MainWindow.ShowMessageAsync("Detected " + numMatches + " duplicate matches.",
-						                                 "Due to sync issues some matches have been duplicated, click \"fix now\" to see and delete duplicates. Sorry about this.",
+						Core.MainWindow.ShowMessageAsync("检测到 " + numMatches + " 重复的匹配.",
+                                                         "由于一些匹配的同步问题已被重复，请单击“修复”以查看和删除重复的。很抱歉。",
 						                                 MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary,
 						                                 new MessageDialogs.Settings
 						                                 {
@@ -92,7 +92,7 @@ namespace Hearthstone_Deck_Tracker.Utility
 					}
 				}
 				else if(showDialogIfNoneFound)
-					await Core.MainWindow.ShowMessageAsync("No duplicate matches found.", "");
+					await Core.MainWindow.ShowMessageAsync("没有重复的", "");
 			}
 			catch(Exception e)
 			{
@@ -186,8 +186,8 @@ namespace Hearthstone_Deck_Tracker.Utility
 			}
 			var controller =
 				await
-				Core.MainWindow.ShowProgressAsync("Fixing opponent names in recorded games...",
-				                                  "v0.10.0 caused opponent names to be set to their hero, rather than the actual name.\n\nThis may take a moment.\n\nYou can cancel to continue this at a later time (or not at all).",
+				Core.MainWindow.ShowProgressAsync("在游戏中固定对手的名字。.",
+                                                  "v0.10.0造成对手的名字被设置为他们的英雄，而不是实际的名称。\n\n这可能需要一些时间。\n\n可以取消继续在以后的时间（或根本没有）。",
 				                                  true);
 
 			await FixOppNameAndClass(games, controller);
@@ -197,11 +197,11 @@ namespace Hearthstone_Deck_Tracker.Utility
 			{
 				var fix =
 					await
-					Core.MainWindow.ShowMessageAsync("Cancelled", "Fix remaining names on next start?", MessageDialogStyle.AffirmativeAndNegative,
+					Core.MainWindow.ShowMessageAsync("已取消", "在下一个开始修理其余的名字？", MessageDialogStyle.AffirmativeAndNegative,
 					                                 new MessageDialogs.Settings
 					                                 {
-						                                 AffirmativeButtonText = "next time",
-						                                 NegativeButtonText = "don\'t fix"
+						                                 AffirmativeButtonText = "下一次",
+						                                 NegativeButtonText = "不修复"
 					                                 });
 				if(fix == MessageDialogResult.Negative)
 				{
@@ -280,19 +280,19 @@ namespace Hearthstone_Deck_Tracker.Utility
 		{
 			while(!Core.MainWindow.IsLoaded || Core.MainWindow.WindowState == WindowState.Minimized || Core.MainWindow.FlyoutUpdateNotes.IsOpen)
 				await Task.Delay(500);
-			var result = await Core.MainWindow.ShowMessageAsync("Data maintenance required",
-														  "Some files need to be cleaned up, to help HDT run a bit better.\n\nThis should not talk too long, you can do just do it later though.",
+			var result = await Core.MainWindow.ShowMessageAsync("数据维护要求",
+                                                          "有些文件需要被清理，帮助HDT跑得好一点。\n\n这不应该说得太长，虽然你可以在之后去做。",
 														  MessageDialogStyle.AffirmativeAndNegative,
-														  new MetroDialogSettings() {AffirmativeButtonText = "start", NegativeButtonText = "ask again later"});
+														  new MetroDialogSettings() {AffirmativeButtonText = "开始", NegativeButtonText = "下次再说"});
 			if(result == MessageDialogResult.Negative)
 				return;
-			var controller = await Core.MainWindow.ShowProgressAsync("Cleaning up stuff...", "", true);
+			var controller = await Core.MainWindow.ShowProgressAsync("清理东西…", "", true);
 			await CleanUpGameFiles(controller);
 			await controller.CloseAsync();
 			if(controller.IsCanceled)
-				await Core.MainWindow.ShowMessage("Cancelled", "No problem. You can just finish this later.");
+				await Core.MainWindow.ShowMessage("已取消", "没问题，稍后你可以完成它。");
 			else
-				await Core.MainWindow.ShowMessage("All done!", "");
+				await Core.MainWindow.ShowMessage("全部完成!", "");
 		}
 
 		private static string GamesDir => Path.Combine(Config.Instance.DataDir, "Games");

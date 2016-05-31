@@ -44,16 +44,16 @@ namespace Hearthstone_Deck_Tracker
 			var email = TextBoxEmail.Text;
 			if(string.IsNullOrEmpty(email) || !Regex.IsMatch(email, @".*@.*\..*"))
 			{
-				DisplayLoginError("Please enter an valid email address");
+				DisplayLoginError("请输入有效的电子邮件地址");
 				return;
 			}
 			if(string.IsNullOrEmpty(TextBoxPassword.Password))
 			{
-				DisplayLoginError("Please enter a password");
+				DisplayLoginError("请输入密码");
 				return;
 			}
 			IsEnabled = false;
-			_controller = await this.ShowProgressAsync("Logging in...", "");
+			_controller = await this.ShowProgressAsync("登陆中.", "");
 			var result = await HearthStatsAPI.LoginAsync(TextBoxEmail.Text, TextBoxPassword.Password);
 			TextBoxPassword.Clear();
 			if(result.Success)
@@ -62,7 +62,7 @@ namespace Hearthstone_Deck_Tracker
 				Close();
 			}
 			else if(result.Message.Contains("401"))
-				DisplayLoginError("Invalid email or password");
+				DisplayLoginError("错误的信息");
 			else
 				DisplayLoginError(result.Message);
 		}
@@ -109,31 +109,31 @@ namespace Hearthstone_Deck_Tracker
 			var email = TextBoxRegisterEmail.Text;
 			if(string.IsNullOrEmpty(email) || !Regex.IsMatch(email, @".*@.*\..*"))
 			{
-				DisplayLoginError("Please enter an valid email address");
+				DisplayLoginError("请输入有效的电子邮件地址");
 				return;
 			}
 			if(string.IsNullOrEmpty(TextBoxRegisterPassword.Password))
 			{
-				DisplayLoginError("Please enter a password");
+				DisplayLoginError("请输入密码");
 				return;
 			}
 			if(TextBoxRegisterPassword.Password.Length < 6)
 			{
-				DisplayLoginError("Your password needs to be at least 6 characters");
+				DisplayLoginError("密码至少6位");
 				return;
 			}
 			if(string.IsNullOrEmpty(TextBoxRegisterPasswordConfirm.Password))
 			{
-				DisplayLoginError("Please confirm your password");
+				DisplayLoginError("重复输入密码");
 				return;
 			}
 			if(!TextBoxRegisterPassword.Password.Equals(TextBoxRegisterPasswordConfirm.Password))
 			{
-				DisplayLoginError("Entered passwords do not match");
+				DisplayLoginError("两次不匹配");
 				return;
 			}
 			IsEnabled = false;
-			_controller = await this.ShowProgressAsync("Registering account...", "");
+			_controller = await this.ShowProgressAsync("注册中...", "");
 			var result = await HearthStatsAPI.RegisterAsync(email, TextBoxRegisterPassword.Password);
 			if(result.Success)
 			{
@@ -141,7 +141,7 @@ namespace Hearthstone_Deck_Tracker
 				result = await HearthStatsAPI.LoginAsync(email, TextBoxRegisterPassword.Password);
 			}
 			else if(result.Message.Contains("422"))
-				DisplayLoginError("Email already registered");
+				DisplayLoginError("Email已被注册");
 			else
 				DisplayLoginError(result.Message);
 			TextBoxRegisterPassword.Clear();

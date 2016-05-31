@@ -34,14 +34,14 @@ namespace Hearthstone_Deck_Tracker.Windows
 			var export = true;
 			if(Config.Instance.ShowExportingDialog)
 			{
-				var message = $"1) Create a new (or open an existing) {deck.Class} deck.\n\n2) Leave the deck creation screen open.\n\n3) Click 'Export' and do not move your mouse or type until done.";
+				var message = $"1) 创建一个新的或者打开一个存在的 {deck.Class} 卡组.\n\n2) 离开卡组创建界面.\n\n3) 点击【导出】并且不要动鼠标或者点它直到完成。";
 				var settings = new MessageDialogs.Settings {AffirmativeButtonText = "Export"};
-				var result = await this.ShowMessageAsync("Export " + deck.Name + " to Hearthstone", message, MessageDialogStyle.AffirmativeAndNegative, settings);
+				var result = await this.ShowMessageAsync("导出 " + deck.Name + " 到炉石", message, MessageDialogStyle.AffirmativeAndNegative, settings);
 				export = result == MessageDialogResult.Affirmative;
 			}
 			if(export)
 			{
-				var controller = await this.ShowProgressAsync("Creating Deck", "Please do not move your mouse or type.");
+				var controller = await this.ShowProgressAsync("创建卡组中", "别乱动鼠标和点击");
 				Topmost = false;
 				await Task.Delay(500);
 				var success = await DeckExporter.Export(deck);
@@ -110,7 +110,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 						ms.WriteTo(fs);
 						if(saveOperation.Upload)
 						{
-							var controller = await this.ShowProgressAsync("Uploading...", "");
+							var controller = await this.ShowProgressAsync("上传中...", "");
 							imgurUrl = await Imgur.Upload(Config.Instance.ImgurClientId, ms, proposedFileName);
 							await controller.CloseAsync();
 						}
@@ -147,7 +147,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 				if(selectedDecks.Count > 10)
 				{
 					var result = await
-						this.ShowMessageAsync("Exporting multiple decks!", $"You are about to export {selectedDecks.Count} decks. Are you sure?",
+						this.ShowMessageAsync("导出多个卡组！", $"你将要导出 {selectedDecks.Count} 个卡组.确定吗?",
 											  MessageDialogStyle.AffirmativeAndNegative);
 					if(result != MessageDialogResult.Affirmative)
 						return;
@@ -232,7 +232,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			if(deck != null)
 				ExportDeck(deck);
 			else
-				await this.ShowMessageAsync("Error", "Could not load deck from specified url");
+				await this.ShowMessageAsync("错误", "不能从url中加载卡组");
 		}
 
 		internal void MenuItemMissingDust_OnClick(object sender, RoutedEventArgs e)

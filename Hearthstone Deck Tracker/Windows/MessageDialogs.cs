@@ -26,16 +26,16 @@ namespace Hearthstone_Deck_Tracker.Windows
 	public static class MessageDialogs
 	{
 		public static async Task<MessageDialogResult> ShowDeleteGameStatsMessage(this MetroWindow window, GameStats stats)
-			=> await window.ShowMessageAsync("Delete Game", $"{stats.Result} vs {stats.OpponentHero}\nfrom {stats.StartTime}\n\nAre you sure?",
+			=> await window.ShowMessageAsync("删除游戏", $"{stats.Result} vs {stats.OpponentHero}\n从 {stats.StartTime}\n\n确定吗?",
 				AffirmativeAndNegative, new Settings {AffirmativeButtonText = "Yes", NegativeButtonText = "No"});
 
 		public static async Task<MessageDialogResult> ShowDeleteMultipleGameStatsMessage(this MetroWindow window, int count)
-			=> await window.ShowMessageAsync("Delete Games", $"This will delete the selected games ({count}).\n\nAre you sure?",
+			=> await window.ShowMessageAsync("删除游戏", $"删除选中的游戏 ({count}) 个.\n\nAre you sure?",
 				AffirmativeAndNegative, new Settings {AffirmativeButtonText = "Yes", NegativeButtonText = "No"});
 
 		public static async Task ShowUpdateNotesMessage(this MetroWindow window)
 		{
-			var result = await window.ShowMessageAsync("Update successful", "", AffirmativeAndNegative,
+			var result = await window.ShowMessageAsync("上传成功", "", AffirmativeAndNegative,
 							new Settings {AffirmativeButtonText = "Show update notes", NegativeButtonText = "Close"});
 			if(result == MessageDialogResult.Affirmative)
 				Helper.TryOpenUrl(@"https://github.com/HearthSim/Hearthstone-Deck-Tracker/releases");
@@ -44,7 +44,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 		public static async void ShowRestartDialog()
 		{
 			var result =
-				await Core.MainWindow.ShowMessageAsync("Restart required.", "HDT needs to be restarted for the changes to take effect.",
+				await Core.MainWindow.ShowMessageAsync("需要重启.", "HDT汉化版需要重启才能生效.",
 					MessageDialogStyle.AffirmativeAndNegative,
 					new MessageDialogs.Settings() { AffirmativeButtonText = "Restart Now", NegativeButtonText = "Later" });
 			if(result == MessageDialogResult.Affirmative)
@@ -55,7 +55,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 
 		public static async Task ShowSavedFileMessage(this MainWindow window, string fileName)
 		{
-			var result = await window.ShowMessageAsync("", $"Saved to\n\"{fileName}\"", AffirmativeAndNegative,
+			var result = await window.ShowMessageAsync("", $"保存到\n\"{fileName}\"", AffirmativeAndNegative,
 							new Settings {NegativeButtonText = "Open folder"});
 			if(result == MessageDialogResult.Negative)
 				Process.Start(Path.GetDirectoryName(fileName));
@@ -68,7 +68,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 				sb.AppendLine($"Saved to\n\"{fileName}\"");
 			sb.AppendLine($"Uploaded to\n{url}");
 			var result = await window.ShowMessageAsync("", sb.ToString(), AffirmativeAndNegativeAndSingleAuxiliary,
-							new Settings {NegativeButtonText = "open in browser", FirstAuxiliaryButtonText = "copy url to clipboard"});
+							new Settings {NegativeButtonText = "打开浏览器", FirstAuxiliaryButtonText = "拷贝了url到剪贴板"});
 			if(result == MessageDialogResult.Negative)
 				Helper.TryOpenUrl(url);
 			else if(result == MessageDialogResult.FirstAuxiliary)
@@ -86,13 +86,13 @@ namespace Hearthstone_Deck_Tracker.Windows
 
 		public static async Task<SaveScreenshotOperation> ShowScreenshotUploadSelectionDialog(this MainWindow window)
 		{
-			var result = await window.ShowMessageAsync("Select Operation", "\"upload\" will automatically upload the image to imgur.com",
+			var result = await window.ShowMessageAsync("选择操作", "\"上传\" 将会自动传图片到imgur.com",
 							AffirmativeAndNegativeAndDoubleAuxiliary, new Settings
 							{
-								AffirmativeButtonText = "save",
-								NegativeButtonText = "save & upload",
-								FirstAuxiliaryButtonText = "upload",
-								SecondAuxiliaryButtonText = "cancel"
+								AffirmativeButtonText = "保存",
+								NegativeButtonText = "保存并上传",
+								FirstAuxiliaryButtonText = "上传",
+								SecondAuxiliaryButtonText = "取消"
 							});
 			return new SaveScreenshotOperation
 			{
@@ -105,8 +105,8 @@ namespace Hearthstone_Deck_Tracker.Windows
 		public static async Task ShowLogConfigUpdateFailedMessage(this MetroWindow window)
 		{
 			var settings = new Settings {AffirmativeButtonText = "show instructions", NegativeButtonText = "close"};
-			var result = await window.ShowMessageAsync("There was a problem updating the log.config",
-										"New log.config settings are required for HDT to function correctly.\n\nTry starting HDT as administrator.\n\nIf that does not help, click \"show instructions\" to see how to update it manually.",
+			var result = await window.ShowMessageAsync("有一个问题在更新log.config中",
+                                        "新的log.config设定为HDT需要正常使用的话，\n\n需要使用管理员启动HDT汉化版。\n\n如果需要帮助，点击“显示说明”如何手动更新。",
 										AffirmativeAndNegative, settings);
 			if(result == MessageDialogResult.Affirmative)
 				Helper.TryOpenUrl("https://github.com/HearthSim/Hearthstone-Deck-Tracker/wiki/Setting-up-the-log.config");
@@ -116,8 +116,8 @@ namespace Hearthstone_Deck_Tracker.Windows
 		{
 			if(!deck.MissingCards.Any())
 			{
-				await window.ShowMessageAsync("No missing cards",
-						"No cards were missing when you last exported this deck. (or you have not recently exported this deck)",
+				await window.ShowMessageAsync("没有丢失的卡",
+                        "当你最后一次导出到这个卡组的时候，没有一张牌被遗失。（或者你最近没有导出这个卡组）",
 						Affirmative, new Settings {AffirmativeButtonText = "OK"});
 				return;
 			}
@@ -144,7 +144,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 					totalDust += card.DustCost * card.Count;
 			}
 			message += $"\n\nYou need {totalDust} dust {string.Join("", sets)}to craft the missing cards.";
-			await window.ShowMessageAsync("Export incomplete", message, Affirmative, new Settings {AffirmativeButtonText = "OK"});
+			await window.ShowMessageAsync("导出不完整", message, Affirmative, new Settings {AffirmativeButtonText = "OK"});
 		}
 
 		public static async Task<bool> ShowAddGameDialog(this MetroWindow window, Deck deck)
@@ -211,7 +211,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 				return Config.Instance.HearthStatsAutoDeleteMatches.Value;
 			var dialogResult =
 				await
-				window.ShowMessageAsync("Delete match(es) on HearthStats?", "You can change this setting at any time in the HearthStats menu.",
+				window.ShowMessageAsync("删除对战在HearthStats上?", "你可以在任何时候更改此设置hearthstats菜单。",
 				                        AffirmativeAndNegative,
 				                        new MetroDialogSettings {AffirmativeButtonText = "yes (always)", NegativeButtonText = "no (never)"});
 			Config.Instance.HearthStatsAutoDeleteMatches = dialogResult == MessageDialogResult.Affirmative;
@@ -223,7 +223,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 		public static async Task<bool> ShowLanguageSelectionDialog(this MetroWindow window)
 		{
 			var english = await
-				window.ShowMessageAsync("Select language", "", AffirmativeAndNegative,
+				window.ShowMessageAsync("语言选择", "", AffirmativeAndNegative,
 										new Settings
 										{
 											AffirmativeButtonText = Helper.LanguageDict.First(x => x.Value == "enUS").Key,
@@ -245,8 +245,8 @@ namespace Hearthstone_Deck_Tracker.Windows
 			while(window.Visibility != Visibility.Visible || window.WindowState == WindowState.Minimized)
 				await Task.Delay(100);
 
-			var result = await window.ShowMessageAsync("New arena deck detected!",
-												 "You can change this behaviour to \"auto save&import\" or \"manual\" in [options > tracker > importing]",
+			var result = await window.ShowMessageAsync("检测到的新卡组！",
+                                                 "您可以将此行为改为“自动保存和导入”或“手动”，在【选项】>【跟踪】>【输入】",
 												 AffirmativeAndNegative, new Settings { AffirmativeButtonText = "Import", NegativeButtonText = "Cancel" });
 
 			if(result == MessageDialogResult.Affirmative)

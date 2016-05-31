@@ -433,7 +433,7 @@ namespace Hearthstone_Deck_Tracker
 					Core.MainWindow.TextBlockBtnStartHearthstone.Text = "START LAUNCHER / HEARTHSTONE";
 					if(!foundBnetWindow)
 					{
-						Core.MainWindow.ShowMessageAsync("Error starting battle.net launcher", "Could not find or start the battle.net launcher.").Forget();
+						Core.MainWindow.ShowMessageAsync("打开战网launcher失败", "找不到或者打开失败。").Forget();
 						Core.MainWindow.BtnStartHearthstone.IsEnabled = true;
 						return;
 					}

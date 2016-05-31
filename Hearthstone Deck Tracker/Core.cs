@@ -131,7 +131,7 @@ namespace Hearthstone_Deck_Tracker
 				MainWindow.ShowLogConfigUpdateFailedMessage().Forget();
 			else if(LogConfigUpdater.LogConfigUpdated && Game.IsRunning)
 			{
-				MainWindow.ShowMessageAsync("Hearthstone restart required", "The log.config file has been updated. HDT may not work properly until Hearthstone has been restarted.");
+				MainWindow.ShowMessageAsync("炉石需要重启", "log.config文件被改变了，HDT可能工作不正常直到炉石重启.");
 				Overlay.ShowRestartRequiredWarning();
 			}
 			LogReaderManager.Start(Game).Forget();

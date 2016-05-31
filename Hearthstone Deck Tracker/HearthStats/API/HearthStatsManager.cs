@@ -366,7 +366,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 				if(background)
 					AddBackgroundActivity();
 
-				var controller = background ? null : await Core.MainWindow.ShowProgressAsync("Syncing...", "Checking HearthStats for new decks...");
+				var controller = background ? null : await Core.MainWindow.ShowProgressAsync("同步中...", "检查HearthStats新卡组..");
 				Log.Info("Checking HearthStats for new decks...");
 				var localDecks = DeckList.Instance.Decks;
 				var remoteDecks = await DownloadDecksAsync(forceFullSync);
@@ -392,7 +392,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 					if(!background)
 					{
 						if(controller == null || !controller.IsOpen)
-							controller = await Core.MainWindow.ShowProgressAsync("Syncing...", "Checking for new versions...");
+							controller = await Core.MainWindow.ShowProgressAsync("同步中...", "检查新版本..");
 						else
 							controller.SetMessage("Checking for new versions...");
 					}
@@ -437,7 +437,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 					if(!background)
 					{
 						if(controller == null || !controller.IsOpen)
-							controller = await Core.MainWindow.ShowProgressAsync("Syncing...", "Checking for edited decks...");
+							controller = await Core.MainWindow.ShowProgressAsync("同步中...", "检查编辑过的卡组...");
 						else
 							controller.SetMessage("Checking for edited decks...");
 					}
@@ -476,7 +476,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 				if(!background)
 				{
 					if(controller == null || !controller.IsOpen)
-						controller = await Core.MainWindow.ShowProgressAsync("Syncing...", "Checking HearthStats for new matches...");
+						controller = await Core.MainWindow.ShowProgressAsync("同步中...", "检查新的对战...");
 					else
 						controller.SetMessage("Checking HearthStats for new matches...");
 				}
@@ -538,7 +538,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 					newLocalDecks = await Core.MainWindow.HearthStatsUploadDecksControl.LoadDecks(newLocalDecks);
 					if(newLocalDecks.Any())
 					{
-						controller = await Core.MainWindow.ShowProgressAsync("Syncing...", "Uploading " + newLocalDecks.Count + " new decks...");
+						controller = await Core.MainWindow.ShowProgressAsync("同步中...", "上传 " + newLocalDecks.Count + " 个新卡组...");
 						Log.Info("Uploading " + newLocalDecks.Count + " new decks...");
 						await Task.Run(() =>
 						{
@@ -558,7 +558,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 				if(!background)
 				{
 					if(controller == null || !controller.IsOpen)
-						controller = await Core.MainWindow.ShowProgressAsync("Syncing...", "Checking for new local versions...");
+						controller = await Core.MainWindow.ShowProgressAsync("同步中...", "检查新的本地版本...");
 					else
 						controller.SetMessage("Checking for new local versions...");
 				}

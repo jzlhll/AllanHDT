@@ -340,13 +340,13 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 				             .ToList();
 			var controller =
 				await
-				Core.MainWindow.ShowProgressAsync("Fixing incorrect stats!",
-												  $"Checking {games.Count} replays, this may take a moment...\r\n\r\nNote: This will not work for matches that don't have replay files.", true);
+				Core.MainWindow.ShowProgressAsync("修正错误统计中!",
+												  $"检查 {games.Count} 个回放,需要等待一会...\r\n\r\n备注：没有回放记录不会检查。", true);
 			var fixCount = await DataIssueResolver.FixOppNameAndClass(games, controller);
 			await controller.CloseAsync();
 			await
-				Core.MainWindow.ShowMessageAsync("Done.",
-				                                 fixCount > 0 ? "Fixed names/classes for " + fixCount + " matches." : "No incorrect stats found.");
+				Core.MainWindow.ShowMessageAsync("以完成.",
+				                                 fixCount > 0 ? "为Fixed names/classes for " + fixCount + " 场对阵修改名字/英雄." : "没有找到正确的统计");
 		}
 	}
 }

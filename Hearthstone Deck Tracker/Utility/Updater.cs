@@ -68,7 +68,7 @@ namespace Hearthstone_Deck_Tracker.Utility
 				var betaString = beta ? " BETA" : "";
 				var result =
 					await
-					Core.MainWindow.ShowMessageAsync("New" + betaString + " Update available!", "Press \"Download\" to automatically download.",
+					Core.MainWindow.ShowMessageAsync("新的" + betaString + " 更新到了!", "点击【下载】去自动下载（汉化建议不要下哦）",
 					                                 MessageDialogStyle.AffirmativeAndNegative, settings);
 
 				if(result == MessageDialogResult.Affirmative)

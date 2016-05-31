@@ -276,8 +276,8 @@ namespace Hearthstone_Deck_Tracker.Windows
 		{
 			var result =
 				await
-				this.ShowMessageAsync("Full sync", "This may take a while, are you sure?", MessageDialogStyle.AffirmativeAndNegative,
-				                      new MessageDialogs.Settings {AffirmativeButtonText = "start full sync", NegativeButtonText = "cancel"});
+				this.ShowMessageAsync("全部同步", "需要稍等一会，继续吗?", MessageDialogStyle.AffirmativeAndNegative,
+				                      new MessageDialogs.Settings {AffirmativeButtonText = "全部同步", NegativeButtonText = "取消"});
 			if(result == MessageDialogResult.Affirmative)
 				HearthStatsManager.SyncAsync(true);
 		}
@@ -286,16 +286,16 @@ namespace Hearthstone_Deck_Tracker.Windows
 		{
 			var result =
 				await
-				this.ShowMessageAsync("Logout?", "Are you sure you want to logout?", MessageDialogStyle.AffirmativeAndNegative,
-				                      new MessageDialogs.Settings {AffirmativeButtonText = "logout", NegativeButtonText = "cancel"});
+				this.ShowMessageAsync("登出?", "Are you sure you want to logout?", MessageDialogStyle.AffirmativeAndNegative,
+				                      new MessageDialogs.Settings {AffirmativeButtonText = "登出", NegativeButtonText = "取消"});
 			if(result != MessageDialogResult.Affirmative)
 				return;
 			if (!HearthStatsAPI.Logout())
 			{
 				await
-					this.ShowMessageAsync("Error deleting stored credentials",
-										  "You will be logged in automatically on the next start. To avoid this manually delete the \"hearthstats\" file at "
-										  + Config.Instance.HearthStatsFilePath);
+					this.ShowMessageAsync("删除存储凭据时出错",
+                                          "你将自动登录到下一个开始。为了避免这种手动删除“hearthstats”文件"
+                                          + Config.Instance.HearthStatsFilePath);
 			}
 			Restart();
 		}
@@ -305,26 +305,26 @@ namespace Hearthstone_Deck_Tracker.Windows
 			var decks = DeckPickerList.SelectedDecks;
 			if(!decks.Any(d => d.HasHearthStatsId))
 			{
-				await this.ShowMessageAsync("None synced", "None of the selected decks have HearthStats ids.");
+				await this.ShowMessageAsync("没有同步", "所选的卡组没有hearthstats ID。");
 				return;
 			}
 			var dialogResult =
 				await
-				this.ShowMessageAsync("Delete " + decks.Count + " deck(s) on HearthStats?",
-				                      "This will delete the deck(s) and all associated games ON HEARTHSTATS, as well as reset all stored IDs. The decks or games in the tracker (this) will NOT be deleted.\n\n Are you sure?",
+				this.ShowMessageAsync("删除 " + decks.Count + " 个卡组在HearthStats上?",
+                                      "这将删除关联在HEARTHSTATS上的卡组, 同样会重置所有的ID字串. 卡组或者游戏在跟踪的不会被删除.\n\n 确定吗?",
 				                      MessageDialogStyle.AffirmativeAndNegative,
-				                      new MessageDialogs.Settings {AffirmativeButtonText = "delete", NegativeButtonText = "cancel"});
+				                      new MessageDialogs.Settings {AffirmativeButtonText = "删除", NegativeButtonText = "取消"});
 
 			if(dialogResult != MessageDialogResult.Affirmative)
 				return;
-			var controller = await this.ShowProgressAsync("Deleting decks...", "");
+			var controller = await this.ShowProgressAsync("删除卡组中.", "");
 			var deleteSuccessful = await HearthStatsManager.DeleteDeckAsync(decks);
 			await controller.CloseAsync();
 			if(!deleteSuccessful)
 			{
 				await
-					this.ShowMessageAsync("Problem deleting decks",
-										  "There was a problem deleting the deck. All local IDs will be reset anyway, you can manually delete the deck online.");
+					this.ShowMessageAsync("删除卡组出错",
+                                          "删除出了一个问题。所有本地的ID字串都将重置，你可以手动删除网络上的卡组。");
 			}
 			foreach(var deck in decks)
 			{
@@ -347,9 +347,9 @@ namespace Hearthstone_Deck_Tracker.Windows
 				return Config.Instance.HearthStatsAutoDeleteDecks.Value;
 			var dialogResult =
 				await
-				this.ShowMessageAsync("Delete deck on HearthStats?", "You can change this setting at any time in the HearthStats menu.",
+				this.ShowMessageAsync("删除HearthStats上的卡组?", "你可以在任何时候更改此设置hearthstats菜单.",
 				                      MessageDialogStyle.AffirmativeAndNegative,
-				                      new MessageDialogs.Settings {AffirmativeButtonText = "yes (always)", NegativeButtonText = "no (never)"});
+				                      new MessageDialogs.Settings {AffirmativeButtonText = "yes (一直)", NegativeButtonText = "no (永远)"});
 			Config.Instance.HearthStatsAutoDeleteDecks = dialogResult == MessageDialogResult.Affirmative;
 			MenuItemCheckBoxAutoDeleteDecks.IsChecked = Config.Instance.HearthStatsAutoDeleteDecks;
 			Config.Save();
@@ -526,10 +526,10 @@ namespace Hearthstone_Deck_Tracker.Windows
 					e.Cancel = true;
 					var result =
 						await
-						this.ShowMessageAsync("WARNING! Sync with HearthStats in progress!",
-						                      "Closing Hearthstone Deck Tracker now can cause data inconsistencies. Are you sure?",
+						this.ShowMessageAsync("警告！与hearthstats同步中！",
+                                              "关闭HDT会导致数据不一致。你肯定吗？",
 						                      MessageDialogStyle.AffirmativeAndNegative,
-						                      new MessageDialogs.Settings {AffirmativeButtonText = "close anyway", NegativeButtonText = "wait"});
+						                      new MessageDialogs.Settings {AffirmativeButtonText = "继续关闭", NegativeButtonText = "等待"});
 					if(result == MessageDialogResult.Negative)
 					{
 						while(HearthStatsManager.SyncInProgress)
