@@ -9,7 +9,7 @@
         <Border BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" Margin="-1"
                 DockPanel.Dock="Bottom">
             <DockPanel VerticalAlignment="Bottom">
-                <Button Name="ButtonUpdateNotes" Content="Show update notes" Click="ButtonUpdateNotes_OnClick"
+                <Button Name="ButtonUpdateNotes" Content="显示更新日志" Click="ButtonUpdateNotes_OnClick"
                         DockPanel.Dock="Right" Margin="2" Width="200"
                         Style="{DynamicResource AccentedSquareButtonStyle}" />
                 <TextBlock Name="TxtblockVersion" Text="版本:" VerticalAlignment="Center" Margin="10,0,0,0" />
@@ -22,32 +22,32 @@
                         <Hyperlink
                             NavigateUri="https://github.com/HearthSim/Hearthstone-Deck-Tracker/wiki/FAQ"
                             RequestNavigate="Hyperlink_RequestNavigate">
-                            Go to the FAQ.
+                            进入FAQ.
                         </Hyperlink>
                     </TextBlock>
                 </GroupBox>
-                <GroupBox Header="The Overlay">
+                <GroupBox Header="窗口">
                     <StackPanel>
-                        <GroupBox Header="Card marks">
+                        <GroupBox Header="卡牌符号">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="/HearthstoneDeckTracker;component/Images/card-icon-coin.png"
                                        RenderOptions.BitmapScalingMode="Fant" Width="16" />
-                                <Label Content="The Coin" />
+                                <Label Content="硬币" />
                                 <Image Source="/HearthstoneDeckTracker;component/Images/card-icon-mulligan.png"
                                        RenderOptions.BitmapScalingMode="Fant"
                                        Width="16" Margin="10,0,0,0" />
-                                <Label Content="Mulliganed" />
+                                <Label Content="重调了一下" />
                                 <Image Source="/HearthstoneDeckTracker;component/Images/card-icon-returned.png"
                                        RenderOptions.BitmapScalingMode="Fant"
                                        Width="16" Margin="10,0,0,0" />
-                                <Label Content="Returned" />
+                                <Label Content="已返回" />
                                 <Image Source="/HearthstoneDeckTracker;component/Images/card-icon-created.png"
                                        RenderOptions.BitmapScalingMode="Fant"
                                        Width="16" Margin="10,0,0,0" />
-                                <Label Content="Created" />
+                                <Label Content="已创建" />
                             </StackPanel>
                         </GroupBox>
-                        <GroupBox Header="Percentages">
+                        <GroupBox Header="百分比">
                             <StackPanel Margin="10,0">
                                 <TextBlock Text="一般的:" FontWeight="Bold" />
                                 <StackPanel Orientation="Horizontal">
@@ -79,7 +79,7 @@
                                            FontStyle="Italic" />
                             </StackPanel>
                         </GroupBox>
-                        <GroupBox Header="Customization">
+                        <GroupBox Header="自定义">
                             <StackPanel Margin="10, 0">
                                 <TextBlock
                                     Text="几乎所有的界面都可以打开或关闭，移动和缩放。" />
@@ -111,7 +111,7 @@
                     </StackPanel>
 
                 </GroupBox>
-                <GroupBox Header="Reporting bugs / requesting features">
+                <GroupBox Header="报告错误/请求功能">
                     <TextBlock Margin="10,0,10,0" VerticalAlignment="Top" Width="auto" TextWrapping="Wrap">
                         <Run Text="2个选择:" />
                         <LineBreak />
