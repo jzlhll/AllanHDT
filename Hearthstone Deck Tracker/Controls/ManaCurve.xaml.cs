@@ -195,10 +195,29 @@ namespace Hearthstone_Deck_Tracker
 		}
 	}
 
-	public class StatTypeWrapper
-	{
-		public StatType StatType { get; set; }
+    public class StatTypeWrapper
+    {
+        public StatType StatType { get; set; }
 
-		public string DisplayName => StatType.ToString().ToUpper();
-	}
+        public string DisplayName => convertToCN(StatType);
+        private string convertToCN(StatType st){
+            string s = st.ToString();
+            if (s == "Mana")
+            {
+                return "费用";
+            }
+            else if (s == "Health")
+            {
+                return "血量";
+            }
+            else if (s == "Attack")
+            {
+                return "攻击";
+            }
+            else {
+                return "过载";
+            }
+        }
+
+    }
 }
