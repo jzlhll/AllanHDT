@@ -287,7 +287,7 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 		}
 
 		[XmlIgnore]
-		public string StatsString => GetRelevantGames().Any() ? $"{WinPercentString} | {WinLossString}" : "NO STATS";
+		public string StatsString => GetRelevantGames().Any() ? $"{WinPercentString} | {WinLossString}" : "没有统计";
 
 		[XmlIgnore]
 		public DateTime LastPlayed => !DeckStats.Games.Any() ? DateTime.MinValue : DeckStats.Games.Max(g => g.StartTime);
@@ -296,7 +296,7 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 		public DateTime LastPlayedNewFirst => !DeckStats.Games.Any() ? LastEdited : DeckStats.Games.Max(g => g.StartTime);
 
 		[XmlIgnore]
-		public string GetClass => string.IsNullOrEmpty(Class) ? "(No Class Selected)" : "(" + Class + ")";
+		public string GetClass => string.IsNullOrEmpty(Class) ? "(没有选择英雄)" : "(" + Class + ")";
 
 		[XmlIgnore]
 		public FontWeight GetFontWeight => IsSelectedInGui ? FontWeights.Black : FontWeights.Regular;

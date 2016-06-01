@@ -24,7 +24,7 @@
                 <Run>这将添加一个色度键可以复制你的炉石窗后的叠加。</Run>
                 <LineBreak/>
                 <LineBreak/>
-                <Run>注意：覆盖拷贝可能出现在前一次的炉石。单击它将隐藏它的会话的其余部分。</Run>
+                <Run>注意：界面副本可能只出现在这一次炉石游戏中。单击它将隐藏它的会话的其余部分。</Run>
             </TextBlock>
             <TextBlock Margin="5,5,0,0" FontWeight="SemiBold">
                 <Hyperlink Click="Hyperlink_OnClick">

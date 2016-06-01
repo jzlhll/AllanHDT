@@ -14,9 +14,9 @@
                 </Border>
                 <TreeView Name="TreeViewOptions" Width="150">
                     <TreeViewItem Name="TreeViewItemSearch" Header="搜索" Selected="TreeViewItemSearch_OnSelected"></TreeViewItem>
-                    <TreeViewItem Header="窗口">
+                    <TreeViewItem Header="界面">
                         <TreeViewItem Name="TreeViewItemOverlayGeneral" Header="一般" Selected="TreeViewItemGeneralOverlay_OnSelected"/>
-                        <TreeViewItem Name="TreeViewItemOverlayDeckWindows" Header="卡组窗口" Selected="TreeViewItemOverlayDeckWindows_OnSelected" Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}" Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"/>
+                        <TreeViewItem Name="TreeViewItemOverlayDeckWindows" Header="卡组界面" Selected="TreeViewItemOverlayDeckWindows_OnSelected" Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}" Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"/>
                         <TreeViewItem Name="TreeViewItemOverlayPlayer" Header="玩家" Selected="TreeViewItemOverlayPlayer_OnSelected"/>
                         <TreeViewItem Name="TreeViewItemOverlayOpponent" Header="对手" Selected="TreeViewItemOverlayOpponent_OnSelected"/>
                         <TreeViewItem Name="TreeViewItemOverlayInteractivity" Header="互动" Selected="TreeViewItemOverlayInteractivity_OnSelected" Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}" Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"/>

@@ -52,7 +52,7 @@
                     </GroupBox>
                     <GroupBox Header="显示">
                         <StackPanel>
-                            <Label Content="(在开组中并在覆盖下on decks and in overlay)" Margin="0,-8,0,0" />
+                            <Label Content="(在卡组中界面里)" Margin="0,-8,0,0" />
                             <DockPanel>
                                 <ComboBox Name="ComboboxDisplayedStats" Width="150"
                                           SelectionChanged="ComboboxDisplayedStats_SelectionChanged"

@@ -87,15 +87,15 @@
                                 <TextBlock>
                                     <Run>在这里可以找到这个选项</Run>
                                     <Italic>
-                                        <Run>【选项】> 【窗口】 > 【一般】 / 【玩家】 / 【对手】</Run>
+                                        <Run>【选项】> 【界面】 > 【一般】 / 【玩家】 / 【对手】</Run>
                                     </Italic>
                                     <Run>.</Run>
                                 </TextBlock>
                                 <TextBlock Text="移动/缩放: " FontWeight="Bold" Margin="0,5,0,0" />
                                 <TextBlock>
-                                    <Run>覆盖可以通过解锁</Run>
+                                    <Run>界面可以通过解锁</Run>
                                     <Italic>
-                                        <Run>【选项】>【窗口】>【一般】>【解锁】 </Run>
+                                        <Run>【选项】>【界面】>【一般】>【解锁】 </Run>
                                     </Italic>
                                     <Run>(按钮在底部).</Run>
                                 </TextBlock>
