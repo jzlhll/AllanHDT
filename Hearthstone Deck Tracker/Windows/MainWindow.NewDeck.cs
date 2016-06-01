@@ -59,7 +59,41 @@ namespace Hearthstone_Deck_Tracker.Windows
 			try
 			{
 				selectedSet = MenuFilterSet.Items.Cast<RadioButton>().First(x => x.IsChecked.HasValue && x.IsChecked.Value).Content.ToString();
-			}
+                //汉化MainWindow.xaml
+                if (selectedSet == "基础") {
+                    selectedSet = "BASIC";
+                } else if (selectedSet == "扩展") {
+                    selectedSet = "CLASSIC";
+                }
+                else if (selectedSet == "活动")
+                {
+                    selectedSet = "PROMOTION";
+                }
+                else if (selectedSet == "纳克萨玛斯")
+                {
+                    selectedSet = "CURSE OF NAXXRAMAS";
+                }
+                else if (selectedSet == "地精对战侏儒")
+                {
+                    selectedSet = "GOBLINS VS GNOMES";
+                }
+                else if (selectedSet == "黑石山")
+                {
+                    selectedSet = "BLACKROCK MOUNTAIN";
+                }
+                else if (selectedSet == "冠军试炼")
+                {
+                    selectedSet = "THE GRAND TOURNAMENT";
+                }
+                else if (selectedSet == "探险者协会")
+                {
+                    selectedSet = "LEAGUE OF EXPLORERS";
+                }
+                else if (selectedSet == "上古之神")
+                {
+                    selectedSet = "WHISPERS OF THE OLD GODS";
+                }                                         
+            }
 			catch(Exception)
 			{
 				selectedSet = "ALL";
@@ -103,11 +137,11 @@ namespace Hearthstone_Deck_Tracker.Windows
 							if(card.GetPlayerClass == selectedClass || card.GetPlayerClass == "Neutral")
 								ListViewDB.Items.Add(card);
 							break;
-						case "CLASS ONLY":
+						case "职业卡":
 							if(card.GetPlayerClass == selectedClass)
 								ListViewDB.Items.Add(card);
 							break;
-						case "NEUTRAL ONLY":
+						case "中立卡":
 							if(card.GetPlayerClass == "Neutral")
 								ListViewDB.Items.Add(card);
 							break;
