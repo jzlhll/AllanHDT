@@ -27,17 +27,7 @@ namespace Hearthstone_Deck_Tracker
 {
 	public static class Core
 	{
-        public static readonly string BASIC = "基础";
-        public static readonly string CLASSIC = "扩展";
-        public static readonly string PROMOTION = "活动";
-        public static readonly string CURSE_OF_NAXXRAMAS = "纳克萨玛斯的诅咒";
-        public static readonly string GOBLINS_VS_GNOMES = "地精对阵侏儒";
-        public static readonly string BLACKROCK_MOUNTAIN = "黑石山";
-        public static readonly string THE_GRAND_TOURNAMENT = "冠军试炼";
-        public static readonly string LEAGUE_OF_EXPLORERS = "探险者协会";
-        public static readonly string WHISPERS_OF_THE_OLD_GODS = "上古之神";
-
-        internal const int UpdateDelay = 100;
+		internal const int UpdateDelay = 100;
 		private static TrayIcon _trayIcon;
 		private static OverlayWindow _overlay;
 		private static Overview _statsOverview;
@@ -59,7 +49,7 @@ namespace Hearthstone_Deck_Tracker
 		internal static bool Update { get; set; }
 		internal static bool CanShutdown { get; set; }
 
-        public static void Initialize()
+		public static void Initialize()
 		{
 			Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
 			var newUser = !Directory.Exists(Config.AppDataPath);

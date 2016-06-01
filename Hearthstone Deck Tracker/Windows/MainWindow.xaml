@@ -507,7 +507,7 @@
                         </Rectangle>
                     </MenuItem.Icon>
                     <MenuItem Name="MenuFilterMana" Header="费用">
-                        <RadioButton Content="ALL" IsChecked="True" Click="BtnFilter_OnClick" Margin="-24,0,0,0"
+                        <RadioButton Content="全部" IsChecked="True" Click="BtnFilter_OnClick" Margin="-24,0,0,0"
                                      FontSize="14" />
                         <RadioButton Content="0" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
                         <RadioButton Content="1" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
@@ -521,18 +521,18 @@
                         <RadioButton Content="9+" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
                     </MenuItem>
                     <MenuItem Name="MenuFilterType" Header="类型">
-                        <RadioButton Content="ALL" IsChecked="True" Click="BtnFilter_OnClick" Margin="-24,0,0,0"
+                        <RadioButton Content="全部" IsChecked="True" Click="BtnFilter_OnClick" Margin="-24,0,0,0"
                                      FontSize="14" />
-                        <RadioButton Content="英雄卡" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
+                        <RadioButton Content="职业卡" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
                         <RadioButton Content="中立卡" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
                     </MenuItem>
                     <MenuItem Name="MenuFilterSet" Header="卡集">
-                        <RadioButton Content="ALL" IsChecked="True" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
-                        <RadioButton Content="基础" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
+                        <RadioButton Content="全部" IsChecked="True" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
+                        <RadioButton Content="经典" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
                         <RadioButton Content="扩展" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
                         <RadioButton Content="活动" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
-                        <RadioButton Content="纳克萨玛斯的诅咒" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
-                        <RadioButton Content="地精对阵侏儒" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
+                        <RadioButton Content="NAXX" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
+                        <RadioButton Content="GVG" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
                         <RadioButton Content="黑石山" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
                         <RadioButton Content="冠军试炼" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
                         <RadioButton Content="探险者协会" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />

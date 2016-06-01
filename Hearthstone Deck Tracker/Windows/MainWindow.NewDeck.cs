@@ -104,12 +104,10 @@ namespace Hearthstone_Deck_Tracker.Windows
 								ListViewDB.Items.Add(card);
 							break;
 						case "CLASS ONLY":
-                        case "英雄卡":
 							if(card.GetPlayerClass == selectedClass)
 								ListViewDB.Items.Add(card);
 							break;
 						case "NEUTRAL ONLY":
-                        case "中立卡":
 							if(card.GetPlayerClass == "Neutral")
 								ListViewDB.Items.Add(card);
 							break;
