@@ -74,7 +74,7 @@
                     <CheckBox x:Name="CheckBoxAutoUse" Margin="10,5,0,0"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
-                              Content="自动【使用】卡组。 （禁止卡组上的按钮）"
+                              Content="自动【激活】卡组。 （禁止卡组上的按钮）"
                               Checked="CheckBoxAutoUse_OnChecked" Unchecked="CheckBoxAutoUse_OnUnchecked" />
                     <CheckBox x:Name="CheckboxAutoSelectDeck"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"

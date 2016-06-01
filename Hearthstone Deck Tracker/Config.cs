@@ -116,10 +116,10 @@ namespace Hearthstone_Deck_Tracker
 		public bool AutoSelectDetectedDeck = true;
 
 		[DefaultValue("Arena {Date dd-MM hh:mm}")]
-		public string ArenaDeckNameTemplate = "Arena {Date dd-MM hh:mm}";
+		public string ArenaDeckNameTemplate = "竞技场 {Date dd-MM hh:mm}";
 
 		[DefaultValue("Brawl {Date dd-MM hh:mm}")]
-		public string BrawlDeckNameTemplate = "Brawl {Date dd-MM hh:mm}";
+		public string BrawlDeckNameTemplate = "乱斗 {Date dd-MM hh:mm}";
 
 		[DefaultValue(false)]
 		public bool BringHsToForeground = false;
@@ -794,8 +794,8 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(DeckType.All)]
 		public DeckType SelectedDeckPickerDeckType = DeckType.All;
 
-		[DefaultValue("enUS")]
-		public string SelectedLanguage = "enUS";
+		[DefaultValue("zhCN")]
+		public string SelectedLanguage = "zhCN";
 
 		[XmlArray(ElementName = "AlternativeLanguages")]
 		[XmlArrayItem(ElementName = "Language")]

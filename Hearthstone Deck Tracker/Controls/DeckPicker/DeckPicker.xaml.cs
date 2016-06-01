@@ -62,7 +62,7 @@ namespace Hearthstone_Deck_Tracker.Controls.DeckPicker
 			SelectedClasses = new ObservableCollection<HeroClassAll>();
 			_displayedDecks = new ObservableCollection<DeckPickerItem>();
 			ListViewDecks.ItemsSource = _displayedDecks;
-			DeckTypeItems = new ObservableCollection<string> {"ALL", "ARENA", "STANDARD", "WILD"};
+			DeckTypeItems = new ObservableCollection<string> {"ALL", "竞技场", "标准", "狂野"};
 		}
 
 		public List<Deck> SelectedDecks
@@ -589,13 +589,13 @@ namespace Hearthstone_Deck_Tracker.Controls.DeckPicker
 				{
 					switch(item)
 					{
-						case "ARENA":
+						case "竞技场":
 							deckType = DeckType.Arena;
 							break;
-						case "STANDARD":
+						case "标准":
 							deckType = DeckType.Standard;
 							break;
-						case "WILD":
+						case "狂野":
 							deckType = DeckType.Wild;
 							break;
 					}
