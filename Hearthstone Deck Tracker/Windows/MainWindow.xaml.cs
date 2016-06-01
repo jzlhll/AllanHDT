@@ -99,7 +99,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 				MenuItemSaveVersionCurrent.Visibility = Visible;
 				MenuItemSaveVersionMinor.Visibility = Visible;
 				MenuItemSaveVersionMajor.Visibility = Visible;
-				MenuItemSaveVersionCurrent.Header = _newDeck.Version.ToString("v{M}.{m} (current)");
+				MenuItemSaveVersionCurrent.Header = _newDeck.Version.ToString("v{M}.{m} (当前)");
 				MenuItemSaveVersionMinor.Header = $"v{_newDeck.Version.Major}.{_newDeck.Version.Minor + 1}";
 				MenuItemSaveVersionMajor.Header = $"v{_newDeck.Version.Major + 1}.{0}";
 			}

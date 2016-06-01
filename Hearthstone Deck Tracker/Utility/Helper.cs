@@ -54,8 +54,8 @@ namespace Hearthstone_Deck_Tracker
 
 		public static readonly Dictionary<string, string> LanguageDict = new Dictionary<string, string>
 		{
-			{"English", "enUS"},
-			{"Chinese (China)", "zhCN"},
+            {"Chinese (China)", "zhCN"},
+            {"English", "enUS"},
 			{"Chinese (Taiwan)", "zhTW"},
 			{"English (Great Britain)", "enGB"},
 			{"French", "frFR"},
@@ -419,7 +419,7 @@ namespace Hearthstone_Deck_Tracker
 					Process.Start("battlenet://");
 
 					var foundBnetWindow = false;
-					Core.MainWindow.TextBlockBtnStartHearthstone.Text = "STARTING LAUNCHER...";
+					Core.MainWindow.TextBlockBtnStartHearthstone.Text = "正在打开炉石中...";
 					for(var i = 0; i < 20; i++)
 					{
 						bnetProc = Process.GetProcessesByName("Battle.net").FirstOrDefault();
@@ -430,7 +430,7 @@ namespace Hearthstone_Deck_Tracker
 						}
 						await Task.Delay(500);
 					}
-					Core.MainWindow.TextBlockBtnStartHearthstone.Text = "START LAUNCHER / HEARTHSTONE";
+					Core.MainWindow.TextBlockBtnStartHearthstone.Text = "打开launcher/炉石";
 					if(!foundBnetWindow)
 					{
 						Core.MainWindow.ShowMessageAsync("打开战网launcher失败", "找不到或者打开失败。").Forget();

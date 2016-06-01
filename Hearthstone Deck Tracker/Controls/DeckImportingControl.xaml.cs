@@ -15,13 +15,13 @@ namespace Hearthstone_Deck_Tracker.Controls
 {
 	public partial class DeckImportingControl : INotifyPropertyChanged
 	{
-		private const string StartTextConstructed = "Start Hearthstone and enter the 'Play' menu.";
-		private const string StartTextConstructedGameRunning = "Enter the 'Play' menu.";
-		private const string StartTextBrawl = "Start Hearthstone and enter the 'Tavern Brawl' menu.";
-		private const string StartTextBrawlGameRunning = "Enter the 'Tavern Brawl' menu.";
-		private const string NoDecksFoundText = "No new decks found.";
-		private const string StartHearthstoneText = "START LAUNCHER / HEARTHSTONE";
-		private const string StartHearthstoneWaitingText = "WAITING FOR HEARTHSTONE...";
+		private const string StartTextConstructed = "打开炉石传说并且进入【对战】菜单.";
+		private const string StartTextConstructedGameRunning = "进入【对战】菜单.";
+		private const string StartTextBrawl = "打开炉石传说并且进入【乱斗】菜单.";
+		private const string StartTextBrawlGameRunning = "进入【乱斗】菜单.";
+		private const string NoDecksFoundText = "没有找到新卡组.";
+		private const string StartHearthstoneText = "打开launcher/炉石";
+		private const string StartHearthstoneWaitingText = "等待炉石传说...";
 
 		private string StartText => _brawl ? StartTextBrawl : StartTextConstructed;
 		private string StartTextGameRunning => _brawl ? StartTextBrawlGameRunning : StartTextConstructedGameRunning;

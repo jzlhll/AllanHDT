@@ -35,32 +35,32 @@ namespace Hearthstone_Deck_Tracker
 				Icon = new Icon(@"Images/HearthstoneDeckTracker16.ico"),
 				Visible = true,
 				ContextMenu = new ContextMenu(),
-				Text = "Hearthstone Deck Tracker v" + (Helper.GetCurrentVersion() ?? new Version("0.0")).ToVersionString()
+				Text = "HDT汉化版 v" + (Helper.GetCurrentVersion() ?? new Version("0.0")).ToVersionString()
 			};
 
-			var startHearthstonMenuItem = new MenuItem("Start Launcher/Hearthstone", (sender, args) => Helper.StartHearthstoneAsync().Forget())
+			var startHearthstonMenuItem = new MenuItem("打开launcher/炉石", (sender, args) => Helper.StartHearthstoneAsync().Forget())
 			{
 				Name = StartHearthstoneMenuItemName
 			};
 			_notifyIcon.ContextMenu.MenuItems.Add(startHearthstonMenuItem);
 
-			var useNoDeckMenuItem = new MenuItem("No-deck mode", (sender, args) => UseNoDeckContextMenu()) {Name = UseNoDeckMenuItemName};
+			var useNoDeckMenuItem = new MenuItem("无卡组模式", (sender, args) => UseNoDeckContextMenu()) {Name = UseNoDeckMenuItemName};
 			_notifyIcon.ContextMenu.MenuItems.Add(useNoDeckMenuItem);
 
-			var autoSelectDeckMenuItem = new MenuItem("Autoselect deck", (sender, args) => AutoDeckDetectionContextMenu())
+			var autoSelectDeckMenuItem = new MenuItem("自动选择卡组模式", (sender, args) => AutoDeckDetectionContextMenu())
 			{
 				Name = AutoSelectDeckMenuItemName
 			};
 			_notifyIcon.ContextMenu.MenuItems.Add(autoSelectDeckMenuItem);
 
-			var classCardsFirstMenuItem = new MenuItem("Class cards first", (sender, args) => SortClassCardsFirstContextMenu())
+			var classCardsFirstMenuItem = new MenuItem("职业卡优先", (sender, args) => SortClassCardsFirstContextMenu())
 			{
 				Name = ClassCardsFirstMenuItemName
 			};
 			_notifyIcon.ContextMenu.MenuItems.Add(classCardsFirstMenuItem);
 
-			_notifyIcon.ContextMenu.MenuItems.Add("Show", (sender, args) => Core.MainWindow.ActivateWindow());
-			_notifyIcon.ContextMenu.MenuItems.Add("Exit", (sender, args) => Core.MainWindow.Close());
+			_notifyIcon.ContextMenu.MenuItems.Add("显示", (sender, args) => Core.MainWindow.ActivateWindow());
+			_notifyIcon.ContextMenu.MenuItems.Add("退出", (sender, args) => Core.MainWindow.Close());
 			_notifyIcon.MouseClick += (sender, args) =>
 			{
 				if(args.Button == MouseButtons.Left)
@@ -98,7 +98,7 @@ namespace Hearthstone_Deck_Tracker
 		private void SortClassCardsFirstContextMenu()
 			=> Core.MainWindow.SortClassCardsFirst(!(bool)GetContextMenuProperty(ClassCardsFirstMenuItemName, CheckedProperty));
 
-		public void ShowMessage(string text, string title = "Hearthstone Deck Tracker", int duration = 5, ToolTipIcon icon = ToolTipIcon.Info)
+		public void ShowMessage(string text, string title = "HDT汉化版", int duration = 5, ToolTipIcon icon = ToolTipIcon.Info)
 			=> _notifyIcon.ShowBalloonTip(duration, title, text, icon);
 	}
 }

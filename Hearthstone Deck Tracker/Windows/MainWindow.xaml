@@ -481,7 +481,7 @@
                             </Rectangle.Fill>
                         </Rectangle>
                     </MenuItem.Icon>
-                    <MenuItem Name="MenuItemSaveVersionCurrent" Header="v1.0 (current)" Click="MenuItemSaveVersionCurrent_OnClick"/>
+                    <MenuItem Name="MenuItemSaveVersionCurrent" Header="v1.0 (当前)" Click="MenuItemSaveVersionCurrent_OnClick"/>
                     <MenuItem Name="MenuItemSaveVersionMinor" Header="v1.1" Click="MenuItemSaveVersionMinor_OnClick"/>
                     <MenuItem Name="MenuItemSaveVersionMajor" Header="v2.0" Click="MenuItemSaveVersionMajor_OnClick"/>
                     <MenuItem Name="MenuItemSaveAsNew" Header="保存成为新的 (v1.0)" Click="MenuItemSaveAsNew_OnClick"/>
