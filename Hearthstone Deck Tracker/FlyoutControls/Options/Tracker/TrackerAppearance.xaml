@@ -30,7 +30,7 @@
                         </ComboBox>
                     </DockPanel>
                     <DockPanel Margin="10,5,10,0">
-                        <Label Content="音调:" HorizontalAlignment="Left"
+                        <Label Content="基调:" HorizontalAlignment="Left"
                                VerticalAlignment="Top" />
                         <ComboBox x:Name="ComboboxAccent" HorizontalAlignment="Right"
                                   VerticalAlignment="Top" Width="150"

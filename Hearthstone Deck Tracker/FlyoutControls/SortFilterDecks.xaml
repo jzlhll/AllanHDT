@@ -73,7 +73,7 @@
                         <Separator/>
                         <DockPanel>
                             <Label Content="过滤操作:" VerticalAlignment="Center"/>
-                            <controls:ToggleSwitch Name="OperationSwitch" OnLabel="And" OffLabel="Or" Width="110" HorizontalAlignment="Right"
+                            <controls:ToggleSwitch Name="OperationSwitch" OnLabel="与" OffLabel="或" Width="110" HorizontalAlignment="Right"
                                            Checked="OperationSwitch_OnChecked" Unchecked="OperationSwitch_OnUnchecked" />
                         </DockPanel>
                         <CheckBox Content="在【狂野】卡组包含【标准】卡组" Margin="0,0,0,5" IsChecked="{Binding Path=DeckPickerWildIncludesStandard, Source={StaticResource ConfigWrapper}}"/>

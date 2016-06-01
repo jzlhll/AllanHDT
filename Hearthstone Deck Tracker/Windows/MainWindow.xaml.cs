@@ -417,7 +417,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 		public bool ShowToolTip => Config.Instance.TrackerCardToolTips;
 
 		public string IntroductionLabelText
-			=> Config.Instance.ConstructedAutoImportNew ? "ENTER THE 'PLAY' MENU TO AUTOMATICALLY IMPORT YOUR DECKS" : "ADD NEW DECKS BY CLICKING 'NEW' OR 'IMPORT'";
+			=> Config.Instance.ConstructedAutoImportNew ? "进入‘对战’菜单自动导入卡组" : "点击【新建】或者【导入】添加新卡组";
 
 		public Visibility IntroductionLabelVisibility => DeckList.Instance.Decks.Any() ? Collapsed : Visible;
 

@@ -46,7 +46,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			var result =
 				await Core.MainWindow.ShowMessageAsync("需要重启.", "HDT汉化版需要重启才能生效.",
 					MessageDialogStyle.AffirmativeAndNegative,
-					new MessageDialogs.Settings() { AffirmativeButtonText = "Restart Now", NegativeButtonText = "Later" });
+					new MessageDialogs.Settings() { AffirmativeButtonText = "立刻重启", NegativeButtonText = "稍后" });
 			if(result == MessageDialogResult.Affirmative)
 				Core.MainWindow.Restart();
 		}

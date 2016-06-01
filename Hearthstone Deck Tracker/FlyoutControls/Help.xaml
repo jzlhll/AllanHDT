@@ -22,7 +22,7 @@
                         <Hyperlink
                             NavigateUri="https://github.com/HearthSim/Hearthstone-Deck-Tracker/wiki/FAQ"
                             RequestNavigate="Hyperlink_RequestNavigate">
-                            进入FAQ.
+                            进入FAQ.一般的，可以进入【选项】->
                         </Hyperlink>
                     </TextBlock>
                 </GroupBox>

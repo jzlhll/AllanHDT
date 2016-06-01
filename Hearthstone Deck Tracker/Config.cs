@@ -786,10 +786,10 @@ namespace Hearthstone_Deck_Tracker
 		public HeroClassAll[] SelectedDeckPickerClasses = {HeroClassAll.All};
 
 		[DefaultValue("Name")]
-		public string SelectedDeckSorting = "Name";
+		public string SelectedDeckSorting = "名字";
 
 		[DefaultValue("Name")]
-		public string SelectedDeckSortingArena = "Name";
+		public string SelectedDeckSortingArena = "名字";
 
 		[DefaultValue(DeckType.All)]
 		public DeckType SelectedDeckPickerDeckType = DeckType.All;
