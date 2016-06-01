@@ -364,7 +364,7 @@ namespace Hearthstone_Deck_Tracker
 
 		private void BtnDeteleTag_Click(object sender, RoutedEventArgs e)
 		{
-			var msgbxoResult = MessageBox.Show("The tag will be deleted from all decks", "Are you sure?", MessageBoxButton.YesNo,
+			var msgbxoResult = MessageBox.Show("标签将从所有卡组中移除", "确定?", MessageBoxButton.YesNo,
 			                                   MessageBoxImage.Exclamation);
 			if(msgbxoResult != MessageBoxResult.Yes)
 				return;

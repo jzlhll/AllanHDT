@@ -414,22 +414,22 @@ namespace Hearthstone_Deck_Tracker.Controls.DeckPicker
 				                  ? Config.Instance.SelectedDeckSortingArena : Config.Instance.SelectedDeckSorting;
 			switch(deckSorting)
 			{
-				case "Name":
+				case "名字":
 					view.SortDescriptions.Add(new SortDescription("DeckName", Ascending));
 					break;
-				case "Last Played":
+				case "最近玩的":
 					view.SortDescriptions.Add(new SortDescription("LastPlayed", Descending));
 					break;
-				case "Last Played (new first)":
+				case "最近玩的(新的)":
 					view.SortDescriptions.Add(new SortDescription("LastPlayedNewFirst", Descending));
 					break;
-				case "Last Edited":
+				case "最近改动":
 					view.SortDescriptions.Add(new SortDescription("LastEdited", Descending));
 					break;
-				case "Tag":
+				case "标签":
 					view.SortDescriptions.Add(new SortDescription("TagList", Ascending));
 					break;
-				case "Win Rate":
+				case "胜率":
 					view.SortDescriptions.Add(new SortDescription("WinPercent", Descending));
 					break;
 			}

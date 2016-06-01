@@ -121,12 +121,12 @@ namespace Hearthstone_Deck_Tracker
 				instance.AllTags.Add("All");
 				save = true;
 			}
-			if(!instance.AllTags.Contains("Favorite"))
+			if(!instance.AllTags.Contains("喜爱"))
 			{
 				if(instance.AllTags.Count > 1)
-					instance.AllTags.Insert(1, "Favorite");
+					instance.AllTags.Insert(1, "喜爱");
 				else
-					instance.AllTags.Add("Favorite");
+					instance.AllTags.Add("喜爱");
 				save = true;
 			}
 			if(!instance.AllTags.Contains("None"))
