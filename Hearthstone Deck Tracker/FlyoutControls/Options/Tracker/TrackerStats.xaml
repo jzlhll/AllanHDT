@@ -134,10 +134,10 @@
                               HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxStatsInWindow_Checked"
                               Unchecked="CheckboxStatsInWindow_Unchecked" />
-                    <Button Content="检查重复的匹配" Margin="10,10,10,0"
+                    <Button Content="检查重复的匹配数据" Margin="10,10,10,0" FontSize="14"
                             Click="ButtonCheckForDuplicateMatches_OnClick"
                             Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}" />
-                    <Button Content="检查错误的对手职业和名字" Margin="10,5,10,0"
+                    <Button Content="检查错误的对手职业和名字" Margin="10,5,10,0" FontSize="14"
                             Click="ButtonCheckOppClassName_OnClick"
                             Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}" />
                 </StackPanel>

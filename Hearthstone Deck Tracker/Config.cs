@@ -130,8 +130,8 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(false)]
 		public bool CheckForBetaUpdates = false;
 
-		[DefaultValue(true)]
-		public bool CheckForUpdates = true;
+		[DefaultValue(false)]
+		public bool CheckForUpdates = false;
 
 		[DefaultValue(ClassColorScheme.Classic)]
 		public ClassColorScheme ClassColorScheme = ClassColorScheme.Classic;
@@ -247,8 +247,8 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(false)]
 		public bool Debug = false;
 
-		[DefaultValue(50)]
-		public int DeckExportDelay = 60;
+		[DefaultValue(120)]
+		public int DeckExportDelay = 120;
 
 		[DefaultValue(DeckLayout.Layout1)]
 		public DeckLayout DeckPickerItemLayout = DeckLayout.Layout1;
@@ -353,7 +353,7 @@ namespace Hearthstone_Deck_Tracker
 		public bool ExportSetDeckName = true;
 
 		[DefaultValue(1)]
-		public int ExportStartDelay = 1;
+		public int ExportStartDelay = 5;
 
 		[DefaultValue(true)]
 		public bool EnableExportAutoFilter = true;
@@ -440,13 +440,13 @@ namespace Hearthstone_Deck_Tracker
 		public bool HideDrawChances = false;
 
 		[DefaultValue(false)]
-		public bool HideInBackground = false;
+		public bool HideInBackground = true;
 
 		[DefaultValue(false)]
 		public bool HideInMenu = false;
 
-		[DefaultValue(true)]
-		public bool HideOpponentAttackIcon = true;
+		[DefaultValue(false)]
+		public bool HideOpponentAttackIcon = false;
 
 		[DefaultValue(DisplayMode.Auto)]
 		public DisplayMode OpponentCthunCounter = DisplayMode.Auto;
@@ -476,10 +476,10 @@ namespace Hearthstone_Deck_Tracker
 		public bool HideOverlay = false;
 
 		[DefaultValue(false)]
-		public bool HideOverlayInSpectator = false;
+		public bool HideOverlayInSpectator = true;
 
-		[DefaultValue(true)]
-		public bool HidePlayerAttackIcon = true;
+		[DefaultValue(false)]
+		public bool HidePlayerAttackIcon = false;
 
 		[DefaultValue(DisplayMode.Auto)]
 		public DisplayMode PlayerCthunCounter = DisplayMode.Auto;
@@ -503,7 +503,7 @@ namespace Hearthstone_Deck_Tracker
 		public bool HideTimers = false;
 
 		[DefaultValue(false)]
-		public bool HighlightCardsInHand = false;
+		public bool HighlightCardsInHand = true;
 
 		[DefaultValue(false)]
 		public bool HighlightDiscarded = false;
@@ -602,8 +602,8 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(true)]
 		public bool OverlayCardAnimations = true;
 
-		[DefaultValue(true)]
-		public bool OverlayCardAnimationsOpacity = true;
+		[DefaultValue(false)]
+		public bool OverlayCardAnimationsOpacity = false;
 
 		[DefaultValue(true)]
 		public bool OverlayCardMarkToolTips = true;

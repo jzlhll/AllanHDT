@@ -23,7 +23,7 @@
                               Checked="CheckboxHideOverlayInSpectator_Checked"
                               Unchecked="CheckboxHideOverlayInSpectator_Unchecked" />
                     <CheckBox x:Name="CheckboxHideOverlayInBackground"
-                              Content="炉石游戏最小化时隐藏" HorizontalAlignment="Left"
+                              Content="炉石不在当前时隐藏" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxHideOverlayInBackground_Checked"
                               Unchecked="CheckboxHideOverlayInBackground_Unchecked" />
@@ -131,12 +131,12 @@
                                VerticalAlignment="Center" DockPanel.Dock="Left" />
                     </DockPanel>
                     <DockPanel Margin="5,5,0,0">
-                        <Button Name="BtnUnlockOverlay" Content="解锁悬浮" Width="150"
+                        <Button Name="BtnUnlockOverlay" Content="解锁悬浮" Width="150" FontSize="14"
                                 Click="BtnUnlockOverlay_Click" DockPanel.Dock="Right" />
                         <Label Content="移动/调整对象：" DockPanel.Dock="Left" />
                     </DockPanel>
                     <DockPanel Margin="5,5,0,0">
-                        <Button x:Name="BtnResetOverlay" Content="重置" Width="150" Click="BtnResetOverlay_Click"
+                        <Button x:Name="BtnResetOverlay" Content="重置" Width="150" Click="BtnResetOverlay_Click" FontSize="14"
                                 DockPanel.Dock="Right" />
                         <Label Content="重置位置:" DockPanel.Dock="Left" />
                     </DockPanel>

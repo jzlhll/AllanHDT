@@ -116,15 +116,15 @@
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxLogTab_Checked"
                               Unchecked="CheckboxLogTab_Unchecked" />
-                    <Button Name="ButtonGamePath" Margin="10,5,10,0" Content="设置炉石路径"
+                    <Button Name="ButtonGamePath" Margin="10,5,10,0" Content="设置炉石路径" FontSize="14"
                             Click="ButtonGamePath_OnClick" />
-                    <Button Name="ButtonOpenAppData" Margin="10,5,10,0" Content="打开appdata的目录"
+                    <Button Name="ButtonOpenAppData" Margin="10,5,10,0" Content="打开appdata目录" FontSize="15"
                             Click="ButtonOpenAppData_OnClick" />
-                    <Button Name="SelectSaveDataPath" Margin="10,5,10,0" Content="设置数据路径"
+                    <Button Name="SelectSaveDataPath" Margin="10,5,10,0" Content="设置数据路径" FontSize="14"
                             Click="SelectSaveDataPath_Click"
                             Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                             Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}" />
-                    <Button Name="ButtonRestart" Margin="10,15,10,0" Content="重启HDT"
+                    <Button Name="ButtonRestart" Margin="10,15,10,0" Content="重启HDT" FontSize="15"
                             Click="ButtonRestart_OnClick" />
                 </StackPanel>
             </ScrollViewer>

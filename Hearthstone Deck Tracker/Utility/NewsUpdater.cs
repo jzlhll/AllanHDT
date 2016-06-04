@@ -117,8 +117,9 @@ namespace Hearthstone_Deck_Tracker.Utility
 			}
 		}
 
-		internal static async void UpdateAsync()
-		{
+        internal static async void UpdateAsync()
+        {
+            if (true) return;
 			const string url = "https://raw.githubusercontent.com/Epix37/HDT-Data/master/news";
 			_update = true;
 			_lastNewsCheck = DateTime.MinValue;

@@ -12,7 +12,7 @@
                 <StackPanel>
                     <DockPanel Margin="10,5,10,0">
                         <Label Content="速度:" />
-                        <ComboBox Name="ComboboxExportSpeed" SelectedIndex="1"
+                        <ComboBox Name="ComboboxExportSpeed" SelectedIndex="3"
                                   HorizontalAlignment="Right" Width="150"
                                   SelectionChanged="ComboboxExportSpeed_SelectionChanged">
                             <system:String>非常快 (20ms)</system:String>

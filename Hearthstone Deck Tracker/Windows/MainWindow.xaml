@@ -11,7 +11,7 @@
                       xmlns:windows="clr-namespace:Hearthstone_Deck_Tracker.Windows"
                       xmlns:stats="clr-namespace:Hearthstone_Deck_Tracker.Controls.Stats"
                       xmlns:utility="clr-namespace:Hearthstone_Deck_Tracker.Utility"
-                      Title="HDT汉化" Height="603" Width="720"
+                      Title="HDT汉化版A02" Height="603" Width="720"
                       MinHeight="584" MinWidth="720"
                       Closing="Window_Closing"
                       Icon="{StaticResource AppIcon}"
@@ -641,7 +641,7 @@
                     </ScrollViewer>
                 </DockPanel>
             </Grid>
-            <StatusBar Name="StatusBarNews"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Height="26" Margin="0,1,0,0" Visibility="Collapsed">
+            <StatusBar Name="StatusBarNews"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Height="26" Margin="0,1,0,0" Visibility="Hidden">
                 <StatusBar.ItemsPanel>
                     <ItemsPanelTemplate>
                         <Grid>
