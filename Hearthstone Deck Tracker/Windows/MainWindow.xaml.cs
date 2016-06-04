@@ -534,7 +534,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 					{
 						while(HearthStatsManager.SyncInProgress)
 							await Task.Delay(100);
-						await this.ShowMessage("Sync is complete.", "You can close Hearthstone Deck Tracker now.");
+						await this.ShowMessage("同步完成了", "你可以关闭该软件，就是现在。");
 					}
 					else
 					{

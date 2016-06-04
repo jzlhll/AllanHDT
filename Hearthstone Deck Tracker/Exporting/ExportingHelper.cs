@@ -175,7 +175,7 @@ namespace Hearthstone_Deck_Tracker.Exporting
 			}
 			if(!User32.IsHearthstoneInForeground())
 			{
-				Core.MainWindow.ShowMessage("Exporting error", "Can't find Hearthstone window.").Forget();
+				Core.MainWindow.ShowMessage("导出出错", "找不到炉石游戏的窗口.").Forget();
 				Log.Error("Can't find Hearthstone window.");
 				return false;
 			}

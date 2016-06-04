@@ -174,8 +174,8 @@ namespace Hearthstone_Deck_Tracker
 							MainWindow.ActivateWindow();
 							while(MainWindow.Visibility != Visibility.Visible || MainWindow.WindowState == WindowState.Minimized)
 								await Task.Delay(100);
-							await MainWindow.ShowMessage("Uneven permissions",
-									"It appears that Hearthstone (Battle.net) and HDT do not have the same permissions.\n\nPlease run both as administrator or local user.\n\nIf you don't know what any of this means, just run HDT as administrator.");
+							await MainWindow.ShowMessage("权限问题",
+                                    "看起来，炉石（Battle.net）和HDT不具有相同的权限。\n\n请以管理员身份或本地用户同时运行。\n\n如果您不知道任何这意味着，只需要运行HDT以管理员身份。");
 							return;
 						}
 					}

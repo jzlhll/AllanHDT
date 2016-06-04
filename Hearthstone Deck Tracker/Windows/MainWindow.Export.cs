@@ -183,7 +183,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			if(deck == null)
 				return;
 			Clipboard.SetText(Helper.DeckToIdString(deck.GetSelectedDeckVersion()));
-			this.ShowMessage("", "copied ids to clipboard").Forget();
+			this.ShowMessage("", "拷贝id字串到剪贴板").Forget();
 			Log.Info("Copied " + deck.GetSelectedDeckVersion().GetDeckInfo() + " to clipboard");
 		}
 
@@ -213,13 +213,13 @@ namespace Hearthstone_Deck_Tracker.Windows
 					    .Select(c => (english ? c.Name : c.LocalizedName) + (c.Count > 1 ? " x " + c.Count : ""))
 					    .Aggregate((c, n) => c + Environment.NewLine + n);
 				Clipboard.SetText(names);
-				this.ShowMessage("", "copied names to clipboard").Forget();
+				this.ShowMessage("", "拷贝名字到剪贴板").Forget();
 				Log.Info("Copied " + deck.GetDeckInfo() + " names to clipboard");
 			}
 			catch(Exception ex)
 			{
 				Log.Error(ex);
-				this.ShowMessage("", "Error copying card names to clipboard.").Forget();
+				this.ShowMessage("", "拷贝卡牌名字们中，出错了！").Forget();
 			}
 		}
 

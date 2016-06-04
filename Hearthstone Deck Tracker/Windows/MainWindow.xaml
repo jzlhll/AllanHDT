@@ -336,7 +336,7 @@
                     <MenuItem Header="已选的回放" Click="MenuItemReplaySelectGame_OnClick" />
                     <MenuItem Header="从文件中加载回放" Click="MenuItemReplayFromFile_OnClick"/>
                 </MenuItem>
-                <MenuItem Header="HEARTHSTATS" SubmenuOpened="MenuItemHearthStats_OnSubmenuOpened">
+                <MenuItem Header="统计站" SubmenuOpened="MenuItemHearthStats_OnSubmenuOpened">
                     <MenuItem.Icon>
                         <Rectangle Width="16" Height="16" Margin="0,0,-10,0">
                             <Rectangle.Fill>

@@ -296,7 +296,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			{
 				if(controller == null)
 					controller = await this.ShowProgressAsync("导入竞技场卡牌中", "", true);
-				controller.SetMessage("Enter the 'Arena' screen.");
+				controller.SetMessage("进入“竞技场”界面.");
 				Log.Info("Waiting for DRAFT screen...");
 				while(Core.Game.CurrentMode != Mode.DRAFT)
 				{
@@ -318,7 +318,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 					await controller.CloseAsync();
 					return;
 				}
-				controller.SetMessage($"Waiting for complete deck ({deck?.Cards.Sum(x => x.Count) ?? 0}/30 cards)...");
+				controller.SetMessage($"等待卡组完成 ({deck?.Cards.Sum(x => x.Count) ?? 0}/30 张卡)...");
 				await Task.Delay(1000);
 				deck = DeckImporter.FromArena(false)?.Deck;
 			}

@@ -59,7 +59,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 			DeckStatsList.Save();
 			DefaultDeckStats.Reload();
 			DefaultDeckStats.Save();
-			Core.MainWindow.ShowMessage("Success", "Please restart HDT for this to take effect.").Forget();
+			Core.MainWindow.ShowMessage("成功", "请重启HDT汉化版来生效.").Forget();
 		}
 
 		private void ButtonCreateNew_Click(object sender, RoutedEventArgs e)

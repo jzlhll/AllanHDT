@@ -106,7 +106,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 		{
 			const string url = "https://github.com/HearthSim/Hearthstone-Deck-Tracker/releases";
 			if (!Helper.TryOpenUrl(url))
-				Core.MainWindow.ShowMessage("Could not start browser", $"You can find the releases at \"{url}\"").Forget();
+				Core.MainWindow.ShowMessage("打不开浏览器", $"你可以找到releases在这里 \"{url}\"").Forget();
 		}
 
 		private void FlowDocumentScrollViewer_OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
@@ -127,14 +127,14 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 		private void ButtonPaypal_Click(object sender, RoutedEventArgs e)
 		{
 			if (!Helper.TryOpenUrl("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PZDMUT88NLFYJ"))
-				Core.MainWindow.ShowMessage("Could not start browser", "You can also find a link at the bottom of the GitHub page!").Forget();
+				Core.MainWindow.ShowMessage("打不开浏览器", "您还可以找到在GitHub的页面底部的链接！").Forget();
 		}
 
 		private void ButtonPatreon_Click(object sender, RoutedEventArgs e)
 		{
 			const string url = "https://www.patreon.com/HearthstoneDeckTracker";
 			if (!Helper.TryOpenUrl(url))
-				Core.MainWindow.ShowMessage("Could not start browser", "You can find the patreon page here: " + url).Forget();
+				Core.MainWindow.ShowMessage("打不开浏览器", "你可以在这里找到patreon(赞助)页：" + url).Forget();
 		}
 
 		private void ButtonClose_Click(object sender, RoutedEventArgs e)

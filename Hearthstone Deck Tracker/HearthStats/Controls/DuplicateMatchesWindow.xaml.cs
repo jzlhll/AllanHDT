@@ -74,9 +74,9 @@ namespace Hearthstone_Deck_Tracker.HearthStats.Controls
 			{
 				var matches = selected.Select(x => x.GameStats).ToList();
 				Log.Info("Deleting " + matches.Count + " duplicate matches.");
-				var controller = await this.ShowProgressAsync("删除重复的对阵...", "删除重复的在HearthStats...");
+				var controller = await this.ShowProgressAsync("删除重复的对战...", "删除重复的在【统计】里...");
 				await HearthStatsManager.DeleteMatchesAsync(matches.ToList(), false);
-				controller.SetMessage("Deleting local duplicates...");
+				controller.SetMessage("删除本地重复...");
 				foreach(var match in matches)
 				{
 					var deck = DeckList.Instance.Decks.FirstOrDefault(d => d.DeckId == match.DeckId);

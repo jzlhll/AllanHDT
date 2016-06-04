@@ -394,7 +394,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 						if(controller == null || !controller.IsOpen)
 							controller = await Core.MainWindow.ShowProgressAsync("同步中...", "检查新版本..");
 						else
-							controller.SetMessage("Checking for new versions...");
+							controller.SetMessage("检查新的版本中...");
 					}
 					Log.Info("Checking for new versions...");
 					var decksWithNewVersions =
@@ -439,7 +439,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 						if(controller == null || !controller.IsOpen)
 							controller = await Core.MainWindow.ShowProgressAsync("同步中...", "检查编辑过的卡组...");
 						else
-							controller.SetMessage("Checking for edited decks...");
+							controller.SetMessage("检查已经改变过的卡组...");
 					}
 					Log.Info("Checking for edited decks...");
 					var editedDecks =
@@ -478,7 +478,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 					if(controller == null || !controller.IsOpen)
 						controller = await Core.MainWindow.ShowProgressAsync("同步中...", "检查新的对战...");
 					else
-						controller.SetMessage("Checking HearthStats for new matches...");
+						controller.SetMessage("为新的对战检查统计...");
 				}
 				Log.Info("Checking HearthStats for new matches...");
 				var newGames = await DownloadGamesAsync(forceFullSync);
@@ -524,7 +524,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 				}
 
 				if(!background)
-					controller.SetMessage("Checking for new local decks...");
+					controller.SetMessage("检查新的本地卡组...");
 				Log.Info("Checking for new local decks...");
 				var newLocalDecks = localDecks.Where(deck => !deck.HasHearthStatsId && deck.IsArenaDeck != true).ToList();
 				if(newLocalDecks.Any(d => d.SyncWithHearthStats != false))
@@ -560,7 +560,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 					if(controller == null || !controller.IsOpen)
 						controller = await Core.MainWindow.ShowProgressAsync("同步中...", "检查新的本地版本...");
 					else
-						controller.SetMessage("Checking for new local versions...");
+						controller.SetMessage("检查新的本地版本...");
 				}
 
 				Log.Info("Checking for new local versions...");
@@ -577,7 +577,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 					var uploaded = 0;
 					var total = localNewVersions.Count;
 					if(!background)
-						controller.SetMessage("Uploading " + localNewVersions.Count + " new versions...");
+						controller.SetMessage("上传 " + localNewVersions.Count + " 个新版本...");
 					Log.Info("Uploading " + localNewVersions.Count + " new versions...");
 					//this can't happen in parallel (?)
 					foreach(var v in localNewVersions)
@@ -595,7 +595,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 					DeckList.Save();
 				}
 				if(!background)
-					controller.SetMessage("Checking for edited local decks...");
+					controller.SetMessage("检查本地改动过的卡组...");
 				Log.Info("Checking for edited local decks...");
 
 				var editedLocalDecks =
@@ -609,7 +609,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 				if(editedLocalDecks.Any())
 				{
 					if(!background)
-						controller.SetMessage("Updating " + editedLocalDecks.Count + " decks...");
+						controller.SetMessage("更新 " + editedLocalDecks.Count + " 个卡组...");
 					Log.Info("Updating " + editedLocalDecks.Count + " decks...");
 					foreach(var deck in editedLocalDecks)
 						await UpdateDeckAsync(deck);
@@ -617,7 +617,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 				}
 
 				if(!background)
-					controller.SetMessage("Checking for new local matches...");
+					controller.SetMessage("检查新的本地的对战...");
 				Log.Info("Checking for new local matches...");
 
 				var newMatches =
@@ -629,7 +629,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 					var uploaded = 0;
 					var total = newMatches.Count;
 					if(!background)
-						controller.SetMessage("Uploading " + newMatches.Count + " new matches...");
+						controller.SetMessage("上传 " + newMatches.Count + " 个新对战...");
 					Log.Info("Uploading " + newMatches.Count + " new matches...");
 					await Task.Run(() =>
 					{

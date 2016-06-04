@@ -179,7 +179,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 			var path = Config.Instance.ConfigPath;
 			Config.Instance.SaveConfigInAppData = true;
 			XmlManager<Config>.Save(path, Config.Instance);
-			await Core.MainWindow.ShowMessage("Restart required.", "Click ok to restart HDT");
+			await Core.MainWindow.ShowMessage("需要重启", "点击重新该软件。");
 			Core.MainWindow.Restart();
 		}
 
@@ -190,7 +190,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 			var path = Config.Instance.ConfigPath;
 			Config.Instance.SaveConfigInAppData = false;
 			XmlManager<Config>.Save(path, Config.Instance);
-			await Core.MainWindow.ShowMessage("Restart required.", "Click ok to restart HDT");
+			await Core.MainWindow.ShowMessage("需要重启", "点击OK重新该软件。");
 			Core.MainWindow.Restart();
 		}
 
@@ -200,7 +200,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 				return;
 			Config.Instance.SaveDataInAppData = true;
 			Config.Save();
-			await Core.MainWindow.ShowMessage("Restart required.", "Click ok to restart HDT");
+			await Core.MainWindow.ShowMessage("需要重启", "点击OK重新该软件。");
 			Core.MainWindow.Restart();
 		}
 
@@ -210,7 +210,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 				return;
 			Config.Instance.SaveDataInAppData = false;
 			Config.Save();
-			await Core.MainWindow.ShowMessage("Restart required.", "Click ok to restart HDT");
+			await Core.MainWindow.ShowMessage("需要重启", "点击OK重新该软件。");
 			Core.MainWindow.Restart();
 		}
 
@@ -257,7 +257,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 			{
 				Config.Instance.HearthstoneDirectory = dialog.SelectedPath;
 				Config.Save();
-				Core.MainWindow.ShowMessage("Restart required.", "Please restart HDT for this setting to take effect.").Forget();
+				Core.MainWindow.ShowMessage("需要重启", "请重新该软件才能让设置生效。").Forget();
 			}
 		}
 
@@ -285,7 +285,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 				Config.Save();
 				if(!saveInAppData)
 				{
-					await Core.MainWindow.ShowMessage("Restart required.", "Click ok to restart HDT");
+					await Core.MainWindow.ShowMessage("需要重启", "点击OK重新该软件。");
 					Core.MainWindow.Restart();
 				}
 			}

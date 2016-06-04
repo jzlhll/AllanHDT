@@ -27,7 +27,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			string warning;
 			if(!ArenaRewards.Validate(out warning))
 			{
-				await this.ShowMessage("Error", warning);
+				await this.ShowMessage("错误", warning);
 				return;
 			}
 			_deck.ArenaReward = ArenaRewards.Reward;

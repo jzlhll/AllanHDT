@@ -137,7 +137,7 @@ namespace Hearthstone_Deck_Tracker
 			var result = await HearthStatsAPI.RegisterAsync(email, TextBoxRegisterPassword.Password);
 			if(result.Success)
 			{
-				_controller.SetTitle("Logging in...");
+				_controller.SetTitle("登陆中...");
 				result = await HearthStatsAPI.LoginAsync(email, TextBoxRegisterPassword.Password);
 			}
 			else if(result.Message.Contains("422"))

@@ -54,8 +54,8 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 				}
 				catch(Exception)
 				{
-					Core.MainWindow.ShowMessage("Error",
-					                            "Plugins directory not found and can not be created. Please manually create it in the Hearthstone Deck Tracker folder.").Forget();
+					Core.MainWindow.ShowMessage("错误",
+                                                "插件目录未找到并且无法创建。请在该程序的文件夹里手动创建它(目录名：Plugins)。").Forget();
 					return;
 				}
 			}

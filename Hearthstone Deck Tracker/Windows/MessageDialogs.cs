@@ -240,7 +240,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			_awaitingMainWindowOpen = true;
 
 			if(window.WindowState == WindowState.Minimized)
-				Core.TrayIcon.ShowMessage("New arena deck detected!");
+				Core.TrayIcon.ShowMessage("检测到新的竞技场卡组!");
 
 			while(window.Visibility != Visibility.Visible || window.WindowState == WindowState.Minimized)
 				await Task.Delay(100);
