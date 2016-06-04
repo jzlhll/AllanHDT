@@ -14,20 +14,20 @@
                               HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxHideOverlay_Checked"
                               Unchecked="CheckboxHideOverlay_Unchecked" />
-                    <CheckBox x:Name="CheckboxHideOverlayInMenu" Content="在菜单中隐藏"
+                    <CheckBox x:Name="CheckboxHideOverlayInMenu" Content="菜单界面隐藏"
                               HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxHideOverlayInMenu_Checked"
                               Unchecked="CheckboxHideOverlayInMenu_Unchecked" />
-                    <CheckBox x:Name="CheckboxHideOverlayInSpectator" Content="在旁观时隐藏"
+                    <CheckBox x:Name="CheckboxHideOverlayInSpectator" Content="观众模式时隐藏"
                               HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxHideOverlayInSpectator_Checked"
                               Unchecked="CheckboxHideOverlayInSpectator_Unchecked" />
                     <CheckBox x:Name="CheckboxHideOverlayInBackground"
-                              Content="炉石在后台时隐藏" HorizontalAlignment="Left"
+                              Content="炉石游戏最小化时隐藏" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxHideOverlayInBackground_Checked"
                               Unchecked="CheckboxHideOverlayInBackground_Unchecked" />
-                    <CheckBox x:Name="CheckboxHideDecksInOverlay" Content="隐藏卡组"
+                    <CheckBox x:Name="CheckboxHideDecksInOverlay" Content="隐藏记牌器"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top"
                               Checked="CheckboxHideDecksInOverlay_Checked"
@@ -40,7 +40,7 @@
                               HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxHideOpponentCardAge_Checked"
                               Unchecked="CheckboxHideOpponentCardAge_Unchecked" />
-                    <CheckBox x:Name="CheckboxHideOpponentCardMarks" Content="隐藏卡牌标记mark"
+                    <CheckBox x:Name="CheckboxHideOpponentCardMarks" Content="隐藏卡牌标记"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxHideOpponentCardMarks_Checked"
                               Unchecked="CheckboxHideOpponentCardMarks_Unchecked"
@@ -74,25 +74,25 @@
                               Unchecked="CheckboxOverlayUseAnimations_Unchecked"
                               HorizontalAlignment="Left" />
 
-                              <CheckBox x:Name="CheckboxOverlayCardMarkToolTips" Content="Card mark tooltips"
+                              <CheckBox x:Name="CheckboxOverlayCardMarkToolTips" Content="卡牌标记工具"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               Margin="10,5,0,0" VerticalAlignment="Top"
-                              ToolTip="显示创建/返回卡，如果该信息是可用的。"
+                              ToolTip="显示是创建的/回手的卡，如果该信息是可用的。"
                               Checked="CheckboxOverlayCardMarkToolTips_Checked"
                               Unchecked="CheckboxOverlayCardMarkToolTips_Unchecked"
                               HorizontalAlignment="Left" />
                     <CheckBox x:Name="CheckboxAutoGrayoutSecrets"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
-                              Content="自动变灰的奥秘"
+                              Content="奥秘自动变灰"
                               HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxAutoGrayoutSecrets_Checked"
                               Unchecked="CheckboxAutoGrayoutSecrets_Unchecked" />
                     <CheckBox x:Name="CheckboxKeepDecksVisible"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
-                              Content="比赛后并不会复位卡组" HorizontalAlignment="Left"
+                              Content="对战后并不会复位卡组" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top" Width="200"
                               Checked="CheckboxKeepDecksVisible_Checked"
                               Unchecked="CheckboxKeepDecksVisible_Unchecked" />
@@ -103,9 +103,9 @@
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxAlwaysShowGoldProgress_Checked"
                               Unchecked="CheckboxAlwaysShowGoldProgress_Unchecked" />
-                    <CheckBox Name="CheckBoxFlavorText" Content="鼠标悬停显示卡的味道文本（战场/手牌）"
+                    <CheckBox Name="CheckBoxFlavorText" Content="鼠标悬停显示卡的描述文本（战场/手牌）"
                               HorizontalAlignment="Left"
-                              ToolTip="如果光标停留仍然很短的时间周期内卡上才会出现。"
+                              ToolTip="如果光标停留很短的时间内，卡上才会出现。"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckBoxFlavorText_Checked"
                               Unchecked="CheckBoxFlavorText_Unchecked" />

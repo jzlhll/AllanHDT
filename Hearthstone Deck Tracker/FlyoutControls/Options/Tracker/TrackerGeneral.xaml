@@ -18,12 +18,12 @@
                 <StackPanel>
                     <GroupBox Header="提示">
                         <StackPanel>
-                            <CheckBox x:Name="CheckboxFlashHs" Content="在你的回合开始时闪烁炉石"
+                            <CheckBox x:Name="CheckboxFlashHs" Content="在你的回合开始时,闪烁"
                                   HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"
                                   Checked="CheckboxFlashHs_Checked"
                                   Unchecked="CheckboxFlashHs_Unchecked" />
                             <CheckBox x:Name="CheckboxBringHsToForegorund"
-                                  Content="在你的回合开始时弹炉石" HorizontalAlignment="Left"
+                                  Content="在你的回合开始时,弹窗" HorizontalAlignment="Left"
                                   Margin="10,5,0,0" VerticalAlignment="Top"
                                   Checked="CheckboxBringHsToForegorund_Checked"
                                   Unchecked="CheckboxBringHsToForegorund_Unchecked" />
@@ -91,7 +91,7 @@
                               Checked="CheckboxSpectatorUseNoDeck_Checked"
                               Unchecked="CheckboxSpectatorUseNoDeck_Unchecked" />
                     <CheckBox x:Name="CheckBoxClassCardsFirst" Margin="10,5,0,0"
-                              Content="卡片分类：第一类卡片"
+                              Content="卡片分类：英雄卡优先"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               Checked="CheckBoxClassCardsFirst_Checked"
@@ -122,7 +122,7 @@
                               VerticalAlignment="Top" Checked="CheckboxDeckPickerCaps_Checked"
                               Unchecked="CheckboxDeckPickerCaps_Unchecked"
                               ToolTip="在卡组选择器下，取消使用正常的情况。" />
-                    <CheckBox x:Name="CheckBoxShowLastPlayedDate" Content="在卡组上显示最后一个播放日期"
+                    <CheckBox x:Name="CheckBoxShowLastPlayedDate" Content="在卡组上显示最后一次玩过的日期"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckBoxShowLastPlayedDate_Checked"
                               Unchecked="CheckBoxShowLastPlayedDate_Unchecked" />

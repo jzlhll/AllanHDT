@@ -87,7 +87,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 						this.ShowMessageAsync("启用一键导入?",
                                               "要启用一键导入通过【网络卡组】？（选项>其他>输入）",
 						                      MessageDialogStyle.AffirmativeAndNegative,
-						                      new MessageDialogs.Settings {AffirmativeButtonText = "Yes", NegativeButtonText = "No"});
+						                      new MessageDialogs.Settings {AffirmativeButtonText = "是", NegativeButtonText = "不"});
 					if(enableOptionResult == MessageDialogResult.Affirmative)
 					{
 						Options.OptionsTrackerImporting.CheckboxImportNetDeck.IsChecked = true;
@@ -277,7 +277,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 				Log.Info("Waiting for game...");
 				var result = await this.ShowMessageAsync("导入竞技场卡组", "打开炉石并且进入竞技场界面",
 					MessageDialogStyle.AffirmativeAndNegative,
-					new MessageDialogs.Settings() {AffirmativeButtonText = "Start Hearthstone", NegativeButtonText = "Cancel"});
+					new MessageDialogs.Settings() {AffirmativeButtonText = "开启炉石", NegativeButtonText = "取消"});
 				if(result == MessageDialogResult.Negative)
 					return;
 				Helper.StartHearthstoneAsync().Forget();

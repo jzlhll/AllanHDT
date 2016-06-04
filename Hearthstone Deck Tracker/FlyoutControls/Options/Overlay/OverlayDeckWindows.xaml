@@ -20,7 +20,7 @@
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxOpponentWindowOpenAutomatically_Checked"
                               Unchecked="CheckboxOpponentWindowOpenAutomatically_Unchecked" />
-                    <CheckBox x:Name="CheckboxWindowsTopmost" Content="最高"
+                    <CheckBox x:Name="CheckboxWindowsTopmost" Content="显示在最前端"
                               HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxWindowsTopmost_Checked"
                               Unchecked="CheckboxWindowsTopmost_Unchecked" />
@@ -41,7 +41,7 @@
                               Unchecked="CheckboxTimerWindow_Unchecked" />
 
 
-                    <CheckBox x:Name="CheckboxTimerTopmost" Content="最高"
+                    <CheckBox x:Name="CheckboxTimerTopmost" Content="显示在最前端"
                               HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxTimerTopmost_Checked"
                               Unchecked="CheckboxTimerTopmost_Unchecked" />

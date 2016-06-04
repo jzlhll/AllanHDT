@@ -21,7 +21,7 @@
                     </GroupBox>
                     <DockPanel Margin="10,5,10,0"
                                Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}">
-                        <Label Content="游戏开始的按键:" HorizontalAlignment="Right"
+                        <Label Content="游戏开始的快捷键:" HorizontalAlignment="Right"
                                Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                                VerticalAlignment="Top" />
                         <ComboBox x:Name="ComboboxKeyPressGameStart" HorizontalAlignment="Right"
@@ -30,7 +30,7 @@
                     </DockPanel>
                     <DockPanel Margin="10,5,10,0"
                                Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}">
-                        <Label Content="游戏结束的按键:" HorizontalAlignment="Left"
+                        <Label Content="游戏结束的快捷键:" HorizontalAlignment="Left"
                                Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                                VerticalAlignment="Top" />
                         <ComboBox x:Name="ComboboxKeyPressGameEnd" HorizontalAlignment="Right"
@@ -77,7 +77,7 @@
                               Checked="CheckboxCloseWithHearthstone_Checked"
                               Unchecked="CheckboxCloseWithHearthstone_Unchecked" />
                     <CheckBox x:Name="CheckboxStartHearthstoneWithHDT"
-                              Content="启动游戏当打开HDT" HorizontalAlignment="Left"
+                              Content="启动游戏当打开该软件" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxStartHearthstoneWithHDT_Checked"
                               Unchecked="CheckboxStartHearthstoneWithHDT_Unchecked" />

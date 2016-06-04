@@ -53,7 +53,7 @@ namespace Hearthstone_Deck_Tracker.Utility
 				return;
 			_showingUpdateMessage = true;
 			
-			var settings = new MessageDialogs.Settings {AffirmativeButtonText = "Download", NegativeButtonText = "Not now"};
+			var settings = new MessageDialogs.Settings {AffirmativeButtonText = "下载", NegativeButtonText = "现在不下载"};
 			if(_release == null)
 			{
 				_showingUpdateMessage = false;

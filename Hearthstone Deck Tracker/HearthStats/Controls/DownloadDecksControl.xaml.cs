@@ -62,7 +62,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.Controls
 				Core.MainWindow.ShowMessageAsync("删除 " + deck.Name,
                                                  "这将永远的删除卡组和所有相关数据。你肯定吗？",
 				                                 MessageDialogStyle.AffirmativeAndNegative,
-				                                 new MessageDialogs.Settings {AffirmativeButtonText = "delete", NegativeButtonText = "cancel"});
+				                                 new MessageDialogs.Settings {AffirmativeButtonText = "删除", NegativeButtonText = "取消"});
 			if(result == MessageDialogResult.Affirmative)
 			{
 				var deleted = await HearthStatsManager.DeleteDeckAsync(deck, false, true);

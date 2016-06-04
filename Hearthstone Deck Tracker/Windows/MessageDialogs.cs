@@ -27,16 +27,16 @@ namespace Hearthstone_Deck_Tracker.Windows
 	{
 		public static async Task<MessageDialogResult> ShowDeleteGameStatsMessage(this MetroWindow window, GameStats stats)
 			=> await window.ShowMessageAsync("删除游戏", $"{stats.Result} vs {stats.OpponentHero}\n从 {stats.StartTime}\n\n确定吗?",
-				AffirmativeAndNegative, new Settings {AffirmativeButtonText = "Yes", NegativeButtonText = "No"});
+				AffirmativeAndNegative, new Settings {AffirmativeButtonText = "是", NegativeButtonText = "不"});
 
 		public static async Task<MessageDialogResult> ShowDeleteMultipleGameStatsMessage(this MetroWindow window, int count)
 			=> await window.ShowMessageAsync("删除游戏", $"删除选中的游戏 ({count}) 个.\n\nAre you sure?",
-				AffirmativeAndNegative, new Settings {AffirmativeButtonText = "Yes", NegativeButtonText = "No"});
+				AffirmativeAndNegative, new Settings {AffirmativeButtonText = "是", NegativeButtonText = "不" });
 
 		public static async Task ShowUpdateNotesMessage(this MetroWindow window)
 		{
 			var result = await window.ShowMessageAsync("上传成功", "", AffirmativeAndNegative,
-							new Settings {AffirmativeButtonText = "Show update notes", NegativeButtonText = "Close"});
+							new Settings {AffirmativeButtonText = "显示更新日志", NegativeButtonText = "关闭"});
 			if(result == MessageDialogResult.Affirmative)
 				Helper.TryOpenUrl(@"https://github.com/HearthSim/Hearthstone-Deck-Tracker/releases");
 		}
@@ -104,7 +104,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 
 		public static async Task ShowLogConfigUpdateFailedMessage(this MetroWindow window)
 		{
-			var settings = new Settings {AffirmativeButtonText = "show instructions", NegativeButtonText = "close"};
+			var settings = new Settings {AffirmativeButtonText = "显示介绍", NegativeButtonText = "关闭"};
 			var result = await window.ShowMessageAsync("有一个问题在更新log.config中",
                                         "新的log.config设定为HDT需要正常使用的话，\n\n需要使用管理员启动HDT汉化版。\n\n如果需要帮助，点击“显示说明”如何手动更新。",
 										AffirmativeAndNegative, settings);
@@ -152,7 +152,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			if(deck == null)
 				return false;
 			var dialog = new AddGameDialog(deck);
-			await window.ShowMetroDialogAsync(dialog, new MetroDialogSettings {AffirmativeButtonText = "save", NegativeButtonText = "cancel"});
+			await window.ShowMetroDialogAsync(dialog, new MetroDialogSettings {AffirmativeButtonText = "保存", NegativeButtonText = "取消"});
 			var game = await dialog.WaitForButtonPressAsync();
 			await window.HideMetroDialogAsync(dialog);
 			if(game == null)
@@ -184,7 +184,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			if(game == null)
 				return false;
 			var dialog = new AddGameDialog(game);
-			await window.ShowMetroDialogAsync(dialog, new MetroDialogSettings {AffirmativeButtonText = "save", NegativeButtonText = "cancel"});
+			await window.ShowMetroDialogAsync(dialog, new MetroDialogSettings {AffirmativeButtonText = "保存", NegativeButtonText = "取消"});
 			var result = await dialog.WaitForButtonPressAsync();
 			await window.HideMetroDialogAsync(dialog);
 			if(result == null)
@@ -213,7 +213,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 				await
 				window.ShowMessageAsync("删除对战在HearthStats上?", "你可以在任何时候更改此设置hearthstats菜单。",
 				                        AffirmativeAndNegative,
-				                        new MetroDialogSettings {AffirmativeButtonText = "yes (always)", NegativeButtonText = "no (never)"});
+				                        new MetroDialogSettings {AffirmativeButtonText = "是 (一直)", NegativeButtonText = "不 (从不)"});
 			Config.Instance.HearthStatsAutoDeleteMatches = dialogResult == MessageDialogResult.Affirmative;
 			Core.MainWindow.MenuItemCheckBoxAutoDeleteGames.IsChecked = Config.Instance.HearthStatsAutoDeleteMatches;
 			Config.Save();
@@ -247,7 +247,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 
 			var result = await window.ShowMessageAsync("检测到的新卡组！",
                                                  "您可以将此行为改为“自动保存和导入”或“手动”，在【选项】>【跟踪】>【输入】",
-												 AffirmativeAndNegative, new Settings { AffirmativeButtonText = "Import", NegativeButtonText = "Cancel" });
+												 AffirmativeAndNegative, new Settings { AffirmativeButtonText = "导入", NegativeButtonText = "取消" });
 
 			if(result == MessageDialogResult.Affirmative)
 			{

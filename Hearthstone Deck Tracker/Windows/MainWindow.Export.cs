@@ -35,7 +35,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			if(Config.Instance.ShowExportingDialog)
 			{
 				var message = $"1) 创建一个新的或者打开一个存在的 {deck.Class} 卡组.\n\n2) 离开卡组创建界面.\n\n3) 点击【导出】并且不要动鼠标或者点它直到完成。";
-				var settings = new MessageDialogs.Settings {AffirmativeButtonText = "Export"};
+				var settings = new MessageDialogs.Settings {AffirmativeButtonText = "导出"};
 				var result = await this.ShowMessageAsync("导出 " + deck.Name + " 到炉石", message, MessageDialogStyle.AffirmativeAndNegative, settings);
 				export = result == MessageDialogResult.Affirmative;
 			}

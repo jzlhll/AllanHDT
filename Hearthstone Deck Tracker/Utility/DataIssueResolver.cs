@@ -75,9 +75,9 @@ namespace Hearthstone_Deck_Tracker.Utility
 						                                 MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary,
 						                                 new MessageDialogs.Settings
 						                                 {
-							                                 AffirmativeButtonText = "fix now",
-							                                 NegativeButtonText = "fix later",
-							                                 FirstAuxiliaryButtonText = "don't fix"
+							                                 AffirmativeButtonText = "现在修复",
+							                                 NegativeButtonText = "稍后",
+							                                 FirstAuxiliaryButtonText = "不处理"
 						                                 });
 					if(result == MessageDialogResult.Affirmative)
 					{

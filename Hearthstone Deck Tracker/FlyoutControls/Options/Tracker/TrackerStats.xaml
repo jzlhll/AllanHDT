@@ -16,7 +16,7 @@
                 <StackPanel>
                     <GroupBox Header="录制">
                         <StackPanel>
-                            <CheckBox x:Name="CheckboxRecordRanked" Content="天梯"
+                            <CheckBox x:Name="CheckboxRecordRanked" Content="天梯模式"
                                       HorizontalAlignment="Left" Margin="0,0,0,0"
                                       VerticalAlignment="Top" Checked="CheckboxRecordRanked_Checked"
                                       Unchecked="CheckboxRecordRanked_Unchecked" />
@@ -24,23 +24,23 @@
                                       HorizontalAlignment="Left" Margin="0,5,0,0"
                                       VerticalAlignment="Top" Checked="CheckboxRecordArena_Checked"
                                       Unchecked="CheckboxRecordArena_Unchecked" />
-                            <CheckBox x:Name="CheckboxRecordBrawl" Content="乱斗"
+                            <CheckBox x:Name="CheckboxRecordBrawl" Content="乱斗模式"
                                       HorizontalAlignment="Left" Margin="0,5,0,0"
                                       VerticalAlignment="Top" Checked="CheckboxRecordBrawl_Checked"
                                       Unchecked="CheckboxRecordBrawl_Unchecked" />
-                            <CheckBox x:Name="CheckboxRecordCasual" Content="休闲"
+                            <CheckBox x:Name="CheckboxRecordCasual" Content="休闲模式"
                                       HorizontalAlignment="Left" Margin="0,5,0,0"
                                       VerticalAlignment="Top" Checked="CheckboxRecordCasual_Checked"
                                       Unchecked="CheckboxRecordCasual_Unchecked" />
-                            <CheckBox x:Name="CheckboxRecordFriendly" Content="好友对阵"
+                            <CheckBox x:Name="CheckboxRecordFriendly" Content="好友对阵模式"
                                       HorizontalAlignment="Left" Margin="0,5,0,0"
                                       VerticalAlignment="Top" Checked="CheckboxRecordFriendly_Checked"
                                       Unchecked="CheckboxRecordFriendly_Unchecked" />
-                            <CheckBox x:Name="CheckboxRecordPractice" Content="冒险/练习"
+                            <CheckBox x:Name="CheckboxRecordPractice" Content="冒险/练习模式"
                                       HorizontalAlignment="Left" Margin="0,5,0,0"
                                       VerticalAlignment="Top" Checked="CheckboxRecordPractice_Checked"
                                       Unchecked="CheckboxRecordPractice_Unchecked" />
-                            <CheckBox x:Name="CheckboxRecordSpectator" Content="观众"
+                            <CheckBox x:Name="CheckboxRecordSpectator" Content="观众模式"
                                       HorizontalAlignment="Left" Margin="0,5,0,0"
                                       VerticalAlignment="Top" Checked="CheckboxRecordSpectator_Checked"
                                       Unchecked="CheckboxRecordSpectator_Unchecked" />
@@ -82,7 +82,7 @@
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>
                                 </ComboBox>
-                                <Label Content="时间框架:" />
+                                <Label Content="时间段:" />
                             </DockPanel>
                             <DockPanel Name="PanelCustomTimeFrame" Margin="0,5,0,0">
                                 <DatePicker Name="DatePickerCustomTimeFrame" Width="150" DockPanel.Dock="Right"
@@ -94,7 +94,7 @@
                     <CheckBox x:Name="CheckboxDiscardGame"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
-                              Content="丢弃游戏如果卡牌与卡组不符"
+                              Content="丢弃录制，如果卡牌与卡组不符"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxDiscardGame_Checked"
                               Unchecked="CheckboxDiscardGame_Unchecked" />
@@ -108,7 +108,7 @@
                     <CheckBox x:Name="CheckboxDiscardZeroTurnGame"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
-                              Content="在0回合就丢弃游戏"
+                              Content="在0回合就丢弃录制"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxDiscardZeroTurnGame_Checked"
                               Unchecked="CheckboxDiscardZeroTurnGame_Unchecked" />
@@ -122,8 +122,8 @@
                     <CheckBox x:Name="CheckboxDeleteDeckKeepStats"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
-                              Content="保存统计当删除一个卡组"
-                              ToolTip="这将移动到【英雄的默认卡组】（相同的比赛在【无卡组模式】被保存到）。这意味着，在竞技场上的统计数据将丢失当删除竞技场卡组！"
+                              Content="删除一个卡组仍然保存统计"
+                              ToolTip="这将移动到英雄的默认卡组（对应的匹配数据将被保存到【无卡组模式】）。这意味着，当删除竞技场卡组，竞技场上的统计数据将丢失！"
                               HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxDeleteDeckKeepStats_Checked"
                               Unchecked="CheckboxDeleteDeckKeepStats_Unchecked" />

@@ -7,9 +7,9 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <GroupBox Header="媒体">
         <StackPanel>
-            <CheckBox Margin="5,5,0,0" Name="CheckBoxShowCapOverlay" Content="显示可截图窗口" 
+            <CheckBox Margin="5,5,0,0" Name="CheckBoxShowCapOverlay" Content="显示可截图可录制的叠加窗口" 
                       Checked="CheckBoxShowCapOverlay_OnChecked" Unchecked="CheckBoxShowCapOverlay_OnUnchecked"/>
-            <CheckBox Margin="5,5,0,0" Name="CheckBoxDisableOpacityTransition" Content="禁用卡不透明转换（建议）" 
+            <CheckBox Margin="5,5,0,0" Name="CheckBoxDisableOpacityTransition" Content="禁用卡牌透明度渐变（建议）" 
                               Checked="CheckBoxDisableOpacityTransition_Checked" Unchecked="CheckBoxDisableOpacityTransition_Unchecked" />
             <DockPanel Margin="0,5,0,0">
                 <Label Content="背景色:" DockPanel.Dock="Left" />

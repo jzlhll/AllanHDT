@@ -21,7 +21,7 @@
                               Checked="CheckBoxShowNotifications_OnChecked"
                               Unchecked="CheckBoxShowNotifications_OnUnchecked" />
                     <CheckBox Name="CheckBoxUnexpectedOnly" Content="仅当游戏意外时显示"
-                              ToolTip="在HDT可能无法检测到游戏模式（以前的游戏排名）"
+                              ToolTip="该软件可能无法检测到天梯模式（刚才那一盘是天梯模式）"
                               IsEnabled="{Binding Path=IsChecked, ElementName=CheckBoxShowNotifications}"
                               Margin="0,5,0,0" Checked="CheckBoxUnexpectedOnly_OnChecked"
                               Unchecked="CheckBoxUnexpectedOnly_OnUnchecked" />

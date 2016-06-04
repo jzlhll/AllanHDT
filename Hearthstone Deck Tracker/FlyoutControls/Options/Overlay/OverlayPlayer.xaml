@@ -40,19 +40,19 @@
                                 ValueChanged="SliderPlayerOpacity_ValueChanged" SmallChange="1" LargeChange="10" />
                     </DockPanel>
                     <DockPanel Margin="5,5,5,0">
-                        <Label Content="显示克苏恩数目:" Width="155"/>
+                        <Label Content="显示克苏恩计数:" Width="155"/>
                         <ComboBox x:Name="ComboBoxCthun" HorizontalAlignment="Right"
                                   Margin="5,0,0,0" VerticalAlignment="Top" Width="150"
                                   SelectionChanged="ComboBoxCthun_SelectionChanged"/>
                     </DockPanel>
                     <DockPanel Margin="5,5,5,0">
-                        <Label Content="显示尤格萨隆数目:" Width="155"/>
+                        <Label Content="显示尤格萨隆计数:" Width="155"/>
                         <ComboBox x:Name="ComboBoxSpells" HorizontalAlignment="Right"
                                   Margin="5,0,0,0" VerticalAlignment="Top" Width="150"
                                   SelectionChanged="ComboBoxSpells_SelectionChanged"/>
                     </DockPanel>
                     <CheckBox x:Name="CheckBoxAttack"
-                              Content="显示战场对战计数" HorizontalAlignment="Left"
+                              Content="显示场攻计数器" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckBoxAttack_Checked"
                               Unchecked="CheckBoxAttack_Unchecked" />
@@ -63,20 +63,20 @@
                               Checked="CheckBoxCenterDeckVertically_Checked"
                               Unchecked="CheckBoxCenterDeckVertically_Unchecked" />
                     <CheckBox x:Name="CheckboxHighlightCardsInHand"
-                              Content="手牌高亮" HorizontalAlignment="Left"
+                              Content="手牌高亮(绿色)" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxHighlightCardsInHand_Checked"
                               Unchecked="CheckboxHighlightCardsInHand_Unchecked" />
                     <CheckBox x:Name="CheckboxHighlightLastDrawn"
-                              Content="高亮最后绘制卡" HorizontalAlignment="Left"
+                              Content="高亮最后抽到的牌(橙色)" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxHighlightLastDrawn_Checked"
                               Unchecked="CheckboxHighlightLastDrawn_Unchecked" />
-                    <CheckBox x:Name="CheckboxRemoveCards" Content="卡牌为0移除"
+                    <CheckBox x:Name="CheckboxRemoveCards" Content="卡牌为0,移除显示"
                               HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxRemoveCards_Checked"
                               Unchecked="CheckboxRemoveCards_Unchecked" />
-                    <CheckBox x:Name="CheckboxShowPlayerGet" Content="包含创建出来的卡牌，如：幸运币"
+                    <CheckBox x:Name="CheckboxShowPlayerGet" Content="包含创建出来的卡牌，如：硬币"
                               HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxShowPlayerGet_Checked"
                               Unchecked="CheckboxShowPlayerGet_Unchecked" />

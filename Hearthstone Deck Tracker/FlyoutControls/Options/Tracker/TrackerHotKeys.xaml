@@ -75,7 +75,7 @@
                                TextWrapping="Wrap" FontStyle="Italic" />
                     <TextBlock TextWrapping="Wrap" Foreground="Red"
                                Text="{Binding Path=ErrorText, RelativeSource={RelativeSource AncestorType=UserControl}}" />
-                    <Button Content="添新" Margin="0,5,0,0" Click="ButtonAddNew_OnClick"
+                    <Button Content="添加" Margin="0,5,0,0" Click="ButtonAddNew_OnClick"
                             IsEnabled="{Binding Path=SelectedHotKeyIsValue, RelativeSource={RelativeSource AncestorType=UserControl}}" />
                 </StackPanel>
             </GroupBox>

@@ -345,7 +345,7 @@
                         </Rectangle>
                     </MenuItem.Icon>
                     <MenuItem Name="MenuItemLogin" Header="登陆" Click="MenuItemLogin_OnClick"/>
-                    <MenuItem Name="MenuItemDashboard" Header="DASHBOARD (WEB)" Click="MenuItemDashboard_OnClick"/>
+                    <MenuItem Name="MenuItemDashboard" Header="报表 (WEB)" Click="MenuItemDashboard_OnClick"/>
                     <MenuItem Name="MenuItemHearthStatsSync" Click="MenuItemHearthStatsSync_OnClick">
                         <MenuItem.Header>
                             <StackPanel Orientation="Horizontal">

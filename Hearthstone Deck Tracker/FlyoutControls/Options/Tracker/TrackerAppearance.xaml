@@ -30,7 +30,7 @@
                         </ComboBox>
                     </DockPanel>
                     <DockPanel Margin="10,5,10,0">
-                        <Label Content="基调:" HorizontalAlignment="Left"
+                        <Label Content="基调颜色:" HorizontalAlignment="Left"
                                VerticalAlignment="Top" />
                         <ComboBox x:Name="ComboboxAccent" HorizontalAlignment="Right"
                                   VerticalAlignment="Top" Width="150"
@@ -82,11 +82,11 @@
                             </ComboBox.ItemTemplate>
                         </ComboBox>
                     </DockPanel>
-                    <CheckBox x:Name="CheckboxCardFrameRarity" Content="稀有色卡牌框架 frames"
+                    <CheckBox x:Name="CheckboxCardFrameRarity" Content="卡牌稀有度边框着色"
                               HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxCardFrameRarity_OnChecked"
                               Unchecked="CheckboxCardFrameRarity_OnUnchecked" />
-                    <CheckBox x:Name="CheckboxCardGemRarity" Content="稀有色卡宝石、gems"
+                    <CheckBox x:Name="CheckboxCardGemRarity" Content="卡牌稀有度水晶着色"
                               HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxCardGemRarity_OnChecked"
                               Unchecked="CheckboxCardGemRarity_OnUnchecked" />
@@ -96,7 +96,7 @@
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckBoxArenaStatsTextColoring_Checked"
                               Unchecked="CheckBoxArenaStatsTextColoring_Unchecked" />
-                    <CheckBox x:Name="CheckboxUseAnimations" Content="使用win8动画"
+                    <CheckBox x:Name="CheckboxUseAnimations" Content="使用win8主题动画"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"

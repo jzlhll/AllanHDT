@@ -33,7 +33,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			if(!decks.Any())
 				return;
 
-			var settings = new MessageDialogs.Settings {AffirmativeButtonText = "Yes", NegativeButtonText = "No"};
+			var settings = new MessageDialogs.Settings {AffirmativeButtonText = "是", NegativeButtonText = "不"};
 			var keepStatsInfo = Config.Instance.KeepStatsWhenDeletingDeck
 				                    ? "统计会被保留（可以被改变在【选项】中）"
 				                    : "统计会被删除(可以被改变在【选项中】)";
@@ -184,8 +184,8 @@ namespace Hearthstone_Deck_Tracker.Windows
 				                       MessageDialogStyle.AffirmativeAndNegative,
 				                       new MessageDialogs.Settings
 				                       {
-					                       AffirmativeButtonText = "clone history",
-					                       NegativeButtonText = "do not clone history"
+					                       AffirmativeButtonText = "克隆历史",
+					                       NegativeButtonText = "不克隆历史"
 				                       })) == MessageDialogResult.Affirmative;
 
 			var clone = (Deck)deck.CloneWithNewId(false);
@@ -235,8 +235,8 @@ namespace Hearthstone_Deck_Tracker.Windows
 				                       MessageDialogStyle.AffirmativeAndNegative,
 				                       new MessageDialogs.Settings
 				                       {
-					                       AffirmativeButtonText = "clone history",
-					                       NegativeButtonText = "do not clone history"
+					                       AffirmativeButtonText = "克隆历史",
+					                       NegativeButtonText = "不克隆"
 				                       })) == MessageDialogResult.Affirmative;
 
 			var clone = (Deck)deck.CloneWithNewId(false);

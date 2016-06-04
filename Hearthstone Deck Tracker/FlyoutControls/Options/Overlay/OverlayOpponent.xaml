@@ -76,7 +76,7 @@
                                   SelectionChanged="ComboBoxSpells_SelectionChanged"/>
                     </DockPanel>
                     <CheckBox x:Name="CheckBoxAttack"
-                              Content="显示战场攻击计数" HorizontalAlignment="Left"
+                              Content="显示场攻计数器" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckBoxAttack_Checked"
                               Unchecked="CheckBoxAttack_Unchecked" />
@@ -87,12 +87,12 @@
                               Checked="CheckBoxCenterDeckVertically_Checked"
                               Unchecked="CheckBoxCenterDeckVertically_Unchecked" />
                     <CheckBox x:Name="CheckboxIncludeCreated"
-                              Content="包含生成的卡牌" HorizontalAlignment="Left"
+                              Content="包含额外创建的卡牌" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxIncludeCreated_Checked"
                               Unchecked="CheckboxIncludeCreated_Unchecked" />
                     <CheckBox x:Name="CheckboxHighlightDiscarded"
-                              Content="从卡组中高亮移除" HorizontalAlignment="Left"
+                              Content="从卡组中高亮移除(红色)" HorizontalAlignment="Left"
                               Margin="10,5,0,10" VerticalAlignment="Top"
                               Checked="CheckboxHighlightDiscarded_Checked"
                               Unchecked="CheckboxHighlightDiscarded_Unchecked" />

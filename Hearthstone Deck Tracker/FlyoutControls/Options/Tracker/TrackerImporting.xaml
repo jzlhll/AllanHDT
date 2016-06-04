@@ -38,7 +38,7 @@
                             </DockPanel>
                             <GroupBox Header="竞技场卡组名字模板">
                                 <DockPanel>
-                                    <TextBlock Text="模板：{英雄}，{日期格式}" DockPanel.Dock="Bottom"
+                                    <TextBlock Text="模板：{职业}, {日期格式}" DockPanel.Dock="Bottom"
                                                Margin="0,5,0,0" TextWrapping="Wrap"
                                                ToolTip="在谷歌上寻找更多关于C#的日期格式的信息。" />
                                     <DockPanel DockPanel.Dock="Bottom" Margin="0,5,0,0">
@@ -56,20 +56,20 @@
                     <GroupBox Header="网络">
                         <StackPanel>
 
-                            <CheckBox x:Name="CheckboxTagOnImport" Content="导入标签"
+                            <CheckBox x:Name="CheckboxTagOnImport" Content="导入的时候贴上标签"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxTagOnImport_Checked"
                               Unchecked="CheckboxTagOnImport_Unchecked" />
                             <CheckBox Name="CheckboxAutoSaveOnImport" Content="当导入时自动保存卡组" Margin="10,5,0,0"
                               Checked="CheckboxAutoSaveOnImport_OnChecked"
                               Unchecked="CheckboxAutoSaveOnImport_OnUnchecked" />
-                            <CheckBox Name="CheckboxImportNetDeck" Content="自动导入网络卡组" Margin="10,5,0,0"
+                            <CheckBox Name="CheckboxImportNetDeck" Content="自动导入NetDeck卡组" Margin="10,5,0,0"
                               Checked="CheckboxImportNetDeck_OnChecked" Unchecked="CheckboxImportNetDeck_OnUnchecked" />
                             <TextBlock Margin="10,2,0,0">
                         <Hyperlink
                             NavigateUri="https://chrome.google.com/webstore/detail/netdeck/lpdbiakcpmcppnpchohihcbdnojlgeel"
                             RequestNavigate="Hyperlink_RequestNavigate">
-                            下载网络卡组(chrome插件)
+                            下载NetDeck卡组(chrome插件)
                         </Hyperlink>
                             </TextBlock>
                         </StackPanel>
