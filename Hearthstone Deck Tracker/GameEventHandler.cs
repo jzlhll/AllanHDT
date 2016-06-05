@@ -16,7 +16,6 @@ using Hearthstone_Deck_Tracker.LogReader;
 using Hearthstone_Deck_Tracker.Replay;
 using Hearthstone_Deck_Tracker.Stats;
 using Hearthstone_Deck_Tracker.Stats.CompiledStats;
-using Hearthstone_Deck_Tracker.Utility.Analytics;
 using Hearthstone_Deck_Tracker.Utility.Extensions;
 using Hearthstone_Deck_Tracker.Utility.Logging;
 using Hearthstone_Deck_Tracker.Windows;
@@ -449,7 +448,6 @@ namespace Hearthstone_Deck_Tracker
 			_game.CurrentGameStats.SetOpponentCards(_game.Opponent.OpponentCardList.Where(x => !x.IsCreated).ToList());
 			_game.CurrentGameStats.GameEnd();
 			GameEvents.OnGameEnd.Execute();
-			Influx.OnGameEnd(HearthDbConverter.GetGameType(_game.CurrentGameStats.GameMode, _game.CurrentGameStats.Format));
 			var selectedDeck = DeckList.Instance.ActiveDeck;
 			if(selectedDeck != null)
 			{

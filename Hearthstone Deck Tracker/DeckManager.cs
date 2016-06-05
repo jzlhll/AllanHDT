@@ -200,7 +200,6 @@ namespace Hearthstone_Deck_Tracker
 							card.Count = x.Count;
 							return card;
 						})),
-						LastEdited = DateTime.Now,
 						IsArenaDeck = false
 					};
 					if(brawl)

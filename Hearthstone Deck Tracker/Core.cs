@@ -13,7 +13,6 @@ using Hearthstone_Deck_Tracker.HearthStats.API;
 using Hearthstone_Deck_Tracker.LogReader;
 using Hearthstone_Deck_Tracker.Plugins;
 using Hearthstone_Deck_Tracker.Utility;
-using Hearthstone_Deck_Tracker.Utility.Analytics;
 using Hearthstone_Deck_Tracker.Utility.Extensions;
 using Hearthstone_Deck_Tracker.Utility.HotKeys;
 using Hearthstone_Deck_Tracker.Utility.LogConfig;
@@ -145,7 +144,7 @@ namespace Hearthstone_Deck_Tracker
 
 			Initialized = true;
 
-			Influx.OnAppStart(Helper.GetCurrentVersion(), loginType, newUser);
+			Analytics.Analytics.TrackPageView($"/app/v{Helper.GetCurrentVersion().ToVersionString()}/{loginType.ToString().ToLower()}{(newUser ? "/new" : "")}", "");
 		}
 
 		private static async void UpdateOverlayAsync()
@@ -166,6 +165,18 @@ namespace Hearthstone_Deck_Tracker
 						{
 							BackupManager.Run();
 							Game.MetaData.HearthstoneBuild = null;
+						}
+						var status = HearthMirror.Status.GetStatus();
+						if(status.MirrorStatus == MirrorStatus.Error)
+						{
+							Log.Error(status.Exception);
+							LogReaderManager.Stop(true).Forget();
+							MainWindow.ActivateWindow();
+							while(MainWindow.Visibility != Visibility.Visible || MainWindow.WindowState == WindowState.Minimized)
+								await Task.Delay(100);
+							await MainWindow.ShowMessage("Uneven permissions",
+									"It appears that Hearthstone (Battle.net) and HDT do not have the same permissions.\n\nPlease run both as administrator or local user.\n\nIf you don't know what any of this means, just run HDT as administrator.");
+							return;
 						}
 					}
 					Overlay.UpdatePosition();
