@@ -13,6 +13,7 @@ using Hearthstone_Deck_Tracker.HearthStats.API;
 using Hearthstone_Deck_Tracker.LogReader;
 using Hearthstone_Deck_Tracker.Plugins;
 using Hearthstone_Deck_Tracker.Utility;
+using Hearthstone_Deck_Tracker.Utility.Analytics;
 using Hearthstone_Deck_Tracker.Utility.Extensions;
 using Hearthstone_Deck_Tracker.Utility.HotKeys;
 using Hearthstone_Deck_Tracker.Utility.LogConfig;
@@ -144,7 +145,7 @@ namespace Hearthstone_Deck_Tracker
 
 			Initialized = true;
 
-			Analytics.Analytics.TrackPageView($"/app/v{Helper.GetCurrentVersion().ToVersionString()}/{loginType.ToString().ToLower()}{(newUser ? "/new" : "")}", "");
+			Influx.OnAppStart(Helper.GetCurrentVersion(), loginType, newUser);
 		}
 
 		private static async void UpdateOverlayAsync()
@@ -165,18 +166,6 @@ namespace Hearthstone_Deck_Tracker
 						{
 							BackupManager.Run();
 							Game.MetaData.HearthstoneBuild = null;
-						}
-						var status = HearthMirror.Status.GetStatus();
-						if(status.MirrorStatus == MirrorStatus.Error)
-						{
-							Log.Error(status.Exception);
-							LogReaderManager.Stop(true).Forget();
-							MainWindow.ActivateWindow();
-							while(MainWindow.Visibility != Visibility.Visible || MainWindow.WindowState == WindowState.Minimized)
-								await Task.Delay(100);
-							await MainWindow.ShowMessage("权限问题",
-                                    "看起来，炉石（Battle.net）和HDT不具有相同的权限。\n\n请以管理员身份或本地用户同时运行。\n\n如果您不知道任何这意味着，只需要运行HDT以管理员身份。");
-							return;
 						}
 					}
 					Overlay.UpdatePosition();
