@@ -96,7 +96,7 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </DockPanel>
-        <CheckBox Name="CheckBoxArchived" Content="包含存档的运行/runs" Margin="5,5,0,0" 
+        <CheckBox Name="CheckBoxArchived" Content="包含存档的场次" Margin="5,5,0,0" 
                   IsChecked="{Binding Path=ArenaStatsIncludeArchived, Source={StaticResource ConfigWrapper}}"
                   Checked="CheckBoxArchived_OnChecked" Unchecked="CheckBoxArchived_OnUnchecked" />
     </StackPanel>

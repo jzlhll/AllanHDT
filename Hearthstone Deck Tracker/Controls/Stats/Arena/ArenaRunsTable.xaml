@@ -15,49 +15,49 @@
     </UserControl.Resources>
     <DataGrid Name="DataGridArenaRuns" SelectedIndex="0" SelectedItem="{Binding SelectedRun, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWayToSource, IsAsync=True}" ItemsSource="{Binding Path=FilteredRuns, Source={x:Static compiledStats:ArenaStats.Instance}, IsAsync=True, NotifyOnTargetUpdated=True}" TargetUpdated="DataGridArenaRuns_OnTargetUpdated" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True">
         <DataGrid.Columns>
-            <DataGridTemplateColumn Header="Class" SortMemberPath="Class">
+            <DataGridTemplateColumn Header="职业" SortMemberPath="Class">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
                         <Image Source="{Binding ClassImage}" Width="30" Height="30" RenderOptions.BitmapScalingMode="Fant" ToolTip="{Binding Class}" />
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
-            <DataGridTextColumn Header="Started" Binding="{Binding StartTimeString}" SortMemberPath="StartTime">
+            <DataGridTextColumn Header="开始于" Binding="{Binding StartTimeString}" SortMemberPath="StartTime">
                 <DataGridTextColumn.ElementStyle>
                     <Style TargetType="TextBlock">
                         <Setter Property="HorizontalAlignment" Value="Center" />
                     </Style>
                 </DataGridTextColumn.ElementStyle>
             </DataGridTextColumn>
-            <DataGridTextColumn Header="Wins" Binding="{Binding Wins}">
+            <DataGridTextColumn Header="赢" Binding="{Binding Wins}">
                 <DataGridTextColumn.ElementStyle>
                     <Style TargetType="TextBlock">
                         <Setter Property="HorizontalAlignment" Value="Center" />
                     </Style>
                 </DataGridTextColumn.ElementStyle>
             </DataGridTextColumn>
-            <DataGridTextColumn Header="Losses" Binding="{Binding Losses}">
+            <DataGridTextColumn Header="输" Binding="{Binding Losses}">
                 <DataGridTextColumn.ElementStyle>
                     <Style TargetType="TextBlock">
                         <Setter Property="HorizontalAlignment" Value="Center" />
                     </Style>
                 </DataGridTextColumn.ElementStyle>
             </DataGridTextColumn>
-            <DataGridTextColumn Header="Gold" Binding="{Binding Gold}">
+            <DataGridTextColumn Header="金币" Binding="{Binding Gold}">
                 <DataGridTextColumn.ElementStyle>
                     <Style TargetType="TextBlock">
                         <Setter Property="HorizontalAlignment" Value="Center" />
                     </Style>
                 </DataGridTextColumn.ElementStyle>
             </DataGridTextColumn>
-            <DataGridTextColumn Header="Dust" Binding="{Binding Dust}">
+            <DataGridTextColumn Header="尘" Binding="{Binding Dust}">
                 <DataGridTextColumn.ElementStyle>
                     <Style TargetType="TextBlock">
                         <Setter Property="HorizontalAlignment" Value="Center" />
                     </Style>
                 </DataGridTextColumn.ElementStyle>
             </DataGridTextColumn>
-            <DataGridTextColumn Header="Packs" Binding="{Binding PackCount}">
+            <DataGridTextColumn Header="卡包" Binding="{Binding PackCount}">
                 <DataGridTextColumn.ElementStyle>
                     <Style TargetType="TextBlock">
                         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -65,7 +65,7 @@
                     </Style>
                 </DataGridTextColumn.ElementStyle>
             </DataGridTextColumn>
-            <DataGridTextColumn Header="Cards" Binding="{Binding CardCount}" >
+            <DataGridTextColumn Header="卡牌" Binding="{Binding CardCount}" >
                 <DataGridTextColumn.ElementStyle>
                     <Style TargetType="TextBlock">
                         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -73,14 +73,14 @@
                     </Style>
                 </DataGridTextColumn.ElementStyle>
             </DataGridTextColumn>
-            <DataGridTextColumn Header="Duration" Binding="{Binding DurationString}" SortMemberPath="Duration">
+            <DataGridTextColumn Header="时长" Binding="{Binding DurationString}" SortMemberPath="Duration">
                 <DataGridTextColumn.ElementStyle>
                     <Style TargetType="TextBlock">
                         <Setter Property="HorizontalAlignment" Value="Center" />
                     </Style>
                 </DataGridTextColumn.ElementStyle>
             </DataGridTextColumn>
-            <DataGridTextColumn Header="Region" Binding="{Binding Region}">
+            <DataGridTextColumn Header="地区" Binding="{Binding Region}">
                 <DataGridTextColumn.ElementStyle>
                     <Style TargetType="TextBlock">
                         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -119,21 +119,21 @@
                     </StackPanel>
                     <DataGrid Name="DataGridGames" SelectedIndex="-1" SelectedItem="{Binding SelectedGame, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWayToSource}" ItemsSource="{Binding Source={StaticResource ArenaGamesViewSource}}" AutoGenerateColumns="False" Grid.Column="2"  CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsReadOnly="True" PreviewMouseWheel="ForwardScrollEvent">
                         <DataGrid.Columns>
-                            <DataGridTemplateColumn Header="VS" SortMemberPath="OpponentHero">
+                            <DataGridTemplateColumn Header="对阵" SortMemberPath="OpponentHero">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Image RenderOptions.BitmapScalingMode="Fant" Source="{Binding OpponentHeroImage}" Height="24" Width="24" ToolTip="{Binding OpponentHero}" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTextColumn Header="Started" Binding="{Binding StartTime, StringFormat={}{0:dd MMM yyyy HH:mm}}" SortMemberPath="StartTime">
+                            <DataGridTextColumn Header="开始于" Binding="{Binding StartTime, StringFormat={}{0:dd MMM yyyy HH:mm}}" SortMemberPath="StartTime">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="HorizontalAlignment" Value="Center" />
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Result" Binding="{Binding Result}">
+                            <DataGridTextColumn Header="结果" Binding="{Binding Result}">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -141,35 +141,35 @@
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Name" Binding="{Binding OpponentName}">
+                            <DataGridTextColumn Header="名字" Binding="{Binding OpponentName}">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="HorizontalAlignment" Value="Center" />
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Turns" Binding="{Binding Turns}">
+                            <DataGridTextColumn Header="回合数" Binding="{Binding Turns}">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="HorizontalAlignment" Value="Center" />
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Coin" Binding="{Binding GotCoin}">
+                            <DataGridTextColumn Header="硬币" Binding="{Binding GotCoin}">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="HorizontalAlignment" Value="Center" />
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Time" Binding="{Binding Duration}" SortMemberPath="SortableDuration">
+                            <DataGridTextColumn Header="时间" Binding="{Binding Duration}" SortMemberPath="SortableDuration">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="HorizontalAlignment" Value="Center" />
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Note" Binding="{Binding Note}" />
+                            <DataGridTextColumn Header="备注" Binding="{Binding Note}" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

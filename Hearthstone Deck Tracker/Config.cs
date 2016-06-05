@@ -839,8 +839,8 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(true)]
 		public bool ShowExportingDialog = true;
 
-		[DefaultValue(true)]
-		public bool ShowFlavorText = true;
+		[DefaultValue(false)]
+		public bool ShowFlavorText = false;
 
 		[DefaultValue(true)]
 		public bool ShowGameResultNotifications = true;

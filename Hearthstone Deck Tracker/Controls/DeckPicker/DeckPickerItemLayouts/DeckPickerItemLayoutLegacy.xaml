@@ -19,7 +19,7 @@
             <Grid Width="46" Height="46" Margin="5,1,10,0">
                 <Image DockPanel.Dock="Left" Width="46" Height="46" Source="{Binding ClassImage}" RenderOptions.BitmapScalingMode="Fant" />
                 <hearthstoneDeckTracker:HearthstoneTextBlock Text="s" FontSize="14" Fill="LimeGreen" Width="10" Height="18" TextAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,2,0" Visibility="{Binding StandardViableVisibility}"
-                                                             ToolTip="这副卡牌可以用在[标准]模式。"/>
+                                                             ToolTip="这副卡牌可以用在【标准】模式。"/>
             </Grid>
             <Border BorderThickness="1"  BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Width="48" DockPanel.Dock="Right" Margin="-1">
                 <Grid>

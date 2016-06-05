@@ -14,12 +14,12 @@
                     <TreeView Name="TreeViewCards"/>
                 </DockPanel>
             </TabItem>
-            <TabItem Header="实体Entites">
+            <TabItem Header="实体">
                 <DockPanel>
                     <ComboBox DockPanel.Dock="Top" SelectedIndex="0" Name="ComboBoxData">
                         <ComboBox.Items>
                             <system:String>游戏</system:String>
-                            <system:String>实体Entites</system:String>
+                            <system:String>实体</system:String>
                         </ComboBox.Items>
                     </ComboBox>
                     <DataGrid Name="DataGridProperties" AutoGenerateColumns="True"/>

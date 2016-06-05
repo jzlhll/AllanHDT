@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
         BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1"
-        Title="Duplicate Matches" Height="550" Width="500" WindowStyle="ToolWindow">
+        Title="重复的匹配" Height="550" Width="500" WindowStyle="ToolWindow">
     <controls:MetroWindow.Resources>
         <DataTemplate x:Key="DataTemplateCheckBox">
             <CheckBox Content="{Binding DisplayName}" IsChecked="{Binding ToDelete}"/>

@@ -5,7 +5,7 @@
                       xmlns:local="clr-namespace:Hearthstone_Deck_Tracker"
                       xmlns:controls1="clr-namespace:Hearthstone_Deck_Tracker.Controls"
                       xmlns:themes="clr-namespace:Hearthstone_Deck_Tracker.Utility.Themes"
-                      Title="Opponent" Height="440" Width="230" MinWidth="230" MaxWidth="230"
+                      Title="对手" Height="440" Width="230" MinWidth="230" MaxWidth="230"
                       Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"
                       SizeChanged="OpponentWindow_OnSizeChanged" 
                       Activated="OpponentWindow_OnActivated" 

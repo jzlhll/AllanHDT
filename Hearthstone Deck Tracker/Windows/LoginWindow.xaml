@@ -47,7 +47,7 @@
                 <TextBlock HorizontalAlignment="Center" FontSize="14" FontWeight="SemiBold" Text="HearthStats"/>
                 <TextBlock Name="TextBlockErrorMessage" Foreground="Red" TextWrapping="Wrap" HorizontalAlignment="Center" />
                 <TabControl Name="TabControlLoginRegister" controls:TabControlHelper.IsUnderlined="True" Margin="0,0,0,10">
-                    <TabItem Header="LOGIN" Visibility="Collapsed">
+                    <TabItem Header="登陆" Visibility="Collapsed">
                         <StackPanel Margin="0,0,0,0" Width="250">
                             <TextBox Name="TextBoxEmail" controls:TextBoxHelper.Watermark="Email" TabIndex="0" />
                             <PasswordBox Name="TextBoxPassword" controls:TextBoxHelper.Watermark="密码" Margin="0,5,0,0" TabIndex="1" />
@@ -81,7 +81,7 @@
                             </TextBlock>
                         </StackPanel>
                     </TabItem>
-                    <TabItem Header="REGISTER" Visibility="Collapsed">
+                    <TabItem Header="注册" Visibility="Collapsed">
                         <StackPanel Width="250">
                             <TextBox Name="TextBoxRegisterEmail" controls:TextBoxHelper.Watermark="Email" TabIndex="5" />
                             <PasswordBox Name="TextBoxRegisterPassword" controls:TextBoxHelper.Watermark="密码" Margin="0,5,0,0" TabIndex="6" />

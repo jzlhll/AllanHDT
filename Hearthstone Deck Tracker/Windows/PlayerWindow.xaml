@@ -6,7 +6,7 @@
                       xmlns:deckPicker="clr-namespace:Hearthstone_Deck_Tracker.Controls.DeckPicker"
                       xmlns:controls1="clr-namespace:Hearthstone_Deck_Tracker.Controls"
                       xmlns:themes="clr-namespace:Hearthstone_Deck_Tracker.Utility.Themes"
-                      Title="Player" Height="440" Width="230" MinWidth="226" MaxWidth="230"
+                      Title="玩家" Height="440" Width="230" MinWidth="226" MaxWidth="230"
                       Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"
                       Activated="PlayerWindow_OnActivated"
                       Icon="{StaticResource AppIcon}"

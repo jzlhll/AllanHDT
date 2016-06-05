@@ -35,7 +35,7 @@
                             <TextBlock Text="自己玩过" Foreground="#FF666666" FontFamily="Segoe UI" FontSize="18" DockPanel.Dock="Top" Margin="20,0,0,0"/>
                             <metroChart:DoughnutChart Background="Transparent" Margin="0,0,0,-10"  ChartTitleVisibility="Collapsed" SelectedBrush="Transparent" ChartLegendVisibility="{Binding ElementName=CheckBoxShowLegends, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <metroChart:DoughnutChart.Series>
-                                    <metroChart:ChartSeries SeriesTitle="Played(%)" DisplayMember="Name" ValueMember="Value" BrushMember="Brush"  ItemsSource="{Binding Path=PlayedClassesPercent, Source={x:Static compiledStats:ArenaStats.Instance}, IsAsync=True}"/>
+                                    <metroChart:ChartSeries SeriesTitle="玩了(%)" DisplayMember="Name" ValueMember="Value" BrushMember="Brush"  ItemsSource="{Binding Path=PlayedClassesPercent, Source={x:Static compiledStats:ArenaStats.Instance}, IsAsync=True}"/>
                                 </metroChart:DoughnutChart.Series>
                             </metroChart:DoughnutChart>
                         </DockPanel>
@@ -43,7 +43,7 @@
                             <TextBlock Text="对手" Foreground="#FF666666" FontFamily="Segoe UI" FontSize="18" DockPanel.Dock="Top" Margin="20,0,0,0"/>
                             <metroChart:DoughnutChart Background="Transparent" Margin="0,0,0,-10"  ChartTitleVisibility="Collapsed" SelectedBrush="Transparent" ChartLegendVisibility="{Binding ElementName=CheckBoxShowLegends, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <metroChart:DoughnutChart.Series>
-                                    <metroChart:ChartSeries SeriesTitle="Opponents" DisplayMember="Name" ValueMember="Value" BrushMember="Brush"  ItemsSource="{Binding Path=OpponentClassesPercent, Source={x:Static compiledStats:ArenaStats.Instance}, IsAsync=True}"/>
+                                    <metroChart:ChartSeries SeriesTitle="对手" DisplayMember="Name" ValueMember="Value" BrushMember="Brush"  ItemsSource="{Binding Path=OpponentClassesPercent, Source={x:Static compiledStats:ArenaStats.Instance}, IsAsync=True}"/>
                                 </metroChart:DoughnutChart.Series>
                             </metroChart:DoughnutChart>
                         </DockPanel>

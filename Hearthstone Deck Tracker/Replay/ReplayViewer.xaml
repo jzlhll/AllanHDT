@@ -5,7 +5,7 @@
         xmlns:controls="clr-namespace:Hearthstone_Deck_Tracker.Replay.Controls"
         xmlns:controls1="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:hearthstoneDeckTracker="clr-namespace:Hearthstone_Deck_Tracker"
-        Title="ReplayViewer" Height="660" Width="1250" 
+        Title="回放界面" Height="660" Width="1250" 
         BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" Closing="ReplayViewer_OnClosing">
     <Window.Resources>
         <ResourceDictionary>

@@ -48,10 +48,10 @@ namespace Hearthstone_Deck_Tracker.Windows
 				{
 					switch((string)ComboBoxData.SelectedValue)
 					{
-						case "Game":
+						case "游戏":
 							FilterGame();
 							break;
-						case "Entities":
+						case "实体":
 							FilterEntities();
 							break;
 					}

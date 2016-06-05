@@ -14,14 +14,14 @@
             <GroupBox Header="菜单" DockPanel.Dock="Top">
                 <TreeView Name="TreeViewStats" Height="200" SelectedItemChanged="TreeViewStats_OnSelectedItemChanged">
                     <TreeViewItem Name="TreeViewItemArenaRuns" IsExpanded="True"
-                                  Selected="TreeViewItemArenaRuns_OnSelected" Header="竞技场运行"
+                                  Selected="TreeViewItemArenaRuns_OnSelected" Header="竞技场场次"
                                   DataContext="{Binding ArenaStatsSummary, RelativeSource={RelativeSource AncestorType=UserControl}}">
                         <TreeViewItem Name="TreeViewItemArenaRunsSummary"
                                       Selected="TreeViewItemArenaRunsSummary_OnSelected" Header="摘要"
                                       IsSelected="True"
                                       DataContext="{Binding ArenaStatsSummary, RelativeSource={RelativeSource AncestorType=UserControl}}" />
                         <TreeViewItem Name="TreeViewItemArenaRunsOverview"
-                                      Selected="TreeViewItemArenaRunsOverview_OnSelected" Header="运行 &amp; 对阵"
+                                      Selected="TreeViewItemArenaRunsOverview_OnSelected" Header="场次 &amp; 对阵"
                                       DataContext="{Binding ArenaRuns, RelativeSource={RelativeSource AncestorType=UserControl}}" />
                         <TreeViewItem Name="TreeViewItemArenaRunsAdvanced"
                                       Selected="TreeViewItemArenaRunsAdvanced_OnSelected" Header="高级图表"
@@ -49,7 +49,7 @@
                                 Width="32" Height="32" Margin="5, -9, -7, -9" Click="ButtonMore_OnClick" DockPanel.Dock="Right">
                             <Button.ContextMenu>
                                 <ContextMenu Name="ButtonMoreContextMenu">
-                                    <CheckBox Name="CheckBoxPercent" DockPanel.Dock="Right" Content="AUTO REFRESH" Margin="-25,0,5,0" Foreground="{DynamicResource TextBrush}" 
+                                    <CheckBox Name="CheckBoxPercent" DockPanel.Dock="Right" Content="自动刷新" Margin="-25,0,5,0" Foreground="{DynamicResource TextBrush}" 
                                   IsChecked="{Binding Path=StatsAutoRefresh, Source={StaticResource ConfigWrapper}}"/>
                                     <MenuItem Header="重置" Click="MenuItemReset_OnClick"/>
                                 </ContextMenu>

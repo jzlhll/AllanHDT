@@ -33,8 +33,8 @@
             <Rectangle Fill="{Binding MinimalCard, RelativeSource={RelativeSource AncestorType=UserControl}}" Width="217" Height="34" Grid.Row="3" Grid.Column="1" Margin="5"/>
         </Grid>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
-            <CheckBox Content="罕见的彩色宝石/宝物" IsChecked="{Binding RarityGems, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
-            <CheckBox Content="罕见的彩色照片/边框" Margin="10,0,0,0" IsChecked="{Binding RarityFrames, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+            <CheckBox Content="卡牌稀有度水晶着色" IsChecked="{Binding RarityGems, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+            <CheckBox Content="卡牌稀有度边框着色" Margin="10,0,0,0" IsChecked="{Binding RarityFrames, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
         </StackPanel>
         <Label Content="看到它的行动/动作：" FontWeight="SemiBold" FontSize="14" DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="0,10,0,0"/>
         <TextBlock Text="您可以在【选项】>【跟踪】>【外观】任何时候改变你的选择的主题。" DockPanel.Dock="Bottom" Margin="5" FontSize="14" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center"/>

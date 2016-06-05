@@ -15,7 +15,7 @@
                     <DockPanel Height="300" MinWidth="300">
                         <metroChart:RadialGaugeChart Background="Transparent" Margin="0,0,0,-10" ChartTitleVisibility="Collapsed" SelectedBrush="Transparent" ChartLegendVisibility="Collapsed">
                             <metroChart:RadialGaugeChart.Series>
-                                <metroChart:ChartSeries SeriesTitle="Winrate" DisplayMember="Name" ValueMember="Value" ItemsSource="{Binding Path=WinrateByCoin, Source={x:Static compiledStats:ConstructedStats.Instance}, IsAsync=True}"/>
+                                <metroChart:ChartSeries SeriesTitle="胜率" DisplayMember="Name" ValueMember="Value" ItemsSource="{Binding Path=WinrateByCoin, Source={x:Static compiledStats:ConstructedStats.Instance}, IsAsync=True}"/>
                             </metroChart:RadialGaugeChart.Series>
                         </metroChart:RadialGaugeChart>
                     </DockPanel>

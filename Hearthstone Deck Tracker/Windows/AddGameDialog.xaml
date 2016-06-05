@@ -7,7 +7,7 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:enums="clr-namespace:Hearthstone_Deck_Tracker.Enums"
              mc:Ignorable="d" 
-             d:DesignHeight="300" Title="Add new game" Height="525" d:DesignWidth="450">
+             d:DesignHeight="300" Title="添加新游戏" Height="525" d:DesignWidth="450">
     <StackPanel Width="300" Margin="0,15,0,0">
         <DockPanel Margin="0,2,0,0">
             <Label Content="结果:" Width="90"/>
