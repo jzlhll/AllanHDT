@@ -26,21 +26,22 @@ namespace Hearthstone_Deck_Tracker.Controls
 				DeckTitleContainer.Visibility = Collapsed;
 				DeckFormatPanel.Visibility = Collapsed;
 				SetDustPanel.Visibility = Collapsed;
-				BrandContainer.Visibility = Collapsed;
 			}
 			else
 			{
 				DeckTitlePanel.Background = DeckHeaderBackground(deck.Class);
 				LblDeckTitle.Text = deck.Name;
-				LblDeckTag.Text = GetTagText(deck);
-				LblDeckFormat.Text = GetFormatText(deck);
+                LblDeckTag.Text = GetTagText(deck);
+                LblDeckFormat.Text = GetFormatText(deck);
 				LblDustCost.Text = TotalDust(deck).ToString();
 				ShowFormatIcon(deck);
 				SetIcons.Update(deck);
 			}
-		}
 
-		private ImageBrush DeckHeaderBackground(string deckClass)
+            BrandContainer.Visibility = Hidden;
+        }
+
+        private ImageBrush DeckHeaderBackground(string deckClass)
 		{
 			var heroId = ClassToID(deckClass);
 			var drawingGroup = new DrawingGroup();
@@ -56,35 +57,73 @@ namespace Hearthstone_Deck_Tracker.Controls
 			};
 		}
 
-		private string GetTagText(Deck deck)
+        private string GetTagText(Deck deck)
 		{
 			var predefined = new List<string>() {
-				"Midrange",
-				"Aggro",
-				"Control",
-				"Tempo",
-				"Combo"
-			};
-
-			if(deck.Tags.Count > 0)
-				foreach(var tag in predefined)
-					if(_allTags.Contains(tag.ToLowerInvariant()))
-						return tag;
-
-			return deck.Class;
+				"中速",
+                "动物园",
+				"快攻",
+				"控制",
+				"节奏",
+				"组合",
+                "打脸",
+                "疲劳",
+                "乱斗"
+            };
+            string ret = "";
+            if (deck.Tags.Count > 0)
+                foreach (var tag in predefined)
+                    if (_allTags.Contains(tag)) // tag.ToLowerInvariant()
+                        ret = tag;
+            return ret + translateClass2CN(deck.Class);
 		}
+
+        private string translateClass2CN(string s) {
+            if (s.Equals("Hunter")) {
+                return "猎";
+            } else if (s.Equals("Paladin")) {
+                return "骑";
+            } else if (s.Equals("Priest")){
+                return "牧";
+            }
+            else if (s.Equals("Warrior"))
+            {
+                return "战";
+            }
+            else if (s.Equals("Warlock"))
+            {
+                return "术";
+            }
+            else if (s.Equals("Druid"))
+            {
+                return "德";
+            }
+            else if (s.Equals("Mage"))
+            {
+                return "法";
+            }
+            else if (s.Equals("Shaman"))
+            {
+                return "萨";
+            }
+            else if (s.Equals("Rogue"))
+            {
+                return "贼";
+            }
+            return s;
+        }
 
 		private string GetFormatText(Deck deck)
 		{
-			if(deck.IsArenaDeck)
-				return "Arena";
-			if(_allTags.Contains("brawl"))
-				return "Brawl";
-			if(_allTags.Contains("adventure") || _allTags.Contains("pve"))
-				return "Adventure";
-			if(deck.StandardViable)
-				return "Standard";
-			return "Wild";
+            if (deck.IsArenaDeck)
+                return "竞技场";// "Arena";
+            if (_allTags.Contains("brawl"))
+                return "乱斗";// "Brawl";
+            if (_allTags.Contains("adventure") || _allTags.Contains("pve"))
+                return "冒险";//"Adventure";
+            if (deck.StandardViable)
+                return "标准";// "Standard";
+            return "狂野";// "Wild";
 		}
 
 		private void ShowFormatIcon(Deck deck)

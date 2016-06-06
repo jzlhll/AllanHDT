@@ -56,7 +56,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 		public static async Task ShowSavedFileMessage(this MainWindow window, string fileName)
 		{
 			var result = await window.ShowMessageAsync("", $"保存到\n\"{fileName}\"", AffirmativeAndNegative,
-							new Settings {NegativeButtonText = "Open folder"});
+							new Settings {NegativeButtonText = "打开文件夹"});
 			if(result == MessageDialogResult.Negative)
 				Process.Start(Path.GetDirectoryName(fileName));
 		}

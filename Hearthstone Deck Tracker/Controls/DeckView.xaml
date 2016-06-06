@@ -78,7 +78,7 @@
                     </Rectangle>
                 </StackPanel>
                 <TextBlock x:Name="LblDeckFormat" Margin="0,0,2,0" FontSize="14" Height="20" Foreground="White">狂野</TextBlock>
-                <TextBlock x:Name="LblDeckTag" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="4,0" FontSize="14" Height="20" Foreground="White">中间排名</TextBlock>
+                <TextBlock x:Name="LblDeckTag" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="4,0" FontSize="14" Height="20" Foreground="White">中速</TextBlock>
             </DockPanel>
             <!-- hsdecktracker -->
             <Border BorderBrush="White" BorderThickness="0,1,0,0" Height="24" Width="217" x:Name="BrandContainer" DockPanel.Dock="Bottom">
