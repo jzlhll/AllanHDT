@@ -52,14 +52,14 @@ namespace Hearthstone_Deck_Tracker
 			_game = game;
 		}
 
-		public bool RecordCurrentGameMode => _game.CurrentGameMode == None && Config.Instance.RecordOther
-											 || _game.CurrentGameMode == Practice && Config.Instance.RecordPractice
-											 || _game.CurrentGameMode == Arena && Config.Instance.RecordArena
-											 || _game.CurrentGameMode == Brawl && Config.Instance.RecordBrawl
-											 || _game.CurrentGameMode == Ranked && Config.Instance.RecordRanked
-											 || _game.CurrentGameMode == Friendly && Config.Instance.RecordFriendly
-											 || _game.CurrentGameMode == Casual && Config.Instance.RecordCasual
-											 || _game.CurrentGameMode == Spectator && Config.Instance.RecordSpectator;
+		public bool RecordCurrentGameMode => _game.CurrentGameMode == 无 && Config.Instance.RecordOther
+											 || _game.CurrentGameMode == 练习 && Config.Instance.RecordPractice
+											 || _game.CurrentGameMode == 竞技场 && Config.Instance.RecordArena
+											 || _game.CurrentGameMode == 乱斗 && Config.Instance.RecordBrawl
+											 || _game.CurrentGameMode == 天梯 && Config.Instance.RecordRanked
+											 || _game.CurrentGameMode == 好友 && Config.Instance.RecordFriendly
+											 || _game.CurrentGameMode == 休闲 && Config.Instance.RecordCasual
+											 || _game.CurrentGameMode == 观众 && Config.Instance.RecordSpectator;
 
 		public void HandleInMenu()
 		{
@@ -97,7 +97,7 @@ namespace Hearthstone_Deck_Tracker
 				_arenaRewardDialog.Activate();
 			}
 
-			if(_game.CurrentGameStats != null && _game.CurrentGameStats.GameMode == Arena)
+			if(_game.CurrentGameStats != null && _game.CurrentGameStats.GameMode == 竞技场)
 			{
 				ArenaStats.Instance.UpdateArenaRuns();
 				ArenaStats.Instance.UpdateArenaStats();
@@ -368,7 +368,7 @@ namespace Hearthstone_Deck_Tracker
 
 			var selectedDeck = DeckList.Instance.ActiveDeckVersion;
 
-			if(Config.Instance.SpectatorUseNoDeck && _game.CurrentGameMode == Spectator)
+			if(Config.Instance.SpectatorUseNoDeck && _game.CurrentGameMode == 观众)
 			{
 				Log.Info("SpectatorUseNoDeck is enabled");
 				if(selectedDeck != null)
@@ -397,7 +397,7 @@ namespace Hearthstone_Deck_Tracker
 			Core.Overlay.HideTimers();
 			DeckManager.ResetAutoSelectCount();
 			Log.Info("Game ended...");
-			if(_game.CurrentGameMode == Spectator && !Config.Instance.RecordSpectator)
+			if(_game.CurrentGameMode == 观众 && !Config.Instance.RecordSpectator)
 			{
 				if(Config.Instance.ReselectLastDeckUsed && DeckList.Instance.ActiveDeck == null)
 				{
@@ -431,11 +431,11 @@ namespace Hearthstone_Deck_Tracker
 				return;
 			}
 			_game.CurrentGameStats.GameMode = _game.CurrentGameMode;
-			if(_game.CurrentGameMode == Ranked || _game.CurrentGameMode == Casual)
+			if(_game.CurrentGameMode == 天梯 || _game.CurrentGameMode == 休闲)
 			{
 				_game.CurrentGameStats.Format = _game.CurrentFormat;
 				Log.Info("Format: " + _game.CurrentGameStats.Format);
-				if(_game.CurrentGameMode == Ranked && _game.MatchInfo != null)
+				if(_game.CurrentGameMode == 天梯 && _game.MatchInfo != null)
 				{
 					var wild = _game.CurrentFormat == Format.Wild;
 					_game.CurrentGameStats.Rank = wild ? _game.MatchInfo.LocalPlayer.WildRank : _game.MatchInfo.LocalPlayer.StandardRank;
@@ -531,9 +531,9 @@ namespace Hearthstone_Deck_Tracker
 					Log.Info("Waiting for game mode to be saved to game...");
 					await GameModeSaved(15);
 					Log.Info("Game mode was saved, continuing.");
-					if(_game.CurrentGameMode == Arena)
+					if(_game.CurrentGameMode == 竞技场)
 						HearthStatsManager.UploadArenaMatchAsync(_lastGame, selectedDeck, background: true);
-					else if(_game.CurrentGameMode != Brawl)
+					else if(_game.CurrentGameMode != 乱斗)
 						HearthStatsManager.UploadMatchAsync(_lastGame, selectedDeck, background: true);
 				}
 				_lastGame = null;
@@ -565,7 +565,7 @@ namespace Hearthstone_Deck_Tracker
 		{
 			var startTime = DateTime.Now;
 			var timeout = TimeSpan.FromSeconds(timeoutInSeconds);
-			while(_lastGame != null && _lastGame.GameMode == None && (DateTime.Now - startTime) < timeout)
+			while(_lastGame != null && _lastGame.GameMode == 无 && (DateTime.Now - startTime) < timeout)
 				await Task.Delay(100);
 		}
 
@@ -627,7 +627,7 @@ namespace Hearthstone_Deck_Tracker
 						_game.CurrentGameStats.GameMode = _game.CurrentGameMode;
 						Log.Info("Set CurrentGameStats.GameMode to " + _game.CurrentGameMode);
 					}
-					if(_game.CurrentGameStats.GameMode == Arena)
+					if(_game.CurrentGameStats.GameMode == 竞技场)
 					{
 						ArenaStats.Instance.UpdateArenaStats();
 						ArenaStats.Instance.UpdateArenaRuns();

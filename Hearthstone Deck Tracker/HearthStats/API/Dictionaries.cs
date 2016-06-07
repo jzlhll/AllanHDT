@@ -18,11 +18,11 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 
 		public static readonly Dictionary<int, GameMode> GameModeDict = new Dictionary<int, GameMode>
 		{
-			{1, GameMode.Arena},
-			{2, GameMode.Casual},
-			{3, GameMode.Ranked},
-			{4, GameMode.None}, //Tournament
-			{5, GameMode.Friendly}
+			{1, GameMode.竞技场},
+			{2, GameMode.休闲},
+			{3, GameMode.天梯},
+			{4, GameMode.无}, //Tournament
+			{5, GameMode.好友}
 		};
 
 		public static readonly Dictionary<int, string> HeroDict = new Dictionary<int, string>

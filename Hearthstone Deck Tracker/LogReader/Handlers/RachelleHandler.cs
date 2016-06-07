@@ -18,7 +18,7 @@ namespace Hearthstone_Deck_Tracker.LogReader.Handlers
 		public void Handle(string logLine, IHsGameState gameState, IGame game)
 		{
 			if(GoldProgressRegex.IsMatch(logLine) && (DateTime.Now - gameState.LastGameStart) > TimeSpan.FromSeconds(10)
-			        && game.CurrentGameMode != GameMode.Spectator)
+			        && game.CurrentGameMode != GameMode.¹ÛÖÚ)
 			{
 				int wins;
 				var rawWins = GoldProgressRegex.Match(logLine).Groups["wins"].Value;

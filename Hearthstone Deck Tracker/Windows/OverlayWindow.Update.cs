@@ -193,7 +193,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			//hide the overlay depenting on options
 			ShowOverlay(
 						!((Config.Instance.HideInBackground && !User32.IsHearthstoneInForeground())
-						  || (Config.Instance.HideOverlayInSpectator && _game.CurrentGameMode == GameMode.Spectator) || Config.Instance.HideOverlay
+						  || (Config.Instance.HideOverlayInSpectator && _game.CurrentGameMode == GameMode.观众) || Config.Instance.HideOverlay
 						  || ForceHidden || Helper.GameWindowState == WindowState.Minimized));
 
 

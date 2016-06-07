@@ -263,12 +263,12 @@ namespace Hearthstone_Deck_Tracker
 		{
 			switch(Core.Game.CurrentGameMode)
 			{
-				case GameMode.Ranked:
-				case GameMode.Casual:
-				case GameMode.Friendly:
-				case GameMode.Practice:
+				case GameMode.天梯:
+				case GameMode.休闲:
+				case GameMode.好友:
+				case GameMode.练习:
 					return AutoImportConstructed(select);
-				case GameMode.Arena:
+				case GameMode.竞技场:
 					AutoImportArena(ArenaImportingBehaviour.AutoImportSave);
 					break;
 			}
@@ -319,9 +319,9 @@ namespace Hearthstone_Deck_Tracker
 		public static List<Deck> FilterByMode(this List<Deck> decks, GameMode mode, Format? format)
 		{
 			var filtered = new List<Deck>(decks);
-			if(mode == GameMode.Arena)
+			if(mode == GameMode.竞技场)
 				filtered = filtered.Where(x => x.IsArenaDeck && x.IsArenaRunCompleted != true).ToList();
-			else if(mode != GameMode.None)
+			else if(mode != GameMode.无)
 			{
 				filtered = filtered.Where(x => !x.IsArenaDeck).ToList();
 				if(format == Format.Standard)
