@@ -77,13 +77,18 @@ namespace Hearthstone_Deck_Tracker.Controls
                         ret = tag;
             return ret + translateClass2CN(deck.Class);
 		}
-
-        private string translateClass2CN(string s) {
-            if (s.Equals("Hunter")) {
+        private string translateClass2CN(string s)
+        {
+            if (s.Equals("Hunter"))
+            {
                 return "猎";
-            } else if (s.Equals("Paladin")) {
+            }
+            else if (s.Equals("Paladin"))
+            {
                 return "骑";
-            } else if (s.Equals("Priest")){
+            }
+            else if (s.Equals("Priest"))
+            {
                 return "牧";
             }
             else if (s.Equals("Warrior"))
@@ -112,8 +117,7 @@ namespace Hearthstone_Deck_Tracker.Controls
             }
             return s;
         }
-
-		private string GetFormatText(Deck deck)
+        private string GetFormatText(Deck deck)
 		{
             if (deck.IsArenaDeck)
                 return "竞技场";// "Arena";

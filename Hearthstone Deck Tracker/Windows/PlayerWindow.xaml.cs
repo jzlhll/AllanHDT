@@ -102,22 +102,22 @@ namespace Hearthstone_Deck_Tracker
 			{
 				switch(item)
 				{
-					case "Draw Chances":
+					case "抽牌几率":
 						StackPanelMain.Children.Add(CanvasPlayerChance);
 						break;
-					case "Card Counter":
+					case "卡牌计数器":
 						StackPanelMain.Children.Add(CanvasPlayerCount);
 						break;
-					case "Fatigue Counter":
+					case "疲劳计数器":
 						StackPanelMain.Children.Add(LblPlayerFatigue);
 						break;
-					case "Deck Title":
+					case "卡组名字":
 						StackPanelMain.Children.Add(LblDeckTitle);
 						break;
-					case "Wins":
+					case "胜场":
 						StackPanelMain.Children.Add(LblWins);
 						break;
-					case "Cards":
+					case "卡牌":
 						StackPanelMain.Children.Add(ViewBoxPlayer);
 						break;
 				}
@@ -132,7 +132,7 @@ namespace Hearthstone_Deck_Tracker
 
 			if(cardsLeftInDeck <= 0)
 			{
-				LblPlayerFatigue.Text = "Next draw fatigues for: " + (_game.Player.Fatigue + 1);
+				LblPlayerFatigue.Text = "下一抽疲劳: " + (_game.Player.Fatigue + 1);
 
 				LblDrawChance2.Text = "0%";
 				LblDrawChance1.Text = "0%";

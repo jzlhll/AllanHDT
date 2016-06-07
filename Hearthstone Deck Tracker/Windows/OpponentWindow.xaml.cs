@@ -74,30 +74,72 @@ namespace Hearthstone_Deck_Tracker
 				var lossesVs = selectedDeck.GetRelevantGames().Count(g => g.Result == GameResult.Loss && g.OpponentHero == _game.Opponent.Class);
 				var percent = (winsVs + lossesVs) > 0
 					              ? Math.Round(winsVs * 100.0 / (winsVs + lossesVs), 0).ToString(CultureInfo.InvariantCulture) : "-";
-				LblWinRateAgainst.Text = $"VS {_game.Opponent.Class}: {winsVs}-{lossesVs} ({percent}%)";
+				LblWinRateAgainst.Text = $"VS {translateClass2CN(_game.Opponent.Class)}: {winsVs}-{lossesVs} ({percent}%)";
 			}
 		}
 
-		public void UpdateOpponentLayout()
+        private string translateClass2CN(string s)
+        {
+            s = s.ToLowerInvariant();
+            if (s.Equals("hunter"))
+            {
+                return "猎人";
+            }
+            else if (s.Equals("paladin"))
+            {
+                return "圣骑士";
+            }
+            else if (s.Equals("priest"))
+            {
+                return "牧师";
+            }
+            else if (s.Equals("warrior"))
+            {
+                return "战士";
+            }
+            else if (s.Equals("warlock"))
+            {
+                return "术士";
+            }
+            else if (s.Equals("druid"))
+            {
+                return "德鲁伊";
+            }
+            else if (s.Equals("mage"))
+            {
+                return "法师";
+            }
+            else if (s.Equals("shaman"))
+            {
+                return "萨满";
+            }
+            else if (s.Equals("rogue"))
+            {
+                return "潜行者";
+            }
+            return s;
+        }
+
+        public void UpdateOpponentLayout()
 		{
 			StackPanelMain.Children.Clear();
 			foreach(var item in Config.Instance.PanelOrderOpponent)
 			{
 				switch(item)
 				{
-					case "Cards":
+					case "卡牌":
 						StackPanelMain.Children.Add(ViewBoxOpponent);
 						break;
-					case "Draw Chances":
+					case "抽牌几率":
 						StackPanelMain.Children.Add(CanvasOpponentChance);
 						break;
-					case "Card Counter":
+					case "卡牌计数器":
 						StackPanelMain.Children.Add(CanvasOpponentCount);
 						break;
-					case "Fatigue Counter":
+					case "疲劳计数器":
 						StackPanelMain.Children.Add(LblOpponentFatigue);
 						break;
-					case "Win Rate":
+					case "胜率":
 						StackPanelMain.Children.Add(LblWinRateAgainst);
 						break;
 				}
@@ -112,7 +154,7 @@ namespace Hearthstone_Deck_Tracker
 
 			if(cardsLeftInDeck <= 0)
 			{
-				LblOpponentFatigue.Text = "Next draw fatigues for: " + (_game.Opponent.Fatigue + 1);
+				LblOpponentFatigue.Text = "下一抽疲劳: " + (_game.Opponent.Fatigue + 1);
 
 				LblOpponentDrawChance2.Text = "0%";
 				LblOpponentDrawChance1.Text = "0%";

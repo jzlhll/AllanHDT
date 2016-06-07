@@ -9,13 +9,13 @@ namespace Hearthstone_Deck_Tracker.Windows
 {
 	public partial class OverlayWindow
 	{
-		private const string DeckPanelCards = "Cards";
-		private const string DeckPanelDrawChances = "Draw Chances";
-		private const string DeckPanelCardCounter = "Card Counter";
-		private const string DeckPanelFatigueCounter = "Fatigue Counter";
-		private const string DeckPanelDeckTitle = "Deck Title";
-		private const string DeckPanelWins = "Wins";
-		private const string DeckPanelWinrate = "Win Rate";
+		private const string DeckPanelCards = "卡牌";
+		private const string DeckPanelDrawChances = "抽牌几率";
+		private const string DeckPanelCardCounter = "卡牌计数器";
+		private const string DeckPanelFatigueCounter = "疲劳计数器";
+		private const string DeckPanelDeckTitle = "卡组名字";
+		private const string DeckPanelWins = "胜场";
+		private const string DeckPanelWinrate = "胜率";
 
 		public void UpdatePlayerLayout()
 		{
@@ -85,11 +85,53 @@ namespace Hearthstone_Deck_Tracker.Windows
 				var winsVs = selectedDeck.GetRelevantGames().Count(g => g.Result == GameResult.Win && g.OpponentHero == _game.Opponent.Class);
 				var lossesVs = selectedDeck.GetRelevantGames().Count(g => g.Result == GameResult.Loss && g.OpponentHero == _game.Opponent.Class);
 				var percent = (winsVs + lossesVs) > 0 ? Math.Round(winsVs * 100.0 / (winsVs + lossesVs), 0).ToString() : "-";
-				LblWinRateAgainst.Text = $"VS {_game.Opponent.Class}: {winsVs}-{lossesVs} ({percent}%)";
+				LblWinRateAgainst.Text = $"VS {translateClass2CN(_game.Opponent.Class)}: {winsVs}-{lossesVs} ({percent}%)";
 			}
 		}
+        private string translateClass2CN(string s)
+        {
+            s = s.ToLowerInvariant();
+            if (s.Equals("hunter"))
+            {
+                return "猎人";
+            }
+            else if (s.Equals("paladin"))
+            {
+                return "圣骑士";
+            }
+            else if (s.Equals("priest"))
+            {
+                return "牧师";
+            }
+            else if (s.Equals("warrior"))
+            {
+                return "战士";
+            }
+            else if (s.Equals("warlock"))
+            {
+                return "术士";
+            }
+            else if (s.Equals("druid"))
+            {
+                return "德鲁伊";
+            }
+            else if (s.Equals("mage"))
+            {
+                return "法师";
+            }
+            else if (s.Equals("shaman"))
+            {
+                return "萨满";
+            }
+            else if (s.Equals("rogue"))
+            {
+                return "潜行者";
+            }
+            return s;
+        }
 
-		private void SetDeckTitle() => LblDeckTitle.Text = DeckList.Instance.ActiveDeck?.Name ?? "";
+
+        private void SetDeckTitle() => LblDeckTitle.Text = DeckList.Instance.ActiveDeck?.Name ?? "";
 
 		private void SetOpponentCardCount(int cardCount, int cardsLeftInDeck)
 		{
@@ -98,7 +140,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 
 			if (cardsLeftInDeck <= 0)
 			{
-				LblOpponentFatigue.Text = "Next draw fatigues for: " + (_game.Opponent.Fatigue + 1);
+				LblOpponentFatigue.Text = "下一抽疲劳: " + (_game.Opponent.Fatigue + 1);
 
 				LblOpponentDrawChance2.Text = "0%";
 				LblOpponentDrawChance1.Text = "0%";
@@ -129,7 +171,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 
 			if (cardsLeftInDeck <= 0)
 			{
-				LblPlayerFatigue.Text = "Next draw fatigues for: " + (_game.Player.Fatigue + 1);
+				LblPlayerFatigue.Text = "下一抽疲劳: " + (_game.Player.Fatigue + 1);
 
 				LblDrawChance2.Text = "0%";
 				LblDrawChance1.Text = "0%";

@@ -163,12 +163,12 @@ namespace Hearthstone_Deck_Tracker.Utility
 				}
 				if(configVersion <= new Version(0, 9, 6, 0))
 				{
-					if(!Config.Instance.PanelOrderPlayer.Contains("Fatigue Counter"))
+					if(!Config.Instance.PanelOrderPlayer.Contains("疲劳计数器"))
 					{
 						Config.Instance.Reset(nameof(Config.PanelOrderPlayer));
 						converted = true;
 					}
-					if(!Config.Instance.PanelOrderOpponent.Contains("Fatigue Counter"))
+					if(!Config.Instance.PanelOrderOpponent.Contains("疲劳计数器"))
 					{
 						Config.Instance.Reset(nameof(Config.PanelOrderOpponent));
 						converted = true;

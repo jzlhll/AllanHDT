@@ -17,7 +17,7 @@
                     <VisualBrush Visual="{StaticResource hdticon_black}" />
                 </Rectangle.Fill>
             </Rectangle>
-            <TextBlock HorizontalAlignment="Center" FontSize="13" FontWeight="SemiBold" Text="HearthstoneDeckTracker汉化版V0.15.2"/>
+            <TextBlock HorizontalAlignment="Center" FontSize="13" FontWeight="SemiBold" Text="HearthstoneDeckTracker汉化版"/>
             <Button Name="ButtonExpandLogin" Margin="20,20,20,10" Style="{StaticResource SquareButtonStyle}">
                 <TextBlock Text="登陆HEARTHSTATS"/>
             </Button>

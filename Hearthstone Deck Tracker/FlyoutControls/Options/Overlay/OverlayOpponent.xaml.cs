@@ -92,24 +92,24 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 			{
 				switch(itemName)
 				{
-					case "Cards":
-						ElementSorterOpponent.AddItem(new ElementSorterItem("Cards", !Config.Instance.HideOpponentCards,
+					case "卡牌":
+						ElementSorterOpponent.AddItem(new ElementSorterItem("卡牌", !Config.Instance.HideOpponentCards,
 						                                                    value => Config.Instance.HideOpponentCards = !value, false));
 						break;
-					case "Card Counter":
-						ElementSorterOpponent.AddItem(new ElementSorterItem("Card Counter", !Config.Instance.HideOpponentCardCount,
+					case "卡牌计数器":
+						ElementSorterOpponent.AddItem(new ElementSorterItem("卡牌计数器", !Config.Instance.HideOpponentCardCount,
 						                                                    value => Config.Instance.HideOpponentCardCount = !value, false));
 						break;
-					case "Fatigue Counter":
-						ElementSorterOpponent.AddItem(new ElementSorterItem("Fatigue Counter", !Config.Instance.HideOpponentFatigueCount,
+					case "疲劳计数器":
+						ElementSorterOpponent.AddItem(new ElementSorterItem("疲劳计数器", !Config.Instance.HideOpponentFatigueCount,
 						                                                    value => Config.Instance.HideOpponentFatigueCount = !value, false));
 						break;
-					case "Draw Chances":
-						ElementSorterOpponent.AddItem(new ElementSorterItem("Draw Chances", !Config.Instance.HideOpponentDrawChances,
+					case "抽牌几率":
+						ElementSorterOpponent.AddItem(new ElementSorterItem("抽牌几率", !Config.Instance.HideOpponentDrawChances,
 						                                                    value => Config.Instance.HideOpponentDrawChances = !value, false));
 						break;
-					case "Win Rate":
-						ElementSorterOpponent.AddItem(new ElementSorterItem("Win Rate", Config.Instance.ShowWinRateAgainst,
+					case "胜率":
+						ElementSorterOpponent.AddItem(new ElementSorterItem("胜率", Config.Instance.ShowWinRateAgainst,
 						                                                    value => Config.Instance.ShowWinRateAgainst = value, false));
 						break;
 				}
