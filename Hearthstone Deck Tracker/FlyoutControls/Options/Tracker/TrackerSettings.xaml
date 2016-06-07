@@ -124,7 +124,7 @@
                             Click="SelectSaveDataPath_Click"
                             Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                             Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}" />
-                    <Button Name="ButtonRestart" Margin="10,15,10,0" Content="重启HDT" FontSize="15"
+                    <Button Name="ButtonRestart" Margin="10,15,10,0" Content="重启该软件" FontSize="15"
                             Click="ButtonRestart_OnClick" />
                 </StackPanel>
             </ScrollViewer>
