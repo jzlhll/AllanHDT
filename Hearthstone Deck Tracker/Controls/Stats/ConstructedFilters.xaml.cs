@@ -38,13 +38,13 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats
 			ComboBoxMode.ItemsSource = new[]
 			{
 				GameMode.All,
-				GameMode.天梯,
-				GameMode.休闲,
-				GameMode.乱斗,
-				GameMode.好友,
-				GameMode.练习,
-				GameMode.观众
-            };
+				GameMode.Ranked,
+				GameMode.Casual,
+				GameMode.Brawl,
+				GameMode.Friendly,
+				GameMode.Practice,
+				GameMode.Spectator
+			};
 			ComboBoxMode.SelectedItem = Config.Instance.ConstructedStatsModeFilter;
 			ComboBoxFormat.ItemsSource = Enum.GetValues(typeof(Format));
 			ComboBoxFormat.SelectedItem = Config.Instance.ConstructedStatsFormatFilter;
@@ -65,17 +65,17 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats
 		}
 
 		public Visibility RankFilterVisibility
-			=> Config.Instance.ConstructedStatsModeFilter == GameMode.天梯 ? Visibility.Visible : Visibility.Collapsed;
+			=> Config.Instance.ConstructedStatsModeFilter == GameMode.Ranked ? Visibility.Visible : Visibility.Collapsed;
 
 		public Visibility FormatFilterVisibility
-			=> Config.Instance.ConstructedStatsModeFilter == GameMode.天梯 || Config.Instance.ConstructedStatsModeFilter == GameMode.休闲
-                    ? Visibility.Visible : Visibility.Collapsed;
+			=> Config.Instance.ConstructedStatsModeFilter == GameMode.Ranked || Config.Instance.ConstructedStatsModeFilter == GameMode.Casual
+					? Visibility.Visible : Visibility.Collapsed;
 
 		public bool ActiveDeckOnlyIsEnabled => !DeckList.Instance.ActiveDeck?.IsArenaDeck ?? false;
 
 		public string ActiveDeckOnlyToolTip
 			=>DeckList.Instance.ActiveDeck == null
-					? "没有激活的卡组" : (DeckList.Instance.ActiveDeck.IsArenaDeck ? "激活的卡组是个竞技场卡组" : "卡组: " + DeckList.Instance.ActiveDeck.Name);
+					? "No active deck" : (DeckList.Instance.ActiveDeck.IsArenaDeck ? "Active deck is an arena deck" : "Deck: " + DeckList.Instance.ActiveDeck.Name);
 
 		public event PropertyChangedEventHandler PropertyChanged;
 

@@ -11,16 +11,16 @@ namespace Hearthstone_Deck_Tracker.Enums
 		[Description("All")]
 		All,
 
-		[Description("已选的")]
+		[Description("Selected")]
 		Selected,
 
-		[Description("最近的")]
+		[Description("Latest")]
 		Latest,
 
-		[Description("主要的已选的")]
+		[Description("Selected Major")]
 		SelectedMajor,
 
-		[Description("主要的最近的")]
+		[Description("Latest Major")]
 		LatestMajor
 	}
 }

@@ -54,7 +54,7 @@ namespace Hearthstone_Deck_Tracker.Stats
 		{
 			Coin = false;
 			Result = result;
-			GameMode = GameMode.无;
+			GameMode = GameMode.None;
 			OpponentHero = opponentHero;
 			PlayerHero = playerHero;
 			StartTime = DateTime.Now;
@@ -211,7 +211,7 @@ namespace Hearthstone_Deck_Tracker.Stats
 		{
 			get
 			{
-				return (GameMode == GameMode.天梯 || GameMode == GameMode.休闲) ? (Format?)_format : null;
+				return (GameMode == GameMode.Ranked || GameMode == GameMode.Casual) ? (Format?)_format : null;
 			}
 			set
 			{
@@ -291,10 +291,10 @@ namespace Hearthstone_Deck_Tracker.Stats
 		public bool HasLegendRank => LegendRank > 0;
 
 		[XmlIgnore]
-		public string RankString => GameMode == GameMode.天梯 ? (HasLegendRank ? $"L{LegendRank}" : (HasRank ? Rank.ToString() : "-")) : "-";
+		public string RankString => GameMode == GameMode.Ranked ? (HasLegendRank ? $"L{LegendRank}" : (HasRank ? Rank.ToString() : "-")) : "-";
 
 		[XmlIgnore]
-		public int SortableRank => GameMode == GameMode.天梯 ? (HasLegendRank ? -int.MaxValue + LegendRank : (HasRank ? Rank : int.MaxValue)) : int.MaxValue;
+		public int SortableRank => GameMode == GameMode.Ranked ? (HasLegendRank ? -int.MaxValue + LegendRank : (HasRank ? Rank : int.MaxValue)) : int.MaxValue;
 
 		[XmlIgnore]
 		public string ResultString => Result + (WasConceded ? "*" : "");
@@ -307,7 +307,7 @@ namespace Hearthstone_Deck_Tracker.Stats
 		public string PlayerDeckVersionString => PlayerDeckVersion != null ? PlayerDeckVersion.ToString("v{M}.{m}") : SerializableVersion.Default.ToString("v{M}.{m}");
 
 		[XmlIgnore]
-		public ToolTip ResultToolTip => new ToolTip {Content = "承让", Visibility = (WasConceded ? Visibility.Visible : Visibility.Hidden)};
+		public ToolTip ResultToolTip => new ToolTip {Content = "conceded", Visibility = (WasConceded ? Visibility.Visible : Visibility.Hidden)};
 
 		[XmlIgnore]
 		public bool HasReplayFile => ReplayFile != null && File.Exists(Path.Combine(Config.Instance.ReplayDir, ReplayFile));
@@ -339,7 +339,7 @@ namespace Hearthstone_Deck_Tracker.Stats
 		}
 
 		[XmlIgnore]
-		public string Duration => (EndTime - StartTime).Minutes + " 分";
+		public string Duration => (EndTime - StartTime).Minutes + " min";
 
 		[XmlIgnore]
 		public int SortableDuration => (EndTime - StartTime).Minutes;

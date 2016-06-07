@@ -160,7 +160,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			deck.DeckStats.AddGameResult(game);
 			if(Config.Instance.HearthStatsAutoUploadNewGames)
 			{
-				if(game.GameMode == GameMode.竞技场)
+				if(game.GameMode == GameMode.Arena)
 					HearthStatsManager.UploadArenaMatchAsync(game, deck, true, true).Forget();
 				else
 					HearthStatsManager.UploadMatchAsync(game, deck.GetSelectedDeckVersion(), true, true).Forget();
@@ -194,7 +194,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 				var deck = DeckList.Instance.Decks.FirstOrDefault(d => d.DeckId == game.DeckId);
 				if(deck != null)
 				{
-					if(game.GameMode == GameMode.竞技场)
+					if(game.GameMode == GameMode.Arena)
 						HearthStatsManager.UpdateArenaMatchAsync(game, deck, true, true);
 					else
 						HearthStatsManager.UpdateMatchAsync(game, deck.GetVersion(game.PlayerDeckVersion), true, true);

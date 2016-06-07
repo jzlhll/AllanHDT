@@ -400,7 +400,7 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 			var filtered = Config.Instance.DisplayedMode == GameMode.All
 				               ? DeckStats.Games
 				               : (IsArenaDeck
-					                  ? DeckStats.Games.Where(g => g.GameMode == GameMode.竞技场).ToList()
+					                  ? DeckStats.Games.Where(g => g.GameMode == GameMode.Arena).ToList()
 					                  : DeckStats.Games.Where(g => g.GameMode == Config.Instance.DisplayedMode).ToList());
 			switch(Config.Instance.DisplayedTimeFrame)
 			{
@@ -457,7 +457,7 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 			HearthStatsIdsAlreadyReset = true;
 		}
 
-		public bool? CheckIfArenaDeck() => !DeckStats.Games.Any() ? (bool?)null : DeckStats.Games.All(g => g.GameMode == GameMode.竞技场);
+		public bool? CheckIfArenaDeck() => !DeckStats.Games.Any() ? (bool?)null : DeckStats.Games.All(g => g.GameMode == GameMode.Arena);
 
 		public Deck GetVersion(int major, int minor) => GetVersion(new SerializableVersion(major, minor));
 
@@ -504,51 +504,9 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 
 		public bool ContainsSet(string set) => Cards.Any(card => card.Set == set);
 
-		public override string ToString() => $"{Name} ({translateClass2CN(Class)})";
+		public override string ToString() => $"{Name} ({Class})";
 
-        private string translateClass2CN(string s)
-        {
-            s = s.ToLowerInvariant();
-            if (s.Equals("hunter"))
-            {
-                return "猎人";
-            }
-            else if (s.Equals("paladin"))
-            {
-                return "圣骑士";
-            }
-            else if (s.Equals("priest"))
-            {
-                return "牧师";
-            }
-            else if (s.Equals("warrior"))
-            {
-                return "战士";
-            }
-            else if (s.Equals("warlock"))
-            {
-                return "术士";
-            }
-            else if (s.Equals("druid"))
-            {
-                return "德鲁伊";
-            }
-            else if (s.Equals("mage"))
-            {
-                return "法师";
-            }
-            else if (s.Equals("shaman"))
-            {
-                return "萨满";
-            }
-            else if (s.Equals("rogue"))
-            {
-                return "潜行者";
-            }
-            return s;
-        }
-
-        public override bool Equals(object obj)
+		public override bool Equals(object obj)
 		{
 			var deck = obj as Deck;
 			if(deck == null)

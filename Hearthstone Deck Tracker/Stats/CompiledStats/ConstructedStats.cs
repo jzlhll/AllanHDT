@@ -93,7 +93,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 			}
 			if(mode && Config.Instance.ConstructedStatsModeFilter != GameMode.All)
 				filtered = filtered.Where(x => x.GameMode == Config.Instance.ConstructedStatsModeFilter);
-			if(rank && Config.Instance.ConstructedStatsModeFilter == GameMode.天梯)
+			if(rank && Config.Instance.ConstructedStatsModeFilter == GameMode.Ranked)
 			{
 				var min = Config.Instance.ConstructedStatsRankFilterMin;
 				if(min != "L1")
@@ -123,8 +123,8 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 				}
 			}
 			if(format && Config.Instance.ConstructedStatsFormatFilter != Format.All
-			   && (Config.Instance.ConstructedStatsModeFilter == GameMode.天梯
-			   || Config.Instance.ConstructedStatsModeFilter == GameMode.休闲))
+			   && (Config.Instance.ConstructedStatsModeFilter == GameMode.Ranked
+			   || Config.Instance.ConstructedStatsModeFilter == GameMode.Casual))
 				filtered = filtered.Where(x => x.Format == Config.Instance.ConstructedStatsFormatFilter);
 			if(turns)
 			{

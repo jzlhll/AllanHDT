@@ -23,7 +23,7 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 	public class GameV2 : IGame
 	{
 		public readonly List<long> IgnoredArenaDecks = new List<long>();
-		private GameMode _currentGameMode = GameMode.无;
+		private GameMode _currentGameMode = GameMode.None;
 		private bool? _spectator;
 		private MatchInfo _matchInfo;
 		private Mode _currentMode;
@@ -79,7 +79,7 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 		{
 			get
 			{
-				if(CurrentGameMode != GameMode.休闲 && CurrentGameMode != GameMode.天梯)
+				if(CurrentGameMode != GameMode.Casual && CurrentGameMode != GameMode.Ranked)
 					return null;
 				return _currentFormat ?? (_currentFormat = HearthMirror.Reflection.IsWildMode() ? Format.Wild : Format.Standard);
 			}
@@ -115,8 +115,8 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 			get
 			{
 				if(Spectator)
-					return GameMode.观众;
-				if(_currentGameMode == GameMode.无)
+					return GameMode.Spectator;
+				if(_currentGameMode == GameMode.None)
 					_currentGameMode = HearthDbConverter.GetGameMode((GameType)HearthMirror.Reflection.GetGameType());
 				return _currentGameMode;
 			}
@@ -136,7 +136,7 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 			OpponentSecretCount = 0;
 			OpponentSecrets.ClearSecrets();
 			_spectator = null;
-			_currentGameMode = GameMode.无;
+			_currentGameMode = GameMode.None;
 			_currentFormat = null;
 			_matchInfo = null;
 			if(!IsInMenu && resetStats)

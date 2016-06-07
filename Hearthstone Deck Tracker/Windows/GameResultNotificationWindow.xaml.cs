@@ -41,14 +41,14 @@ namespace Hearthstone_Deck_Tracker.Windows
 			ComboBoxFormat.ItemsSource = new[] { Enums.Format.Standard, Enums.Format.Wild };
 			ComboBoxGameMode.ItemsSource = new[]
 			{
-				GameMode.竞技场,
-				GameMode.乱斗,
-				GameMode.休闲,
-				GameMode.好友,
-				GameMode.练习,
-				GameMode.天梯,
-				GameMode.观众
-            };
+				GameMode.Arena,
+				GameMode.Brawl,
+				GameMode.Casual,
+				GameMode.Friendly,
+				GameMode.Practice,
+				GameMode.Ranked,
+				GameMode.Spectator
+			};
 			UpdatePosition();
 			_startUpTime = DateTime.UtcNow;
 			CloseAsync();
@@ -89,7 +89,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 
 		public BitmapImage PlayerClassImage => ImageCache.GetClassIcon(_game.PlayerHero);
 
-		public bool FormatSelectionEnabled => Mode == GameMode.休闲 || Mode == GameMode.天梯;
+		public bool FormatSelectionEnabled => Mode == GameMode.Casual || Mode == GameMode.Ranked;
 
 		public Format? Format
 		{
@@ -145,14 +145,14 @@ namespace Hearthstone_Deck_Tracker.Windows
 					{
 						if(_game.HasHearthStatsId)
 						{
-							if(_game.GameMode == GameMode.竞技场)
+							if(_game.GameMode == GameMode.Arena)
 								HearthStatsManager.UpdateArenaMatchAsync(_game, deck, true, true);
 							else
 								HearthStatsManager.UpdateMatchAsync(_game, deck.GetVersion(_game.PlayerDeckVersion), true, true);
 						}
 						else
 						{
-							if(_game.GameMode == GameMode.竞技场)
+							if(_game.GameMode == GameMode.Arena)
 								HearthStatsManager.UploadArenaMatchAsync(_game, deck, true, true).Forget();
 							else
 								HearthStatsManager.UploadMatchAsync(_game, deck.GetVersion(_game.PlayerDeckVersion), true, true).Forget();

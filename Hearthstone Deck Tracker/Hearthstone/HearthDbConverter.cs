@@ -67,37 +67,37 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 			switch(gameType)
 			{
 				case GameType.GT_VS_AI:
-					return GameMode.练习;
+					return GameMode.Practice;
 				case GameType.GT_VS_FRIEND:
-					return GameMode.好友;
+					return GameMode.Friendly;
 				case GameType.GT_ARENA:
-					return GameMode.竞技场;
+					return GameMode.Arena;
 				case GameType.GT_RANKED:
-					return GameMode.天梯;
+					return GameMode.Ranked;
 				case GameType.GT_UNRANKED:
-					return GameMode.休闲;
+					return GameMode.Casual;
 				case GameType.GT_TAVERNBRAWL:
 				case GameType.GT_TB_2P_COOP:
-					return GameMode.乱斗;
+					return GameMode.Brawl;
 				default:
-					return GameMode.无;
+					return GameMode.None;
 			}
 		}
 		public static BnetGameType GetGameType(GameMode mode, Format? format)
 		{
 			switch(mode)
 			{
-			case GameMode.竞技场:
+			case GameMode.Arena:
 				return BGT_ARENA;
-			case GameMode.天梯:
+			case GameMode.Ranked:
 				return format == Format.Standard ? BGT_RANKED_STANDARD : BGT_RANKED_WILD;
-			case GameMode.休闲:
+			case GameMode.Casual:
 				return format == Format.Standard ? BGT_CASUAL_STANDARD : BGT_CASUAL_WILD;
-			case GameMode.乱斗:
+			case GameMode.Brawl:
 				return BGT_TAVERNBRAWL_PVP;
-			case GameMode.好友:
+			case GameMode.Friendly:
 				return BGT_FRIENDS;
-			case GameMode.练习:
+			case GameMode.Practice:
 				return BGT_VS_AI;
 			default:
 				return BGT_UNKNOWN;

@@ -37,7 +37,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 			var lastGame = deck.DeckStats.Games.LastOrDefault();
 			if(deck.IsArenaDeck)
 			{
-				ComboBoxMode.SelectedItem = 竞技场;
+				ComboBoxMode.SelectedItem = Arena;
 				ComboBoxMode.IsEnabled = false;
 			}
 			else
@@ -49,7 +49,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 				{
 					ComboBoxFormat.SelectedItem = lastGame.Format;
 					ComboBoxMode.SelectedItem = lastGame.GameMode;
-					if(lastGame.GameMode == 天梯)
+					if(lastGame.GameMode == Ranked)
 					{
 						TextBoxRank.Text = lastGame.Rank.ToString();
 						TextBoxLegendRank.Text = lastGame.LegendRank.ToString();
@@ -58,8 +58,8 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 			}
 			if(lastGame != null)
 			{
-				PanelRank.Visibility = PanelLegendRank.Visibility = lastGame.GameMode == 天梯 ? Visible : Collapsed;
-				PanelFormat.Visibility = lastGame.GameMode == 天梯 || lastGame.GameMode == 休闲 ? Visible : Collapsed;
+				PanelRank.Visibility = PanelLegendRank.Visibility = lastGame.GameMode == Ranked ? Visible : Collapsed;
+				PanelFormat.Visibility = lastGame.GameMode == Ranked || lastGame.GameMode == Casual ? Visible : Collapsed;
 				TextBoxPlayerName.Text = lastGame.PlayerName;
 				if(lastGame.Region != Region.UNKNOWN)
 					ComboBoxRegion.SelectedItem = lastGame.Region;
@@ -85,13 +85,13 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 			ComboBoxMode.SelectedItem = game.GameMode;
 			ComboBoxFormat.SelectedItem = game.Format;
 			ComboBoxRegion.SelectedItem = game.Region;
-			if(game.GameMode == 天梯)
+			if(game.GameMode == Ranked)
 			{
 				TextBoxRank.Text = game.Rank.ToString();
 				TextBoxLegendRank.Text = game.LegendRank.ToString();
 			}
-			PanelRank.Visibility = PanelLegendRank.Visibility = game.GameMode == 天梯 ? Visible : Collapsed;
-			PanelFormat.Visibility = game.GameMode == 天梯 || game.GameMode == 休闲 ? Visible : Collapsed;
+			PanelRank.Visibility = PanelLegendRank.Visibility = game.GameMode == Ranked ? Visible : Collapsed;
+			PanelFormat.Visibility = game.GameMode == Ranked || game.GameMode == Casual ? Visible : Collapsed;
 			ComboBoxCoin.SelectedItem = game.Coin ? Yes : No;
 			ComboBoxConceded.SelectedItem = game.WasConceded ? Yes : No;
 			TextBoxTurns.Text = game.Turns.ToString();
@@ -137,7 +137,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 				_game.Turns = turns;
 				_game.WasConceded = (YesNo)ComboBoxConceded.SelectedValue == Yes;
 				_game.Region = (Region)ComboBoxRegion.SelectedItem;
-				if(_game.GameMode == 休闲 || _game.GameMode == 天梯)
+				if(_game.GameMode == Casual || _game.GameMode == Ranked)
 					_game.Format = (Format)ComboBoxFormat.SelectedItem;
 				_tcs.SetResult(_game);
 			}
@@ -160,10 +160,10 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 		{
 			if(IsLoaded)
 			{
-				var ranked = e.AddedItems.Contains(天梯);
+				var ranked = e.AddedItems.Contains(Ranked);
 				PanelRank.Visibility = PanelLegendRank.Visibility= ranked ? Visible : Collapsed;
 
-				var format = ranked || e.AddedItems.Contains(休闲);
+				var format = ranked || e.AddedItems.Contains(Casual);
 				PanelFormat.Visibility = format ? Visible : Collapsed;
 			}
 		}

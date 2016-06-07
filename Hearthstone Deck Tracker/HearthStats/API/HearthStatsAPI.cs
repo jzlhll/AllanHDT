@@ -361,7 +361,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 				gameObj.oppname = game.OpponentName;
 			if(!string.IsNullOrEmpty(game.Note))
 				gameObj.notes = game.Note;
-			if(game.GameMode == GameMode.天梯 && game.HasRank)
+			if(game.GameMode == GameMode.Ranked && game.HasRank)
 				gameObj.ranklvl = game.Rank.ToString();
 			var opponentCards = game.OpponentCards;
 			if(opponentCards.Any())
@@ -426,7 +426,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 					gameObjs[i].oppname = validGames[i].OpponentName;
 				if(!string.IsNullOrEmpty(validGames[i].Note))
 					gameObjs[i].notes = validGames[i].Note;
-				if(validGames[i].GameMode == GameMode.天梯 && validGames[i].HasRank)
+				if(validGames[i].GameMode == GameMode.Ranked && validGames[i].HasRank)
 					gameObjs[i].ranklvl = validGames[i].Rank.ToString();
 				var opponentCards = validGames[i].OpponentCards;
 				if(opponentCards.Any())
@@ -788,7 +788,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 
 		#region misc
 
-		private static readonly List<GameMode> ValidGameModes = new List<GameMode> {GameMode.休闲, GameMode.天梯, GameMode.好友};
+		private static readonly List<GameMode> ValidGameModes = new List<GameMode> {GameMode.Casual, GameMode.Ranked, GameMode.Friendly};
 
 		public static bool IsValidGame(GameStats game)
 		{
@@ -834,7 +834,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 				Log.Warn(string.Format(baseMsg, "IsClone"));
 				return false;
 			}
-			if(game.GameMode != GameMode.竞技场)
+			if(game.GameMode != GameMode.Arena)
 			{
 				Log.Warn(string.Format(baseMsg, "invalid game mode: " + game.GameMode));
 				return false;
