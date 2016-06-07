@@ -30,9 +30,9 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 
 		public DateTime EndTime => Deck.DeckStats.Games.Any() ? Deck.DeckStats.Games.Max(g => g.EndTime) : DateTime.MinValue;
 
-		public int Wins => Deck.DeckStats.Games.Count(x => x.Result == GameResult.Ê¤);
+		public int Wins => Deck.DeckStats.Games.Count(x => x.Result == GameResult.Win);
 
-		public int Losses => Deck.DeckStats.Games.Count(x => x.Result == GameResult.°Ü);
+		public int Losses => Deck.DeckStats.Games.Count(x => x.Result == GameResult.Loss);
 
 		public int Gold => Deck.ArenaReward.Gold;
 

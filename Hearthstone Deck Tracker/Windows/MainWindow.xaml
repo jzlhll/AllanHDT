@@ -350,7 +350,7 @@
                         <MenuItem.Header>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="现在同步"/>
-                                <TextBlock Foreground="DimGray" Margin="10,0,0,0" Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type windows:MainWindow}}, Path=LastSync, StringFormat='(上次: {0})'}"/>
+                                <TextBlock Foreground="DimGray" Margin="10,0,0,0" Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type windows:MainWindow}}, Path=LastSync, StringFormat='(LAST: {0})'}"/>
                             </StackPanel>
                         </MenuItem.Header>
                     </MenuItem>

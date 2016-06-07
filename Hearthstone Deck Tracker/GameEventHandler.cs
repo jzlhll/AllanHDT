@@ -577,7 +577,7 @@ namespace Hearthstone_Deck_Tracker
 			if(_game.CurrentGameStats == null)
 				return;
 			Log.Info("--- Game was won! ---");
-			_game.CurrentGameStats.Result = GameResult.胜;
+			_game.CurrentGameStats.Result = GameResult.Win;
 			GameEvents.OnGameWon.Execute();
 		}
 
@@ -586,7 +586,7 @@ namespace Hearthstone_Deck_Tracker
 			if(_game.CurrentGameStats == null)
 				return;
 			Log.Info("--- Game was lost! ---");
-			_game.CurrentGameStats.Result = GameResult.败;
+			_game.CurrentGameStats.Result = GameResult.Loss;
 			GameEvents.OnGameLost.Execute();
 		}
 
@@ -595,7 +595,7 @@ namespace Hearthstone_Deck_Tracker
 			if(_game.CurrentGameStats == null)
 				return;
 			Log.Info("--- Game was a tie! ---");
-			_game.CurrentGameStats.Result = GameResult.弃;
+			_game.CurrentGameStats.Result = GameResult.Draw;
 			GameEvents.OnGameTied.Execute();
 		}
 
@@ -605,7 +605,7 @@ namespace Hearthstone_Deck_Tracker
 			{
 				if(Config.Instance.ShowGameResultNotifications && !Config.Instance.GameResultNotificationsUnexpectedOnly)
 				{
-					var deckName = _assignedDeck == null ? "无卡组- " + _game.CurrentGameStats.PlayerHero : _assignedDeck.NameAndVersion;
+					var deckName = _assignedDeck == null ? "No deck - " + _game.CurrentGameStats.PlayerHero : _assignedDeck.NameAndVersion;
 					new GameResultNotificationWindow(deckName, _game.CurrentGameStats).Show();
 				}
 				if(Config.Instance.ShowNoteDialogAfterGame && Config.Instance.NoteDialogDelayed && !_showedNoteDialog)

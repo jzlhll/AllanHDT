@@ -36,9 +36,9 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 
 		public MatchupStats WorstMatchup => Matchups.OrderBy(x => x.WinRate).ThenByDescending(x => x.Losses).ThenBy(x => x.Wins).FirstOrDefault();
 
-		public int Wins => _games?.Count(x => x.Result == GameResult.Ê¤) ?? 0;
+		public int Wins => _games?.Count(x => x.Result == GameResult.Win) ?? 0;
 
-		public int Losses => _games?.Count(x => x.Result == GameResult.°Ü) ?? 0;
+		public int Losses => _games?.Count(x => x.Result == GameResult.Loss) ?? 0;
 
 		public double WinRate => (double)Wins / (Wins + Losses);
 

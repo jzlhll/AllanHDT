@@ -11,9 +11,9 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 	{
 		public static readonly Dictionary<int, GameResult> GameResultDict = new Dictionary<int, GameResult>
 		{
-			{1, GameResult.胜},
-			{2, GameResult.败},
-			{3, GameResult.弃}
+			{1, GameResult.Win},
+			{2, GameResult.Loss},
+			{3, GameResult.Draw}
 		};
 
 		public static readonly Dictionary<int, GameMode> GameModeDict = new Dictionary<int, GameMode>

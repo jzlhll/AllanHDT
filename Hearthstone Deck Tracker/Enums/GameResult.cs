@@ -2,17 +2,17 @@ namespace Hearthstone_Deck_Tracker.Enums
 {
 	public enum GameResult
 	{
-		¿Õ,//None,//¿Õ
-		Ê¤,//Win,//Ê¤
-		°Ü,//Loss,//°Ü
-		Æú//Draw//Æú
+		None,
+		Win,
+		Loss,
+		Draw
 	}
 
 	public enum GameResultAll
 	{
 		All,
-        Ê¤,//Win,//Ê¤
-        °Ü,//Loss,//°Ü
-        Æú//Draw//Æú
-    }
+		Win,
+		Loss,
+		Draw
+	}
 }

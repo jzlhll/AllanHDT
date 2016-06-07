@@ -37,7 +37,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			InitializeComponent();
 			DeckName = deckName;
 			_game = game;
-			ComboBoxResult.ItemsSource = new[] { GameResult.胜, GameResult.败 };
+			ComboBoxResult.ItemsSource = new[] { GameResult.Win, GameResult.Loss };
 			ComboBoxFormat.ItemsSource = new[] { Enums.Format.Standard, Enums.Format.Wild };
 			ComboBoxGameMode.ItemsSource = new[]
 			{

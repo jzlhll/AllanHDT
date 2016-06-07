@@ -140,7 +140,7 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 			_currentFormat = null;
 			_matchInfo = null;
 			if(!IsInMenu && resetStats)
-				CurrentGameStats = new GameStats(GameResult.空, "", "") {PlayerName = "", OpponentName = "", Region = CurrentRegion};
+				CurrentGameStats = new GameStats(GameResult.None, "", "") {PlayerName = "", OpponentName = "", Region = CurrentRegion};
 			PowerLog.Clear();
 
 			if(Core.Game != null && Core.Overlay != null)

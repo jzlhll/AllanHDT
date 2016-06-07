@@ -59,7 +59,7 @@
                 <TextBlock VerticalAlignment="Center" Text="玩的时间: "/>
                 <TextBlock VerticalAlignment="Center">
                     <TextBlock.Text>
-                        <Binding StringFormat="{}{0:0.0} 小时" Path="TotalDuration.TotalHours" FallbackValue="0"/>
+                        <Binding StringFormat="{}{0:0.0} hours" Path="TotalDuration.TotalHours" FallbackValue="0"/>
                     </TextBlock.Text>
                 </TextBlock>
             </StackPanel>
@@ -67,7 +67,7 @@
                 <TextBlock VerticalAlignment="Center" Text="游戏平均: "/>
                 <TextBlock VerticalAlignment="Center">
                     <TextBlock.Text>
-                        <MultiBinding StringFormat="{}{0:0.0} 分, {1:0.0} 回合数">
+                        <MultiBinding StringFormat="{}{0:0.0} min, {1:0.0} turns">
                             <Binding Path="AverageDuration.TotalMinutes"/>
                             <Binding Path="AverageTurns"/>
                         </MultiBinding>
