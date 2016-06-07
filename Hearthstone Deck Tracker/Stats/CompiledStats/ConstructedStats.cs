@@ -173,10 +173,10 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 			get
 			{
 				var games = GetFilteredGames().ToList();
-				var wins = games.Where(x => x.Result == GameResult.Win).ToList();
+				var wins = games.Where(x => x.Result == GameResult.胜).ToList();
 				return wins.Count > 0
-						   ? wins.Select(x => new ChartStats {Name = "Wins", Value = Math.Round(100.0 * wins.Count() / games.Count)})
-						   : EmptyChartStats("Wins");
+						   ? wins.Select(x => new ChartStats {Name = "胜场", Value = Math.Round(100.0 * wins.Count() / games.Count)})
+						   : EmptyChartStats("胜场");
 			}
 		}
 
@@ -185,20 +185,20 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 			get
 			{
 				var games = GetFilteredGames(coin: false).ToList();
-				var wins = games.Where(x => x.Result == GameResult.Win).ToList();
+				var wins = games.Where(x => x.Result == GameResult.胜).ToList();
 				var gamesCoin = games.Where(x => x.Coin);
 				var winsCoin = wins.Where(x => x.Coin).ToList();
 				var gamesNoCoin = games.Where(x => !x.Coin);
 				var winsNoCoin = wins.Where(x => !x.Coin).ToList();
 				var total = wins.Count > 0
-								? wins.Select(x => new ChartStats {Name = "Total", Value = Math.Round(100.0 * wins.Count() / games.Count)})
-								: EmptyChartStats("Wins");
+								? wins.Select(x => new ChartStats {Name = "全部", Value = Math.Round(100.0 * wins.Count() / games.Count)})
+								: EmptyChartStats("胜场");
 				var coin = winsCoin.Count > 0
-								? winsCoin.Select(x => new ChartStats {Name = "With Coin", Value = 100.0 * winsCoin.Count() / gamesCoin.Count()})
-								: EmptyChartStats("With Coin");
+								? winsCoin.Select(x => new ChartStats {Name = "有硬币", Value = 100.0 * winsCoin.Count() / gamesCoin.Count()})
+								: EmptyChartStats("有硬币");
 				var noCoin = winsNoCoin.Count > 0
-								 ? winsNoCoin.Select(x => new ChartStats {Name = "Without Coin", Value = 100.0 * winsNoCoin.Count() / gamesNoCoin.Count()})
-								 : EmptyChartStats("Without Coin");
+								 ? winsNoCoin.Select(x => new ChartStats {Name = "无硬币", Value = 100.0 * winsNoCoin.Count() / gamesNoCoin.Count()})
+								 : EmptyChartStats("无硬币");
 				return total.Concat(coin).Concat(noCoin);
 			}
 		}
@@ -233,7 +233,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 							new ChartStats
 							{
 								Name = x.Key,
-								Value = Math.Round(100.0 * x.Count(g => g.Result == GameResult.Win) / x.Count(), 1),
+								Value = Math.Round(100.0 * x.Count(g => g.Result == GameResult.胜) / x.Count(), 1),
 								Brush = new SolidColorBrush(Helper.GetClassColor(x.Key, true))
 							});
 
@@ -245,7 +245,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 							new ChartStats
 							{
 								Name = x.Key,
-								Value = Math.Round(100.0 * x.Count(g => g.Result == GameResult.Win) / x.Count(), 1),
+								Value = Math.Round(100.0 * x.Count(g => g.Result == GameResult.胜) / x.Count(), 1),
 								Brush = new SolidColorBrush(Helper.GetClassColor(x.Key, true))
 							});
 
@@ -368,7 +368,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 							 .Average(x =>
 							 {
 								 var games = x.ToArray();
-								 return (games.Length > 0 ? (double)games.Count(g => g.Result == GameResult.Win) / games.Length : 0.5) * (games.Length + 1);
+								 return (games.Length > 0 ? (double)games.Count(g => g.Result == GameResult.胜) / games.Length : 0.5) * (games.Length + 1);
 							 });
 		}
 	}

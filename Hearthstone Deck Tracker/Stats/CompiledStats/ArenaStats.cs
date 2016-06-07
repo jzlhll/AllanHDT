@@ -73,8 +73,8 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 
 		public int RunsCount => GetFilteredRuns().Count();
 		public int GamesCountTotal => GetFilteredRuns().Sum(x => x.Games.Count());
-		public int GamesCountWon => GetFilteredRuns().Sum(x => x.Games.Count(g => g.Result == GameResult.Win));
-		public int GamesCountLost => GetFilteredRuns().Sum(x => x.Games.Count(g => g.Result == GameResult.Loss));
+		public int GamesCountWon => GetFilteredRuns().Sum(x => x.Games.Count(g => g.Result == GameResult.胜));
+		public int GamesCountLost => GetFilteredRuns().Sum(x => x.Games.Count(g => g.Result == GameResult.败));
 
 		public double AverageWinsPerRun => (double)GamesCountWon / GetFilteredRuns().Count();
 
@@ -117,15 +117,15 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 			{
 				var groupedByWins =
 					GetFilteredRuns()
-						.GroupBy(x => x.Deck.DeckStats.Games.Count(g => g.Result == GameResult.Win))
+						.GroupBy(x => x.Deck.DeckStats.Games.Count(g => g.Result == GameResult.胜))
 						.Select(x => new {Wins = x.Key, Count = x.Count(), Runs = x})
 						.ToList();
 				return Enumerable.Range(0, 13).Select(n =>
 				{
 					var runs = groupedByWins.FirstOrDefault(x => x.Wins == n);
 					if(runs == null)
-						return new ChartStats {Name = n + " wins", Value = 0};
-					return new ChartStats {Name = n + " wins", Value = runs.Count};
+						return new ChartStats {Name = n + " 胜", Value = 0};
+					return new ChartStats {Name = n + " 胜", Value = runs.Count};
 				});
 			}
 		}
@@ -136,7 +136,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 			{
 				var groupedByWins =
 					GetFilteredRuns()
-						.GroupBy(x => x.Deck.DeckStats.Games.Count(g => g.Result == GameResult.Win))
+						.GroupBy(x => x.Deck.DeckStats.Games.Count(g => g.Result == GameResult.胜))
 						.Select(x => new {Wins = x.Key, Count = x.Count(), Runs = x})
 						.ToList();
 				return Enumerable.Range(0, 13).Select(n =>
@@ -151,7 +151,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 						            x =>
 						            new ChartStats
 						            {
-							            Name = n + " wins (" + x.Key + ")",
+							            Name = n + " 胜场 (" + x.Key + ")",
 							            Value = x.Count(),
 							            Brush = new SolidColorBrush(Helper.GetClassColor(x.Key, true))
 						            });
@@ -172,7 +172,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 					return classGames.GroupBy(g => g.Result).OrderBy(g => g.Key).Select(g =>
 					{
 						var color = Helper.GetClassColor(x, true);
-						if(g.Key == GameResult.Loss)
+						if(g.Key == GameResult.败)
 							color = Color.FromRgb((byte)(color.R * 0.7), (byte)(color.G * 0.7), (byte)(color.B * 0.7));
 						return new ChartStats {Name = g.Key.ToString() + " vs " + x.ToString(), Value = g.Count(), Brush = new SolidColorBrush(color)};
 					});
@@ -192,7 +192,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 						        new ChartStats
 						        {
 							        Name = x.Key,
-							        Value = Math.Round((double)x.Sum(d => d.Deck.DeckStats.Games.Count(g => g.Result == GameResult.Win)) / x.Count(), 1),
+							        Value = Math.Round((double)x.Sum(d => d.Deck.DeckStats.Games.Count(g => g.Result == GameResult.胜)) / x.Count(), 1),
 							        Brush = new SolidColorBrush(Helper.GetClassColor(x.Key, true))
 						        })
 						.OrderBy(x => x.Value);

@@ -196,8 +196,8 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 		}
 
 		public bool? IsArenaRunCompleted => IsArenaDeck
-												? (DeckStats.Games.Count(g => g.Result == GameResult.Win) == 12
-												   || DeckStats.Games.Count(g => g.Result == GameResult.Loss) == 3) as bool? : null;
+												? (DeckStats.Games.Count(g => g.Result == GameResult.胜) == 12
+												   || DeckStats.Games.Count(g => g.Result == GameResult.败) == 3) as bool? : null;
 
 		public Guid DeckId
 		{
@@ -254,7 +254,7 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 				var relevantGames = GetRelevantGames();
 				if(relevantGames.Count == 0)
 					return "0-0";
-				return $"{relevantGames.Count(g => g.Result == GameResult.Win)}-{relevantGames.Count(g => g.Result == GameResult.Loss)}";
+				return $"{relevantGames.Count(g => g.Result == GameResult.胜)}-{relevantGames.Count(g => g.Result == GameResult.败)}";
 			}
 		}
 
@@ -266,8 +266,8 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 				var relevantGames = GetRelevantGames();
 				if(relevantGames.Count == 0)
 					return "-";
-				var wins = relevantGames.Count(g => g.Result == GameResult.Win);
-				var losses = relevantGames.Count(g => g.Result == GameResult.Loss);
+				var wins = relevantGames.Count(g => g.Result == GameResult.胜);
+				var losses = relevantGames.Count(g => g.Result == GameResult.败);
 				return Math.Round(100.0 * wins / (wins + losses), 0) + "%";
 			}
 		}
@@ -280,8 +280,8 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 				var relevantGames = GetRelevantGames();
 				if(relevantGames.Count == 0)
 					return 0.0;
-				var wins = relevantGames.Count(g => g.Result == GameResult.Win);
-				var losses = relevantGames.Count(g => g.Result == GameResult.Loss);
+				var wins = relevantGames.Count(g => g.Result == GameResult.胜);
+				var losses = relevantGames.Count(g => g.Result == GameResult.败);
 				return 100.0 * wins / (wins + losses);
 			}
 		}

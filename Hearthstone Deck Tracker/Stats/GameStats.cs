@@ -273,9 +273,9 @@ namespace Hearthstone_Deck_Tracker.Stats
 			get
 			{
 				var c = Colors.Black;
-				if(Result == GameResult.Win)
+				if(Result == GameResult.胜)
 					c = Colors.Green;
-				else if(Result == GameResult.Loss)
+				else if(Result == GameResult.败)
 					c = Colors.Red;
 				return new SolidColorBrush(c);
 			}

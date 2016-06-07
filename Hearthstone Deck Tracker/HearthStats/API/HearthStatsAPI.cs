@@ -808,7 +808,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 				Log.Warn(string.Format(baseMsg, "invalid game mode: " + game.GameMode));
 				return false;
 			}
-			if(game.Result == GameResult.None)
+			if(game.Result == GameResult.空)
 			{
 				Log.Warn(string.Format(baseMsg, "invalid result: none"));
 				return false;
