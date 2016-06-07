@@ -811,8 +811,8 @@ namespace Hearthstone_Deck_Tracker
 		[XmlArrayItem(ElementName = "Tag")]
 		public List<string> SelectedTags = new List<string>();
 
-		[DefaultValue("Theme")]
-		public string SelectedWindowBackground = "Theme";
+		[DefaultValue("主题")]
+		public string SelectedWindowBackground = "主题";
 
 		[Obsolete]
 		[DefaultValue(false)]

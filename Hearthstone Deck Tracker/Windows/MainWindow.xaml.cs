@@ -60,7 +60,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			MenuItemMoveDeckToConstructed.Visibility = deck.IsArenaDeck ? Visible : Collapsed;
 			MenuItemMissingCards.Visibility = deck.MissingCards.Any() ? Visible : Collapsed;
 			MenuItemSetDeckUrl.Visibility = deck.IsArenaDeck ? Collapsed : Visible;
-			MenuItemSetDeckUrl.Header = string.IsNullOrEmpty(deck.Url) ? "LINK TO UR_L" : "LINK TO NEW UR_L";
+			MenuItemSetDeckUrl.Header = string.IsNullOrEmpty(deck.Url) ? "链接到URL" : "链接到新的URL";
 			MenuItemUpdateDeck.Visibility = string.IsNullOrEmpty(deck.Url) ? Collapsed : Visible;
 			MenuItemOpenUrl.Visibility = string.IsNullOrEmpty(deck.Url) ? Collapsed : Visible;
 			MenuItemArchive.Visibility = DeckPickerList.SelectedDecks.Any(d => !d.Archived) ? Visible : Collapsed;
@@ -225,7 +225,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 		{
 			if(HearthStatsAPI.IsLoggedIn)
 			{
-				MenuItemLogout.Header = $"LOGOUT ({HearthStatsAPI.LoggedInAs})";
+				MenuItemLogout.Header = $"登出 ({HearthStatsAPI.LoggedInAs})";
 				MenuItemLogin.Visibility = Collapsed;
 				MenuItemLogout.Visibility = Visible;
 				SeparatorLogout.Visibility = Visible;
@@ -286,7 +286,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 		{
 			var result =
 				await
-				this.ShowMessageAsync("登出?", "Are you sure you want to logout?", MessageDialogStyle.AffirmativeAndNegative,
+				this.ShowMessageAsync("登出?", "你确定要登出吗?", MessageDialogStyle.AffirmativeAndNegative,
 				                      new MessageDialogs.Settings {AffirmativeButtonText = "登出", NegativeButtonText = "取消"});
 			if(result != MessageDialogResult.Affirmative)
 				return;

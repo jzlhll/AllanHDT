@@ -52,15 +52,15 @@
                               Unchecked="CheckboxTimerTopmostHsForeground_Unchecked" />
                     <Separator Margin="0,5,0,0" />
                     <DockPanel Margin="5,5,5,0">
-                        <Label Content="后台:" HorizontalAlignment="Left"
+                        <Label Content="背景色:" HorizontalAlignment="Left"
                                VerticalAlignment="Top" />
                         <ComboBox x:Name="ComboboxWindowBackground" HorizontalAlignment="Right"
                                   Margin="5,0,0,0" VerticalAlignment="Top" Width="150"
                                   SelectionChanged="ComboboxWindowBackground_SelectionChanged">
-                            <system:String>Theme</system:String>
-                            <system:String>Light</system:String>
-                            <system:String>Dark</system:String>
-                            <system:String>Custom</system:String>
+                            <system:String>主题</system:String>
+                            <system:String>亮色</system:String>
+                            <system:String>暗色</system:String>
+                            <system:String>自定义</system:String>
                         </ComboBox>
                     </DockPanel>
                     <DockPanel Margin="5,5,5,0">

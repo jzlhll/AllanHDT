@@ -112,7 +112,7 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats.Arena
 			if(SelectedGame == null)
 				return;
 			Core.MainWindow.DeckFlyout.SetDeck(SelectedGame.OpponentCards);
-			Core.MainWindow.FlyoutDeck.Header = "Opponent";
+			Core.MainWindow.FlyoutDeck.Header = "对手";
 			Core.MainWindow.FlyoutDeck.IsOpen = true;
 		}
 

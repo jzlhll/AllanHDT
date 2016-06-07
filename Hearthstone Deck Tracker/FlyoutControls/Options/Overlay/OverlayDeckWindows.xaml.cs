@@ -8,6 +8,7 @@ using Hearthstone_Deck_Tracker.Hearthstone;
 using Brush = System.Windows.Media.Brush;
 using Color = System.Windows.Media.Color;
 using SystemColors = System.Windows.SystemColors;
+using Hearthstone_Deck_Tracker.Utility.Logging;
 
 #endregion
 
@@ -39,7 +40,8 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 			CheckboxWinTopmostHsForeground.IsChecked = Config.Instance.WindowsTopmostIfHsForeground;
 			CheckboxWinTopmostHsForeground.IsEnabled = Config.Instance.WindowsTopmost;
 			ComboboxWindowBackground.SelectedItem = Config.Instance.SelectedWindowBackground;
-			TextboxCustomBackground.IsEnabled = Config.Instance.SelectedWindowBackground == "Custom";
+            Log.Info("selectedItemsmms, " + Config.Instance.SelectedWindowBackground);
+			TextboxCustomBackground.IsEnabled = Config.Instance.SelectedWindowBackground == "自定义"; //Custom
 			TextboxCustomBackground.Text = string.IsNullOrEmpty(Config.Instance.WindowsBackgroundHex)
 				                               ? "#696969" : Config.Instance.WindowsBackgroundHex;
 			UpdateAdditionalWindowsBackground();
@@ -163,15 +165,15 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 		{
 			if(!_initialized)
 				return;
-			TextboxCustomBackground.IsEnabled = ComboboxWindowBackground.SelectedItem.ToString() == "Custom";
+			TextboxCustomBackground.IsEnabled = ComboboxWindowBackground.SelectedItem.ToString() == "自定义"; //Custom
 			Config.Instance.SelectedWindowBackground = ComboboxWindowBackground.SelectedItem.ToString();
 			UpdateAdditionalWindowsBackground();
 		}
 
 		private void TextboxCustomBackground_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			if(!_initialized || ComboboxWindowBackground.SelectedItem.ToString() != "Custom")
-				return;
+			if(!_initialized || ComboboxWindowBackground.SelectedItem.ToString() != "自定义") //Custom
+                return;
 			var background = Helper.BrushFromHex(TextboxCustomBackground.Text);
 			if(background != null)
 			{
@@ -240,16 +242,17 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 		internal void UpdateAdditionalWindowsBackground(Brush brush = null)
 		{
 			var background = brush;
+            Log.Error("ComboboxWindowBackground.SelectedItem " + ComboboxWindowBackground.SelectedItem);
 
-			switch(ComboboxWindowBackground.SelectedItem.ToString())
+            switch (ComboboxWindowBackground.SelectedItem.ToString())
 			{
-				case "Theme":
+				case "主题"://Theme
 					background = Background;
 					break;
-				case "Light":
+				case "亮色": //Light
 					background = SystemColors.ControlLightBrush;
 					break;
-				case "Dark":
+				case "暗色"://Dark
 					background = SystemColors.ControlDarkDarkBrush;
 					break;
 			}
