@@ -41,7 +41,7 @@
                 <TextBlock VerticalAlignment="Center" Text="场次: "/>
                 <TextBlock VerticalAlignment="Center">
                     <TextBlock.Text>
-                        <MultiBinding StringFormat="{}{0} ({1}% of total)" FallbackValue="0">
+                        <MultiBinding StringFormat="{}{0} ({1}% 在全部中)" FallbackValue="0">
                             <Binding Path="Runs"/>
                             <Binding Path="PickedPercent"/>
                         </MultiBinding>

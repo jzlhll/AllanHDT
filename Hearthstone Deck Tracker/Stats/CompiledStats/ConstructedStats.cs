@@ -191,14 +191,14 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 				var gamesNoCoin = games.Where(x => !x.Coin);
 				var winsNoCoin = wins.Where(x => !x.Coin).ToList();
 				var total = wins.Count > 0
-								? wins.Select(x => new ChartStats {Name = "Total", Value = Math.Round(100.0 * wins.Count() / games.Count)})
-								: EmptyChartStats("Wins");
+								? wins.Select(x => new ChartStats {Name = "全部", Value = Math.Round(100.0 * wins.Count() / games.Count)})
+								: EmptyChartStats("胜场");
 				var coin = winsCoin.Count > 0
-								? winsCoin.Select(x => new ChartStats {Name = "With Coin", Value = 100.0 * winsCoin.Count() / gamesCoin.Count()})
-								: EmptyChartStats("With Coin");
+								? winsCoin.Select(x => new ChartStats {Name = "有硬币", Value = 100.0 * winsCoin.Count() / gamesCoin.Count()})
+								: EmptyChartStats("有硬币");
 				var noCoin = winsNoCoin.Count > 0
-								 ? winsNoCoin.Select(x => new ChartStats {Name = "Without Coin", Value = 100.0 * winsNoCoin.Count() / gamesNoCoin.Count()})
-								 : EmptyChartStats("Without Coin");
+								 ? winsNoCoin.Select(x => new ChartStats {Name = "无硬币", Value = 100.0 * winsNoCoin.Count() / gamesNoCoin.Count()})
+								 : EmptyChartStats("无硬币");
 				return total.Concat(coin).Concat(noCoin);
 			}
 		}

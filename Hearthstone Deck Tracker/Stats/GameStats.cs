@@ -307,7 +307,7 @@ namespace Hearthstone_Deck_Tracker.Stats
 		public string PlayerDeckVersionString => PlayerDeckVersion != null ? PlayerDeckVersion.ToString("v{M}.{m}") : SerializableVersion.Default.ToString("v{M}.{m}");
 
 		[XmlIgnore]
-		public ToolTip ResultToolTip => new ToolTip {Content = "conceded", Visibility = (WasConceded ? Visibility.Visible : Visibility.Hidden)};
+		public ToolTip ResultToolTip => new ToolTip {Content = "承让", Visibility = (WasConceded ? Visibility.Visible : Visibility.Hidden)};
 
 		[XmlIgnore]
 		public bool HasReplayFile => ReplayFile != null && File.Exists(Path.Combine(Config.Instance.ReplayDir, ReplayFile));
@@ -339,7 +339,7 @@ namespace Hearthstone_Deck_Tracker.Stats
 		}
 
 		[XmlIgnore]
-		public string Duration => (EndTime - StartTime).Minutes + " min";
+		public string Duration => (EndTime - StartTime).Minutes + " 分";
 
 		[XmlIgnore]
 		public int SortableDuration => (EndTime - StartTime).Minutes;

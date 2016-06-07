@@ -43,7 +43,7 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats.Constructed
 		}
 
 		public string GroupBoxMatchupsHeader
-			=> Config.Instance.ConstructedStatsActiveDeckOnly ? DeckList.Instance.ActiveDeck?.Name.ToUpper() : "MATCHUPS";
+			=> Config.Instance.ConstructedStatsActiveDeckOnly ? DeckList.Instance.ActiveDeck?.Name.ToUpper() : "对决";
 
 		internal void UpdateContent()
 		{

@@ -36,7 +36,7 @@
                               HorizontalAlignment="Left"
                               VerticalAlignment="Top" Checked="CheckboxHideTimers_Checked"
                               Unchecked="CheckboxHideTimers_Unchecked" Margin="10,5,0,0" />
-                    <CheckBox x:Name="CheckboxHideOpponentCardAge" Content="隐藏卡牌年龄"
+                    <CheckBox x:Name="CheckboxHideOpponentCardAge" Content="隐藏卡牌回合数"
                               HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxHideOpponentCardAge_Checked"
                               Unchecked="CheckboxHideOpponentCardAge_Unchecked" />
