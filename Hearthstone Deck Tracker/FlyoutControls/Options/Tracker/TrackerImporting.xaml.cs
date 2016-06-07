@@ -96,14 +96,14 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 		{
 			if(TextBoxArenaTemplate.IsEnabled)
 			{
-				BtnEditTemplate.Content = "EDIT";
+				BtnEditTemplate.Content = "编辑";
 				Config.Instance.ArenaDeckNameTemplate = TextBoxArenaTemplate.Text;
 				Config.Save();
 				TextBoxArenaTemplate.IsEnabled = false;
 			}
 			else
 			{
-				BtnEditTemplate.Content = "SAVE";
+				BtnEditTemplate.Content = "保存";
 				TextBoxArenaTemplate.IsEnabled = true;
 			}
 		}

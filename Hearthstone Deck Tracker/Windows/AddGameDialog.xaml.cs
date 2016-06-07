@@ -100,8 +100,8 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 			TextBoxNote.Text = game.Note;
 			TextBoxOppName.Text = game.OpponentName;
 			TextBoxPlayerName.Text = game.PlayerName;
-			BtnSave.Content = "save";
-			Title = "Edit game";
+			BtnSave.Content = "保存";
+			Title = "编辑游戏";
 		}
 
 		private void BtnSave_OnClick(object sender, RoutedEventArgs e)

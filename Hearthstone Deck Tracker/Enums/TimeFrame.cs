@@ -8,61 +8,61 @@ namespace Hearthstone_Deck_Tracker.Enums
 {
 	public enum TimeFrame
 	{
-		[Description("Today")]
+		[Description("今天")]
 		Today,
 
-		[Description("Yesterday")]
+		[Description("昨天")]
 		Yesterday,
 
-		[Description("Last 24 Hours")]
+		[Description("过去24小时")]
 		Last24Hours,
 
-		[Description("This Week")]
+		[Description("该星期")]
 		ThisWeek,
 
-		[Description("Previous Week")]
+		[Description("上个星期")]
 		PreviousWeek,
 
-		[Description("Last 7 Days")]
+		[Description("过去7天")]
 		Last7Days,
 
-		[Description("This Month")]
+		[Description("该月")]
 		ThisMonth,
 
-		[Description("Previous Month")]
+		[Description("上个月")]
 		PreviousMonth,
 
-		[Description("This Year")]
+		[Description("今年")]
 		ThisYear,
 
-		[Description("Previous Year")]
+		[Description("去年")]
 		PreviousYear,
 
-		[Description("All Time")]
+		[Description("所有时段")]
 		AllTime
 	}
 
 	public enum DisplayedTimeFrame
 	{
-		[Description("Today")]
+		[Description("今天")]
 		Today,
 
-		[Description("Week")]
+		[Description("星期")]
 		ThisWeek,
 
-		[Description("Season")]
+		[Description("该赛季")]
 		CurrentSeason,
 
-		[Description("Last Season")]
+		[Description("上赛季")]
 		LastSeason,
 
-		[Description("Custom Season")]
+		[Description("自定义赛季")]
 		CustomSeason,
 
-		[Description("All Time")]
+		[Description("所有时段")]
 		AllTime,
 
-		[Description("Custom")]
+		[Description("自定义")]
 		Custom
 	}
 }

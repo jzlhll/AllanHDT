@@ -8,13 +8,13 @@ namespace Hearthstone_Deck_Tracker.Enums
 {
 	public enum ArenaImportingBehaviour
 	{
-		[Description("Auto import&save")]
+		[Description("自动导入&保存")]
 		AutoImportSave,
 
-		[Description("Auto ask to import")]
+		[Description("询问和自动导入")]
 		AutoAsk,
 
-		[Description("Manual")]
+		[Description("主动")]
 		Manual
 	}
 }
