@@ -448,11 +448,11 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(false)]
 		public bool HideOpponentAttackIcon = false;
 
-		[DefaultValue(DisplayMode.Auto)]
-		public DisplayMode OpponentCthunCounter = DisplayMode.Auto;
+		[DefaultValue(DisplayMode.自动)]
+		public DisplayMode OpponentCthunCounter = DisplayMode.自动;
 
-		[DefaultValue(DisplayMode.Never)]
-		public DisplayMode OpponentSpellsCounter = DisplayMode.Never;
+		[DefaultValue(DisplayMode.从不)]
+		public DisplayMode OpponentSpellsCounter = DisplayMode.从不;
 
 		[DefaultValue(false)]
 		public bool HideOpponentCardAge = false;
@@ -481,11 +481,11 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(false)]
 		public bool HidePlayerAttackIcon = false;
 
-		[DefaultValue(DisplayMode.Auto)]
-		public DisplayMode PlayerCthunCounter = DisplayMode.Auto;
+		[DefaultValue(DisplayMode.自动)]
+		public DisplayMode PlayerCthunCounter = DisplayMode.自动;
 
-		[DefaultValue(DisplayMode.Auto)]
-		public DisplayMode PlayerSpellsCounter = DisplayMode.Auto;
+		[DefaultValue(DisplayMode.自动)]
+		public DisplayMode PlayerSpellsCounter = DisplayMode.自动;
 
 		[DefaultValue(false)]
 		public bool HidePlayerCardCount = false;

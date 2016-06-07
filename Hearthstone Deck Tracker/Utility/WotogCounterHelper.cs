@@ -22,16 +22,16 @@ namespace Hearthstone_Deck_Tracker.Utility
 		public static bool? CthunInDeck => DeckContains(CardIds.Collectible.Neutral.Cthun);
 		public static bool? YoggInDeck => DeckContains(CardIds.Collectible.Neutral.YoggSaronHopesEnd);
 
-		public static bool ShowPlayerCthunCounter => !Core.Game.IsInMenu && (Config.Instance.PlayerCthunCounter == DisplayMode.Always
-					|| Config.Instance.PlayerCthunCounter == DisplayMode.Auto && PlayerSeenCthun);
+		public static bool ShowPlayerCthunCounter => !Core.Game.IsInMenu && (Config.Instance.PlayerCthunCounter == DisplayMode.一直
+					|| Config.Instance.PlayerCthunCounter == DisplayMode.自动 && PlayerSeenCthun);
 
-		public static bool ShowPlayerSpellsCounter => !Core.Game.IsInMenu && (Config.Instance.PlayerSpellsCounter == DisplayMode.Always
-					|| Config.Instance.PlayerSpellsCounter == DisplayMode.Auto && YoggInDeck != false && (PlayerYogg != null || YoggInDeck == true));
+		public static bool ShowPlayerSpellsCounter => !Core.Game.IsInMenu && (Config.Instance.PlayerSpellsCounter == DisplayMode.一直
+                    || Config.Instance.PlayerSpellsCounter == DisplayMode.自动 && YoggInDeck != false && (PlayerYogg != null || YoggInDeck == true));
 
-		public static bool ShowOpponentCthunCounter => !Core.Game.IsInMenu && (Config.Instance.OpponentCthunCounter == DisplayMode.Always
-					|| Config.Instance.OpponentCthunCounter == DisplayMode.Auto && OpponentSeenCthun);
+		public static bool ShowOpponentCthunCounter => !Core.Game.IsInMenu && (Config.Instance.OpponentCthunCounter == DisplayMode.一直
+                    || Config.Instance.OpponentCthunCounter == DisplayMode.自动 && OpponentSeenCthun);
 
-		public static bool ShowOpponentSpellsCounter => !Core.Game.IsInMenu && Config.Instance.OpponentSpellsCounter == DisplayMode.Always;
+		public static bool ShowOpponentSpellsCounter => !Core.Game.IsInMenu && Config.Instance.OpponentSpellsCounter == DisplayMode.一直;
 
 		private static bool? DeckContains(string cardId) => DeckList.Instance.ActiveDeck?.Cards.Any(x => x.Id == cardId);
 	}

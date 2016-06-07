@@ -2,8 +2,8 @@
 {
 	public enum DisplayMode
 	{
-		Always,
-		Auto,
-		Never
+		一直,
+		自动,
+		从不
 	}
 }

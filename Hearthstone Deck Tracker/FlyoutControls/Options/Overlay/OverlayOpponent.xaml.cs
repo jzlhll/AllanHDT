@@ -84,7 +84,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 			CheckBoxAttack.IsChecked = !Config.Instance.HideOpponentAttackIcon;
 			ComboBoxCthun.ItemsSource = Enum.GetValues(typeof(DisplayMode)).Cast<DisplayMode>();
 			ComboBoxCthun.SelectedItem = Config.Instance.OpponentCthunCounter;
-			ComboBoxSpells.ItemsSource = new[] {DisplayMode.Always, DisplayMode.Never};
+			ComboBoxSpells.ItemsSource = new[] {DisplayMode.一直, DisplayMode.从不};
 			ComboBoxSpells.SelectedItem = Config.Instance.OpponentSpellsCounter;
 
 			ElementSorterOpponent.IsPlayer = false;
