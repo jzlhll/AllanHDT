@@ -158,9 +158,9 @@ namespace Hearthstone_Deck_Tracker.Windows
 
 			if(string.IsNullOrEmpty(deckName))
 			{
-				var settings = new MessageDialogs.Settings {AffirmativeButtonText = "Set", DefaultText = deckName};
+				var settings = new MessageDialogs.Settings {AffirmativeButtonText = "保存", DefaultText = deckName};
 
-				var name = await this.ShowInputAsync("没名字", "设置卡组名字", settings);
+				var name = await this.ShowInputAsync("没名字", "输入卡组名字", settings);
 
 				if(string.IsNullOrEmpty(name))
 					return;
@@ -171,7 +171,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 
 			if(_newDeck.Cards.Sum(c => c.Count) != 30 && workInProgressDeck == false)
 			{
-				var settings = new MessageDialogs.Settings {AffirmativeButtonText = "Yes", NegativeButtonText = "No"};
+				var settings = new MessageDialogs.Settings {AffirmativeButtonText = "是", NegativeButtonText = "不"};
 
 				var result =
 					await
@@ -450,7 +450,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			PanelVersionComboBox.Visibility = selectedDeck != null && selectedDeck.HasVersions ? Visible : Collapsed;
 			PanelCardCount.Visibility = Collapsed;
 			BtnStartHearthstone.Visibility = Core.Game.IsRunning ? Collapsed : Visible;
-			TextBlockButtonVersionHistory.Text = "SHOW VERSION HISTORY";
+			TextBlockButtonVersionHistory.Text = "显示版本历史";
 
 			if(MovedLeft.HasValue)
 			{
@@ -728,7 +728,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			const int widthWithoutHistoryPanel = 240;
 			if(PanelDeckHistory.Visibility != Visible)
 			{
-				TextBlockButtonVersionHistory.Text = "HIDE VERSION HISTORY";
+				TextBlockButtonVersionHistory.Text = "隐藏版本历史";
 				PanelDeckHistory.Visibility = Visible;
 				GridNewDeck.Width = widthWithHistoryPanel;
 				Width += widthWithHistoryPanel - widthWithoutHistoryPanel;
@@ -736,7 +736,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			}
 			else
 			{
-				TextBlockButtonVersionHistory.Text = "SHOW VERSION HISTORY";
+				TextBlockButtonVersionHistory.Text = "显示版本历史";
 				PanelDeckHistory.Visibility = Collapsed;
 				GridNewDeck.Width = widthWithoutHistoryPanel;
 				MinWidth -= widthWithHistoryPanel - widthWithoutHistoryPanel;

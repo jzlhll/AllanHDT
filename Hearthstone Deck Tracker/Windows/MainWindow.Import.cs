@@ -126,10 +126,9 @@ namespace Hearthstone_Deck_Tracker.Windows
 			try
 			{
 				var settings = new MessageDialogs.Settings();
-				var clipboard = Clipboard.ContainsText() ? Clipboard.GetText() : "";
+                var clipboard = Clipboard.ContainsText() ? Clipboard.GetText() : "";
 				if(clipboard.Count(c => c == ':') > 0 && clipboard.Count(c => c == ';') > 0)
 					settings.DefaultText = clipboard;
-
 				//import dialog
 				var idString =
 					await

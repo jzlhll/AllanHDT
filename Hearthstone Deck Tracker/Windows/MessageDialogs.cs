@@ -30,7 +30,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 				AffirmativeAndNegative, new Settings {AffirmativeButtonText = "是", NegativeButtonText = "不"});
 
 		public static async Task<MessageDialogResult> ShowDeleteMultipleGameStatsMessage(this MetroWindow window, int count)
-			=> await window.ShowMessageAsync("删除游戏", $"删除选中的游戏 ({count}) 个.\n\nAre you sure?",
+			=> await window.ShowMessageAsync("删除游戏", $"删除选中的游戏 ({count}) 个.\n\n确定吗?",
 				AffirmativeAndNegative, new Settings {AffirmativeButtonText = "是", NegativeButtonText = "不" });
 
 		public static async Task ShowUpdateNotesMessage(this MetroWindow window)
