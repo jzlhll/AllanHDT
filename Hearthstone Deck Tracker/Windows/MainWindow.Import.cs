@@ -110,7 +110,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 				Config.Save();
 			}
 
-            string duowanWeb = "\n目前支持的国内网站:\n178.com, DW";
+            string duowanWeb = "\n目前支持的国内网站:\n178.com, duowan.com";
 			//import dialog
 			var url =
 				await this.ShowInputAsync("导入卡组", "支持的网站:\n" + validUrls.Aggregate((x, next) => x + ", " + next) + duowanWeb, settings);

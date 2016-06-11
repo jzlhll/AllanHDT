@@ -28,17 +28,41 @@ namespace AllanPlugins
             mCardTool = new CardTool();
         }
 
+        public string[] get178hsdeckConvertedToEngNames(string _178hsdeck) {
+            //            [hsdeck]
+            //3559466,法力浮龙,NEW1_012,1,1,1
+            //4346786,奥术冲击,AT_004,1,4,1
+            //9876359,奥术飞弹,EX1_277,1,2,1
+            //6264814,碎雪机器人,GVG_002,2,1,2
+            //[/hsdeck]
+            _178hsdeck = _178hsdeck.Replace("\r\n", "\n");
+            string[] ss = _178hsdeck.Split('\n');
+            string _178web = "http://db.178.com/hs/deck/#0$";
+            for (int i = 0;i < ss.Length;i++) {
+                string s = ss[i];
+                if (s.Equals("")) {
+                    continue;
+                }
+                if (s.Contains("hsdeck]")) {
+                    continue;
+                }
+                string[] ts = s.Split(',');
+                _178web += ts[0] + ":" + ts[5];
+                if (i != ss.Length - 1) {
+                    _178web += ",";
+                }
+            }
+           return get178ConvertedToEngNames(_178web);
+    }
+
         public string[] get178ConvertedToEngNames(string _178web)
         {
-            Console.WriteLine("_178web000=  " + _178web);
             //http://db.178.com/hs/deck/#3$909896:2,2924878:2,3314238:2,3871714:1,7195615:1,7487906:1,7586559:2,8469073:2
             _178web = _178web.Replace("http://db.178.com/hs/deck/#", "");
-            Console.WriteLine("_178web111=  " + _178web);
             //3$909896:2,2924878:2,3314238:2,3871714:1,7195615:1,7487906:1,7586559:2,8469073:2
             _178heroId = int.Parse(_178web.Substring(0, 1));
             //909896:2,2924878:2,3314238:2,3871714:1,7195615:1,7487906:1,7586559:2,8469073:2
             _178web = _178web.Substring(2, _178web.Length - 2);
-            Console.WriteLine("_178web222=  " + _178web);
             string[] ss = _178web.Split(',');
             string[] ret = { "", "", "-1" };
             ret[2] = CardTool.getHeroNameBy178ID(_178heroId);
