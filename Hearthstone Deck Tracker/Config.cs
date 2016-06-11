@@ -1132,9 +1132,8 @@ namespace Hearthstone_Deck_Tracker
 			}
 			catch(Exception e)
 			{
-				MessageBox.Show(
-				                e.Message + "\n\n" + e.InnerException + "\n\n If you don't know how to fix this, please delete "
-				                + Instance.ConfigPath, "Error loading config.xml");
+				MessageBox.Show("如果出现该报错,请删除 "
+				                + Instance.ConfigPath + "删除config.xml文件，重新启动HDT！", "删除config.xml文件，重新启动HDT！");
 				Application.Current.Shutdown();
 			}
 

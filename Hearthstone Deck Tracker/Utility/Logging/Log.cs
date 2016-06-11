@@ -63,7 +63,7 @@ namespace Hearthstone_Deck_Tracker.Utility.Logging
 						var errLogFile = Path.Combine(logDir, "hdt_log_err.txt");
 						using(var writer = new StreamWriter(errLogFile, true))
 							writer.WriteLine("[{0}]: {1}", DateTime.Now.ToLongTimeString(), "Another instance of HDT is already running.");
-						MessageBox.Show("Another instance of Hearthstone Deck Tracker is already running.", "Error starting Hearthstone Deck Tracker",
+						MessageBox.Show("另外一个HDT程序在运行中", "启动程序错误",
 										MessageBoxButton.OK, MessageBoxImage.Error);
 					}
 					catch(Exception)

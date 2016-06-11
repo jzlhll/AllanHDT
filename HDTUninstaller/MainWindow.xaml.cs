@@ -123,7 +123,7 @@ namespace HDTUninstaller
 				return;
 			try
 			{
-				var result = MessageBox.Show("Are you sure? This can not be undone!", "Delete HDT Data", MessageBoxButton.OKCancel);
+				var result = MessageBox.Show("你确定吗，这将不可停止!", "删除HDT数据", MessageBoxButton.OKCancel);
 				if(result == MessageBoxResult.OK)
 				{
 					Directory.Delete(HDTDirectory, true);
