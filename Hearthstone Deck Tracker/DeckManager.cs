@@ -134,11 +134,11 @@ namespace Hearthstone_Deck_Tracker
 
 		private static void ShowDeckSelectionDialog(List<Deck> decks)
 		{
-			decks.Add(new Deck("Use no deck", "", new List<Card>(), new List<string>(), "", "", DateTime.Now, false, new List<Card>(),
+			decks.Add(new Deck("使用[无卡组]模式", "", new List<Card>(), new List<string>(), "", "", DateTime.Now, false, new List<Card>(),
 								   SerializableVersion.Default, new List<Deck>(), false, "", Guid.Empty, ""));
 			if(decks.Count == 1 && DeckList.Instance.ActiveDeck != null)
 			{
-				decks.Add(new Deck("No match - Keep using active deck", "", new List<Card>(), new List<string>(), "", "", DateTime.Now, false,
+				decks.Add(new Deck("卡组不对继续使用[激活中]的卡组", "", new List<Card>(), new List<string>(), "", "", DateTime.Now, false,
 								   new List<Card>(), SerializableVersion.Default, new List<Deck>(), false, "", Guid.Empty, ""));
 			}
 			_waitingForUserInput = true;
@@ -149,13 +149,13 @@ namespace Hearthstone_Deck_Tracker
 			var selectedDeck = dsDialog.SelectedDeck;
 			if(selectedDeck != null)
 			{
-				if(selectedDeck.Name == "Use no deck")
+				if(selectedDeck.Name == "使用[无卡组]模式")
 				{
 					Log.Info("Auto deck detection disabled.");
 					Core.MainWindow.SelectDeck(null, true);
 					NotFoundCards.Clear();
 				}
-				else if(selectedDeck.Name == "No match - Keep using active deck")
+				else if(selectedDeck.Name == "卡组不对继续使用[激活中]的卡组")
 				{
 					IgnoredDeckId = DeckList.Instance.ActiveDeck?.DeckId ?? Guid.Empty;
 					Log.Info($"Now ignoring {DeckList.Instance.ActiveDeck?.Name}");
