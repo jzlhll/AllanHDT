@@ -157,7 +157,7 @@
                                             <VisualBrush Visual="{StaticResource appbar_arrow_right_left_white}" />
                                         </Rectangle.Fill>
                                     </Rectangle>
-                                    <TextBlock Text="移动到新窗口" FontWeight="Normal" />
+                                    <TextBlock Text="新窗口中打开" FontWeight="Heavy"/>
                                 </StackPanel>
                             </Button>
                             <TextBlock Text="统计" Foreground="White" Margin="15,0" FontSize="{StaticResource FlyoutHeaderFontSize}" VerticalAlignment="Center" HorizontalAlignment="Right" />
@@ -173,7 +173,7 @@
             <StatusBarItem Margin="10,0,0,0" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock VerticalAlignment="Center" FontSize="14">
-                        <Run FontWeight="SemiBold">A NEW UPDATE IS AVAILABLE - </Run>
+                        <Run FontWeight="SemiBold">新的更新已经准备好了（这是英文原版，建议不要乱更新哦） - </Run>
                         <Hyperlink Foreground="White" FontWeight="Bold" Click="HyperlinkUpdateNow_OnClick">
                             CLICK HERE TO UPDATE NOW
                         </Hyperlink>

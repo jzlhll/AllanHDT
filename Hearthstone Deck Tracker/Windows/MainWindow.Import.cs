@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Animation;
+using AllanPlugins;
 using Hearthstone_Deck_Tracker.Hearthstone;
 using Hearthstone_Deck_Tracker.Importing;
 using Hearthstone_Deck_Tracker.Utility;
@@ -35,10 +36,17 @@ namespace Hearthstone_Deck_Tracker.Windows
 		{
 			if(url == null)
 				url = await InputDeckURL();
-			if(url == null)
+            if (url == null)
 				return;
-			var deck = await ImportDeckFromURL(url);
-			if(deck != null)
+            Deck deck;
+            if (CardTool.isMineWeb(url)) {
+                AllanAdd.ChinaWebImport.import(url, "");
+                //本人走的逻辑不一样。直接return掉。
+                return;
+            } else { 
+			    deck = await ImportDeckFromURL(url);
+            }
+            if (deck != null)
 			{
 				var reimport = EditingDeck && _newDeck != null && _newDeck.Url == deck.Url;
 
@@ -51,13 +59,15 @@ namespace Hearthstone_Deck_Tracker.Windows
 					SaveDeckWithOverwriteCheck();
 			}
 			else
-				await this.ShowMessageAsync("错误", "不能从url中加载卡组");
+				await this.ShowMessageAsync("错误", "无法从该链接中解析出卡组！");
 		}
 
 		private async Task<string> InputDeckURL()
 		{
 			var settings = new MessageDialogs.Settings();
-			var validUrls = DeckImporter.Websites.Keys.Select(x => x.Split('.')[0]).ToArray();
+            settings.AffirmativeButtonText = "开始解析";
+            settings.NegativeButtonText = "取消";
+            var validUrls = DeckImporter.Websites.Keys.Select(x => x.Split('.')[0]).ToArray();
 			try
 			{
 				var clipboard = Clipboard.ContainsText() ? new string(Clipboard.GetText().Take(1000).ToArray()) : "";
@@ -100,25 +110,22 @@ namespace Hearthstone_Deck_Tracker.Windows
 				Config.Save();
 			}
 
-
+            string duowanWeb = "\n目前支持的国内网站:\n178.com, DW";
 			//import dialog
 			var url =
-				await this.ShowInputAsync("导入卡组", "支持的网站:\n" + validUrls.Aggregate((x, next) => x + ", " + next), settings);
+				await this.ShowInputAsync("导入卡组", "支持的网站:\n" + validUrls.Aggregate((x, next) => x + ", " + next) + duowanWeb, settings);
 			return url;
 		}
 
 		private async Task<Deck> ImportDeckFromURL(string url)
 		{
 			var controller = await this.ShowProgressAsync("加载中", "请等待");
-
 			//var deck = await this._deckImporter.Import(url);
 			var deck = await DeckImporter.Import(url);
-
-			if(deck != null)
+            if (deck != null)
 				deck.Url = url;
-
-			await controller.CloseAsync();
-			return deck;
+            await controller.CloseAsync();
+            return deck;
 		}
 
 		private async void BtnIdString_Click(object sender, RoutedEventArgs e)

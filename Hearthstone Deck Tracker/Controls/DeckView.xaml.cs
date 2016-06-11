@@ -29,7 +29,7 @@ namespace Hearthstone_Deck_Tracker.Controls
 			}
 			else
 			{
-				DeckTitlePanel.Background = DeckHeaderBackground(deck.Class);
+                DeckTitlePanel.Background = DeckHeaderBackground(deck.Class);
 				LblDeckTitle.Text = deck.Name;
                 LblDeckTag.Text = GetTagText(deck);
                 LblDeckFormat.Text = GetFormatText(deck);
@@ -46,15 +46,14 @@ namespace Hearthstone_Deck_Tracker.Controls
 			var heroId = ClassToID(deckClass);
 			var drawingGroup = new DrawingGroup();
 			drawingGroup.Children.Add(new ImageDrawing(new BitmapImage(new Uri(
-				$"Images/Bars/{heroId}.png", UriKind.Relative)), new Rect(54, 0, 130, 34)));
-			drawingGroup.Children.Add(new ImageDrawing(new BitmapImage(new Uri(
-				"Images/Themes/Bars/dark/fade.png", UriKind.Relative)), new Rect(0, 0, 183, 34)));
-
+				$"Images/Bars/{heroId}.png", UriKind.Relative)), new Rect(54, 0, 130, 100)));
+			//drawingGroup.Children.Add(new ImageDrawing(new BitmapImage(new Uri(
+			//	"Images/Themes/Bars/dark/fade.png", UriKind.Relative)), new Rect(0, 0, 183, 34)));
 			return new ImageBrush {
 				ImageSource = new DrawingImage(drawingGroup),
 				AlignmentX = AlignmentX.Left,
-				Stretch = Stretch.UniformToFill
-			};
+				Stretch = Stretch.Fill
+            };
 		}
 
         private string GetTagText(Deck deck)
@@ -140,9 +139,9 @@ namespace Hearthstone_Deck_Tracker.Controls
 
 			if(deck.IsArenaDeck)
 				RectIconArena.Visibility = Visible;
-			else if(_allTags.Contains("brawl"))
+			else if(_allTags.Contains("乱斗"))
 				RectIconBrawl.Visibility = Visible;
-			else if(_allTags.Contains("adventure") || _allTags.Contains("pve"))
+			else if(_allTags.Contains("冒险") || _allTags.Contains("pve"))
 				RectIconAdventure.Visibility = Visible;
 			else if(deck.StandardViable)
 				RectIconStandard.Visibility = Visible;

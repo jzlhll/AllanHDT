@@ -24,7 +24,7 @@
                             <VisualBrush Visual="{StaticResource appbar_arrow_right_left_white}" />
                         </Rectangle.Fill>
                     </Rectangle>
-                    <TextBlock Margin="4" VerticalAlignment="Center" Text="移动到新窗口" FontSize="13"/>
+                    <TextBlock Margin="4" VerticalAlignment="Center" Text="合并到主窗口" FontSize="14"/>
                 </StackPanel>
             </Button>
         </controls:WindowCommands>
