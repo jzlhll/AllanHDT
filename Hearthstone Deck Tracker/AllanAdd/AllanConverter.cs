@@ -145,10 +145,12 @@ namespace AllanPlugins
                     int.Parse(duowans[4]));
             nums = new int[orders.Length];
             Console.WriteLine("duowan1 " + duowan);
-            if (duowan.Contains("http://ls.duowan.com/deckbuilder/index.html")) {
+            if (duowan.Contains("http://ls.duowan.com/deckbuilder/index.html"))
+            {
                 duowan = duowan.Replace(
                                     "http://ls.duowan.com/deckbuilder/index.html#i", "");
-            } else if (duowan.Contains("http://ls.duowan.com/s/decksbuilder/index.html"))
+            }
+            else if (duowan.Contains("http://ls.duowan.com/s/decksbuilder/index.html"))
             {
                 duowan = duowan.Replace(
                                     "http://ls.duowan.com/s/decksbuilder/index.html#i", "");

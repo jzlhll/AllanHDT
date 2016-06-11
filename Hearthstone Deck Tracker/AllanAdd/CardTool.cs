@@ -2,8 +2,10 @@
 {
     class CardTool
     {
-        public static bool isMineWeb(string web) {
-            if (web.Contains("duowan.com") || web.Contains("178.com")) {
+        public static bool isMineWeb(string web)
+        {
+            if (web.Contains("duowan.com") || web.Contains("178.com"))
+            {
                 return true;
             }
             return false;

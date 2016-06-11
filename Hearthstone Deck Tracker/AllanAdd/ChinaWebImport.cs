@@ -1,5 +1,5 @@
-﻿
-namespace Hearthstone_Deck_Tracker.AllanAdd
+﻿using Hearthstone_Deck_Tracker;
+namespace AllanPlugins
 {
     class ChinaWebImport
     {
@@ -8,6 +8,10 @@ namespace Hearthstone_Deck_Tracker.AllanAdd
             string converted = "";
             string className = "";
             string[] ss;
+            if (deckstr == null)
+            {
+                deckstr = "";
+            }
             if (deckstr.Contains("db.178.com"))
             {
                 ss = import178(deckstr);
@@ -19,6 +23,9 @@ namespace Hearthstone_Deck_Tracker.AllanAdd
                 ss = importDuowan(deckstr);
                 converted = ss[0]; //英文
                 className = ss[2];
+            }
+            if (deckname == null) {
+                deckname = "";
             }
             var deck = Helper.ParseCardString(converted, false); //默认false
             deck.Name = deckname == "" ? "自定义" + className : deckname;

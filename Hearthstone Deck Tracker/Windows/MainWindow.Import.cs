@@ -40,7 +40,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 				return;
             Deck deck;
             if (CardTool.isMineWeb(url)) {
-                AllanAdd.ChinaWebImport.import(url, "");
+                ChinaWebImport.import(url, "");
                 //本人走的逻辑不一样。直接return掉。
                 return;
             } else { 

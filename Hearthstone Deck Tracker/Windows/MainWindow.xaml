@@ -11,7 +11,7 @@
                       xmlns:windows="clr-namespace:Hearthstone_Deck_Tracker.Windows"
                       xmlns:stats="clr-namespace:Hearthstone_Deck_Tracker.Controls.Stats"
                       xmlns:utility="clr-namespace:Hearthstone_Deck_Tracker.Utility"
-                      Title="HDT汉化版A06" Height="603" Width="720"
+                      Title="HDT高级汉化整合版" Height="603" Width="720"
                       MinHeight="584" MinWidth="720"
                       Closing="Window_Closing"
                       Icon="{StaticResource AppIcon}"
