@@ -38,28 +38,26 @@ namespace Hearthstone_Deck_Tracker.Windows
 				url = await InputDeckURL();
             if (url == null)
 				return;
-            Deck deck;
             if (CardTool.isMineWeb(url)) {
-                ChinaWebImport.import(url, "");
-                //本人走的逻辑不一样。直接return掉。
-                return;
+                bool bl = ChinaWebImport.import(url, "");
+                if (!bl)
+                    await this.ShowMessageAsync("使用国内网址导入出错", ChinaWebImport.getSupportDemo());
             } else { 
-			    deck = await ImportDeckFromURL(url);
+			   var deck = await ImportDeckFromURL(url);
+               if (deck != null)
+               {
+                   var reimport = EditingDeck && _newDeck != null && _newDeck.Url == deck.Url;
+                   if (reimport) //keep old notes
+                        deck.Note = _newDeck.Note;
+
+                   SetNewDeck(deck, reimport);
+                   TagControlEdit.SetSelectedTags(deck.Tags);
+                   if (Config.Instance.AutoSaveOnImport)
+                       SaveDeckWithOverwriteCheck();
+               }
+               else
+                   await this.ShowMessageAsync("错误", "无法从该链接中解析出卡组！");
             }
-            if (deck != null)
-			{
-				var reimport = EditingDeck && _newDeck != null && _newDeck.Url == deck.Url;
-
-				if(reimport) //keep old notes
-					deck.Note = _newDeck.Note;
-
-				SetNewDeck(deck, reimport);
-				TagControlEdit.SetSelectedTags(deck.Tags);
-				if(Config.Instance.AutoSaveOnImport)
-					SaveDeckWithOverwriteCheck();
-			}
-			else
-				await this.ShowMessageAsync("错误", "无法从该链接中解析出卡组！");
 		}
 
 		private async Task<string> InputDeckURL()

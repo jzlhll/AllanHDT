@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Linq;
 using System.Text;
-using System.Diagnostics;
 namespace AllanPlugins
 {
     class AllanConverter
@@ -57,6 +56,9 @@ namespace AllanPlugins
 
         public string[] get178ConvertedToEngNames(string _178web)
         {
+            if (!_178web.Contains("http://db.178.com/hs/deck/#")) {
+                return null;
+            }
             //http://db.178.com/hs/deck/#3$909896:2,2924878:2,3314238:2,3871714:1,7195615:1,7487906:1,7586559:2,8469073:2
             _178web = _178web.Replace("http://db.178.com/hs/deck/#", "");
             //3$909896:2,2924878:2,3314238:2,3871714:1,7195615:1,7487906:1,7586559:2,8469073:2
@@ -87,6 +89,7 @@ namespace AllanPlugins
                     ret[1] += "\r\n";
                 }
             }
+
             return ret;
         }
 
@@ -101,7 +104,13 @@ namespace AllanPlugins
                 {
                     duowanweb = duowanweb.Substring(0, duowanweb.IndexOf("&p1="));
                 }
-                duowanStrToIds(duowanweb, XeLi);
+                if (!duowanStrToIds(duowanweb, XeLi))
+                {
+                    return null;
+                }
+            }
+            else {
+                return null;
             }
             return getConvertToHDT_ENG_CARDS();
         }
@@ -159,7 +168,7 @@ namespace AllanPlugins
             return ret;
         }
 
-        private void duowanStrToIds(string duowan, string XL)
+        private bool duowanStrToIds(string duowan, string XL)
         {
             string[] duowans = duowan.Split('&');
             string decs = anyTo_10(duowans[1], XL);
@@ -179,15 +188,19 @@ namespace AllanPlugins
                 duowan = duowan.Replace(
                                     "http://ls.duowan.com/s/decksbuilder/index.html#i", "");
             }
-            if (duowan.Contains("ls.duowan.com/decksbuilder/standard.html"))
+            else if (duowan.Contains("ls.duowan.com/decksbuilder/standard.html"))
             {
                 duowan = duowan.Replace(
                                     "http://ls.duowan.com/decksbuilder/standard.html#i", "");
             }
-            if (duowan.Contains("ls.duowan.com/s/decksbuilder/standard.html"))
+            else if (duowan.Contains("ls.duowan.com/s/decksbuilder/standard.html"))
             {
                 duowan = duowan.Replace(
                                     "http://ls.duowan.com/s/decksbuilder/standard.html#i", "");
+            }
+            else
+            {
+                return false;
             }
 
             Console.WriteLine("duowan2 " + duowan);
@@ -200,6 +213,7 @@ namespace AllanPlugins
                 //DuowanCard.CardSturct cs = mDuowanCard.getCardById(duowan_ids[i]);
                 //Debug.WriteLine("num " + nums[i] + " " + cs.ToStr());
             }
+            return true;
         }
 
         /**

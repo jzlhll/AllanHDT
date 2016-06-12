@@ -47,7 +47,7 @@ namespace Hearthstone_Deck_Tracker
 				_createdReport = true;
 				var stackTrace = e.Exception.StackTrace.Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);
 				Google.TrackEvent(e.Exception.GetType().ToString().Split('.').Last(), stackTrace.Length > 0 ? stackTrace[0] : "", stackTrace.Length > 1 ? stackTrace[1] : "");
-#if(!DEBUG)
+#if (!DEBUG)
 				var date = DateTime.Now;
 				var fileName = "Crash Reports\\" + $"Crash report {date.Day}{date.Month}{date.Year}-{date.Hour}{date.Minute}";
 
@@ -61,12 +61,12 @@ namespace Hearthstone_Deck_Tracker
 					sr.WriteLine(Core.MainWindow.Options.OptionsTrackerLogging.TextBoxLog.Text);
 				}
 
-				MessageBox.Show(e.Exception.Message + "\n\n" + "A crash report file was created at:\n\"" + Environment.CurrentDirectory + "\\" + fileName
-								+ ".txt\"\n\nPlease \na) create an issue on github (https://github.com/HearthSim/Hearthstone-Deck-Tracker) \nor \nb) send an email to support@hsdecktracker.net.\n\nPlease include the generated crash report(s) and a short explanation of what lead to the crash.",
-								"Oops! Something went wrong.", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show(e.Exception.Message + "\n\n" + "出错啦！有crash.log生成在:\n\"" + Environment.CurrentDirectory + "\\" + fileName
+								+ ".txt\"\n\nPlease \na) 请截图在 http://bbs.ngacn.cc/read.php?tid=9444162 原贴上回帖！\n.由于原作者代码和我汉化的原因可能导致出错，深感抱歉!",
+								"噢！挂掉了！", MessageBoxButton.OK, MessageBoxImage.Error);
 #endif
-			}
-			e.Handled = true;
+            }
+            e.Handled = true;
 			Shutdown();
 		}
 
