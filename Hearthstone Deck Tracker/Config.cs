@@ -115,10 +115,10 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(true)]
 		public bool AutoSelectDetectedDeck = true;
 
-		[DefaultValue("Arena {Date dd-MM hh:mm}")]
+		[DefaultValue("竞技场 {Date dd-MM hh:mm}")]
 		public string ArenaDeckNameTemplate = "竞技场 {Date dd-MM hh:mm}";
 
-		[DefaultValue("Brawl {Date dd-MM hh:mm}")]
+		[DefaultValue("乱斗 {Date dd-MM hh:mm}")]
 		public string BrawlDeckNameTemplate = "乱斗 {Date dd-MM hh:mm}";
 
 		[DefaultValue(false)]

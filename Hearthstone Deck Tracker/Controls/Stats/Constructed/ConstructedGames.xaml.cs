@@ -43,7 +43,7 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats.Constructed
 
 		public string ButtonAddGameIsEnabledToolTip
 			=> DeckList.Instance.ActiveDeck == null
-					? "No active deck" : (DeckList.Instance.ActiveDeck.IsArenaDeck ? "Active deck is an arena deck" : "Deck: " + DeckList.Instance.ActiveDeck.Name);
+					? "没有激活卡组" : (DeckList.Instance.ActiveDeck.IsArenaDeck ? "激活的卡组是个竞技场卡组" : "卡组: " + DeckList.Instance.ActiveDeck.Name);
 
 		public Visibility MultiSelectPanelVisibility => SelectedGames.Count > 1 ? Visibility.Visible : Visibility.Collapsed;
 		public bool ButtonMultiMoveEnabled => SelectedGames.All(g => g.PlayerHero == SelectedGames.First().PlayerHero);

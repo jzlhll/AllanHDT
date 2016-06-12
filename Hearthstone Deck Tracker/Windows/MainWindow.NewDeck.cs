@@ -516,13 +516,13 @@ namespace Hearthstone_Deck_Tracker.Windows
 				_newDeck.IsArenaDeck = true;
 			else if(type == DeckType.Brawl)
 			{
-				if(!DeckList.Instance.AllTags.Contains("Brawl"))
+				if(!DeckList.Instance.AllTags.Contains("Brawl") && !DeckList.Instance.AllTags.Contains("乱斗"))
 				{
-					DeckList.Instance.AllTags.Add("Brawl");
+					DeckList.Instance.AllTags.Add("乱斗");
 					DeckList.Save();
 					Core.MainWindow?.ReloadTags();
 				}
-				_newDeck.Tags.Add("Brawl");
+				_newDeck.Tags.Add("乱斗");
 			}
 
 			BorderConstructedCardLimits.Visibility = _newDeck.IsArenaDeck ? Collapsed : Visible;

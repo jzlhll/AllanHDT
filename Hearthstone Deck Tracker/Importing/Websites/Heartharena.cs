@@ -34,8 +34,8 @@ namespace Hearthstone_Deck_Tracker.Importing.Websites
 					if(string.IsNullOrEmpty(deck.Class) && card.PlayerClass != "Neutral")
 						deck.Class = card.PlayerClass;
 				}
-				if(DeckList.Instance.AllTags.Contains("Arena"))
-					deck.Tags.Add("Arena");
+				if(DeckList.Instance.AllTags.Contains("Arena") || DeckList.Instance.AllTags.Contains("竞技场"))
+					deck.Tags.Add("竞技场");
 				deck.Name = Helper.ParseDeckNameTemplate(Config.Instance.ArenaDeckNameTemplate, deck);
 				return deck;
 			}
