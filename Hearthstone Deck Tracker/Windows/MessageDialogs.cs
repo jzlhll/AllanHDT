@@ -121,7 +121,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 						Affirmative, new Settings {AffirmativeButtonText = "OK"});
 				return;
 			}
-			var message = "The following cards were not found:\n";
+			var message = "下列这些卡没有找到:\n";
 			var totalDust = 0;
 			var sets = new string[5];
 			foreach(var card in deck.MissingCards)
@@ -131,19 +131,19 @@ namespace Hearthstone_Deck_Tracker.Windows
 					message += " x2";
 
 				if(card.Set.Equals("CURSE OF NAXXRAMAS", CurrentCultureIgnoreCase))
-					sets[0] = "and the Naxxramas DLC ";
+					sets[0] = "和NAXX冒险模式";
 				else if(card.Set.Equals("PROMOTION", CurrentCultureIgnoreCase))
-					sets[1] = "and Promotion cards ";
+					sets[1] = "和活动卡牌 ";
 				else if(card.Set.Equals("REWARD", CurrentCultureIgnoreCase))
-					sets[2] = "and the Reward cards ";
+					sets[2] = "和奖励卡牌 ";
 				else if(card.Set.Equals("BLACKROCK MOUNTAIN", CurrentCultureIgnoreCase))
-					sets[3] = "and the Blackrock Mountain DLC ";
+					sets[3] = "和黑石山冒险模式";
 				else if(card.Set.Equals("LEAGUE OF EXPLORERS", CurrentCultureIgnoreCase))
-					sets[4] = "and the League of Explorers DLC ";
+					sets[4] = "和探险者协会冒险模式";
 				else
 					totalDust += card.DustCost * card.Count;
 			}
-			message += $"\n\nYou need {totalDust} dust {string.Join("", sets)}to craft the missing cards.";
+			message += $"\n\n你需要 {totalDust} 尘 {string.Join("", sets)}来合成这些缺少的卡";
 			await window.ShowMessageAsync("导出不完整", message, Affirmative, new Settings {AffirmativeButtonText = "OK"});
 		}
 

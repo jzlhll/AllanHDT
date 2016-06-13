@@ -36,8 +36,8 @@ namespace Hearthstone_Deck_Tracker
 				if(plugin != null)
 				{
 					plugin.IsEnabled = false;
-					var header = $"{plugin.NameAndVersion} is not compatible with HDT {Helper.GetCurrentVersion().ToVersionString()}.";
-					ErrorManager.AddError(header, "Make sure you are using the latest version of the Plugin and HDT.\n\n" + e.Exception);
+					var header = $"{plugin.NameAndVersion} 不适合HDT版本 {Helper.GetCurrentVersion().ToVersionString()}.";
+					ErrorManager.AddError(header, "确保你在使用最新的插件和HDT.\n\n" + e.Exception);
 					e.Handled = true;
 					return;
 				}

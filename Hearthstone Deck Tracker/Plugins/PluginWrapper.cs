@@ -105,8 +105,8 @@ namespace Hearthstone_Deck_Tracker.Plugins
 				_exceptions++;
 				if(_exceptions > PluginManager.MaxExceptions)
 				{
-					ErrorManager.AddError(NameAndVersion + " threw too many exceptions, disabled Plugin.",
-					                      "Make sure you are using the latest version of the Plugin and HDT.\n\n" + ex);
+					ErrorManager.AddError(NameAndVersion + " 抛出太多异常，插件已被禁用.",
+					                      "确保你在使用最新的插件版本和HDT.\n\n" + ex);
 					IsEnabled = false;
 				}
 			}

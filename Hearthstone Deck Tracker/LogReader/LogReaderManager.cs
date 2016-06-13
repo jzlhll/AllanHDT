@@ -71,7 +71,7 @@ namespace Hearthstone_Deck_Tracker.LogReader
 			{
 				const string msg = "Could not find Hearthstone installation";
 				Log.Error(msg);
-				ErrorManager.AddError(msg, "Please point HDT to your Hearthstone installation via 'options > tracker > settings > set hearthstone path'.");
+				ErrorManager.AddError(msg, "请点击HDT到炉石安装，通过【选项】->跟踪->设置->设置游戏路径");
 				return;
 			}
 			Log.Info($"Found Hearthstone at '{dir}'");

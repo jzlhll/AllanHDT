@@ -17,5 +17,7 @@ namespace Hearthstone_Deck_Tracker.API
 		public static OverlayWindow OverlayWindow => Hearthstone_Deck_Tracker.Core.Overlay;
 
 		public static MainWindow MainWindow => Hearthstone_Deck_Tracker.Core.MainWindow;
+
+        public static string OWNER = "allan";
 	}
 }

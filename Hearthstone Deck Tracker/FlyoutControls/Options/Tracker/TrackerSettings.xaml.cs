@@ -300,7 +300,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 			catch(Exception ex)
 			{
 				Log.Error(ex);
-				ErrorManager.AddError("Could not open AppData folder.", "Manually navigate to '%AppData%/HearthstoneDeckTracker'.");
+				ErrorManager.AddError("打不开appData文件夹.", "手动行进到'%AppData%/HearthstoneDeckTracker'.");
 			}
 		}
 
