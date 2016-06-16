@@ -502,7 +502,7 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(false)]
 		public bool HideTimers = false;
 
-		[DefaultValue(false)]
+		[DefaultValue(true)]
 		public bool HighlightCardsInHand = true;
 
 		[DefaultValue(false)]
@@ -833,8 +833,8 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(false)]
 		public bool ShowDeckTitle = false;
 
-		[DefaultValue(false)]
-		public bool ShowDeckWins = false;
+		[DefaultValue(true)]
+		public bool ShowDeckWins = true;
 
 		[DefaultValue(true)]
 		public bool ShowExportingDialog = true;
