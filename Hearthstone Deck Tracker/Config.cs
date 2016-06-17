@@ -1132,8 +1132,8 @@ namespace Hearthstone_Deck_Tracker
 			}
 			catch(Exception e)
 			{
-				MessageBox.Show("如果出现该报错,请删除 "
-				                + Instance.ConfigPath + "删除config.xml文件，重新启动HDT！", "删除config.xml文件，重新启动HDT！");
+				MessageBox.Show("如果出现该报错,一般重新运行就可以了!!!如果还报错。请删除 "
+				                + Instance.ConfigPath + "删除config.xml文件，再次启动HDT！", "重启HDT！");
 				Application.Current.Shutdown();
 			}
 

@@ -105,8 +105,8 @@ namespace Hearthstone_Deck_Tracker.Windows
 		public static async Task ShowLogConfigUpdateFailedMessage(this MetroWindow window)
 		{
 			var settings = new Settings {AffirmativeButtonText = "显示介绍", NegativeButtonText = "关闭"};
-			var result = await window.ShowMessageAsync("有一个问题在更新log.config中",
-                                        "新的log.config设定为HDT需要正常使用的话，\n\n需要使用管理员启动HDT汉化版。\n\n如果需要帮助，点击“显示说明”如何手动更新。",
+			var result = await window.ShowMessageAsync("无法生成log.config",
+                                        "HDT需要正常使用的话，需要log.config的正常设置，\n\n需要使用管理员启动HDT程序。\n\n如果需要帮助，点击“显示说明”如何手动更新。",
 										AffirmativeAndNegative, settings);
 			if(result == MessageDialogResult.Affirmative)
 				Helper.TryOpenUrl("https://github.com/HearthSim/Hearthstone-Deck-Tracker/wiki/Setting-up-the-log.config");
