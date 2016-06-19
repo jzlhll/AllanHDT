@@ -32,7 +32,9 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 			_game = game;
 			CheckboxWindowsTopmost.IsChecked = Config.Instance.WindowsTopmost;
 			CheckboxPlayerWindowOpenAutomatically.IsChecked = Config.Instance.PlayerWindowOnStart;
-			CheckboxOpponentWindowOpenAutomatically.IsChecked = Config.Instance.OpponentWindowOnStart;
+			//<!--allan add for graveryard-->
+            CheckboxGraveyardWindowOpenAutomatically.IsChecked = Config.Instance.GraveYardWindowOnStart;
+            CheckboxOpponentWindowOpenAutomatically.IsChecked = Config.Instance.OpponentWindowOnStart;
 			CheckboxTimerTopmost.IsChecked = Config.Instance.TimerWindowTopmost;
 			CheckboxTimerWindow.IsChecked = Config.Instance.TimerWindowOnStartup;
 			CheckboxTimerTopmostHsForeground.IsChecked = Config.Instance.TimerWindowTopmostIfHsForeground;
@@ -62,7 +64,8 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 				return;
 			Config.Instance.WindowsTopmost = true;
 			Core.Windows.PlayerWindow.Topmost = true;
-			Core.Windows.OpponentWindow.Topmost = true;
+            Core.Windows.GraveryWindow.Topmost = true;//<!--allan add for graveryard-->
+            Core.Windows.OpponentWindow.Topmost = true;
 			CheckboxWinTopmostHsForeground.IsEnabled = true;
 			SaveConfig(true);
 		}
@@ -73,7 +76,8 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 				return;
 			Config.Instance.WindowsTopmost = false;
 			Core.Windows.PlayerWindow.Topmost = false;
-			Core.Windows.OpponentWindow.Topmost = false;
+            Core.Windows.GraveryWindow.Topmost = false;//<!--allan add for graveryard-->
+            Core.Windows.OpponentWindow.Topmost = false;
 			CheckboxWinTopmostHsForeground.IsEnabled = false;
 			CheckboxWinTopmostHsForeground.IsChecked = false;
 			SaveConfig(true);
@@ -86,7 +90,8 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 			Config.Instance.WindowsTopmostIfHsForeground = true;
 			Core.Windows.PlayerWindow.Topmost = false;
 			Core.Windows.OpponentWindow.Topmost = false;
-			SaveConfig(false);
+            Core.Windows.GraveryWindow.Topmost = false;//<!--allan add for graveryard-->
+            SaveConfig(false);
 		}
 
 		private void CheckboxWinTopmostHsForeground_Unchecked(object sender, RoutedEventArgs e)
@@ -98,7 +103,8 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 			{
 				Core.Windows.PlayerWindow.Topmost = true;
 				Core.Windows.OpponentWindow.Topmost = true;
-			}
+                Core.Windows.GraveryWindow.Topmost = true;//<!--allan add for graveryard-->
+            }
 			SaveConfig(false);
 		}
 
@@ -262,7 +268,8 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 				if(hexBackground != null)
 				{
 					Core.Windows.PlayerWindow.Background = hexBackground;
-					Core.Windows.OpponentWindow.Background = hexBackground;
+                    Core.Windows.GraveryWindow.Background = hexBackground;//<!--allan add for graveryard-->
+                    Core.Windows.OpponentWindow.Background = hexBackground;
 					Core.Windows.TimerWindow.Background = hexBackground;
 				}
 			}
@@ -270,8 +277,28 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 			{
 				Core.Windows.PlayerWindow.Background = background;
 				Core.Windows.OpponentWindow.Background = background;
-				Core.Windows.TimerWindow.Background = background;
+                Core.Windows.GraveryWindow.Background = background;//<!--allan add for graveryard-->
+                Core.Windows.TimerWindow.Background = background;
 			}
 		}
-	}
+		//<!--allan add for graveryard-->
+        private void CheckboxGraveyardWindowOpenAutomatically_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!_initialized)
+                return;
+            Core.Windows.GraveryWindow.Show();
+            Core.Windows.GraveryWindow.Activate();
+            Config.Instance.GraveYardWindowOnStart = true;
+            Config.Save();
+        }
+
+        private void CheckboxGraveyardWindowOpenAutomatically_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (!_initialized)
+                return;
+            Core.Windows.GraveryWindow.Hide();
+            Config.Instance.GraveYardWindowOnStart = false;
+            Config.Save();
+        }
+    }
 }

@@ -135,8 +135,8 @@
     <Compile Include="AllanAdd\AllanConverter.cs" />
     <Compile Include="AllanAdd\ChinaWebImport.cs" />
     <Compile Include="AllanAdd\CardTool.cs" />
-    <Compile Include="AllanAdd\GraveYardListView.xaml.cs">
-      <DependentUpon>GraveYardListView.xaml</DependentUpon>
+    <Compile Include="AllanAdd\GraveyardWindow.xaml.cs">
+      <DependentUpon>GraveyardWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="API\ActionList.cs" />
     <Compile Include="API\AttackInfo.cs" />
@@ -691,9 +691,9 @@
       <DependentUpon>TimerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utility\XmlManager.cs" />
-    <Page Include="AllanAdd\GraveYardListView.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="AllanAdd\GraveyardWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\AnimatedCard.xaml">
       <SubType>Designer</SubType>

@@ -21,6 +21,7 @@ using Hearthstone_Deck_Tracker.Utility.Logging;
 using Hearthstone_Deck_Tracker.Windows;
 using MahApps.Metro.Controls.Dialogs;
 using Hearthstone_Deck_Tracker.Utility.Themes;
+using System.Collections.Generic;
 
 #endregion
 
@@ -106,8 +107,15 @@ namespace Hearthstone_Deck_Tracker
 			Helper.CopyReplayFiles();
 			BackupManager.Run();
 
-			if(Config.Instance.PlayerWindowOnStart)
-				Windows.PlayerWindow.Show();
+            if (Config.Instance.PlayerWindowOnStart)
+            {
+                Windows.PlayerWindow.Show();
+            }
+//<!--allan add for graveryard-->
+            if (Config.Instance.GraveYardWindowOnStart) {
+                Windows.GraveryWindow.Show();
+            }
+
 			if(Config.Instance.OpponentWindowOnStart)
 				Windows.OpponentWindow.Show();
 			if(Config.Instance.TimerWindowOnStartup)
@@ -197,8 +205,9 @@ namespace Hearthstone_Deck_Tracker
 								//clicking on the playerwindow and back to hs causes the playerwindow to be behind hs.
 								//other way around it works for both windows... what?
 								Windows.OpponentWindow.Topmost = true;
-								Windows.PlayerWindow.Topmost = true;
-								Windows.TimerWindow.Topmost = true;
+								Windows.PlayerWindow.Topmost = true;//<!--allan add for graveryard-->
+                                Windows.GraveryWindow.Topmost = true;
+                                Windows.TimerWindow.Topmost = true;
 							}
 							hsForegroundChanged = false;
 						}
@@ -208,7 +217,8 @@ namespace Hearthstone_Deck_Tracker
 						if(Config.Instance.WindowsTopmostIfHsForeground && Config.Instance.WindowsTopmost)
 						{
 							Windows.PlayerWindow.Topmost = false;
-							Windows.OpponentWindow.Topmost = false;
+                            Windows.GraveryWindow.Topmost = false;//<!--allan add for graveryard-->
+                            Windows.OpponentWindow.Topmost = false;
 							Windows.TimerWindow.Topmost = false;
 						}
 						hsForegroundChanged = true;
@@ -285,6 +295,7 @@ namespace Hearthstone_Deck_Tracker
 			var cards = Game.Player.PlayerCardList;
 			Overlay.UpdatePlayerCards(cards, reset);
 			Windows.PlayerWindow.UpdatePlayerCards(cards, reset);
+            Windows.GraveryWindow.UpdateGraveyardCards(Game.Player.Graveyard, reset);//<!--allan add for graveryard-->
 		}
 
 		internal static async void UpdateOpponentCards(bool reset = false)
@@ -297,7 +308,8 @@ namespace Hearthstone_Deck_Tracker
 			var cards = Game.Opponent.OpponentCardList;
 			Overlay.UpdateOpponentCards(cards, reset);
 			Windows.OpponentWindow.UpdateOpponentCards(cards, reset);
-		}
+            Windows.GraveryWindow.UpdateGraveyardCards(Game.Player.Graveyard, reset);//<!--allan add for graveryard-->
+        }
 
 
 		public static class Windows
@@ -306,8 +318,10 @@ namespace Hearthstone_Deck_Tracker
 			private static OpponentWindow _opponentWindow;
 			private static TimerWindow _timerWindow;
 			private static StatsWindow _statsWindow;
-
-			public static PlayerWindow PlayerWindow => _playerWindow ?? (_playerWindow = new PlayerWindow(Game));
+            private static GraveyardWindow _graveryWindow;
+			//<!--allan add for graveryard-->
+            public static GraveyardWindow GraveryWindow => _graveryWindow ?? (_graveryWindow = new GraveyardWindow(Game));
+            public static PlayerWindow PlayerWindow => _playerWindow ?? (_playerWindow = new PlayerWindow(Game));
 			public static OpponentWindow OpponentWindow => _opponentWindow ?? (_opponentWindow = new OpponentWindow(Game));
 			public static TimerWindow TimerWindow => _timerWindow ?? (_timerWindow = new TimerWindow(Config.Instance));
 			public static StatsWindow StatsWindow => _statsWindow ?? (_statsWindow = new StatsWindow());

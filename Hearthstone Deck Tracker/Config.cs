@@ -658,8 +658,11 @@ namespace Hearthstone_Deck_Tracker
 
 		[DefaultValue(false)]
 		public bool PlayerWindowOnStart = false;
+		//<!--allan add for graveryard-->
+        [DefaultValue(true)]
+        public bool GraveYardWindowOnStart = true;
 
-		[DefaultValue(null)]
+        [DefaultValue(null)]
 		public int? PlayerWindowTop = null;
 
 		[DefaultValue(true)]
@@ -833,8 +836,8 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(false)]
 		public bool ShowDeckTitle = false;
 
-		[DefaultValue(true)]
-		public bool ShowDeckWins = true;
+		[DefaultValue(false)]
+		public bool ShowDeckWins = false;
 
 		[DefaultValue(true)]
 		public bool ShowExportingDialog = true;

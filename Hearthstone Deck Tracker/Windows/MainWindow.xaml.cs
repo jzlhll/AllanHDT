@@ -590,6 +590,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 				Core.Windows.TimerWindow.Shutdown();
 				Core.Windows.PlayerWindow.Shutdown();
 				Core.Windows.OpponentWindow.Shutdown();
+                Core.Windows.GraveryWindow.Shutdown();//<!--allan add for graveryard-->
 				Config.Save();
 				DeckList.Save();
 				DeckStatsList.Save();
