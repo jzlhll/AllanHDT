@@ -17,15 +17,15 @@
                               Unchecked="CheckboxPlayerWindowOpenAutomatically_Unchecked" />
 			      <!--allan add for graveryard-->
                     <CheckBox x:Name="CheckboxGraveyardWindowOpenAutomatically"
-                              Content="玩家坟场" HorizontalAlignment="Left"
+                              Content="玩家坟场(AllanAdd)" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxGraveyardWindowOpenAutomatically_Checked"
                               Unchecked="CheckboxGraveyardWindowOpenAutomatically_Unchecked" />
                     <CheckBox x:Name="CheckboxGraveyardWindowIfWithGenerate"
-                              Content="玩家坟场是否包含生成的卡" HorizontalAlignment="Left"
+                              Content="玩家坟场包含生成的卡" HorizontalAlignment="Left"
                               Margin="30,5,0,0" VerticalAlignment="Top"
-                              Checked=""
-                              Unchecked="" />
+                              Checked="CheckboxGraveyardWindowIfWithGenerate_Checked"
+                              Unchecked="CheckboxGraveyardWindowIfWithGenerate_Unchecked" />
                     <CheckBox x:Name="CheckboxOpponentWindowOpenAutomatically"
                               Content="对手" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top"

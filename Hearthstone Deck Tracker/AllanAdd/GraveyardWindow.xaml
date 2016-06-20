@@ -6,7 +6,7 @@
                       xmlns:deckPicker="clr-namespace:Hearthstone_Deck_Tracker.Controls.DeckPicker"
                       xmlns:controls1="clr-namespace:Hearthstone_Deck_Tracker.Controls"
                       xmlns:themes="clr-namespace:Hearthstone_Deck_Tracker.Utility.Themes"
-                      Title="" Height="440" Width="230" MinWidth="230" MaxWidth="260"
+                      Title="坟场" Height="440" Width="230" MinWidth="230" MaxWidth="260"
                       Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"
                       Activated="GraveyardWindow_OnActivated"
                       Icon="{StaticResource AppIcon}"
@@ -27,7 +27,7 @@
     </controls:MetroWindow.IconTemplate>
     <Grid Name="WindowGrid">
         <StackPanel Name="StackPanelMain" Margin="0,1,0,0">
-            <local:HearthstoneTextBlock x:Name="graveTitle" FontSize="16" Width="230" TextAlignment="Center" Text="卡组坟场不记录生成的卡" TextWrapping="Wrap"/>
+            <Button x:Name="graveTitle" FontSize="16" Width="230" Content="玩家坟场 [点击]" Click="graveTitle_Click" Background="#696969" Foreground="#ffffff"/>
             <Viewbox Name="ViewBoxGraveyard" StretchDirection="DownOnly" Stretch="Fill" MaxHeight="{Binding PlayerDeckMaxHeight, RelativeSource={RelativeSource AncestorType=local:GraveyardWindow}}">
                 <controls1:AnimatedCardList x:Name="ListViewGraveyard" Background="Transparent" BorderThickness="0"
                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" Width="230"
@@ -51,6 +51,31 @@
                 </controls1:AnimatedCardList>
             </Viewbox>
         </StackPanel>
-
+        <StackPanel Name="StackPanelMainOppo" Margin="0,1,0,0" Visibility="Hidden">
+            <Button x:Name="oppoTitle" FontSize="16" Width="230" Content="对手卡组 [点击]" Click="oppoTitle_Click" Background="#696969" Foreground="#ffffff"/>
+            <Viewbox Name="ViewBoxOppoDeck" StretchDirection="DownOnly" Stretch="Fill" MaxHeight="{Binding PlayerDeckMaxHeight, RelativeSource={RelativeSource AncestorType=local:GraveyardWindow}}">
+                <controls1:AnimatedCardList x:Name="ListViewOppoDeck" Background="Transparent" BorderThickness="0"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled" Width="230"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled" IsEnabled="False"
+                                ScrollViewer.CanContentScroll="False">
+                    <controls1:AnimatedCardList.ItemContainerStyle>
+                        <Style TargetType="controls1:AnimatedCard">
+                            <Setter Property="ToolTipService.ShowOnDisabled" Value="True" />
+                            <Setter Property="ToolTipService.ShowDuration" Value="60000" />
+                            <Setter Property="ToolTipService.IsEnabled" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:GraveyardWindow}}, Path=ShowToolTip}" />
+                            <Setter Property="ToolTip">
+                                <Setter.Value>
+                                    <ToolTip Background="Transparent" BorderBrush="Transparent">
+                                        <local:CardToolTip/>
+                                    </ToolTip>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Margin" Value="0,1,0,0"/>
+                        </Style>
+                    </controls1:AnimatedCardList.ItemContainerStyle>
+                </controls1:AnimatedCardList>
+            </Viewbox>
+        </StackPanel>
     </Grid>
+       
 </controls:MetroWindow>

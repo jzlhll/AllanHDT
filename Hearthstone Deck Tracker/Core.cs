@@ -295,7 +295,7 @@ namespace Hearthstone_Deck_Tracker
 			var cards = Game.Player.PlayerCardList;
 			Overlay.UpdatePlayerCards(cards, reset);
 			Windows.PlayerWindow.UpdatePlayerCards(cards, reset);
-            Windows.GraveryWindow.UpdateGraveyardCards(Game.Player.Graveyard, reset);//<!--allan add for graveryard-->
+            Windows.GraveryWindow.UpdateGraveyardCards(reset);//<!--allan add for graveryard-->
 		}
 
 		internal static async void UpdateOpponentCards(bool reset = false)
@@ -308,7 +308,8 @@ namespace Hearthstone_Deck_Tracker
 			var cards = Game.Opponent.OpponentCardList;
 			Overlay.UpdateOpponentCards(cards, reset);
 			Windows.OpponentWindow.UpdateOpponentCards(cards, reset);
-            Windows.GraveryWindow.UpdateGraveyardCards(Game.Player.Graveyard, reset);//<!--allan add for graveryard-->
+            Windows.GraveryWindow.UpdateGraveyardCards(reset);//<!--allan add for graveryard-->
+            Windows.GraveryWindow.UpdateOppoDeckCards(cards, reset);//<!--allan add for graveryard-->
         }
 
 

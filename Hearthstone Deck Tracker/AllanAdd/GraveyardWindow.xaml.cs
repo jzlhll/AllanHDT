@@ -33,7 +33,8 @@ namespace Hearthstone_Deck_Tracker
             _game = game;
             Height = Config.Instance.PlayerWindowHeight;
             if (Config.Instance.PlayerWindowLeft.HasValue)
-                Left = Config.Instance.PlayerWindowLeft.Value + 300;
+                Left = Config.Instance.PlayerWindowLeft.Value - 50;
+            Utility.Logging.Log.Info("Left" + Left);
             if (Config.Instance.PlayerWindowTop.HasValue)
                 Top = Config.Instance.PlayerWindowTop.Value;
             Topmost = Config.Instance.WindowsTopmost;
@@ -58,6 +59,7 @@ namespace Hearthstone_Deck_Tracker
 
                 Height = 34 * ListViewGraveyard.Items.Count;
             }
+            updateListv(false);
         }
 
         public double PlayerDeckMaxHeight => ActualHeight - PlayerLabelsHeight;
@@ -103,10 +105,11 @@ namespace Hearthstone_Deck_Tracker
             if (!Config.Instance.WindowsTopmost)
                 Topmost = false;
         }
-
-        public void UpdateGraveyardCards(IEnumerable<Entity> cards, bool reset) => updateListv(cards, reset);
+        public void UpdateOppoDeckCards(List<Card> cards, bool reset) => UpdateOppoDeckListv(cards, reset);
+        public void UpdateGraveyardCards(bool reset) => updateListv(reset);
 
         private List<Card> mGraveyardList = new List<Card>();
+       // private List<Card> mOppoDeckList = new List<Card>();
 
         private int[] myIds;
 
@@ -150,37 +153,34 @@ namespace Hearthstone_Deck_Tracker
             return false;
         }
 
-        private void printOppoOrgGrave() {
-
-            IEnumerable<Entity> oppoGraveOrgList = Core.Game.Opponent.Graveyard;
-            int oppoSize = oppoGraveOrgList.Count();
-
+        private void UpdateOppoDeckListv(List<Card> oppoCards, bool reset) {
+            //mOppoDeckList.Clear();
+            int oppoSize = oppoCards.Count();
             Utility.Logging.Log.Info("AllanLog:orgSzie " + oppoSize);
-            for (int i = 0; i < oppoSize; i++)
+            for (int i = 0; i < oppoCards.Count(); i++)
             {
-                Card newGrave = Database.GetCardFromId(oppoGraveOrgList.ElementAt(i).CardId);
-                //Utility.Logging.Log.Info("\nAllanLog: oppo newGrave id= " + newGrave.Id + " Name " + newGrave.LocalizedName
-                //    + " entity id " + oppoGraveOrgList.ElementAt(i).Id + " CardId " + oppoGraveOrgList.ElementAt(i).CardId);
-                Utility.Logging.Log.Info("AllanLog:OPPO ElementAt(" + i + ")" + oppoGraveOrgList.ElementAt(i).ToString());
-                Utility.Logging.Log.Info("AllanLog:OPPO newGrave " + newGrave.LocalizedName + " isCreated " + newGrave.IsCreated);
-                Utility.Logging.Log.Info("AllanLog:OPPO end");
-                bool isWorked = false;
-                
-                if (!isWorked)
+              
+                Utility.Logging.Log.Info("AllanLog:Player ElementAt(" + i + ") isCreated " + oppoCards.ElementAt(i).IsCreated + " ");
+                Utility.Logging.Log.Info("AllanLog:Player end");
+                 
+                //if (isDeckById(graveOrgList.ElementAt(i).Id))
+                if (oppoCards.ElementAt(i).IsCreated)
                 {
-                    //if (isDeckById(graveOrgList.ElementAt(i).Id))
-                    if (true)
-                    {
-                        mGraveyardList.Add(newGrave);
-                    }
+                    oppoCards.RemoveAt(i);
+                    i--;
                 }
+            }
+            ListViewOppoDeck.Update(oppoCards, reset);
+            if (reset)
+            {
+                myIds = null;
+                //mOppoDeckList.Clear();
             }
         }
 
-        private void updateListv(IEnumerable<Entity> graveOrgList, bool reset)
+        private void updateListv(bool reset)
         {
-
-            printOppoOrgGrave();
+            IEnumerable<Entity> graveOrgList = Core.Game.Player.Graveyard;
             mGraveyardList.Clear();
 
             int orgSize = graveOrgList.Count();
@@ -210,64 +210,38 @@ namespace Hearthstone_Deck_Tracker
                 if (!isWorked)
                 {
                     //if (isDeckById(graveOrgList.ElementAt(i).Id))
-                    if(graveOrgList.ElementAt(i).Id <= 68 && !graveOrgList.ElementAt(i).Info.Created && !graveOrgList.ElementAt(i).Info.Stolen)
+                    if (graveOrgList.ElementAt(i).Id <= 68 && !graveOrgList.ElementAt(i).Info.Created && !graveOrgList.ElementAt(i).Info.Stolen)
                     {
+                        mGraveyardList.Add(newGrave);
+                    }
+                    else if(Config.Instance.GraveYardWindowIfCreated && isCardIdEndOfNumber(graveOrgList.ElementAt(i).CardId)) { //创建出来的卡,还要过滤掉e,t等结尾
+                        newGrave.HighlightInHand = true;
                         mGraveyardList.Add(newGrave);
                     }
                 }
             }
 
             if (mGraveyardList.Count() > 0) {
-                Utility.Extensions.CardListExtensions.ToSortedCardList(mGraveyardList);
+                mGraveyardList = Utility.Extensions.CardListExtensions.ToSortedCardList(mGraveyardList);
+               
             }
             ListViewGraveyard.Update(mGraveyardList, reset);
             if (reset) {
                 myIds = null;
+                //mOppoDeckList.Clear();
+                mGraveyardList.Clear();
             }
         }
 
-        //private void updateListv(IEnumerable<Entity> graveOrgList, bool reset)
-        //{
-        //    mGraveyardList = new List<Card> { };
-        //    mGraveyardList.Clear();
+        private bool isCardIdEndOfNumber(string cardId) {
+            char ch = cardId.ElementAt(cardId.Count() - 1);
+            Utility.Logging.Log.Info("ch end " + ch);
+            if (ch >= '0'&& ch <= '9') {
+                return true;
+            }
 
-        //    int size = graveOrgList.Count();
-        //    for (int i = 0; i < size; i++)
-        //    {
-        //        //每一个传入的卡
-        //        Entity newGrave = graveOrgList.ElementAt(i);//Database.GetCardFromId(graveOrgList.ElementAt(i).CardId);
-
-        //        foreach (var grave in mGraveyardList)
-        //        { //修改后的卡数组
-        //            if (newGrave.Id.Equals(grave.Id))
-        //            { //如果是同一张卡并且id相同增加count
-        //                grave.Count++;
-        //                //是一个新的id
-        //                break;
-        //            }
-        //            else
-        //            {
-        //                Card c;
-        //                if (newGrave.Id > 60)
-        //                {
-        //                    c = newGrave.Card;
-        //                    c.IsCreated = true;
-        //                    c.HighlightInHand = true;
-        //                }
-        //                else
-        //                {
-        //                    c = newGrave.Card;
-        //                    c.IsCreated = false;
-        //                    c.HighlightInHand = false;
-        //                }
-        //                mGraveyardList.Add(c);
-        //                break;
-        //            }
-        //        }
-        //    }
-
-        //    ListViewGraveyard.Update(mGraveyardList, reset);
-        //}
+            return false;
+        }
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -284,5 +258,24 @@ namespace Hearthstone_Deck_Tracker
             UpdatePlayerLayout();
         }
 
+        private void graveTitle_Click(object sender, RoutedEventArgs e)
+        {
+             StackPanelMain.Visibility = Visibility.Hidden;
+            StackPanelMainOppo.Visibility = Visibility.Visible;
+            Title = "对手卡组";
+        }
+
+        private void oppoTitle_Click(object sender, RoutedEventArgs e)
+        {
+            StackPanelMainOppo.Visibility = Visibility.Hidden;
+            StackPanelMain.Visibility = Visibility.Visible;
+            if (Config.Instance.GraveYardWindowIfCreated)
+            {
+                Title = "坟场显示生成的卡";
+            }
+            else {
+                Title = "坟场不显示生成的卡";
+            }
+        }
     }
 }

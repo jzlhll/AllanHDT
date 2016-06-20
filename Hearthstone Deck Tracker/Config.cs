@@ -34,8 +34,8 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(true)]
 		public bool AdditionalOverlayTooltips = true;
 
-		[DefaultValue(false)]
-		public bool AdvancedOptions = false;
+		[DefaultValue(true)]
+		public bool AdvancedOptions = true;
 
 		[DefaultValue(true)]
 		public bool AlwaysOverwriteLogConfig = true;
@@ -661,6 +661,8 @@ namespace Hearthstone_Deck_Tracker
 		//<!--allan add for graveryard-->
         [DefaultValue(true)]
         public bool GraveYardWindowOnStart = true;
+        [DefaultValue(false)]
+        public bool GraveYardWindowIfCreated = false;
 
         [DefaultValue(null)]
 		public int? PlayerWindowTop = null;

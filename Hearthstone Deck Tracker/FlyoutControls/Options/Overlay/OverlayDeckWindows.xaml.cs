@@ -300,5 +300,19 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
             Config.Instance.GraveYardWindowOnStart = false;
             Config.Save();
         }
+
+        private void CheckboxGraveyardWindowIfWithGenerate_Checked(object sender, RoutedEventArgs e)
+        {
+            Config.Instance.GraveYardWindowIfCreated = true;
+            Core.Windows.GraveryWindow.UpdateGraveyardCards(false);
+            Config.Save();
+        }
+
+        private void CheckboxGraveyardWindowIfWithGenerate_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Core.Windows.GraveryWindow.UpdateGraveyardCards(false);
+            Config.Instance.GraveYardWindowIfCreated = false;
+            Config.Save();
+        }
     }
 }
