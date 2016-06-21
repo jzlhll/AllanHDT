@@ -36,10 +36,11 @@ namespace Hearthstone_Deck_Tracker.Importing
 			{"hearthstone-decks", Hearthstonedecks.Import},
 			{"heartharena", Heartharena.Import},
 			{"hearthstoneheroes", Hearthstoneheroes.Import},
-			{"elitedecks", Elitedecks.Import},
+			{"elitehearthstone", EliteHearthstone.Import},
 			{"icy-veins", Icyveins.Import},
 			{"hearthbuilder", Hearthbuilder.Import},
-			{"manacrystals", Manacrystals.Import}
+			{"manacrystals", Manacrystals.Import},
+			{"powned", Powned.Import}
 		};
 
 		private const int BrawlDeckType = 6;
@@ -153,7 +154,7 @@ namespace Hearthstone_Deck_Tracker.Importing
 			{
 				ArenaInfoCache = Reflection.GetArenaDeck();
 				if(ArenaInfoCache != null && log)
-					Log.Info($"Found new {ArenaInfoCache.Wins}-{ArenaInfoCache.Losses} arena deck: hero={ArenaInfoCache.Deck.Hero}, cards={ArenaInfoCache.Deck.Cards.Count}");
+					Log.Info($"Found new {ArenaInfoCache.Wins}-{ArenaInfoCache.Losses} arena deck: hero={ArenaInfoCache.Deck.Hero}, cards={ArenaInfoCache.Deck.Cards.Sum(x => x.Count)}");
 				else if(log)
 					Log.Info("Found no arena deck");
 				return ArenaInfoCache;
