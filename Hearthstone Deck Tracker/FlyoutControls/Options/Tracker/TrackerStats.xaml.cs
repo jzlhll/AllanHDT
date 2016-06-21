@@ -325,28 +325,5 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 			Config.Instance.AskBeforeDiscardingGame = false;
 			Config.Save();
 		}
-
-		private void ButtonCheckForDuplicateMatches_OnClick(object sender, RoutedEventArgs e)
-		{
-			DataIssueResolver.RemoveDuplicateMatches(true);
-		}
-
-		private async void ButtonCheckOppClassName_OnClick(object sender, RoutedEventArgs e)
-		{
-			var games =
-				DeckStatsList.Instance.DeckStats.Concat(DefaultDeckStats.Instance.DeckStats)
-				             .SelectMany(d => d.Games)
-				             .Where(g => g.HasReplayFile)
-				             .ToList();
-			var controller =
-				await
-				Core.MainWindow.ShowProgressAsync("修正错误统计中!",
-												  $"检查 {games.Count} 个回放,需要等待一会...\r\n\r\n备注：没有回放记录不会检查。", true);
-			var fixCount = await DataIssueResolver.FixOppNameAndClass(games, controller);
-			await controller.CloseAsync();
-			await
-				Core.MainWindow.ShowMessageAsync("以完成.",
-				                                 fixCount > 0 ? "为Fixed names/classes for " + fixCount + " 场对阵修改名字/英雄." : "没有找到正确的统计");
-		}
 	}
 }

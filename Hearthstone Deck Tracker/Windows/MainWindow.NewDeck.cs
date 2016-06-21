@@ -129,7 +129,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 						continue;
 					if(selectedSet != "ALL" && !string.Equals(selectedSet, card.Set, StringComparison.InvariantCultureIgnoreCase))
 						continue;
-					if(!_newDeck.IsArenaDeck && !(CheckBoxIncludeWild.IsChecked ?? true) && Helper.WildOnlySets.Contains(card.Set))
+					if(!_newDeck.IsArenaDeck && !_newDeck.IsBrawlDeck && !(CheckBoxIncludeWild.IsChecked ?? true) && Helper.WildOnlySets.Contains(card.Set))
 						continue;
 					switch(selectedNeutral)
 					{
@@ -371,6 +371,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			Helper.SortCardCollection(ListViewDeck.ItemsSource, false);
 			TextBoxDeckName.Text = _newDeck.Name;
 			BorderConstructedCardLimits.Visibility = _newDeck.IsArenaDeck ? Collapsed : Visible;
+			CheckBoxIncludeWild.Visibility = _newDeck.IsBrawlDeck ? Collapsed : Visible;
 			CheckBoxConstructedCardLimits.IsChecked = true;
 			UpdateDeckHistoryPanel(deck, !editing);
 			UpdateDbListView();
@@ -526,6 +527,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			}
 
 			BorderConstructedCardLimits.Visibility = _newDeck.IsArenaDeck ? Collapsed : Visible;
+			CheckBoxIncludeWild.Visibility = _newDeck.IsBrawlDeck ? Collapsed : Visible;
 			CheckBoxConstructedCardLimits.IsChecked = true;
 			SelectDeck(null, false);
 			ExpandNewDeck();

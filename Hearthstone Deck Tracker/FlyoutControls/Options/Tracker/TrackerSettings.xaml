@@ -10,7 +10,7 @@
         <GroupBox Header="设置">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
-                    <GroupBox Header="提交google分析">
+                    <GroupBox Header="分析(0.15.4去掉google)">
                         <StackPanel>
                             <CheckBox Name="CheckBoxAnalytics" Content="提交匿名数据"
                                       Checked="CheckBoxAnalytics_OnChecked" Unchecked="CheckBoxAnalytics_OnUnchecked" />
@@ -124,7 +124,11 @@
                             Click="SelectSaveDataPath_Click"
                             Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                             Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}" />
-                    <Button Name="ButtonRestart" Margin="10,15,10,0" Content="重启该软件" FontSize="15"
+                    <Button Name="ButtonHearthstoneLogsDirectory" Margin="10,5,10,0" Content="set hearthstone log directory" 
+                            Click="ButtonHearthstoneLogsDirectory_Click"
+                            Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
+                            Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}" />
+                    <Button Name="ButtonRestart" Margin="10,15,10,0" Content="restart hdt" FontSize="15"
                             Click="ButtonRestart_OnClick" />
                 </StackPanel>
             </ScrollViewer>

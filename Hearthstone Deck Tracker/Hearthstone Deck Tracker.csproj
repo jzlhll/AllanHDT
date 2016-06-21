@@ -60,21 +60,6 @@
   <PropertyGroup />
   <ItemGroup>
     <Reference Include="Accessibility" />
-    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
-      <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="AForge.Imaging, Version=2.2.5.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
-      <HintPath>..\packages\AForge.Imaging.2.2.5\lib\AForge.Imaging.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="AForge.Math, Version=2.2.5.0, Culture=neutral, PublicKeyToken=abba2e25397ee8c9, processorArchitecture=MSIL">
-      <HintPath>..\packages\AForge.Math.2.2.5\lib\AForge.Math.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Garlic">
-      <HintPath>..\packages\Garlic.2.1.0.0\lib\net35\Garlic.dll</HintPath>
-    </Reference>
     <Reference Include="De.TorstenMandelkow.MetroChart, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\De.TorstenMandelkow.MetroChart.dll</HintPath>
@@ -99,6 +84,10 @@
     </Reference>
     <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="ReachFramework" />
+    <Reference Include="SharpRaven, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpRaven.2.1.0\lib\net45\SharpRaven.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -333,6 +322,7 @@
     <Compile Include="Hearthstone\PredictedCard.cs" />
     <Compile Include="Importing\Game\ImportOptions\IImportOption.cs" />
     <Compile Include="Importing\Websites\Manacrystals.cs" />
+    <Compile Include="Importing\Websites\Powned.cs" />
     <Compile Include="LogReader\Handlers\FullScreenFxHandler.cs" />
     <Compile Include="Importing\Game\ImportOptions\NewDeck.cs" />
     <Compile Include="Importing\Game\ImportedDeck.cs" />
@@ -343,9 +333,13 @@
     <Compile Include="Utility\Analytics\Influx.cs" />
     <Compile Include="Utility\Analytics\InfluxPoint.cs" />
     <Compile Include="Utility\Analytics\InfluxPointBuilder.cs" />
+    <Compile Include="Windows\CrashDialog.xaml.cs">
+      <DependentUpon>CrashDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utility\Extensions\BitmapExtensions.cs" />
     <Compile Include="Utility\Extensions\GroupingExtensions.cs" />
     <Compile Include="Utility\Extensions\RectExtensions.cs" />
+    <Compile Include="Utility\GaussianBlur.cs" />
     <Compile Include="Utility\Themes\CardBarImageBuilder.cs" />
     <Compile Include="Hearthstone\GameTime.cs" />
     <Compile Include="Hearthstone\HearthDbConverter.cs" />
@@ -371,7 +365,7 @@
     <Compile Include="Utility\BoardDamage\PlayerBoard.cs" />
     <Compile Include="Importing\ImportingHelper.cs" />
     <Compile Include="Importing\Websites\Arenavalue.cs" />
-    <Compile Include="Importing\Websites\Elitedecks.cs" />
+    <Compile Include="Importing\Websites\EliteHearthstone.cs" />
     <Compile Include="Importing\Websites\Heartharena.cs" />
     <Compile Include="Importing\Websites\Hearthbuilder.cs" />
     <Compile Include="Importing\Websites\Hearthhead.cs" />
@@ -455,9 +449,6 @@
     <Compile Include="FlyoutControls\UpdateNotes.xaml.cs">
       <DependentUpon>UpdateNotes.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HearthStats\Controls\DuplicateMatchesWindow.xaml.cs">
-      <DependentUpon>DuplicateMatchesWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Hearthstone\Database.cs" />
     <Compile Include="Hearthstone\GameV2.cs" />
     <Compile Include="Hearthstone\IGame.cs" />
@@ -497,7 +488,7 @@
     <Compile Include="Windows\ArenaRewardDialog.xaml.cs">
       <DependentUpon>ArenaRewardDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utility\Analytics\Google.cs" />
+    <Compile Include="Utility\Analytics\Sentry.cs" />
     <Compile Include="Utility\HotKeys\HotKey.cs" />
     <Compile Include="Utility\HotKeys\PredefinedHotKeyActionAttribute.cs" />
     <Compile Include="Utility\HotKeys\HotKeyConfig.cs" />
@@ -959,7 +950,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HearthStats\Controls\DuplicateMatchesWindow.xaml">
+    <Page Include="Windows\CrashDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1254,17 +1245,7 @@
     xcopy /Y "HearthstoneDeckTracker.exe.config" "..\Hearthstone Deck Tracker"
     ren "..\Hearthstone Deck Tracker\HearthstoneDeckTracker.exe" "Hearthstone Deck Tracker.exe"
     ren "..\Hearthstone Deck Tracker\HearthstoneDeckTracker.exe.config" "Hearthstone Deck Tracker.exe.config"
-    xcopy /Y "AForge.dll" "..\Hearthstone Deck Tracker"
-    xcopy /Y "AForge.Math.dll" "..\Hearthstone Deck Tracker"
-    xcopy /Y "AForge.Imaging.dll" "..\Hearthstone Deck Tracker"
-    xcopy /Y "Garlic.dll" "..\Hearthstone Deck Tracker"
-    xcopy /Y "HearthDb.dll" "..\Hearthstone Deck Tracker"
-    xcopy /Y "De.TorstenMandelkow.MetroChart.dll" "..\Hearthstone Deck Tracker"
-    xcopy /Y "HtmlAgilityPack.dll" "..\Hearthstone Deck Tracker"
-    xcopy /Y "MahApps.Metro.dll" "..\Hearthstone Deck Tracker"
-    xcopy /Y "Newtonsoft.Json.dll" "..\Hearthstone Deck Tracker"
-    xcopy /Y "HearthMirror.dll" "..\Hearthstone Deck Tracker"
-    xcopy /Y "System.Windows.Interactivity.dll" "..\Hearthstone Deck Tracker"
+    xcopy /Y "*.dll" "..\Hearthstone Deck Tracker"
     xcopy /Y "..\..\..\HDTUpdate\bin\Release\HDTUpdate.exe" "..\Hearthstone Deck Tracker"
     xcopy /Y "..\..\..\HDTUninstaller\bin\Release\HDTUninstaller.exe" "..\Hearthstone Deck Tracker" )</PostBuildEvent>
   </PropertyGroup>

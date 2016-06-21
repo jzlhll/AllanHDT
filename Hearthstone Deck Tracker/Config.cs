@@ -79,8 +79,8 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(1)]
 		public int ArenaStatsCustomSeasonMin = 1;
 
-		[DefaultValue(25)]
-		public int ArenaStatsCustomSeasonMax = 25;
+		[DefaultValue(null)]
+		public int? ArenaStatsCustomSeasonMax = null;
 
 		[DefaultValue(71.67)]
 		public double AttackIconPlayerVerticalPosition = 71.67;
@@ -93,6 +93,9 @@ namespace Hearthstone_Deck_Tracker
 
 		[DefaultValue(67.5)]
 		public double AttackIconOpponentHorizontalPosition = 67.5;
+
+		[DefaultValue(false)]
+		public bool AutoArchiveArenaDecks = false;
 
 		[DefaultValue(true)]
 		public bool AutoClearDeck = true;
@@ -202,8 +205,8 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(1)]
 		public int ConstructedStatsCustomSeasonMin = 1;
 
-		[DefaultValue(25)]
-		public int ConstructedStatsCustomSeasonMax = 25;
+		[DefaultValue(null)]
+		public int? ConstructedStatsCustomSeasonMax = null;
 
 		[DefaultValue(0)]
 		public int ConstructedStatsTurnsFilterMin = 0;
@@ -367,9 +370,6 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(false)]
 		public bool ExtraFeaturesSecrets = false;
 
-		[DefaultValue(false)]
-		public bool FixedDuplicateMatches = false;
-
 		[DefaultValue(true)]
 		public bool FlashHsOnTurnStart = true;
 
@@ -426,6 +426,9 @@ namespace Hearthstone_Deck_Tracker
 
 		[DefaultValue(@"C:\Program Files (x86)\Hearthstone")]
 		public string HearthstoneDirectory = @"C:\Program Files (x86)\Hearthstone";
+
+		[DefaultValue("Logs")]
+		public string HearthstoneLogsDirectoryName = "Logs";
 
 		[DefaultValue("Hearthstone")]
 		public string HearthstoneWindowName = "Hearthstone";
@@ -709,9 +712,6 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(false)]
 		public bool RemoveCardsFromDeck = false;
 
-		[DefaultValue(false)]
-		public bool RemovedNoteUrls = false;
-
 		[DefaultValue(true)]
 		public bool ReplayViewerShowAttack = true;
 
@@ -749,16 +749,7 @@ namespace Hearthstone_Deck_Tracker
 		public int ReplayWindowWidth = 1250;
 
 		[DefaultValue(false)]
-		public bool ResolvedDeckStatsIds = false;
-
-		[DefaultValue(false)]
 		public bool ReselectLastDeckUsed = false;
-
-		[DefaultValue(false)]
-		public bool ResolvedDeckStatsIssue = false;
-
-		[DefaultValue(false)]
-		public bool ResolvedOpponentNames = false;
 
 		//updating from <= 0.5.1: 
 		//SaveConfigInAppData and SaveDataInAppData are set to SaveInAppData AFTER the config isloaded

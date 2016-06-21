@@ -310,15 +310,15 @@ namespace Hearthstone_Deck_Tracker
 
 		private void HandleThaurissanCostReduction()
 		{
-			var thaurissan = _game.Opponent.Board.FirstOrDefault(x => x.CardId == HearthDb.CardIds.Collectible.Neutral.EmperorThaurissan);
-			if(thaurissan == null || thaurissan.HasTag(SILENCED))
+			var thaurissans = _game.Opponent.Board.Where(x => x.CardId == HearthDb.CardIds.Collectible.Neutral.EmperorThaurissan && !x.HasTag(SILENCED)).ToList();
+			if(!thaurissans.Any())
 				return;
 
 			foreach(var impFavor in _game.Opponent.Board.Where(x => x.CardId == HearthDb.CardIds.NonCollectible.Neutral.EmperorThaurissan_ImperialFavorEnchantment))
 			{
 				Entity entity;
 				if(_game.Entities.TryGetValue(impFavor.GetTag(ATTACHED), out entity))
-					entity.Info.CostReduction++;
+					entity.Info.CostReduction += thaurissans.Count;
 			}
 		}
 
@@ -410,15 +410,15 @@ namespace Hearthstone_Deck_Tracker
 				_assignedDeck = null;
 				return;
 			}
-			var player = _game.Entities.FirstOrDefault(e => e.Value.IsPlayer).Value;
-			var opponent = _game.Entities.FirstOrDefault(e => e.Value.HasTag(PLAYER_ID) && !e.Value.IsPlayer);
+			var player = _game.Entities.FirstOrDefault(e => e.Value?.IsPlayer ?? false).Value;
+			var opponent = _game.Entities.FirstOrDefault(e => e.Value != null && e.Value.HasTag(PLAYER_ID) && !e.Value.IsPlayer).Value;
 			if(player != null)
 			{
 				_game.CurrentGameStats.PlayerName = player.Name;
 				_game.CurrentGameStats.Coin = !player.HasTag(FIRST_PLAYER);
 			}
-			if(opponent.Value != null && CardIds.HeroIdDict.ContainsValue(_game.CurrentGameStats.OpponentHero))
-				_game.CurrentGameStats.OpponentName = opponent.Value.Name;
+			if(opponent != null && CardIds.HeroIdDict.ContainsValue(_game.CurrentGameStats.OpponentHero))
+				_game.CurrentGameStats.OpponentName = opponent.Name;
 			else
 				_game.CurrentGameStats.OpponentName = _game.CurrentGameStats.OpponentHero;
 
@@ -445,6 +445,10 @@ namespace Hearthstone_Deck_Tracker
 					_game.CurrentGameStats.Stars = wild ? _game.MatchInfo.LocalPlayer.WildStars : _game.MatchInfo.LocalPlayer.StandardStars;
 				}
 			}
+			_game.CurrentGameStats.PlayerCardbackId = _game.MatchInfo?.LocalPlayer.CardBackId ?? 0;
+			_game.CurrentGameStats.OpponentCardbackId = _game.MatchInfo?.OpposingPlayer.CardBackId ?? 0;
+			_game.CurrentGameStats.FriendlyPlayerId = _game.MatchInfo?.LocalPlayer.Id ?? 0;
+			_game.CurrentGameStats.ScenarioId = _game.MatchInfo?.MissionId ?? 0;
 			_game.CurrentGameStats.SetPlayerCards(DeckList.Instance.ActiveDeckVersion, _game.Player.RevealedCards.ToList());
 			_game.CurrentGameStats.SetOpponentCards(_game.Opponent.OpponentCardList.Where(x => !x.IsCreated).ToList());
 			_game.CurrentGameStats.GameEnd();
@@ -453,8 +457,9 @@ namespace Hearthstone_Deck_Tracker
 			var selectedDeck = DeckList.Instance.ActiveDeck;
 			if(selectedDeck != null)
 			{
+				var revealed = _game.Player.RevealedEntities.Where(x => x != null).ToList();
 				if(Config.Instance.DiscardGameIfIncorrectDeck
-				   && !_game.Player.RevealedEntities.Where(x => (x.IsMinion || x.IsSpell || x.IsWeapon) && !x.Info.Created && !x.Info.Stolen)
+				   && !revealed.Where(x => (x.IsMinion || x.IsSpell || x.IsWeapon) && !x.Info.Created && !x.Info.Stolen)
 				   .GroupBy(x => x.CardId).All(x => selectedDeck.GetSelectedDeckVersion().Cards.Any(c2 => x.Key == c2.Id && x.Count() <= c2.Count)))
 				{
 					if(Config.Instance.AskBeforeDiscardingGame)
@@ -508,7 +513,9 @@ namespace Hearthstone_Deck_Tracker
 
 				_lastGame = _game.CurrentGameStats;
 				selectedDeck.DeckStats.AddGameResult(_lastGame);
-				if(Config.Instance.ArenaRewardDialog && selectedDeck.IsArenaRunCompleted.HasValue && selectedDeck.IsArenaRunCompleted.Value)
+
+				var isArenaRunCompleted = selectedDeck.IsArenaRunCompleted.HasValue && selectedDeck.IsArenaRunCompleted.Value;
+				if(Config.Instance.ArenaRewardDialog && isArenaRunCompleted)
 					_arenaRewardDialog = new ArenaRewardDialog(selectedDeck);
 
 				if(Config.Instance.ShowNoteDialogAfterGame && !Config.Instance.NoteDialogDelayed && !_showedNoteDialog)
@@ -525,6 +532,9 @@ namespace Hearthstone_Deck_Tracker
 					Log.Info("Automatically unarchiving deck " + selectedDeck.Name + " after assigning current game");
 					Core.MainWindow.ArchiveDeck(_assignedDeck, false);
 				}
+
+				if (Config.Instance.AutoArchiveArenaDecks && isArenaRunCompleted)
+					Core.MainWindow.ArchiveDeck(selectedDeck, true);
 
 				if(HearthStatsAPI.IsLoggedIn && Config.Instance.HearthStatsAutoUploadNewGames)
 				{
