@@ -12,6 +12,7 @@ using Hearthstone_Deck_Tracker.Hearthstone;
 using Panel = System.Windows.Controls.Panel;
 using Point = System.Drawing.Point;
 using Hearthstone_Deck_Tracker.Hearthstone.Entities;
+using System.Windows.Media;
 
 #endregion
 
@@ -33,8 +34,13 @@ namespace Hearthstone_Deck_Tracker
             _game = game;
             Height = Config.Instance.PlayerWindowHeight;
             if (Config.Instance.PlayerWindowLeft.HasValue)
-                Left = Config.Instance.PlayerWindowLeft.Value - 50;
-            Utility.Logging.Log.Info("Left" + Left);
+            {
+                Left = Config.Instance.PlayerWindowLeft.Value + 200;
+                Utility.Logging.Log.Info("AllanLog:Left~~~" + Config.Instance.PlayerWindowLeft.Value);
+            }
+            else {
+                Utility.Logging.Log.Info("AllanLog:No!~~~~~~");
+            }
             if (Config.Instance.PlayerWindowTop.HasValue)
                 Top = Config.Instance.PlayerWindowTop.Value;
             Topmost = Config.Instance.WindowsTopmost;
@@ -60,6 +66,9 @@ namespace Hearthstone_Deck_Tracker
                 Height = 34 * ListViewGraveyard.Items.Count;
             }
             updateListv(false);
+            graveTitle.Background = new SolidColorBrush(Colors.LightGray);
+            graveTitle.Foreground = new SolidColorBrush(Colors.Black);
+            oppoTitle.Background = new SolidColorBrush(Colors.Transparent);
         }
 
         public double PlayerDeckMaxHeight => ActualHeight - PlayerLabelsHeight;
@@ -79,8 +88,9 @@ namespace Hearthstone_Deck_Tracker
         public void UpdatePlayerLayout()
         {
             StackPanelMain.Children.Clear();
-            StackPanelMain.Children.Add(graveTitle);
             StackPanelMain.Children.Add(ViewBoxGraveyard);
+            StackPanelMainOppo.Children.Clear();
+            StackPanelMainOppo.Children.Add(ViewBoxOppoDeck);
             OnPropertyChanged(nameof(PlayerDeckMaxHeight));
         }
 
@@ -160,8 +170,8 @@ namespace Hearthstone_Deck_Tracker
             for (int i = 0; i < oppoCards.Count(); i++)
             {
               
-                Utility.Logging.Log.Info("AllanLog:Player ElementAt(" + i + ") isCreated " + oppoCards.ElementAt(i).IsCreated + " ");
-                Utility.Logging.Log.Info("AllanLog:Player end");
+                Utility.Logging.Log.Info("AllanLog:OPPO ElementAt(" + i + ") isCreated " + oppoCards.ElementAt(i).IsCreated + " ");
+                Utility.Logging.Log.Info("AllanLog:OPPO end");
                  
                 //if (isDeckById(graveOrgList.ElementAt(i).Id))
                 if (oppoCards.ElementAt(i).IsCreated)
@@ -260,22 +270,23 @@ namespace Hearthstone_Deck_Tracker
 
         private void graveTitle_Click(object sender, RoutedEventArgs e)
         {
-             StackPanelMain.Visibility = Visibility.Hidden;
-            StackPanelMainOppo.Visibility = Visibility.Visible;
-            Title = "对手卡组";
+             StackPanelMain.Visibility = Visibility.Visible;
+            StackPanelMainOppo.Visibility = Visibility.Hidden;
+            updateListv(false);
+            graveTitle.Background = new SolidColorBrush(Colors.LightGray);
+            graveTitle.Foreground = new SolidColorBrush(Colors.Black);
+            oppoTitle.Background = new SolidColorBrush(Colors.Transparent);
+            oppoTitle.Foreground = new SolidColorBrush(Colors.White);
         }
 
         private void oppoTitle_Click(object sender, RoutedEventArgs e)
         {
-            StackPanelMainOppo.Visibility = Visibility.Hidden;
-            StackPanelMain.Visibility = Visibility.Visible;
-            if (Config.Instance.GraveYardWindowIfCreated)
-            {
-                Title = "坟场显示生成的卡";
-            }
-            else {
-                Title = "坟场不显示生成的卡";
-            }
+            StackPanelMainOppo.Visibility = Visibility.Visible;
+            StackPanelMain.Visibility = Visibility.Hidden;
+            graveTitle.Background = new SolidColorBrush(Colors.Transparent);
+            graveTitle.Foreground = new SolidColorBrush(Colors.White);
+            oppoTitle.Background = new SolidColorBrush(Colors.LightGray);
+            oppoTitle.Foreground = new SolidColorBrush(Colors.Black);
         }
     }
 }

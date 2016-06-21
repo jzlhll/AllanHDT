@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d" BorderBrush="{DynamicResource AccentColorBrush}"
-        Title="Crash Report" Height="350" Width="600">
+        Title="Crash报告" Height="350" Width="600">
     <DockPanel Margin="5">
-        <Label Content="Hearthstone Deck Tracker has crashed :(." FontWeight="SemiBold" DockPanel.Dock="Top"/>
+        <Label Content="HDT挂掉啦 :(." FontWeight="SemiBold" DockPanel.Dock="Top"/>
         <DockPanel DockPanel.Dock="Top">
             <DockPanel.Resources>
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />
             </DockPanel.Resources>
-            <Label Content="Error:" DockPanel.Dock="Left"/>
-            <Button Name="ButtonShowStacktrace" Content="Show Stacktrace" Width="130" DockPanel.Dock="Right" Margin="5,0,0,0" Click="ButtonShowStacktrace_OnClick" />
+            <Label Content="错误:" DockPanel.Dock="Left"/>
+            <Button Name="ButtonShowStacktrace" Content="显示堆栈" Width="130" DockPanel.Dock="Right" Margin="5,0,0,0" Click="ButtonShowStacktrace_OnClick" />
             <TextBlock Text="{Binding ExceptionMessage, RelativeSource={RelativeSource AncestorType=controls:MetroWindow}, Mode=OneWay}" TextTrimming="WordEllipsis" VerticalAlignment="Center"/>
         </DockPanel>
         <TextBox Name="TextBoxStackTrace" DockPanel.Dock="Top" Height="0" IsReadOnly="True" Margin="0,5,0,0" Visibility="Collapsed"
@@ -34,17 +34,17 @@
                 </Storyboard>
             </TextBox.Resources>
         </TextBox>
-        <TextBlock Text="To help us find a solution for this issue, please attach a description of what you were doing just before this crash occoured, as well as any other helpful information you can think of." 
+        <TextBlock Text="挂掉了！请提供描述和一些操作，截图等来帮助我们找到解决方案。(谨慎哦，直接发到老外那了，汉化作者Allan提醒。可以先在NGA我帖子联系我。)" 
                    Margin="5,5,0,0" TextWrapping="Wrap"  DockPanel.Dock="Top"/>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0" >
             <Button Name="ButtonSend" Width="120" Click="ButtonSend_Click" Style="{StaticResource AccentedSquareButtonStyle}">
-                <TextBlock Text="Send Report"/>
+                <TextBlock Text="发布报告"/>
             </Button>
             <Button Name="ButtonClose" Width="120" Margin="5,0,0,0" Click="ButtonClose_Click" Style="{StaticResource SquareButtonStyle}">
-                <TextBlock Text="Close"/>
+                <TextBlock Text="关闭"/>
             </Button>
         </StackPanel>
-        <TextBox Name="TextBoxDescription" controls:TextBoxHelper.Watermark="Additional information (optional)" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,5,0,0"/>
+        <TextBox Name="TextBoxDescription" controls:TextBoxHelper.Watermark="额外的信息(可选)" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,5,0,0"/>
     </DockPanel>
 </controls:MetroWindow>
 

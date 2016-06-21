@@ -36,7 +36,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			{
 				TextBoxStackTrace.Visibility = Visibility.Visible;
 				(TextBoxStackTrace.TryFindResource("ShowStackTraceStoryboard") as Storyboard)?.Begin();
-				ButtonShowStacktrace.Content = "Hide Stacktrace";
+				ButtonShowStacktrace.Content = "隐藏堆栈";
 			}
 			else
 			{
@@ -44,7 +44,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 				TextBoxStackTrace.Height = 0;
 				(TextBoxStackTrace.TryFindResource("HideStackTraceStoryboard") as Storyboard)?.Begin();
 				
-				ButtonShowStacktrace.Content = "Show Stacktrace";
+				ButtonShowStacktrace.Content = "显示堆栈";
 			}
 		}
 	}

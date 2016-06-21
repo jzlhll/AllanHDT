@@ -427,7 +427,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 				//Logs directory needs to be a child directory in Hearthstone directory
 				if (!dialog.SelectedPath.StartsWith(Config.Instance.HearthstoneDirectory + @"\"))
 				{
-					await Core.MainWindow.ShowMessage("Invalid argument", "Selected directory not in Hearthstone directory!");
+					await Core.MainWindow.ShowMessage("错误", "选择目录不是炉石目录!");
 					return;
 				}
 
@@ -438,7 +438,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 				Config.Instance.HearthstoneLogsDirectoryName = dialog.SelectedPath.Remove(0, Config.Instance.HearthstoneDirectory.Length + 1);
 				Config.Save();
 
-				await Core.MainWindow.ShowMessage("Restart required.", "Click ok to restart HDT");
+				await Core.MainWindow.ShowMessage("需要重启.", "点击重启HDT");
 				Core.MainWindow.Restart();
 			}
 		}

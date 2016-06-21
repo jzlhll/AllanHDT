@@ -10,7 +10,7 @@
         <GroupBox Header="设置">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
-                    <GroupBox Header="分析(0.15.4去掉google)">
+                    <GroupBox Header="分析(no google)">
                         <StackPanel>
                             <CheckBox Name="CheckBoxAnalytics" Content="提交匿名数据"
                                       Checked="CheckBoxAnalytics_OnChecked" Unchecked="CheckBoxAnalytics_OnUnchecked" />
@@ -124,7 +124,7 @@
                             Click="SelectSaveDataPath_Click"
                             Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                             Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}" />
-                    <Button Name="ButtonHearthstoneLogsDirectory" Margin="10,5,10,0" Content="set hearthstone log directory" 
+                    <Button Name="ButtonHearthstoneLogsDirectory" Margin="10,5,10,0" Content="设置炉石游戏的log目录" 
                             Click="ButtonHearthstoneLogsDirectory_Click"
                             Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                             Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}" />
