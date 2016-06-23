@@ -14,11 +14,11 @@ namespace HDTUpdate
 		private static UpdatingState _state;
 		private static void Main(string[] args)
 		{
-			Console.Title = "Hearthstone Deck Tracker Updater";
+			Console.Title = "HDT汉化版更新程序";
 			Console.CursorVisible = false;
 			if (args.Length != 2)
 			{
-				Console.WriteLine("Invalid arguments");
+				Console.WriteLine("参数错误!");
 				return;
 			}
 			try
@@ -30,7 +30,7 @@ namespace HDTUpdate
 				if(Process.GetProcesses().Any(p => p.Id == procId))
 				{
 					Process.GetProcessById(procId).Kill();
-					Console.WriteLine("Killed Hearthstone Deck Tracker process");
+					Console.WriteLine("杀掉HDT进程");
 				}
 			}
 			catch
@@ -49,21 +49,21 @@ namespace HDTUpdate
 				switch(_state)
 				{
 					case UpdatingState.Preparation:
-						Console.WriteLine("Please delete the 'temp' directory and try to update again. Press any key to exit.");
+						Console.WriteLine("请删除【temp】目录并且重新尝试更新. 按任意键退出.");
 						Console.ReadKey();
 						break;
 					case UpdatingState.Downloading:
-						Console.WriteLine("There was an error downloading the latest update. Press any key to open the website for manual download.");
+						Console.WriteLine("新的版本下载出错了！按任意键访问我的帖子，手动下载新版本。");
 						Console.ReadKey();
-						Process.Start(@"https://github.com/HearthSim/Hearthstone-Deck-Tracker/releases");
+						Process.Start(@"http://bbs.nga.cn/read.php?tid=9444162");
 						break;
 					case UpdatingState.Extracting:
-						Console.WriteLine("There was an error installing the latest update. Press any key to open the website for manual download.");
+						Console.WriteLine("安装新版本出错了！ 按任意键访问我的帖子，手动下载新版本。");
 						Console.ReadKey();
-						Process.Start(@"https://github.com/HearthSim/Hearthstone-Deck-Tracker/releases");
+						Process.Start(@"http://bbs.nga.cn/read.php?tid=9444162");
 						break;
 					case UpdatingState.Starting:
-						Console.WriteLine("There was an error re-starting HDT. You should be able to start it manually. Press any key to exit.");
+						Console.WriteLine("重新HDT出错了！你需要自己启动它。任意键退出.");
 						Console.ReadKey();
 						break;
 				}
@@ -72,14 +72,14 @@ namespace HDTUpdate
 			{
 				try
 				{
-					Console.WriteLine("Cleaning up...");
+					Console.WriteLine("正在清理...");
 					if(Directory.Exists("temp"))
 						Directory.Delete("temp", true);
-					Console.WriteLine("Done!");
+					Console.WriteLine("完成!");
 				}
 				catch
 				{
-					Console.WriteLine("Failed to delete temp file directory");
+					Console.WriteLine("删除【temp】文件夹失败！");
 				}
 			}
 		}
@@ -90,14 +90,14 @@ namespace HDTUpdate
 			var filePath = Path.Combine("temp", fileName);
 			try
 			{
-				Console.WriteLine("Creating temp file directory");
+				Console.WriteLine("正在创建【temp】文件");
 				if(Directory.Exists("temp"))
 					Directory.Delete("temp", true);
 				Directory.CreateDirectory("temp");
 			}
 			catch(Exception e)
 			{
-				throw new Exception("Error creating/clearing the download directory.", e);
+				throw new Exception("创建/清理下载目录错误.", e);
 			}
 			_state = UpdatingState.Downloading;
 			try
@@ -105,14 +105,14 @@ namespace HDTUpdate
 				using(var wc = new WebClient())
 				{
 					var lockThis = new object();
-					Console.WriteLine("Downloading latest version... 0%");
+					Console.WriteLine("正在下载最新版本... 0%");
 					wc.DownloadProgressChanged += (sender, e) =>
 					{
 						lock(lockThis)
 						{
 							Console.CursorLeft = 0;
 							Console.CursorTop = 1;
-							Console.WriteLine("Downloading latest version... {0}/{1}KB ({2}%)", e.BytesReceived / (1024), e.TotalBytesToReceive / (1024), e.ProgressPercentage);
+							Console.WriteLine("正在下载最新版本... {0}/{1}KB ({2}%)", e.BytesReceived / (1024), e.TotalBytesToReceive / (1024), e.ProgressPercentage);
 						}
 					};
 					await wc.DownloadFileTaskAsync(url, filePath);
@@ -120,29 +120,29 @@ namespace HDTUpdate
 			}
 			catch(Exception e)
 			{
-				throw new Exception("Error download the file.", e);
+				throw new Exception("文件下载出错.", e);
 			}
 			_state = UpdatingState.Extracting;
 			try
 			{
-				File.Move(filePath, filePath.Replace("rar", "zip"));
-				Console.WriteLine("Extracting files...");
+				//File.Move(filePath, filePath.Replace("rar", "zip"));
+				Console.WriteLine("正在解压...");
 				ZipFile.ExtractToDirectory(filePath, "temp");
 				const string newPath = "temp\\Hearthstone Deck Tracker\\";
 				CopyFiles("temp", newPath);
 			}
 			catch(Exception e)
 			{
-				throw new Exception("Error extracting the downloaded file.", e);
+				throw new Exception("解压下载的文件出错了.", e);
 			}
 			_state = UpdatingState.Starting;
 			try
 			{
-				Process.Start("Hearthstone Deck Tracker.exe");
+				Process.Start("HDT汉化高级版.exe");
 			}
 			catch(Exception e)
 			{
-				throw new Exception("Error restarting HDT.", e);
+				throw new Exception("重新HDT失败.", e);
 			}
 		}
 

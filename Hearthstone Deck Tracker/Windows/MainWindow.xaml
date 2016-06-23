@@ -173,9 +173,9 @@
             <StatusBarItem Margin="10,0,0,0" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock VerticalAlignment="Center" FontSize="14">
-                        <Run FontWeight="SemiBold">新的更新已经准备好了（这是英文原版，建议不要乱更新哦） - </Run>
+                        <Run FontWeight="SemiBold">新的更新已经准备好了(这真的是汉化版by Allan!) - </Run>
                         <Hyperlink Foreground="White" FontWeight="Bold" Click="HyperlinkUpdateNow_OnClick">
-                            CLICK HERE TO UPDATE NOW
+                            点击这里自动更新
                         </Hyperlink>
                     </TextBlock>
                 </StackPanel>

@@ -133,8 +133,8 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(false)]
 		public bool CheckForBetaUpdates = false;
 
-		[DefaultValue(false)]
-		public bool CheckForUpdates = false;
+		[DefaultValue(true)]
+		public bool CheckForUpdates = true;
 
 		[DefaultValue(ClassColorScheme.Classic)]
 		public ClassColorScheme ClassColorScheme = ClassColorScheme.Classic;

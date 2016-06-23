@@ -11,6 +11,7 @@ using Hearthstone_Deck_Tracker.Annotations;
 using Hearthstone_Deck_Tracker.Utility.Logging;
 using Hearthstone_Deck_Tracker.Windows;
 using MahApps.Metro.Controls.Dialogs;
+using Hearthstone_Deck_Tracker.AllanAdd;
 
 #endregion
 
@@ -68,7 +69,7 @@ namespace Hearthstone_Deck_Tracker.Utility
 				var betaString = beta ? " BETA" : "";
 				var result =
 					await
-					Core.MainWindow.ShowMessageAsync("新的" + betaString + " 更新到了!", "点击【下载】去自动下载（汉化建议不要下哦）",
+					Core.MainWindow.ShowMessageAsync("新的" + betaString + " 更新到了!", "点击【下载】去开始下载（请放心,这是真正的汉化下载by Allan)\r\n建议点击【现在不下载】,然后点击软件主界面的【新的更新已经准备好了】新闻条来自动更新！",
 					                                 MessageDialogStyle.AffirmativeAndNegative, settings);
 
 				if(result == MessageDialogResult.Affirmative)
@@ -140,8 +141,9 @@ namespace Hearthstone_Deck_Tracker.Utility
 			var currentVersion = Helper.GetCurrentVersion();
 			if(currentVersion == null)
 				return null;
-			return await GitHub.CheckForUpdate("HearthSim", "Hearthstone-Deck-Tracker", currentVersion, beta);
-		}
+			return await AllanGitOschina.CheckForUpdate(currentVersion);
+            //GitHub.CheckForUpdate("HearthSim", "Hearthstone-Deck-Tracker", currentVersion, beta);
+        }
 	}
 
 	public class StatusBarHelper : INotifyPropertyChanged
