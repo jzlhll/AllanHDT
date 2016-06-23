@@ -13,6 +13,7 @@ using Panel = System.Windows.Controls.Panel;
 using Point = System.Drawing.Point;
 using Hearthstone_Deck_Tracker.Hearthstone.Entities;
 using System.Windows.Media;
+using Hearthstone_Deck_Tracker.AllanAdd;
 
 #endregion
 
@@ -32,17 +33,18 @@ namespace Hearthstone_Deck_Tracker
             InitializeComponent();
 
             _game = game;
-            Height = Config.Instance.PlayerWindowHeight;
-            if (Config.Instance.PlayerWindowLeft.HasValue)
+            if (Config.Instance.GraveYardWindowLocation != null)
             {
-                Left = Config.Instance.PlayerWindowLeft.Value + 200;
-                Utility.Logging.Log.Info("AllanLog:Left~~~" + Config.Instance.PlayerWindowLeft.Value);
+                string[] ss = Config.Instance.GraveYardWindowLocation.Split(':');
+                Left = int.Parse(ss[0]);
+                Height = int.Parse(ss[1]);
+                ss = null;
             }
-            else {
-                Utility.Logging.Log.Info("AllanLog:No!~~~~~~");
+            else
+            {
+                Left = 800;
+                Height = 500;
             }
-            if (Config.Instance.PlayerWindowTop.HasValue)
-                Top = Config.Instance.PlayerWindowTop.Value;
             Topmost = Config.Instance.WindowsTopmost;
 
             var titleBarCorners = new[]
@@ -52,19 +54,7 @@ namespace Hearthstone_Deck_Tracker
                 new Point((int)Left + 5, (int)(Top + TitlebarHeight) - 5),
                 new Point((int)(Left + Width) - 5, (int)(Top + TitlebarHeight) - 5)
             };
-            if (!Screen.AllScreens.Any(s => titleBarCorners.Any(c => s.WorkingArea.Contains(c))))
-            {
-                Top = 100;
-                Left = 50;
-            }
 
-            if (forScreenshot != null)
-            {
-                graveTitle.Visibility = Visibility.Collapsed;
-                ListViewGraveyard.Update(forScreenshot, true);
-
-                Height = 34 * ListViewGraveyard.Items.Count;
-            }
             updateListv(false);
             graveTitle.Background = new SolidColorBrush(Colors.LightGray);
             graveTitle.Foreground = new SolidColorBrush(Colors.Black);
@@ -81,8 +71,7 @@ namespace Hearthstone_Deck_Tracker
 
         public void Update()
         {
-            ListViewGraveyard.Visibility = Visibility.Visible;
-            graveTitle.Visibility = Visibility.Visible;
+            Topmost = true;
         }
 
         public void UpdatePlayerLayout()
@@ -264,7 +253,8 @@ namespace Hearthstone_Deck_Tracker
         private void GraveyardWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
             Utility.Logging.Log.Info("AllanLog:GraveyardWindow_OnLoaded update");
-            Update();
+            ListViewGraveyard.Visibility = Visibility.Visible;
+            graveTitle.Visibility = Visibility.Visible;
             UpdatePlayerLayout();
         }
 
@@ -287,6 +277,14 @@ namespace Hearthstone_Deck_Tracker
             graveTitle.Foreground = new SolidColorBrush(Colors.White);
             oppoTitle.Background = new SolidColorBrush(Colors.LightGray);
             oppoTitle.Foreground = new SolidColorBrush(Colors.Black);
+        }
+
+        private void MetroWindow_Closed(object sender, EventArgs e)
+        {
+            Config.Instance.GraveYardWindowLocation = "" + Left + ":" + Height;
+            Config.Save();
+            mGraveyardList.Clear();
+            mGraveyardList = null;
         }
     }
 }

@@ -9,6 +9,7 @@
                       Title="窗口" Height="440" Width="230" MinWidth="230" MaxWidth="260"
                       Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"
                       Activated="GraveyardWindow_OnActivated"
+                      Closed="MetroWindow_Closed"
                       Icon="{StaticResource AppIcon}"
                       Loaded="GraveyardWindow_OnLoaded"
                       SizeChanged="GraveyardWindow_OnSizeChanged"

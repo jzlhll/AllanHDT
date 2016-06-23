@@ -668,6 +668,10 @@ namespace Hearthstone_Deck_Tracker
         public bool GraveYardWindowIfCreated = false;
 
         [DefaultValue(null)]
+        public string GraveYardWindowLocation = null;
+        //<!--allan add for graveryard-->
+
+        [DefaultValue(null)]
 		public int? PlayerWindowTop = null;
 
 		[DefaultValue(true)]
