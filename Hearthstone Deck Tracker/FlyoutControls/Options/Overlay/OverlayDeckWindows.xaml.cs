@@ -64,7 +64,6 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 				return;
 			Config.Instance.WindowsTopmost = true;
 			Core.Windows.PlayerWindow.Topmost = true;
-            Core.Windows.GraveryWindow.Topmost = true;//<!--allan add for graveryard-->
             Core.Windows.OpponentWindow.Topmost = true;
 			CheckboxWinTopmostHsForeground.IsEnabled = true;
 			SaveConfig(true);
@@ -90,7 +89,6 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 			Config.Instance.WindowsTopmostIfHsForeground = true;
 			Core.Windows.PlayerWindow.Topmost = false;
 			Core.Windows.OpponentWindow.Topmost = false;
-            Core.Windows.GraveryWindow.Topmost = false;//<!--allan add for graveryard-->
             SaveConfig(false);
 		}
 
@@ -103,7 +101,6 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 			{
 				Core.Windows.PlayerWindow.Topmost = true;
 				Core.Windows.OpponentWindow.Topmost = true;
-                Core.Windows.GraveryWindow.Topmost = true;//<!--allan add for graveryard-->
             }
 			SaveConfig(false);
 		}
@@ -304,13 +301,13 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
         private void CheckboxGraveyardWindowIfWithGenerate_Checked(object sender, RoutedEventArgs e)
         {
             Config.Instance.GraveYardWindowIfCreated = true;
-            Core.Windows.GraveryWindow.UpdateGraveyardCards(false);
+            if(Core.Windows.GraveryWindow.Visibility == Visibility.Visible) Core.Windows.GraveryWindow.UpdateGraveyardCards(false);
             Config.Save();
         }
 
         private void CheckboxGraveyardWindowIfWithGenerate_Unchecked(object sender, RoutedEventArgs e)
         {
-            Core.Windows.GraveryWindow.UpdateGraveyardCards(false);
+            if (Core.Windows.GraveryWindow.Visibility == Visibility.Visible) Core.Windows.GraveryWindow.UpdateGraveyardCards(false);
             Config.Instance.GraveYardWindowIfCreated = false;
             Config.Save();
         }

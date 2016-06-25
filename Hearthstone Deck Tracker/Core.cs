@@ -29,7 +29,7 @@ namespace Hearthstone_Deck_Tracker
 {
 	public static class Core
 	{
-		internal const int UpdateDelay = 100;
+		internal const int UpdateDelay = 800;
 		private static TrayIcon _trayIcon;
 		private static OverlayWindow _overlay;
 		private static Overview _statsOverview;
@@ -156,11 +156,15 @@ namespace Hearthstone_Deck_Tracker
 			Influx.OnAppStart(Helper.GetCurrentVersion(), loginType, newUser);
 		}
 
+        private static async void checkUpdateWhenBoot() {
+            if (Config.Instance.CheckForUpdates)
+                await Task.Run(() => { return Updater.CheckForUpdates(true); });
+        }
+
 		private static async void UpdateOverlayAsync()
 		{
-			if(Config.Instance.CheckForUpdates)
-				Updater.CheckForUpdates(true);
-			var hsForegroundChanged = false;
+            checkUpdateWhenBoot();
+            var hsForegroundChanged = false;
 			var useNoDeckMenuItem = TrayIcon.NotifyIcon.ContextMenu.MenuItems.IndexOfKey("startHearthstone");
 			while(UpdateOverlay)
 			{
@@ -178,8 +182,8 @@ namespace Hearthstone_Deck_Tracker
 					}
 					Overlay.UpdatePosition();
 
-					if(Config.Instance.CheckForUpdates)
-						Updater.CheckForUpdates();
+					//if(Config.Instance.CheckForUpdates)
+					//	Updater.CheckForUpdates();
 
 					if(!Game.IsRunning)
 					{
@@ -206,7 +210,6 @@ namespace Hearthstone_Deck_Tracker
 								//other way around it works for both windows... what?
 								Windows.OpponentWindow.Topmost = true;
 								Windows.PlayerWindow.Topmost = true;//<!--allan add for graveryard-->
-                                Windows.GraveryWindow.Topmost = true;
                                 Windows.TimerWindow.Topmost = true;
 							}
 							hsForegroundChanged = false;
@@ -217,7 +220,6 @@ namespace Hearthstone_Deck_Tracker
 						if(Config.Instance.WindowsTopmostIfHsForeground && Config.Instance.WindowsTopmost)
 						{
 							Windows.PlayerWindow.Topmost = false;
-                            Windows.GraveryWindow.Topmost = false;//<!--allan add for graveryard-->
                             Windows.OpponentWindow.Topmost = false;
 							Windows.TimerWindow.Topmost = false;
 						}
@@ -298,7 +300,7 @@ namespace Hearthstone_Deck_Tracker
             if (Windows.GraveryWindow.IsVisible) {
                 Windows.GraveryWindow.UpdateGraveyardCards(reset);//TODO 修改了方式 <!--allan add for graveryard-->
             }
-		}
+        }
 
 		internal static async void UpdateOpponentCards(bool reset = false)
 		{
@@ -313,7 +315,7 @@ namespace Hearthstone_Deck_Tracker
             if (Windows.GraveryWindow.IsVisible)
             {
                 Windows.GraveryWindow.UpdateGraveyardCards(reset);//TODO <!--allan add for graveryard-->
-                Windows.GraveryWindow.UpdateOppoDeckCards(new List<Card>(Game.Opponent.OpponentCardList), reset);//TODO  <!--allan add for graveryard-->
+                Windows.GraveryWindow.UpdateOppoDeckCards(reset);//TODO  <!--allan add for graveryard-->
             }
 		}
 

@@ -818,5 +818,10 @@ namespace Hearthstone_Deck_Tracker.Windows
 		#endregion
 
 		private void HyperlinkUpdateNow_OnClick(object sender, RoutedEventArgs e) => Updater.StartUpdate();
-	}
+
+        private void MenuItemFeedBack_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(@"http://bbs.nga.cn/read.php?tid=9444162");
+        }
+    }
 }

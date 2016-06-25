@@ -25,7 +25,7 @@ namespace Hearthstone_Deck_Tracker.Utility
 		public static StatusBarHelper StatusBar { get; } = new StatusBarHelper();
 		private static GitHub.Release _release;
 
-		public static async void CheckForUpdates(bool force = false)
+		public static async Task CheckForUpdates(bool force = false)
 		{
 			if(!force)
 			{
@@ -60,25 +60,26 @@ namespace Hearthstone_Deck_Tracker.Utility
 				_showingUpdateMessage = false;
 				return;
 			}
-			try
+            var betaString = beta ? " BETA" : "";
+            try
 			{
-				await Task.Delay(10000);
-				Core.MainWindow.ActivateWindow();
-				while(Core.MainWindow.Visibility != Visibility.Visible || Core.MainWindow.WindowState == WindowState.Minimized)
-					await Task.Delay(100);
-				var betaString = beta ? " BETA" : "";
-				var result =
-					await
-					Core.MainWindow.ShowMessageAsync("新的" + betaString + " 更新到了!", "点击【下载】去开始下载（请放心,这是真正的汉化下载by Allan)\r\n建议点击【现在不下载】,然后点击软件主界面的【新的更新已经准备好了】新闻条来自动更新！",
-					                                 MessageDialogStyle.AffirmativeAndNegative, settings);
+				await Task.Delay(3000);
+                Core.MainWindow.Dispatcher.Invoke(new Action(async () =>
+                {
+                    Core.MainWindow.ActivateWindow();
+                    while (Core.MainWindow.Visibility != Visibility.Visible || Core.MainWindow.WindowState == WindowState.Minimized)
+                        await Task.Delay(100);
 
-				if(result == MessageDialogResult.Affirmative)
-					StartUpdate();
-				else
-					TempUpdateCheckDisabled = true;
-
-				_showingUpdateMessage = false;
-			}
+                    var result = await Core.MainWindow.ShowMessageAsync("新的" + betaString + " 更新到了!", "点击【下载】去开始下载（请放心,这是真正的汉化下载by Allan)\r\n建议点击【现在不下载】,然后点击软件主界面的【新的更新已经准备好了】新闻条来自动更新！",
+                                                     MessageDialogStyle.AffirmativeAndNegative, settings);
+                    if (result == MessageDialogResult.Affirmative)
+                        StartUpdate();
+                    else
+                        TempUpdateCheckDisabled = true;
+                }));
+                
+                _showingUpdateMessage = false;
+            }
 			catch(Exception e)
 			{
 				_showingUpdateMessage = false;
