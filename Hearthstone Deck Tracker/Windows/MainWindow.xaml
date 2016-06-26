@@ -379,7 +379,7 @@
                     </MenuItem.Icon>
                     <MenuItem Header="空..." IsEnabled="False" Name="MenuItemPluginsEmpty"/>
                 </MenuItem>
-                <MenuItem Header="支持和反馈" Name="MenuItemFeedBack" ToolTip="任何问题或者点赞,点击这里跳转到NGA帖子回帖反馈!\r\n或者联系我QQ734419940" Click="MenuItemFeedBack_Click">
+                <MenuItem Header="支持和反馈" Name="MenuItemFeedBack" ToolTip="任何问题或者点赞,点击这里跳转到NGA帖子回帖反馈!或者联系我QQ734419940" Click="MenuItemFeedBack_Click">
                     <MenuItem.Icon>
                         <Rectangle Width="16" Height="16" Margin="0,0,-10,0">
                             <Rectangle.Fill>

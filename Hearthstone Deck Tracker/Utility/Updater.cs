@@ -69,8 +69,9 @@ namespace Hearthstone_Deck_Tracker.Utility
                     Core.MainWindow.ActivateWindow();
                     while (Core.MainWindow.Visibility != Visibility.Visible || Core.MainWindow.WindowState == WindowState.Minimized)
                         await Task.Delay(100);
-
-                    var result = await Core.MainWindow.ShowMessageAsync("新的" + betaString + " 更新到了!", "点击【下载】去开始下载（请放心,这是真正的汉化下载by Allan)\r\n建议点击【现在不下载】,然后点击软件主界面的【新的更新已经准备好了】新闻条来自动更新！",
+                    string body = await AllanGitOschina.GetLatestReleaseTitleAndBody();
+                    var result = await Core.MainWindow.ShowMessageAsync("新的" + betaString + " 更新来了!", 
+                        "点击【下载】开始下载汉化版更新\r\n建议【现在不下载】,点击主界面的【新的更新已经准备好了】来自动更新！\r\n\r\n" + body,
                                                      MessageDialogStyle.AffirmativeAndNegative, settings);
                     if (result == MessageDialogResult.Affirmative)
                         StartUpdate();

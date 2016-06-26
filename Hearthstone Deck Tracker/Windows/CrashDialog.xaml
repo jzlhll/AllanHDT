@@ -35,7 +35,7 @@
             </TextBox.Resources>
         </TextBox>
         <TextBlock Text="挂掉了！请提供描述和一些操作，截图等来帮助我们找到解决方案。先按照http://bbs.nga.cn/read.php?tid=9444162 中的注意事项删除config.xml。如果还不行，请截图到NGA帖子中谢谢。"
-                   Margin="5,5,0,0" TextWrapping="Wrap"  DockPanel.Dock="Top"/>
+                   Margin="5,5,0,0" TextWrapping="Wrap"  DockPanel.Dock="Top" Height="132"/>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0" >
             <Button Name="ButtonSend" Width="120" Click="ButtonSend_Click" Style="{StaticResource AccentedSquareButtonStyle}" Visibility="Hidden">
                 <TextBlock Text="发布报告"/>
@@ -44,7 +44,7 @@
                 <TextBlock Text="关闭"/>
             </Button>
         </StackPanel>
-        <TextBox Name="TextBoxDescription" controls:TextBoxHelper.Watermark="额外的信息(可选)" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,5,0,0"/>
+        <TextBox Name="TextBoxDescription" controls:TextBoxHelper.Watermark="额外的信息(可选)" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,38,0,0"/>
     </DockPanel>
 </controls:MetroWindow>
 
