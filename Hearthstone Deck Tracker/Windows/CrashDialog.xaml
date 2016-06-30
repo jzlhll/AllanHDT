@@ -34,7 +34,7 @@
                 </Storyboard>
             </TextBox.Resources>
         </TextBox>
-        <TextBlock Text="挂掉了！请提供描述和一些操作，截图等来帮助我们找到解决方案。先按照http://bbs.nga.cn/read.php?tid=9444162 中的注意事项删除config.xml。如果还不行，请截图到NGA帖子中谢谢。"
+        <TextBlock Text="挂掉了！先按照http://bbs.nga.cn/read.php?tid=9444162 中的注意事项删除config.xml。如果还不行，请截图到NGA帖子中谢谢。如果有crash出现，请一定将运行程序目录下的crash文件夹下面的(按照日期名字)内容粘贴到帖子中或者联系我QQ734419940。"
                    Margin="5,5,0,0" TextWrapping="Wrap"  DockPanel.Dock="Top" Height="132"/>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0" >
             <Button Name="ButtonSend" Width="120" Click="ButtonSend_Click" Style="{StaticResource AccentedSquareButtonStyle}" Visibility="Hidden">
