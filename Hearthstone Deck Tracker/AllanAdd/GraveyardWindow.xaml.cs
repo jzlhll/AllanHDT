@@ -170,7 +170,7 @@ namespace Hearthstone_Deck_Tracker
         private async void UpdateOppoDeckListv(bool reset)
         {
             List<Card> cards = await updateOppoDeckInternal();
-            ListViewOppoDeck.Update(cards, reset);
+            if(cards != null)ListViewOppoDeck.Update(cards, reset);
             if (reset)
             {
                 myIds = null;
@@ -229,7 +229,7 @@ namespace Hearthstone_Deck_Tracker
 
             await updatePlayerGraveInternal();
 
-            ListViewGraveyard.Update(mGraveyardList, reset);
+            if (mGraveyardList != null) ListViewGraveyard.Update(mGraveyardList, reset);
 
             if (reset)
             {

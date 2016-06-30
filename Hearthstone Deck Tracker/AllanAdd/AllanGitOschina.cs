@@ -16,13 +16,13 @@ namespace Hearthstone_Deck_Tracker.AllanAdd
     {
         public const string AllanVersion = "0.8.4"; //每次更新版本都需要修改@！！！
         public const bool DEBUG_FORCE_UPDATE = false;
-        public const string DEBUG_FORCE_UPDATE_VERSION = "0.8.3";
+        public const string DEBUG_FORCE_UPDATE_TO_VERSION = "0.8.4";
 
         public static async Task<Release> CheckForUpdate(Version currentVersion)
         {
             if (DEBUG_FORCE_UPDATE) {
                 Release rel = new Release();
-                rel.Tag = "v" + DEBUG_FORCE_UPDATE_VERSION;
+                rel.Tag = "v" + DEBUG_FORCE_UPDATE_TO_VERSION;
                 Release.Asset ass = new Release.Asset();
                 ass.Url = "http://git.oschina.net/allan.jiang/HDTCN_release/raw/master/HDThanhua_super_" + rel.Tag + ".zip";
                 ass.Name = "HDThanhua_super_" + rel.Tag + ".zip";
@@ -144,7 +144,7 @@ namespace Hearthstone_Deck_Tracker.AllanAdd
                         si++;
                     }
                 }
-                return "新版本说明:\r\n===  " + webTitle + "  ===\r\n" + webBody;
+                return "===新版本说明:===\r\n     " + webTitle + "\r\n" + webBody;
             }
             catch (Exception ex)
             {
