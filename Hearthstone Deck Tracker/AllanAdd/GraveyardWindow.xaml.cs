@@ -31,19 +31,21 @@ namespace Hearthstone_Deck_Tracker
         public GraveyardWindow(GameV2 game, List<Card> forScreenshot = null)
         {
             InitializeComponent();
-
+            Left = 800;
+            Height = 500;
             _game = game;
-            if (Config.Instance.GraveYardWindowLocation != null)
-            {
-                string[] ss = Config.Instance.GraveYardWindowLocation.Split(':');
-                Left = int.Parse(ss[0]);
-                Height = int.Parse(ss[1]);
-                ss = null;
+            try {
+                if (Config.Instance.GraveYardWindowLocation != null)
+                {
+                    string[] ss = Config.Instance.GraveYardWindowLocation.Split(':');
+                    Left = int.Parse(ss[0]);
+                    Height = int.Parse(ss[1]);
+                    ss = null;
+                }
             }
-            else
+            catch(Exception e)
             {
-                Left = 800;
-                Height = 500;
+                //do nothing
             }
             Topmost = Config.Instance.WindowsTopmost;
 

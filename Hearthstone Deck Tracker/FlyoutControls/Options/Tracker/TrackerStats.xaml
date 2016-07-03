@@ -68,8 +68,8 @@
                             </DockPanel>
                             <DockPanel Margin="0,5,0,0">
                                 <ComboBox Name="ComboboxDisplayedMode" VerticalAlignment="Bottom" Width="150"
-                                          DockPanel.Dock="Right" SelectionChanged="ComboboxGameMode_SelectionChanged" />
-                                <Label Content="模式:" />
+                                          DockPanel.Dock="Right" SelectionChanged="ComboboxGameMode_SelectionChanged" ToolTip="Ranked-天梯 Casual-休闲 Arena-竞技场 Brawl-乱斗 Friendly-好友 Practice-练习 Spectator-观众 none-无"/>
+                                <Label Content="模式:(翻译?)" ToolTip="Ranked-天梯 Casual-休闲 Arena-竞技场 Brawl-乱斗 Friendly-好友 Practice-练习 Spectator-观众 none-无"/>
                             </DockPanel>
                             <DockPanel Margin="0,5,0,0">
                                 <ComboBox Name="ComboboxDisplayedTimeFrame" VerticalAlignment="Bottom" Width="150"

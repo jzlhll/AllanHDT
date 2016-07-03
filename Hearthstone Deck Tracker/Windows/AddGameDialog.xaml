@@ -10,16 +10,16 @@
              d:DesignHeight="300" Title="添加新游戏" Height="525" d:DesignWidth="450">
     <StackPanel Width="300" Margin="0,15,0,0">
         <DockPanel Margin="0,2,0,0">
-            <Label Content="结果:" Width="90"/>
-            <ComboBox Name="ComboBoxResult" SelectedIndex="0">
+            <Label Content="结果:" Width="90" ToolTip="Win胜,Loss败,Draw投"/>
+            <ComboBox Name="ComboBoxResult" SelectedIndex="0" ToolTip="Win胜,Loss败,Draw投">
                 <enums:GameResult>Win</enums:GameResult>
                 <enums:GameResult>Loss</enums:GameResult>
                 <enums:GameResult>Draw</enums:GameResult>
             </ComboBox>
         </DockPanel>
         <DockPanel Margin="0,2,0,0">
-            <Label Content="对阵:" Width="90"/>
-            <ComboBox Name="ComboBoxOpponent" SelectedIndex="0">
+            <Label Content="对阵:(翻译?)" Width="90" ToolTip="Druid德,Hunter猎,Mage法,Paladin骑,Priest牧,Rogue贼,Shaman萨,Warlock术,Warrior战"/>
+            <ComboBox Name="ComboBoxOpponent" SelectedIndex="0" ToolTip="Druid德,Hunter猎,Mage法,Paladin骑,Priest牧,Rogue贼,Shaman萨,Warlock术,Warrior战">
                 <enums:HeroClass>Druid</enums:HeroClass>
                 <enums:HeroClass>Hunter</enums:HeroClass>
                 <enums:HeroClass>Mage</enums:HeroClass>
@@ -32,8 +32,8 @@
             </ComboBox>
         </DockPanel>
         <DockPanel Margin="0,2,0,0">
-            <Label Content="模式:" Width="90"/>
-            <ComboBox Name="ComboBoxMode" SelectedIndex="0" SelectionChanged="ComboBoxMode_OnSelectionChanged">
+            <Label Content="模式:(翻译?)" Width="90" ToolTip="Ranked-天梯 Casual-休闲 Arena-竞技场 Brawl-乱斗 Friendly-好友 Practice-练习"/>
+            <ComboBox Name="ComboBoxMode" SelectedIndex="0" SelectionChanged="ComboBoxMode_OnSelectionChanged" ToolTip="Ranked-天梯 Casual-休闲 Arena-竞技场 Brawl-乱斗 Friendly-好友 Practice-练习">
                 <enums:GameMode>Ranked</enums:GameMode>
                 <enums:GameMode>Casual</enums:GameMode>
                 <enums:GameMode>Arena</enums:GameMode>
@@ -43,8 +43,8 @@
             </ComboBox>
         </DockPanel>
         <DockPanel Margin="0,2,0,0" Name="PanelFormat">
-            <Label Content="格式化:" Width="90"/>
-            <ComboBox Name="ComboBoxFormat" SelectedIndex="0">
+            <Label Content="格式化:(翻译?)" Width="90" ToolTip="Standard 标准；Wild 狂野"/>
+            <ComboBox Name="ComboBoxFormat" SelectedIndex="0" ToolTip="Standard 标准；Wild 狂野">
                 <enums:Format>Standard</enums:Format>
                 <enums:Format>Wild</enums:Format>
             </ComboBox>

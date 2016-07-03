@@ -14,9 +14,9 @@ namespace Hearthstone_Deck_Tracker.AllanAdd
 {
     class AllanGitOschina
     {
-        public const string AllanVersion = "0.8.4"; //每次更新版本都需要修改@！！！
+        public const string AllanVersion = "0.8.5"; //每次更新版本都需要修改@！！！
         public const bool DEBUG_FORCE_UPDATE = false;
-        public const string DEBUG_FORCE_UPDATE_TO_VERSION = "0.8.4";
+        public const string DEBUG_FORCE_UPDATE_TO_VERSION = "0.8.5";
 
         public static async Task<Release> CheckForUpdate(Version currentVersion)
         {
@@ -148,7 +148,8 @@ namespace Hearthstone_Deck_Tracker.AllanAdd
             }
             catch (Exception ex)
             {
-                throw ex;
+                Log.Error(ex);
+                return "连接更新服务器失败，稍后重试。";
             }
         }
 

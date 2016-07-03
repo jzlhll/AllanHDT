@@ -63,7 +63,7 @@ namespace Hearthstone_Deck_Tracker.Utility
             var betaString = beta ? " BETA" : "";
             try
 			{
-				await Task.Delay(3000);
+				await Task.Delay(1000);
                 Core.MainWindow.Dispatcher.Invoke(new Action(async () =>
                 {
                     Core.MainWindow.ActivateWindow();

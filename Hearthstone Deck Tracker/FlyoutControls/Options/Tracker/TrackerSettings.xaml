@@ -37,7 +37,7 @@
                                   VerticalAlignment="Top" Width="150"
                                   SelectionChanged="ComboboxKeyPressGameEnd_SelectionChanged" />
                     </DockPanel>
-                    <CheckBox x:Name="CheckboxConfigSaveAppData" Content="在AppData中保存数据"
+                    <CheckBox x:Name="CheckboxConfigSaveAppData" Content="在AppData中保存配置文件"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"

@@ -109,8 +109,8 @@
             </ComboBox>
         </DockPanel>
         <DockPanel Margin="0,5,0,0">
-            <Label Content="模式:" Width="60"/>
-            <ComboBox Name="ComboBoxMode" SelectedIndex="0" SelectionChanged="ComboBoxMode_OnSelectionChanged">
+            <Label Content="模式:(翻译?)" Width="60" ToolTip="Ranked-天梯 Casual-休闲 Arena-竞技场 Brawl-乱斗 Friendly-好友 Practice-练习 Spectator-观众 none-无"/>
+            <ComboBox Name="ComboBoxMode" SelectedIndex="0" SelectionChanged="ComboBoxMode_OnSelectionChanged" ToolTip="Ranked-天梯 Casual-休闲 Arena-竞技场 Brawl-乱斗 Friendly-好友 Practice-练习 Spectator-观众 none-无">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Path=., Converter={StaticResource EnumDescriptionConverter}}" />
