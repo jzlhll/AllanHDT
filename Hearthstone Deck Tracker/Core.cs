@@ -94,13 +94,13 @@ namespace Hearthstone_Deck_Tracker
 			MainWindow.Show();
 			splashScreenWindow.Close();
 
-			if(ConfigManager.UpdatedVersion != null)
-			{
-				Updater.Cleanup();
-				MainWindow.FlyoutUpdateNotes.IsOpen = true;
-				MainWindow.UpdateNotesControl.SetHighlight(ConfigManager.PreviousVersion);
-				MainWindow.UpdateNotesControl.LoadUpdateNotes();
-			}
+			//if(ConfigManager.UpdatedVersion != null)
+			//{
+			//	Updater.Cleanup();
+			//	MainWindow.FlyoutUpdateNotes.IsOpen = true;
+			//	MainWindow.UpdateNotesControl.SetHighlight(ConfigManager.PreviousVersion);
+			//	MainWindow.UpdateNotesControl.LoadUpdateNotes();
+			//}
 			NetDeck.CheckForChromeExtention();
 			DataIssueResolver.Run();
 

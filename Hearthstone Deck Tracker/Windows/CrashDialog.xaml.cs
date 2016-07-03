@@ -14,7 +14,8 @@ namespace Hearthstone_Deck_Tracker.Windows
 		{
 			_exception = exception;
 			InitializeComponent();
-		}
+            switchButtonShowStacktraceClick();
+        }
 
 		public string ExceptionMessage => _exception.Message;
 
@@ -30,22 +31,26 @@ namespace Hearthstone_Deck_Tracker.Windows
 
 		private void ButtonClose_Click(object sender, RoutedEventArgs e) => Close();
 
+        private void switchButtonShowStacktraceClick() {
+            if (TextBoxStackTrace.Visibility == Visibility.Collapsed)
+            {
+                TextBoxStackTrace.Visibility = Visibility.Visible;
+                (TextBoxStackTrace.TryFindResource("ShowStackTraceStoryboard") as Storyboard)?.Begin();
+                ButtonShowStacktrace.Content = "隐藏堆栈";
+            }
+            else
+            {
+                TextBoxStackTrace.Visibility = Visibility.Collapsed;
+                TextBoxStackTrace.Height = 0;
+                (TextBoxStackTrace.TryFindResource("HideStackTraceStoryboard") as Storyboard)?.Begin();
+
+                ButtonShowStacktrace.Content = "显示堆栈";
+            }
+        }
+
 		private void ButtonShowStacktrace_OnClick(object sender, RoutedEventArgs e)
 		{
-			if(TextBoxStackTrace.Visibility == Visibility.Collapsed)
-			{
-				TextBoxStackTrace.Visibility = Visibility.Visible;
-				(TextBoxStackTrace.TryFindResource("ShowStackTraceStoryboard") as Storyboard)?.Begin();
-				ButtonShowStacktrace.Content = "隐藏堆栈";
-			}
-			else
-			{
-				TextBoxStackTrace.Visibility = Visibility.Collapsed;
-				TextBoxStackTrace.Height = 0;
-				(TextBoxStackTrace.TryFindResource("HideStackTraceStoryboard") as Storyboard)?.Begin();
-				
-				ButtonShowStacktrace.Content = "显示堆栈";
-			}
+            switchButtonShowStacktraceClick();
 		}
 	}
 }

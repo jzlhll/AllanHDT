@@ -112,7 +112,11 @@ namespace HDTUpdate
 						{
 							Console.CursorLeft = 0;
 							Console.CursorTop = 1;
-							Console.WriteLine("正在下载最新版本... {0}/{1}KB ({2}%)", e.BytesReceived / (1024), e.TotalBytesToReceive / (1024), e.ProgressPercentage);
+                            long prog = e.BytesReceived / (29 * 1024 * 10);
+                            if (prog > 100) {
+                                prog = 100;
+                            }
+                            Console.WriteLine("正在下载最新版本... {0}/{1}KB ({2}%)", e.BytesReceived/(1024), (29*1024), prog);
 						}
 					};
 					await wc.DownloadFileTaskAsync(url, filePath);

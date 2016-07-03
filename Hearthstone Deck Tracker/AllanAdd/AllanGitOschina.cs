@@ -14,9 +14,27 @@ namespace Hearthstone_Deck_Tracker.AllanAdd
 {
     class AllanGitOschina
     {
-        public const string AllanVersion = "0.8.5"; //每次更新版本都需要修改@！！！
+        public const string AllanVersion = "0.8.6"; //每次更新版本都需要修改@！！！
         public const bool DEBUG_FORCE_UPDATE = false;
-        public const string DEBUG_FORCE_UPDATE_TO_VERSION = "0.8.5";
+        public const string DEBUG_FORCE_UPDATE_TO_VERSION = "0.8.6";
+
+        //public static bool isNeedUpdateConfig() {
+        //    Log.Info("00nowVers ");
+        //    Version nowVersion = new Version(AllanVersion + ".0");
+        //    Log.Info("11nowVers " + nowVersion + " config ");
+        //    Version configVersion = string.IsNullOrEmpty(Config.Instance.CreatedByVersion) ? null : new Version(Config.Instance.CreatedAllanByVersion);
+        //    Log.Info("22nowVers " + nowVersion + " config " + configVersion);
+        //    if (configVersion != null && nowVersion > configVersion)
+        //    {
+        //        Log.Info("nowVerstrue");
+        //        Config.Instance.CreatedAllanByVersion = AllanVersion + ".0";
+        //        return true;
+        //    }
+        //    else {
+        //        Log.Info("nowVersfalse");
+        //        return false;
+        //    }
+        //}
 
         public static async Task<Release> CheckForUpdate(Version currentVersion)
         {
@@ -28,6 +46,7 @@ namespace Hearthstone_Deck_Tracker.AllanAdd
                 ass.Name = "HDThanhua_super_" + rel.Tag + ".zip";
                 rel.Assets = new List<Release.Asset>();
                 rel.Assets.Add(ass);
+                Utility.Updater.Cleanup();
                 return rel;
             }
             try
@@ -42,6 +61,7 @@ namespace Hearthstone_Deck_Tracker.AllanAdd
                     if (latest.GetVersion()?.CompareTo(currentVersion) > 0)
                     {
                         Log.Info("AllanLog:AllanGitOschina " + $"A new version is available (latest={latest.Tag})");
+                        Utility.Updater.Cleanup();
                         return latest;
                     }
                     Log.Info("AllanLog:AllanGitOschina " + $"We are up-to-date (latest={latest.Tag})");
@@ -144,7 +164,7 @@ namespace Hearthstone_Deck_Tracker.AllanAdd
                         si++;
                     }
                 }
-                return "===新版本说明:===\r\n     " + webTitle + "\r\n" + webBody;
+                return "===新版本说明:===\r\n\r\n          " + webTitle + "\r\n\r\n" + webBody;
             }
             catch (Exception ex)
             {
