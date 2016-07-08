@@ -42,7 +42,6 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 			CheckboxWinTopmostHsForeground.IsChecked = Config.Instance.WindowsTopmostIfHsForeground;
 			CheckboxWinTopmostHsForeground.IsEnabled = Config.Instance.WindowsTopmost;
 			ComboboxWindowBackground.SelectedItem = Config.Instance.SelectedWindowBackground;
-            Log.Info("selectedItemsmms, " + Config.Instance.SelectedWindowBackground);
 			TextboxCustomBackground.IsEnabled = Config.Instance.SelectedWindowBackground == "自定义"; //Custom
 			TextboxCustomBackground.Text = string.IsNullOrEmpty(Config.Instance.WindowsBackgroundHex)
 				                               ? "#696969" : Config.Instance.WindowsBackgroundHex;
@@ -64,7 +63,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 				return;
 			Config.Instance.WindowsTopmost = true;
 			Core.Windows.PlayerWindow.Topmost = true;
-            Core.Windows.OpponentWindow.Topmost = true;
+			Core.Windows.OpponentWindow.Topmost = true;
 			CheckboxWinTopmostHsForeground.IsEnabled = true;
 			SaveConfig(true);
 		}
@@ -75,8 +74,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 				return;
 			Config.Instance.WindowsTopmost = false;
 			Core.Windows.PlayerWindow.Topmost = false;
-            Core.Windows.GraveryWindow.Topmost = false;//<!--allan add for graveryard-->
-            Core.Windows.OpponentWindow.Topmost = false;
+			Core.Windows.OpponentWindow.Topmost = false;
 			CheckboxWinTopmostHsForeground.IsEnabled = false;
 			CheckboxWinTopmostHsForeground.IsChecked = false;
 			SaveConfig(true);
@@ -89,7 +87,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 			Config.Instance.WindowsTopmostIfHsForeground = true;
 			Core.Windows.PlayerWindow.Topmost = false;
 			Core.Windows.OpponentWindow.Topmost = false;
-            SaveConfig(false);
+			SaveConfig(false);
 		}
 
 		private void CheckboxWinTopmostHsForeground_Unchecked(object sender, RoutedEventArgs e)
@@ -101,7 +99,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 			{
 				Core.Windows.PlayerWindow.Topmost = true;
 				Core.Windows.OpponentWindow.Topmost = true;
-            }
+			}
 			SaveConfig(false);
 		}
 
@@ -245,9 +243,8 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 		internal void UpdateAdditionalWindowsBackground(Brush brush = null)
 		{
 			var background = brush;
-            Log.Error("ComboboxWindowBackground.SelectedItem " + ComboboxWindowBackground.SelectedItem);
 
-            switch (ComboboxWindowBackground.SelectedItem.ToString())
+			switch(ComboboxWindowBackground.SelectedItem.ToString())
 			{
 				case "主题"://Theme
 					background = Background;

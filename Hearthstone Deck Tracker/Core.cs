@@ -1,6 +1,7 @@
 ﻿#region
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,7 +22,6 @@ using Hearthstone_Deck_Tracker.Utility.Logging;
 using Hearthstone_Deck_Tracker.Windows;
 using MahApps.Metro.Controls.Dialogs;
 using Hearthstone_Deck_Tracker.Utility.Themes;
-using System.Collections.Generic;
 
 #endregion
 
@@ -29,7 +29,7 @@ namespace Hearthstone_Deck_Tracker
 {
 	public static class Core
 	{
-		internal const int UpdateDelay = 800;
+		internal const int UpdateDelay = 100;
 		private static TrayIcon _trayIcon;
 		private static OverlayWindow _overlay;
 		private static Overview _statsOverview;
@@ -209,8 +209,8 @@ namespace Hearthstone_Deck_Tracker
 								//clicking on the playerwindow and back to hs causes the playerwindow to be behind hs.
 								//other way around it works for both windows... what?
 								Windows.OpponentWindow.Topmost = true;
-								Windows.PlayerWindow.Topmost = true;//<!--allan add for graveryard-->
-                                Windows.TimerWindow.Topmost = true;
+								Windows.PlayerWindow.Topmost = true;
+								Windows.TimerWindow.Topmost = true;
 							}
 							hsForegroundChanged = false;
 						}
@@ -220,7 +220,7 @@ namespace Hearthstone_Deck_Tracker
 						if(Config.Instance.WindowsTopmostIfHsForeground && Config.Instance.WindowsTopmost)
 						{
 							Windows.PlayerWindow.Topmost = false;
-                            Windows.OpponentWindow.Topmost = false;
+							Windows.OpponentWindow.Topmost = false;
 							Windows.TimerWindow.Topmost = false;
 						}
 						hsForegroundChanged = true;
