@@ -60,16 +60,16 @@ namespace Hearthstone_Deck_Tracker
             if (Core.Game.CurrentMode == Mode.GAMEPLAY)
             {
                 updatePlayerGraveListv(false);
-                UpdateOppoDeckCards(false);
+                //todo UpdateOppoDeckCards(false);
             }
-            graveTitle.Background = new SolidColorBrush(Colors.LightGray);
-            graveTitle.Foreground = new SolidColorBrush(Colors.Black);
-            oppoTitle.Background = new SolidColorBrush(Colors.Transparent);
+            //graveTitle.Background = new SolidColorBrush(Colors.LightGray);
+            //graveTitle.Foreground = new SolidColorBrush(Colors.Black);
+            //oppoTitle.Background = new SolidColorBrush(Colors.Transparent);
         }
 
         public double PlayerDeckMaxHeight => ActualHeight - PlayerLabelsHeight;
 
-        public double PlayerLabelsHeight => graveTitle.ActualHeight + 42;
+        public double PlayerLabelsHeight => 42;//graveTitle.ActualHeight + 42;
 
         public bool ShowToolTip => Config.Instance.WindowCardToolTips;
 
@@ -264,7 +264,7 @@ namespace Hearthstone_Deck_Tracker
         private void GraveyardWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
             ListViewGraveyard.Visibility = Visibility.Visible;
-            graveTitle.Visibility = Visibility.Visible;
+          //  graveTitle.Visibility = Visibility.Visible;
             UpdatePlayerLayout();
         }
 
@@ -272,21 +272,24 @@ namespace Hearthstone_Deck_Tracker
         {
             StackPanelMain.Visibility = Visibility.Visible;
             StackPanelMainOppo.Visibility = Visibility.Hidden;
-            graveTitle.Background = new SolidColorBrush(Colors.LightGray);
-            graveTitle.Foreground = new SolidColorBrush(Colors.Black);
-            oppoTitle.Background = new SolidColorBrush(Colors.Transparent);
-            oppoTitle.Foreground = new SolidColorBrush(Colors.White);
+            //graveTitle.Background = new SolidColorBrush(Colors.LightGray);
+           // graveTitle.Foreground = new SolidColorBrush(Colors.Black);
+           // oppoTitle.Background = new SolidColorBrush(Colors.Transparent);
+           // oppoTitle.Foreground = new SolidColorBrush(Colors.White);
         }
 
-        private void oppoTitle_Click(object sender, RoutedEventArgs e)
-        {
-            StackPanelMainOppo.Visibility = Visibility.Visible;
-            StackPanelMain.Visibility = Visibility.Hidden;
-            graveTitle.Background = new SolidColorBrush(Colors.Transparent);
-            graveTitle.Foreground = new SolidColorBrush(Colors.White);
-            oppoTitle.Background = new SolidColorBrush(Colors.LightGray);
-            oppoTitle.Foreground = new SolidColorBrush(Colors.Black);
-        }
+        //private void oppoTitle_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (true) { //todo 
+        //        return;
+        //    }
+        //    StackPanelMainOppo.Visibility = Visibility.Visible;
+        //    StackPanelMain.Visibility = Visibility.Hidden;
+        //   // graveTitle.Background = new SolidColorBrush(Colors.Transparent);
+        //  //  graveTitle.Foreground = new SolidColorBrush(Colors.White);
+        //  //  oppoTitle.Background = new SolidColorBrush(Colors.LightGray);
+        //  //  oppoTitle.Foreground = new SolidColorBrush(Colors.Black);
+        //}
 
         private void MetroWindow_Closed(object sender, EventArgs e)
         {

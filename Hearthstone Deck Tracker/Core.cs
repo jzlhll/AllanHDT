@@ -315,7 +315,7 @@ namespace Hearthstone_Deck_Tracker
             if (Windows.GraveryWindow.IsVisible)
             {
                 Windows.GraveryWindow.UpdateGraveyardCards(reset);//TODO <!--allan add for graveryard-->
-                Windows.GraveryWindow.UpdateOppoDeckCards(reset);//TODO  <!--allan add for graveryard-->
+                //todo Windows.GraveryWindow.UpdateOppoDeckCards(reset);//TODO  <!--allan add for graveryard-->
             }
 		}
 

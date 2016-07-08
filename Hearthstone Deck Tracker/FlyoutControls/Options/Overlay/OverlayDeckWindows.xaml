@@ -17,7 +17,7 @@
                               Unchecked="CheckboxPlayerWindowOpenAutomatically_Unchecked" />
 			      <!--allan add for graveryard-->
                     <CheckBox x:Name="CheckboxGraveyardWindowOpenAutomatically"
-                              Content="玩家坟场与对手卡组(AllanAdd)" HorizontalAlignment="Left"
+                              Content="玩家坟场(AllanAdd)" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxGraveyardWindowOpenAutomatically_Checked"
                               Unchecked="CheckboxGraveyardWindowOpenAutomatically_Unchecked" />

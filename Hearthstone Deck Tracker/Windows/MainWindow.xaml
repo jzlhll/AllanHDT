@@ -11,7 +11,7 @@
                       xmlns:windows="clr-namespace:Hearthstone_Deck_Tracker.Windows"
                       xmlns:stats="clr-namespace:Hearthstone_Deck_Tracker.Controls.Stats"
                       xmlns:utility="clr-namespace:Hearthstone_Deck_Tracker.Utility"
-                      Title="HDT高级汉化整合版" Height="603" Width="720"
+                      Title="HDT高级版" Height="603" Width="720"
                       MinHeight="584" MinWidth="720"
                       Closing="Window_Closing"
                       Icon="{StaticResource AppIcon}"
@@ -173,7 +173,7 @@
             <StatusBarItem Margin="10,0,0,0" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock VerticalAlignment="Center" FontSize="14">
-                        <Run FontWeight="SemiBold">新的更新已经准备好了,这是真正的汉化版更新By Allan- </Run>
+                        <Run FontWeight="SemiBold">新的更新已经准备好了,这是汉化版更新By Allan- </Run>
                         <Hyperlink Foreground="White" FontWeight="Bold" Click="HyperlinkUpdateNow_OnClick">
                             点击这里自动更新
                         </Hyperlink>
