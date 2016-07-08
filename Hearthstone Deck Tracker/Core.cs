@@ -297,12 +297,18 @@ namespace Hearthstone_Deck_Tracker
 			Overlay.UpdatePlayerCards(new List<Card>(Game.Player.PlayerCardList), reset);
 			if(Windows.PlayerWindow.IsVisible)
 				Windows.PlayerWindow.UpdatePlayerCards(new List<Card>(Game.Player.PlayerCardList), reset);
-            if (Windows.GraveryWindow.IsVisible) {
+        }
+
+        internal static async void UpdateGraveyardCards(bool reset = false)
+        {
+            await Task.Delay(100);
+            if (Windows.GraveryWindow.IsVisible)
+            {
                 Windows.GraveryWindow.UpdateGraveyardCards(reset);//TODO 修改了方式 <!--allan add for graveryard-->
             }
         }
 
-		internal static async void UpdateOpponentCards(bool reset = false)
+        internal static async void UpdateOpponentCards(bool reset = false)
 		{
 			_updateRequestsOpponent++;
 			await Task.Delay(100);
@@ -312,11 +318,11 @@ namespace Hearthstone_Deck_Tracker
 			Overlay.UpdateOpponentCards(new List<Card>(Game.Opponent.OpponentCardList), reset);
 			if(Windows.OpponentWindow.IsVisible)
 				Windows.OpponentWindow.UpdateOpponentCards(new List<Card>(Game.Opponent.OpponentCardList), reset);
-            if (Windows.GraveryWindow.IsVisible)
-            {
-                Windows.GraveryWindow.UpdateGraveyardCards(reset);//TODO <!--allan add for graveryard-->
-                //todo Windows.GraveryWindow.UpdateOppoDeckCards(reset);//TODO  <!--allan add for graveryard-->
-            }
+            //if (Windows.GraveryWindow.IsVisible)
+            //{
+            //    Windows.GraveryWindow.UpdateGraveyardCards(reset);//TODO <!--allan add for graveryard-->
+            //    //todo Windows.GraveryWindow.UpdateOppoDeckCards(reset);//TODO  <!--allan add for graveryard-->
+            //}
 		}
 
 

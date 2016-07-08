@@ -19,7 +19,7 @@ namespace Hearthstone_Deck_Tracker.LogReader
 {
 	public class LogReaderManager
 	{
-		internal const int UpdateDelay = 100;
+		internal const int UpdateDelay = 500;
 		private static readonly SortedList<DateTime, List<LogLineItem>> ToProcess = new SortedList<DateTime, List<LogLineItem>>();
 		private static readonly List<LogReader> LogReaders = new List<LogReader>();
 		private static readonly PowerHandler PowerLineHandler = new PowerHandler();
@@ -136,7 +136,7 @@ namespace Hearthstone_Deck_Tracker.LogReader
 			}
 			_stop = true;
 			while(_running)
-				await Task.Delay(50);
+				await Task.Delay(100);
 			await Task.WhenAll(LogReaders.Where(x => force || x.Info.Reset).Concat(new[] {_gameStatePowerLogReader}).Select(x => x.Stop()));
 			Log.Info("Stopped LogReaders.");
 			PowerLineHandler.Reset();

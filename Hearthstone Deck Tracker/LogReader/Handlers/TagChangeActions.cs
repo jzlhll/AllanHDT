@@ -638,7 +638,7 @@ namespace Hearthstone_Deck_Tracker.LogReader.Handlers
 			{
 				Log.Info("Waiting for PlayerEntity to exist");
 				while(game.PlayerEntity == null)
-					await Task.Delay(100);
+					await Task.Delay(200);
 				Log.Info("Found PlayerEntity");
 			}
 			if(string.IsNullOrEmpty(game.Player.Class) && id == game.PlayerEntity.GetTag(HERO_ENTITY))
@@ -650,7 +650,7 @@ namespace Hearthstone_Deck_Tracker.LogReader.Handlers
 			{
 				Log.Info("Waiting for OpponentEntity to exist");
 				while(game.OpponentEntity == null)
-					await Task.Delay(100);
+					await Task.Delay(200);
 				Log.Info("Found OpponentEntity");
 			}
 			if(string.IsNullOrEmpty(game.Opponent.Class) && id == game.OpponentEntity.GetTag(HERO_ENTITY))

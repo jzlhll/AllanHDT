@@ -180,7 +180,7 @@ namespace Hearthstone_Deck_Tracker
             }
         }
 
-        private async Task updatePlayerGraveInternal() {
+        private void updatePlayerGraveInternal() {
             IEnumerable<Entity> graveOrgList = Core.Game.Player.Graveyard;
             mGraveyardList.Clear();
 
@@ -194,7 +194,7 @@ namespace Hearthstone_Deck_Tracker
                 bool isWorked = false;
                 foreach (var grave in mGraveyardList)
                 { //修改后的卡数组
-                    if (newGrave.Id.Equals(grave.Id))
+                    if ((newGrave.Id.Equals(grave.Id) && (graveOrgList.ElementAt(i).Id <= 68 || Config.Instance.GraveYardWindowIfCreated)))
                     { //如果是同一张卡并且id相同增加count
                         isWorked = true;
                         grave.Count++;
@@ -215,23 +215,19 @@ namespace Hearthstone_Deck_Tracker
                     }
                 }
             }
-            await Task.Delay(10);
+
             if (mGraveyardList.Count() > 0)
             {
                 mGraveyardList = Utility.Extensions.CardListExtensions.ToSortedCardList(mGraveyardList);
             }
         }
 
-        private async void updatePlayerGraveListv(bool reset)
+        private void updatePlayerGraveListv(bool reset)
         {
-            if (Core.Game.CurrentMode != Mode.GAMEPLAY)
+            if (Core.Game.CurrentGameMode == GameMode.Spectator)
             {
                 return;
             }
-
-            await updatePlayerGraveInternal();
-
-            if (mGraveyardList != null) ListViewGraveyard.Update(mGraveyardList, reset);
 
             if (reset)
             {
@@ -239,6 +235,11 @@ namespace Hearthstone_Deck_Tracker
                 //mOppoDeckList.Clear();
                 mGraveyardList.Clear();
             }
+            else {
+                updatePlayerGraveInternal();
+            }
+
+            if (mGraveyardList != null) ListViewGraveyard.Update(mGraveyardList, reset);
         }
 
         private bool isCardIdEndOfNumber(string cardId)
@@ -297,6 +298,7 @@ namespace Hearthstone_Deck_Tracker
             Config.Save();
             mGraveyardList.Clear();
             mGraveyardList = null;
+            myIds = null;
         }
     }
 }

@@ -874,6 +874,7 @@ namespace Hearthstone_Deck_Tracker
 		public void HandlePlayerPlayToGraveyard(Entity entity, string cardId, int turn)
 		{
 			_game.Player.PlayToGraveyard(entity, cardId, turn);
+            Core.UpdateGraveyardCards();
 			GameEvents.OnPlayerPlayToGraveyard.Execute((Card)entity.Card.Clone());
 		}
 
