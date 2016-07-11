@@ -14,9 +14,9 @@ namespace Hearthstone_Deck_Tracker.AllanAdd
 {
     class AllanGitOschina
     {
-        public const string AllanVersion = "0.8.6"; //每次更新版本都需要修改@！！！
+        public const string AllanVersion = "0.8.7"; //每次更新版本都需要修改@！！！
         public const bool DEBUG_FORCE_UPDATE = false;
-        public const string DEBUG_FORCE_UPDATE_TO_VERSION = "0.8.6";
+        public const string DEBUG_FORCE_UPDATE_TO_VERSION = "0.8.7";
 
         //public static bool isNeedUpdateConfig() {
         //    Log.Info("00nowVers ");

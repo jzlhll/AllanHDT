@@ -26,6 +26,11 @@
                               Margin="30,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxGraveyardWindowIfWithGenerate_Checked"
                               Unchecked="CheckboxGraveyardWindowIfWithGenerate_Unchecked" />
+                    <CheckBox x:Name="opponentGuessMode"
+                              Content="我猜猜猜" HorizontalAlignment="Left"
+                              Margin="10,5,0,0" VerticalAlignment="Top"
+                              Checked="opponentGuessMode_Checked"
+                              Unchecked="opponentGuessMode_Unchecked" />
                     <CheckBox x:Name="CheckboxOpponentWindowOpenAutomatically"
                               Content="对手" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top"
