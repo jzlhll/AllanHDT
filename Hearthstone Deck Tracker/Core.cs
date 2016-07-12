@@ -308,6 +308,15 @@ namespace Hearthstone_Deck_Tracker
             }
         }
 
+        internal static async void UpdatePlayerTurnChanged(int turn)
+        {
+            await Task.Delay(10);
+            if (Windows.GraveryWindow.IsVisible)
+            {
+                Windows.GraveryWindow.UpdatePlayerTurnChanged(turn);//TODO 修改了方式 <!--allan add for graveryard-->
+            }
+        }
+
         internal static async void UpdateOpponentCards(bool reset = false)
 		{
 			_updateRequestsOpponent++;

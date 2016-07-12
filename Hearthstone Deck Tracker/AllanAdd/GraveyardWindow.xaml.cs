@@ -31,6 +31,14 @@ namespace Hearthstone_Deck_Tracker
         private bool _appIsClosing;
         private GuessDeckWorker mGuessWorker;
 
+        private List<Card> mGraveyardList = new List<Card>();
+
+        private int[] myIds;
+
+        private List<Card> mRecordOppoDeck = new List<Card>();
+        private string oppoClass = "";
+        private int mCurTurn;//当前回合数
+
         public GraveyardWindow(GameV2 game, List<Card> forScreenshot = null)
         {
             InitializeComponent();
@@ -63,11 +71,11 @@ namespace Hearthstone_Deck_Tracker
             if (Core.Game.CurrentMode == Mode.GAMEPLAY)
             {
                 updatePlayerGraveListv(false);
-                //todo UpdateOppoDeckCards(false);
+                UpdateOppoDeckCards(false);
             }
-            //graveTitle.Background = new SolidColorBrush(Colors.LightGray);
-            //graveTitle.Foreground = new SolidColorBrush(Colors.Black);
-            //oppoTitle.Background = new SolidColorBrush(Colors.Transparent);
+            graveTitle.Background = new SolidColorBrush(Colors.LightGray);
+            graveTitle.Foreground = new SolidColorBrush(Colors.Black);
+            oppoTitle.Background = new SolidColorBrush(Colors.Transparent);
             Log.Debug("beginnnnn");
             generateGuessOpponentDecks();
             Log.Debug("overrrrrr");
@@ -90,7 +98,7 @@ namespace Hearthstone_Deck_Tracker
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void UpdatePlayerLayout()
+        private void UpdateMyLayout()
         {
             StackPanelMain.Children.Clear();
             StackPanelMain.Children.Add(ViewBoxGraveyard);
@@ -98,7 +106,6 @@ namespace Hearthstone_Deck_Tracker
             StackPanelMainOppo.Children.Add(ViewBoxOppoDeck);
             OnPropertyChanged(nameof(PlayerDeckMaxHeight));
         }
- 
 
         protected override void OnClosing(CancelEventArgs e)
         {
@@ -125,11 +132,15 @@ namespace Hearthstone_Deck_Tracker
 
         public void UpdateOppoDeckCards(bool reset) => UpdateOppoDeckListv(reset);
         public void UpdateGraveyardCards(bool reset) => updatePlayerGraveListv(reset);
+        public void UpdatePlayerTurnChanged(int turn) {
+            if (mCurTurn >= turn)
+            {
+                oppoClass = "";
+                UpdateOppoDeckListv(false);
+            }
 
-        private List<Card> mGraveyardList = new List<Card>();
-       // private List<Card> mOppoDeckList = new List<Card>();
-
-        private int[] myIds;
+            mCurTurn = turn;
+        }
 
         private void generateMYIds() {
             if (_game.Entities.Values.Count() == 0)
@@ -167,12 +178,32 @@ namespace Hearthstone_Deck_Tracker
             return false;
         }
 
-        private async Task<List<Card>> updateOppoDeckInternal() {
-            List<Card> oppoCards = new List<Card>(Core.Game.Opponent.OpponentCardList);
-            if (Core.Game.CurrentMode != Mode.GAMEPLAY)
+        private void updateOppoDeckForce() {
+            oppoClass = _game.Opponent.Class;
+            mRecordOppoDeck.Clear();
+            mRecordOppoDeck = new List<Card>(Core.Game.Opponent.OpponentCardList);
+            int oppoSize = mRecordOppoDeck.Count();
+            for (int i = 0; i < mRecordOppoDeck.Count(); i++)
             {
-                return null;
+                if (mRecordOppoDeck.ElementAt(i).IsCreated)
+                {
+                    mRecordOppoDeck.RemoveAt(i);
+                    i--;
+                }
             }
+            mRecordOppoDeck.Sort((Card h1, Card h2) =>
+            {
+                return h1.Id.CompareTo(h2.Id);
+            });
+        }
+
+        private int updateOppoDeckInternal() {
+            if (!oppoClass.Equals(_game.Opponent.Class) || oppoClass.Equals("")) {
+                updateOppoDeckForce();
+                Log.Debug("新对局开始啦");
+                return 1;
+            }
+            List<Card> oppoCards = new List<Card>(Core.Game.Opponent.OpponentCardList);
             int oppoSize = oppoCards.Count();
             for (int i = 0; i < oppoCards.Count(); i++)
             {
@@ -182,24 +213,96 @@ namespace Hearthstone_Deck_Tracker
                     i--;
                 }
             }
-            await Task.Delay(10);
-            return oppoCards;
+            oppoCards.Sort((Card h1, Card h2) =>
+            {
+                return h1.Id.CompareTo(h2.Id);
+            });
+            //进行比较是否有更新
+            if (mRecordOppoDeck.Count == 0) {
+                mRecordOppoDeck = null;
+                mRecordOppoDeck = oppoCards;
+                oppoClass = _game.Opponent.Class;
+                Log.Info("从无到有说明是第一次111" + oppoClass);
+                return 1; //返回1表示从无到有
+            }
+            int oldLen = mRecordOppoDeck.Count;
+            int nowLen = oppoCards.Count;
+            if (oldLen != nowLen)
+            {
+                mRecordOppoDeck.Clear();
+                mRecordOppoDeck = null;
+                mRecordOppoDeck = oppoCards;
+                oppoClass = _game.Opponent.Class;
+                Log.Info("不管是新开一局还是老的一局,oldLen != newLen都要更新啦");
+                return 1;
+            }
+            else {
+                bool isCountSame = true;
+                bool isError = false;
+                for (int i = 0; i < nowLen; i++) {
+                    if (mRecordOppoDeck.ElementAt(i).Id.Equals(oppoCards.ElementAt(i).Id) &&
+                        mRecordOppoDeck.ElementAt(i).Name.Equals(oppoCards.ElementAt(i).Name)) {
+                        int m = mRecordOppoDeck.ElementAt(i).Count - oppoCards.ElementAt(i).Count;
+                        if (m > 0) {
+                            isError = true;
+                            break;
+                        } else if (m < 0) {
+                            isCountSame = false;
+                            break;
+                        }
+                    } else {
+                        isError = true;
+                        break;
+                    }
+                }
+                if (isError) {
+                    mRecordOppoDeck.Clear();
+                    mRecordOppoDeck = null;
+                    mRecordOppoDeck = oppoCards;
+                    oppoClass = _game.Opponent.Class;
+                    Log.Info("isError 重新对接了！");
+                    return 1;
+                }
+                if (isCountSame)
+                {
+                    return 0;
+                }
+                else {
+                    mRecordOppoDeck.Clear();
+                    mRecordOppoDeck = null;
+                    mRecordOppoDeck = oppoCards;
+                    oppoClass = _game.Opponent.Class;
+                    Log.Info("多啦！");
+                    return 1;
+                }
+            }
         }
 
-        private async void UpdateOppoDeckListv(bool reset)
+        private void UpdateOppoDeckListv(bool reset)
         {
-            List<Card> cards = await updateOppoDeckInternal(); //TODO 不用每次都操作吧？需要做一个重复就不搞的操作。
-            if (cards == null || cards.Count == 0) {
-                return;
+            //todo 增加线程计算
+            if (reset)
+            {
+                myIds = null;
+                if (mRecordOppoDeck != null) mRecordOppoDeck.Clear();
             }
-            Log.Info("UpdateOppoDeckListv started!");
-            foreach (var s in cards) {
+            else {
+                int update = updateOppoDeckInternal();
+                if (update == 0)
+                { //无更新
+                    Log.Info("No update oppo deck");
+                    return;
+                }
+            }
+
+            Log.Info("UpdateOppoDeckListv_started!");
+            foreach (var s in mRecordOppoDeck) {
                 Log.Info("oppoCard= " + s + " " + s.Count);
             }
             //if(cards != null) ListViewOppoDeck.Update(cards, reset);
             //开始进行匹配
             int len = mGuessWorker.mDeckList.Count;
-            int cl = cards.Count;
+            int cl = mRecordOppoDeck.Count;
             Dictionary<int ,int> dictionary = new Dictionary < int,int>();//创建集合
             int max = 0;
             for (int i = 0; i < len;i++) {
@@ -211,10 +314,11 @@ namespace Hearthstone_Deck_Tracker
                 int countMatch = 0;
                 for (int j = 0; j < cl; j++)
                 {
-                    if (adeck.convertedDeck.Contains(cards.ElementAt(j).Name + "\r\n")) //加上换行免得比配到半名字
+                    if (adeck.convertedDeck.Contains(mRecordOppoDeck.ElementAt(j).Name + "\r\n")) //加上换行免得比配到半名字
                     {
                         countMatch++;
-                        if (cards.ElementAt(j).Count > 1 && adeck.convertedDeck.Contains(cards.ElementAt(j).Name + " x 2")) {
+                        if (mRecordOppoDeck.ElementAt(j).Count > 1 && 
+                            adeck.convertedDeck.Contains(mRecordOppoDeck.ElementAt(j).Name + " x 2")) {
                             //TODO 测试下是否生成和不生成混合在了一起
                             countMatch++;
                         }
@@ -227,22 +331,14 @@ namespace Hearthstone_Deck_Tracker
                 Log.Info("matched---" + countMatch + "\r\nmatched---");
             }
             //var result2 = from pair in dictionary orderby pair.Value select pair;
-            Log.Info("UpdateOppoDeckListv sorted!");
+            Log.Info("UpdateOppoDeckListv_sorted!");
             dictionary = dictionary.OrderByDescending(r => r.Value).ToDictionary(r => r.Key, r => r.Value);
             var list = dictionary.ToList();
             foreach (var l in list) {
                 Log.Info(mGuessWorker.mDeckList.ElementAt(l.Key).convertedDeck + " matched " + l.Value);
             }
-            Log.Info("UpdateOppoDeckListv end!");
-            //end
-            if (reset)
-            {
-                myIds = null;
-                if(cards != null) cards.Clear();
-            }
+            Log.Info("UpdateOppoDeckListv_end!");
         }
-
-         
 
         private void updatePlayerGraveInternal() {
             IEnumerable<Entity> graveOrgList = Core.Game.Player.Graveyard;
@@ -296,7 +392,6 @@ namespace Hearthstone_Deck_Tracker
             if (reset)
             {
                 myIds = null;
-                //mOppoDeckList.Clear();
                 mGraveyardList.Clear();
             }
             else {
@@ -309,12 +404,10 @@ namespace Hearthstone_Deck_Tracker
         private bool isCardIdEndOfNumber(string cardId)
         {
             char ch = cardId.ElementAt(cardId.Count() - 1);
-
             if (ch >= '0' && ch <= '9')
             {
                 return true;
             }
-
             return false;
         }
 
@@ -328,33 +421,28 @@ namespace Hearthstone_Deck_Tracker
 
         private void GraveyardWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            ListViewGraveyard.Visibility = Visibility.Visible;
-          //  graveTitle.Visibility = Visibility.Visible;
-            UpdatePlayerLayout();
+            UpdateMyLayout();
         }
 
         private void graveTitle_Click(object sender, RoutedEventArgs e)
         {
             StackPanelMain.Visibility = Visibility.Visible;
             StackPanelMainOppo.Visibility = Visibility.Hidden;
-            //graveTitle.Background = new SolidColorBrush(Colors.LightGray);
-           // graveTitle.Foreground = new SolidColorBrush(Colors.Black);
-           // oppoTitle.Background = new SolidColorBrush(Colors.Transparent);
-           // oppoTitle.Foreground = new SolidColorBrush(Colors.White);
+            graveTitle.Background = new SolidColorBrush(Colors.LightGray);
+            graveTitle.Foreground = new SolidColorBrush(Colors.Black);
+            oppoTitle.Background = new SolidColorBrush(Colors.Transparent);
+            oppoTitle.Foreground = new SolidColorBrush(Colors.White);
         }
 
-        //private void oppoTitle_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (true) { //todo 
-        //        return;
-        //    }
-        //    StackPanelMainOppo.Visibility = Visibility.Visible;
-        //    StackPanelMain.Visibility = Visibility.Hidden;
-        //   // graveTitle.Background = new SolidColorBrush(Colors.Transparent);
-        //  //  graveTitle.Foreground = new SolidColorBrush(Colors.White);
-        //  //  oppoTitle.Background = new SolidColorBrush(Colors.LightGray);
-        //  //  oppoTitle.Foreground = new SolidColorBrush(Colors.Black);
-        //}
+        private void oppoTitle_Click(object sender, RoutedEventArgs e)
+        { 
+            StackPanelMainOppo.Visibility = Visibility.Visible;
+            StackPanelMain.Visibility = Visibility.Hidden;
+            graveTitle.Background = new SolidColorBrush(Colors.Transparent);
+            graveTitle.Foreground = new SolidColorBrush(Colors.White);
+            oppoTitle.Background = new SolidColorBrush(Colors.LightGray);
+            oppoTitle.Foreground = new SolidColorBrush(Colors.Black);
+        }
 
         private void MetroWindow_Closed(object sender, EventArgs e)
         {
@@ -363,6 +451,9 @@ namespace Hearthstone_Deck_Tracker
             mGraveyardList.Clear();
             mGraveyardList = null;
             myIds = null;
+            mRecordOppoDeck.Clear();
+            mRecordOppoDeck = null;
         }
+ 
     }
 }
