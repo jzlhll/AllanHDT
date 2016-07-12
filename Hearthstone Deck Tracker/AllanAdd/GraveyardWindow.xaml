@@ -34,7 +34,7 @@
 
         <Button x:Name="graveTitle" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="15" Width="90" Height="32" Content="玩家坟场" Click="graveTitle_Click" Foreground="#eeeeee" Grid.ColumnSpan="2"/>
         <Button x:Name="oppoTitle" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="16" Width="90" Height="32" Content="猜测对手" Click="oppoTitle_Click" Foreground="#eeeeee" Grid.Column="1"/>
-        <StackPanel Name="StackPanelMain" Margin="0,3,0,0" Grid.ColumnSpan="2">
+        <StackPanel Name="StackPanelMain" Margin="0,3,0,0" Grid.ColumnSpan="2" Visibility="Hidden">
             <Viewbox Name="ViewBoxGraveyard" StretchDirection="DownOnly" Stretch="Fill" MaxHeight="{Binding PlayerDeckMaxHeight, RelativeSource={RelativeSource AncestorType=local:GraveyardWindow}}">
                 <controls1:AnimatedCardList x:Name="ListViewGraveyard" Background="Transparent" BorderThickness="0"
                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" Width="230"
@@ -58,10 +58,28 @@
                 </controls1:AnimatedCardList>
             </Viewbox>
         </StackPanel>
-        <StackPanel Name="StackPanelMainOppo" Margin="0,33,0,0" Visibility="Hidden" Grid.ColumnSpan="2">
-            <Viewbox Name="ViewBoxOppoDeck" StretchDirection="DownOnly" Stretch="Fill" MaxHeight="{Binding PlayerDeckMaxHeight, RelativeSource={RelativeSource AncestorType=local:GraveyardWindow}}">
+
+        <StackPanel Name="StackPanelMainOppo" Margin="0,33,0,0" Visibility="Visible" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="202">
+            <!-- 主体部分 -->
+            <Border  Name="GuessOppoDecks" BorderBrush="White" BorderThickness="1" ClipToBounds="True" SnapsToDevicePixels="True" Width="76" HorizontalAlignment="left">
+                <TabControl Name="GuessTabControl" Style="{DynamicResource TabControlStyle2}" TabStripPlacement="Left">
+                    <TabItem Header="前10" Style="{DynamicResource TabItemStyle2}" Visibility="Visible"></TabItem>
+                    <TabItem Header="tabItem01" IsSelected="True" Style="{DynamicResource TabItemStyle2}" >
+                        <!--<Border Background="AliceBlue" Margin="-10"></Border>-->
+                    </TabItem>
+                    <TabItem Header="tabItem02" Style="{DynamicResource TabItemStyle2}"></TabItem>
+                    <TabItem Header="tabItem03" Style="{DynamicResource TabItemStyle2}"></TabItem>
+                    <TabItem Header="tabItem04" Style="{DynamicResource TabItemStyle2}"></TabItem>
+                    <TabItem Header="tabItem05" Style="{DynamicResource TabItemStyle2}"></TabItem>
+                    <TabItem Header="tabItem06" Style="{DynamicResource TabItemStyle2}"></TabItem>
+                    <TabItem Header="tabItem07" Style="{DynamicResource TabItemStyle2}"></TabItem>
+                    <TabItem Header="tabItem08" Style="{DynamicResource TabItemStyle2}"></TabItem>
+                    <TabItem Header="后10" Style="{DynamicResource TabItemStyle2}"  Visibility="Visible"></TabItem>
+                </TabControl>
+            </Border>
+            <Viewbox Name="ViewBoxOppoDeck" StretchDirection="DownOnly" Stretch="UniformToFill" MaxHeight="{Binding PlayerDeckMaxHeight, RelativeSource={RelativeSource AncestorType=local:GraveyardWindow}}">
                 <controls1:AnimatedCardList x:Name="ListViewOppoDeck" Background="Transparent" BorderThickness="0"
-                                ScrollViewer.HorizontalScrollBarVisibility="Disabled" Width="230"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled" Width="210"
                                 ScrollViewer.VerticalScrollBarVisibility="Disabled" IsEnabled="False"
                                 ScrollViewer.CanContentScroll="False">
                     <controls1:AnimatedCardList.ItemContainerStyle>
@@ -81,6 +99,7 @@
                     </controls1:AnimatedCardList.ItemContainerStyle>
                 </controls1:AnimatedCardList>
             </Viewbox>
+           
         </StackPanel>
     </Grid>
 

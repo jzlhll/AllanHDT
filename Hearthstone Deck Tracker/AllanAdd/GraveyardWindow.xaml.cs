@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using Hearthstone_Deck_Tracker.Utility.Logging;
 using Hearthstone_Deck_Tracker.AllanAdd;
 using System.Threading;
+using System.Windows.Forms;
 #endregion
 
 namespace Hearthstone_Deck_Tracker
@@ -104,6 +105,7 @@ namespace Hearthstone_Deck_Tracker
             StackPanelMain.Children.Add(ViewBoxGraveyard);
             StackPanelMainOppo.Children.Clear();
             StackPanelMainOppo.Children.Add(ViewBoxOppoDeck);
+            StackPanelMainOppo.Children.Add(GuessOppoDecks);
             OnPropertyChanged(nameof(PlayerDeckMaxHeight));
         }
 
@@ -113,7 +115,6 @@ namespace Hearthstone_Deck_Tracker
                 return;
             e.Cancel = true;
             Hide();
-            mGuessWorker.release();
         }
 
         private void GraveyardWindow_OnActivated(object sender, EventArgs e) => Topmost = true;
@@ -301,16 +302,19 @@ namespace Hearthstone_Deck_Tracker
             }
             //if(cards != null) ListViewOppoDeck.Update(cards, reset);
             //开始进行匹配
-            int len = mGuessWorker.mDeckList.Count;
+            int heorId = GuessDeckWorker.convertClassToHeroId(_game.Opponent.Class);
+            List<GuessDeckWorker.DeckStruct> heroList = mGuessWorker.mDeckList.Where(w => w.heroId == heorId).ToList();
+
+            int len = heroList.Count;
             int cl = mRecordOppoDeck.Count;
             Dictionary<int ,int> dictionary = new Dictionary < int,int>();//创建集合
             int max = 0;
             for (int i = 0; i < len;i++) {
-                var adeck = mGuessWorker.mDeckList.ElementAt(i);
+                var adeck = heroList.ElementAt(i);
                 if (adeck.heroId != GuessDeckWorker.convertClassToHeroId(_game.Opponent.Class)) {
                     continue;
                 }
-                Log.Info("deck---" + adeck.convertedDeck + "\r\ndeck over---");
+                //Log.Info("deck---" + adeck.convertedDeck + "\r\ndeck over---");
                 int countMatch = 0;
                 for (int j = 0; j < cl; j++)
                 {
@@ -319,7 +323,7 @@ namespace Hearthstone_Deck_Tracker
                         countMatch++;
                         if (mRecordOppoDeck.ElementAt(j).Count > 1 && 
                             adeck.convertedDeck.Contains(mRecordOppoDeck.ElementAt(j).Name + " x 2")) {
-                            //TODO 测试下是否生成和不生成混合在了一起
+                            //TODO 测试下是否生成和不生成比如术士出了一个死缠又自带了2个死缠是否会混合在了一起
                             countMatch++;
                         }
                     }
@@ -328,14 +332,14 @@ namespace Hearthstone_Deck_Tracker
                 if (max < countMatch) {
                     max = countMatch;
                 }
-                Log.Info("matched---" + countMatch + "\r\nmatched---");
+                //Log.Info("matched---" + countMatch + "\r\nmatched---");
             }
             //var result2 = from pair in dictionary orderby pair.Value select pair;
             Log.Info("UpdateOppoDeckListv_sorted!");
             dictionary = dictionary.OrderByDescending(r => r.Value).ToDictionary(r => r.Key, r => r.Value);
             var list = dictionary.ToList();
             foreach (var l in list) {
-                Log.Info(mGuessWorker.mDeckList.ElementAt(l.Key).convertedDeck + " matched " + l.Value);
+                Log.Info(heroList.ElementAt(l.Key).convertedDeck + " \r\nmatched " + l.Value);
             }
             Log.Info("UpdateOppoDeckListv_end!");
         }
@@ -453,6 +457,7 @@ namespace Hearthstone_Deck_Tracker
             myIds = null;
             mRecordOppoDeck.Clear();
             mRecordOppoDeck = null;
+            mGuessWorker.release();
         }
  
     }

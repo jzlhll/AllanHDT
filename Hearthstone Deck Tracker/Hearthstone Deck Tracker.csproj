@@ -689,6 +689,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="AllanAdd\Style\TabControlStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\AnimatedCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
