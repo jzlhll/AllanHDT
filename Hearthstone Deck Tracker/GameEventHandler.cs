@@ -305,7 +305,6 @@ namespace Hearthstone_Deck_Tracker
 
 				if(Config.Instance.BringHsToForeground)
 					User32.BringHsToForeground();
-                Core.UpdatePlayerTurnChanged(turn.Item2);
 			}
 		}
 

@@ -31,9 +31,8 @@
             <ColumnDefinition Width="9*"/>
             <ColumnDefinition Width="65*"/>
         </Grid.ColumnDefinitions>
-
-        <Button x:Name="graveTitle" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="15" Width="90" Height="32" Content="玩家坟场" Click="graveTitle_Click" Foreground="#eeeeee" Grid.ColumnSpan="2"/>
-        <Button x:Name="oppoTitle" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="16" Width="90" Height="32" Content="猜测对手" Click="oppoTitle_Click" Foreground="#eeeeee" Grid.Column="1"/>
+        <!--Button x:Name="graveTitle" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="15" Width="90" Height="32" Content="玩家坟场" Click="graveTitle_Click" Foreground="#eeeeee" Grid.ColumnSpan="2"/>
+        <Button x:Name="oppoTitle" VerticalAlignment="Top" HorizontalAlignment="Right" FontSize="16" Width="90" Height="32" Content="对手卡组" Click="oppoTitle_Click" Foreground="#eeeeee" Grid.Column="1"/ -->
         <StackPanel Name="StackPanelMain" Margin="0,3,0,0" Grid.ColumnSpan="2">
             <Viewbox Name="ViewBoxGraveyard" StretchDirection="DownOnly" Stretch="Fill" MaxHeight="{Binding PlayerDeckMaxHeight, RelativeSource={RelativeSource AncestorType=local:GraveyardWindow}}">
                 <controls1:AnimatedCardList x:Name="ListViewGraveyard" Background="Transparent" BorderThickness="0"
