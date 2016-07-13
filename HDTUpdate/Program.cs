@@ -116,7 +116,7 @@ namespace HDTUpdate
                             if (prog > 100) {
                                 prog = 100;
                             }
-                            Console.WriteLine("正在下载最新版本... {0}/{1}KB ({2}%)", e.BytesReceived/(1024), (29*1024), prog);
+                            Console.WriteLine("正在下载最新版本... 已下载{0}MB,总共大约30MB ({1}%)", e.BytesReceived/(1048576), prog);
 						}
 					};
 					await wc.DownloadFileTaskAsync(url, filePath);
