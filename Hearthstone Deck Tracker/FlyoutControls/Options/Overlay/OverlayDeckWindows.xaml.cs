@@ -243,37 +243,47 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 		internal void UpdateAdditionalWindowsBackground(Brush brush = null)
 		{
 			var background = brush;
+            try {
+                switch (ComboboxWindowBackground.SelectedItem.ToString())
+                {
+                    case "主题"://Theme
+                        background = Background;
+                        break;
+                    case "亮色": //Light
+                        background = SystemColors.ControlLightBrush;
+                        break;
+                    case "暗色"://Dark
+                        background = SystemColors.ControlDarkDarkBrush;
+                        break;
+                }
 
-			switch(ComboboxWindowBackground.SelectedItem.ToString())
-			{
-				case "主题"://Theme
-					background = Background;
-					break;
-				case "亮色": //Light
-					background = SystemColors.ControlLightBrush;
-					break;
-				case "暗色"://Dark
-					background = SystemColors.ControlDarkDarkBrush;
-					break;
-			}
-			if(background == null)
-			{
-				var hexBackground = Helper.BrushFromHex(TextboxCustomBackground.Text);
-				if(hexBackground != null)
-				{
-					Core.Windows.PlayerWindow.Background = hexBackground;
-                    Core.Windows.GraveryWindow.Background = hexBackground;//<!--allan add for graveryard-->
-                    Core.Windows.OpponentWindow.Background = hexBackground;
-					Core.Windows.TimerWindow.Background = hexBackground;
-				}
-			}
-			else
-			{
-				Core.Windows.PlayerWindow.Background = background;
-				Core.Windows.OpponentWindow.Background = background;
-                Core.Windows.GraveryWindow.Background = background;//<!--allan add for graveryard-->
-                Core.Windows.TimerWindow.Background = background;
-			}
+                if (background == null)
+                {
+                    var hexBackground = Helper.BrushFromHex(TextboxCustomBackground.Text);
+                    if (hexBackground != null)
+                    {
+                        Core.Windows.PlayerWindow.Background = hexBackground;
+                        Core.Windows.GraveryWindow.Background = hexBackground;//<!--allan add for graveryard-->
+                        Core.Windows.OpponentWindow.Background = hexBackground;
+                        Core.Windows.TimerWindow.Background = hexBackground;
+                    }
+                }
+                else
+                {
+                    Core.Windows.PlayerWindow.Background = background;
+                    Core.Windows.OpponentWindow.Background = background;
+                    Core.Windows.GraveryWindow.Background = background;//<!--allan add for graveryard-->
+                    Core.Windows.TimerWindow.Background = background;
+                }
+                
+            } catch (System.NullReferenceException e) {
+                MessageBox.Show("如果出现该报错,一般重新运行就可以了!!!如果一直报错，请删除 "
+                                + Config.Instance.ConfigPath + "删除config.xml文件，再次启动HDT！", "重启HDT！");
+                if (System.IO.File.Exists(Config.Instance.ConfigPath)) {
+                    System.IO.File.Delete(Config.Instance.ConfigPath);
+                }
+                Application.Current.Shutdown();
+            }
 		}
 		//<!--allan add for graveryard-->
         private void CheckboxGraveyardWindowOpenAutomatically_Checked(object sender, RoutedEventArgs e)

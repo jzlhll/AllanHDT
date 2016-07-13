@@ -8,33 +8,17 @@ using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 using static Hearthstone_Deck_Tracker.Utility.GitHub;
 
 namespace Hearthstone_Deck_Tracker.AllanAdd
 {
     class AllanGitOschina
     {
-        public const string AllanVersion = "0.8.8"; //每次更新版本都需要修改@！！！
+        public const string AllanVersion = "0.8.9"; //每次更新版本都需要修改@！！！
+        public const string DATA_IN_UPDATEFILE = "0714";
         public const bool DEBUG_FORCE_UPDATE = false;
-        public const string DEBUG_FORCE_UPDATE_TO_VERSION = "0.8.8";
-
-        //public static bool isNeedUpdateConfig() {
-        //    Log.Info("00nowVers ");
-        //    Version nowVersion = new Version(AllanVersion + ".0");
-        //    Log.Info("11nowVers " + nowVersion + " config ");
-        //    Version configVersion = string.IsNullOrEmpty(Config.Instance.CreatedByVersion) ? null : new Version(Config.Instance.CreatedAllanByVersion);
-        //    Log.Info("22nowVers " + nowVersion + " config " + configVersion);
-        //    if (configVersion != null && nowVersion > configVersion)
-        //    {
-        //        Log.Info("nowVerstrue");
-        //        Config.Instance.CreatedAllanByVersion = AllanVersion + ".0";
-        //        return true;
-        //    }
-        //    else {
-        //        Log.Info("nowVersfalse");
-        //        return false;
-        //    }
-        //}
+        public const string DEBUG_FORCE_UPDATE_TO_VERSION = "0.8.9";
 
         public static async Task<Release> CheckForUpdate(Version currentVersion)
         {
@@ -49,6 +33,37 @@ namespace Hearthstone_Deck_Tracker.AllanAdd
                 Utility.Updater.Cleanup();
                 return rel;
             }
+            //删除多余东西
+            //Log.Info("System.Environment.CurrentDirectory " + System.Environment.CurrentDirectory+ " AppDomain.CurrentDomain.BaseDirectory " + AppDomain.CurrentDomain.BaseDirectory);
+
+            var exFiles = Directory.GetFiles(Environment.CurrentDirectory);
+            if (exFiles != null) {
+                try {
+                    foreach (var file in exFiles) {
+                        Log.Error("file " + file);
+                        if (file.Contains("更新说明") && !file.Contains(DATA_IN_UPDATEFILE)) { //TODO每次都要修改！
+                            File.Delete(file);
+                        }
+                    }
+                }
+                catch (Exception e) {
+                    Log.Error("删除失败。" + e);
+                }
+            }
+
+            if (File.Exists(Environment.CurrentDirectory + "\\Hearthstone Deck Tracker.exe"))
+            {
+                try
+                {
+                    File.Delete(Environment.CurrentDirectory + "\\Hearthstone Deck Tracker.exe");
+                }
+                catch (Exception e)
+                {
+                    Log.Warn("" + e);
+                    MessageBox.Show("建议关闭HDT，点击[HDT汉化高级版.exe]运行, [Hearthstone Deck Tracker.exe]要被删除。", "重启");
+                }
+            }
+
             try
             {
                 currentVersion = Version.Parse(AllanVersion);
