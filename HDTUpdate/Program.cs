@@ -105,7 +105,6 @@ namespace HDTUpdate
 				using(var wc = new WebClient())
 				{
 					var lockThis = new object();
-					Console.WriteLine("正在下载最新版本... 0%");
 					wc.DownloadProgressChanged += (sender, e) =>
 					{
 						lock(lockThis)
