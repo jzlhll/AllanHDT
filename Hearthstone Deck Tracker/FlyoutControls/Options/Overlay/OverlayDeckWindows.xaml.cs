@@ -297,8 +297,6 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 
         private void CheckboxGraveyardWindowIfWithGenerate_Checked(object sender, RoutedEventArgs e)
         {
-            if (!_initialized)
-                return;
             Config.Instance.GraveYardWindowIfCreated = true;
             if(Core.Windows.GraveryWindow.Visibility == Visibility.Visible) Core.Windows.GraveryWindow.UpdateGraveyardCards(false);
             Config.Save();
@@ -306,24 +304,8 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 
         private void CheckboxGraveyardWindowIfWithGenerate_Unchecked(object sender, RoutedEventArgs e)
         {
-            if (!_initialized)
-                return;
             if (Core.Windows.GraveryWindow.Visibility == Visibility.Visible) Core.Windows.GraveryWindow.UpdateGraveyardCards(false);
             Config.Instance.GraveYardWindowIfCreated = false;
-            Config.Save();
-        }
-
-        private void opponentGuessMode_Checked(object sender, RoutedEventArgs e)
-        {
-            Config.Instance.opponentGuessMode = true;
-            if (Core.Windows.GraveryWindow.Visibility == Visibility.Visible) Core.Windows.GraveryWindow.UpdateGraveyardCards(false);
-            Config.Save();
-        }
-
-        private void opponentGuessMode_Unchecked(object sender, RoutedEventArgs e)
-        {
-            Config.Instance.opponentGuessMode = false;
-            if (Core.Windows.GraveryWindow.Visibility == Visibility.Visible) Core.Windows.GraveryWindow.UpdateGraveyardCards(false);
             Config.Save();
         }
     }

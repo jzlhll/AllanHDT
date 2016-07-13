@@ -140,18 +140,6 @@
             return null;
         }
 
-        public int getDuowanIdByEnName(string engName)
-        {
-            for (int i = 0; i < 877; i++)
-            {
-                if (ENG_CARDS[i].Equals(engName))
-                {
-                    return DUOWANIDS[i];
-                }
-            }
-            return -1;
-        }
-
         public void release()
         {
             ENG_CARDS = null;

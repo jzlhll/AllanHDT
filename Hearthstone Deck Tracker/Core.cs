@@ -318,10 +318,11 @@ namespace Hearthstone_Deck_Tracker
 			Overlay.UpdateOpponentCards(new List<Card>(Game.Opponent.OpponentCardList), reset);
 			if(Windows.OpponentWindow.IsVisible)
 				Windows.OpponentWindow.UpdateOpponentCards(new List<Card>(Game.Opponent.OpponentCardList), reset);
-            if (Windows.GraveryWindow.IsVisible)
-            {
-                Windows.GraveryWindow.UpdateOppoDeckCards(reset);//TODO  <!--allan add for graveryard-->
-            }
+            //if (Windows.GraveryWindow.IsVisible)
+            //{
+            //    Windows.GraveryWindow.UpdateGraveyardCards(reset);//TODO <!--allan add for graveryard-->
+            //    //todo Windows.GraveryWindow.UpdateOppoDeckCards(reset);//TODO  <!--allan add for graveryard-->
+            //}
 		}
 
 

@@ -123,10 +123,8 @@
     </ApplicationDefinition>
     <Compile Include="AllanAdd\AllanConverter.cs" />
     <Compile Include="AllanAdd\AllanGitOschina.cs" />
-    <Compile Include="AllanAdd\AllanStatic.cs" />
     <Compile Include="AllanAdd\ChinaWebImport.cs" />
     <Compile Include="AllanAdd\CardTool.cs" />
-    <Compile Include="AllanAdd\GuessDeckWorker.cs" />
     <Compile Include="AllanAdd\GraveyardWindow.xaml.cs">
       <DependentUpon>GraveyardWindow.xaml</DependentUpon>
     </Compile>
@@ -1180,7 +1178,6 @@
     <Resource Include="Resources\ClassIcons\General\BaseLight\all.png" />
     <Resource Include="Resources\ClassIcons\General\BaseLight\archived.png" />
     <Resource Include="Resources\ClassIcons\General\BaseDark\archived.png" />
-    <None Include="AllanAdd\Resources\decksBase" />
     <None Include="Resources\card-mark-coin.png" />
     <Resource Include="Utility\Markdown.Xaml\License.txt" />
     <Resource Include="Resources\cards.png" />
@@ -1244,9 +1241,7 @@
     mkdir "..\Hearthstone Deck Tracker"
     mkdir "..\Hearthstone Deck Tracker/Images"
     mkdir "..\Hearthstone Deck Tracker/Plugins"
-    mkdir "..\Hearthstone Deck Tracker/AllanBase"
     xcopy /E /Y "Images\*.*" "..\Hearthstone Deck Tracker\Images"
-    xcopy /E /Y "AllanBase\*" "..\Hearthstone Deck Tracker\AllanBase"
     xcopy /Y "HearthstoneDeckTracker.exe" "..\Hearthstone Deck Tracker"
     xcopy /Y "HearthstoneDeckTracker.exe.config" "..\Hearthstone Deck Tracker"
     ren "..\Hearthstone Deck Tracker\HearthstoneDeckTracker.exe" "Hearthstone Deck Tracker.exe"
@@ -1258,10 +1253,8 @@
   <PropertyGroup>
     <PreBuildEvent>mkdir "$(TargetDir)\Images\Bars"
 mkdir "$(TargetDir)\Images\Themes"
-mkdir "$(TargetDir)\AllanBase"
 xcopy /E /Y "$(ProjectDir)Images\Bars" "$(TargetDir)\Images\Bars"
-xcopy /E /Y "$(ProjectDir)Images\Themes" "$(TargetDir)\Images\Themes"
-xcopy /E /Y "$(ProjectDir)AllanAdd\Resources" "$(TargetDir)\AllanBase"</PreBuildEvent>
+xcopy /E /Y "$(ProjectDir)Images\Themes" "$(TargetDir)\Images\Themes"</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

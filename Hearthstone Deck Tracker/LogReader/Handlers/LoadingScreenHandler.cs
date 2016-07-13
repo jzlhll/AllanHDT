@@ -66,8 +66,8 @@ namespace Hearthstone_Deck_Tracker.LogReader.Handlers
 			Core.MainWindow.ActivateWindow();
 			while(Core.MainWindow.Visibility != Visibility.Visible || Core.MainWindow.WindowState == WindowState.Minimized)
 				await Task.Delay(100);
-			await Core.MainWindow.ShowMessage("权限不平衡",
-                "它似乎是hearthstone（战网）和HDT没有相同的权限。\n请作为管理员运行两个或本地用户。\n如果你不太懂，只是以管理员权限运行HDT即可。");
+			await Core.MainWindow.ShowMessage("Uneven permissions",
+				"It appears that Hearthstone (Battle.net) and HDT do not have the same permissions.\n\nPlease run both as administrator or local user.\n\nIf you don't know what any of this means, just run HDT as administrator.");
 		}
 
 		private Mode GetMode(string modeString)

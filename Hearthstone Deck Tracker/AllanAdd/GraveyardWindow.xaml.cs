@@ -16,8 +16,6 @@ using Hearthstone_Deck_Tracker.API;
 using Hearthstone_Deck_Tracker.Enums;
 using System.Threading.Tasks;
 using Hearthstone_Deck_Tracker.Utility.Logging;
-using Hearthstone_Deck_Tracker.AllanAdd;
-using System.Threading;
 #endregion
 
 namespace Hearthstone_Deck_Tracker
@@ -29,7 +27,6 @@ namespace Hearthstone_Deck_Tracker
     {
         private readonly GameV2 _game;
         private bool _appIsClosing;
-        private GuessDeckWorker mGuessWorker;
 
         public GraveyardWindow(GameV2 game, List<Card> forScreenshot = null)
         {
@@ -68,18 +65,6 @@ namespace Hearthstone_Deck_Tracker
             //graveTitle.Background = new SolidColorBrush(Colors.LightGray);
             //graveTitle.Foreground = new SolidColorBrush(Colors.Black);
             //oppoTitle.Background = new SolidColorBrush(Colors.Transparent);
-            Log.Debug("beginnnnn");
-            generateGuessOpponentDecks();
-            Log.Debug("overrrrrr");
-        }
-
-        private void getDeck() {
-            mGuessWorker = new GuessDeckWorker();
-        }
-
-        private void generateGuessOpponentDecks() {
-            Thread mythread = new Thread(getDeck);
-            mythread.Start();
         }
 
         public double PlayerDeckMaxHeight => ActualHeight - PlayerLabelsHeight;
@@ -98,7 +83,6 @@ namespace Hearthstone_Deck_Tracker
             StackPanelMainOppo.Children.Add(ViewBoxOppoDeck);
             OnPropertyChanged(nameof(PlayerDeckMaxHeight));
         }
- 
 
         protected override void OnClosing(CancelEventArgs e)
         {
@@ -106,7 +90,6 @@ namespace Hearthstone_Deck_Tracker
                 return;
             e.Cancel = true;
             Hide();
-            mGuessWorker.release();
         }
 
         private void GraveyardWindow_OnActivated(object sender, EventArgs e) => Topmost = true;
@@ -188,61 +171,14 @@ namespace Hearthstone_Deck_Tracker
 
         private async void UpdateOppoDeckListv(bool reset)
         {
-            List<Card> cards = await updateOppoDeckInternal(); //TODO 不用每次都操作吧？需要做一个重复就不搞的操作。
-            if (cards == null || cards.Count == 0) {
-                return;
-            }
-            Log.Info("UpdateOppoDeckListv started!");
-            foreach (var s in cards) {
-                Log.Info("oppoCard= " + s + " " + s.Count);
-            }
-            //if(cards != null) ListViewOppoDeck.Update(cards, reset);
-            //开始进行匹配
-            int len = mGuessWorker.mDeckList.Count;
-            int cl = cards.Count;
-            Dictionary<int ,int> dictionary = new Dictionary < int,int>();//创建集合
-            int max = 0;
-            for (int i = 0; i < len;i++) {
-                var adeck = mGuessWorker.mDeckList.ElementAt(i);
-                if (adeck.heroId != GuessDeckWorker.convertClassToHeroId(_game.Opponent.Class)) {
-                    continue;
-                }
-                Log.Info("deck---" + adeck.convertedDeck + "\r\ndeck over---");
-                int countMatch = 0;
-                for (int j = 0; j < cl; j++)
-                {
-                    if (adeck.convertedDeck.Contains(cards.ElementAt(j).Name + "\r\n")) //加上换行免得比配到半名字
-                    {
-                        countMatch++;
-                        if (cards.ElementAt(j).Count > 1 && adeck.convertedDeck.Contains(cards.ElementAt(j).Name + " x 2")) {
-                            //TODO 测试下是否生成和不生成混合在了一起
-                            countMatch++;
-                        }
-                    }
-                }
-                dictionary.Add(i, countMatch);
-                if (max < countMatch) {
-                    max = countMatch;
-                }
-                Log.Info("matched---" + countMatch + "\r\nmatched---");
-            }
-            //var result2 = from pair in dictionary orderby pair.Value select pair;
-            Log.Info("UpdateOppoDeckListv sorted!");
-            dictionary = dictionary.OrderByDescending(r => r.Value).ToDictionary(r => r.Key, r => r.Value);
-            var list = dictionary.ToList();
-            foreach (var l in list) {
-                Log.Info(mGuessWorker.mDeckList.ElementAt(l.Key).convertedDeck + " matched " + l.Value);
-            }
-            Log.Info("UpdateOppoDeckListv end!");
-            //end
+            List<Card> cards = await updateOppoDeckInternal();
+            if(cards != null)ListViewOppoDeck.Update(cards, reset);
             if (reset)
             {
                 myIds = null;
                 if(cards != null) cards.Clear();
             }
         }
-
-         
 
         private void updatePlayerGraveInternal() {
             IEnumerable<Entity> graveOrgList = Core.Game.Player.Graveyard;
