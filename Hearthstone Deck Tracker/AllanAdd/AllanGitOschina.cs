@@ -15,10 +15,10 @@ namespace Hearthstone_Deck_Tracker.AllanAdd
 {
     class AllanGitOschina
     {
-        public const string AllanVersion = "0.9.1"; //每次更新版本都需要修改@！！！
-        public const string DATA_IN_UPDATEFILE = "0715";
+        public const string AllanVersion = "0.9.2"; //每次更新版本都需要修改@！！！
+        public const string DATA_IN_UPDATEFILE = "0723";
         public const bool DEBUG_FORCE_UPDATE = false;
-        public const string DEBUG_FORCE_UPDATE_TO_VERSION = "0.9.1";
+        public const string DEBUG_FORCE_UPDATE_TO_VERSION = "0.9.2";
 
         public static async Task<Release> CheckForUpdate(Version currentVersion)
         {
