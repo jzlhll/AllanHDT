@@ -15,10 +15,10 @@ namespace Hearthstone_Deck_Tracker.AllanAdd
 {
     class AllanGitOschina
     {
-        public const string AllanVersion = "0.9.3"; //每次更新版本都需要修改@！！！
+        public const string AllanVersion = "0.9.4"; //每次更新版本都需要修改@！！！
         public const string DATA_IN_UPDATEFILE = "0806";
         public const bool DEBUG_FORCE_UPDATE = true;
-        public const string DEBUG_FORCE_UPDATE_TO_VERSION = "0.9.3";
+        public const string DEBUG_FORCE_UPDATE_TO_VERSION = "0.9.4";
 
         public static async Task<Release> CheckForUpdate(Version currentVersion)
         {
@@ -172,7 +172,7 @@ namespace Hearthstone_Deck_Tracker.AllanAdd
                                 }
                                 temp += ss.ElementAt(u+1) +"\n";
                             }
-                            webBody = temp.Replace("<p>", "").Replace("&#x000A;", "\r\n").Replace("</div><head>", "").Replace("</p>", "").Replace("<meta charset='utf-8'>", "");
+                            webBody = temp.Replace("<p>", "").Replace("&#x000A;", "\r\n").Replace("</div><head>", "").Replace("</p>", "").Replace("<meta charset='utf-8'>", "").Replace("<br>", "");
                             Log.Info("webBody = " + webBody);
                             break;
                         }
