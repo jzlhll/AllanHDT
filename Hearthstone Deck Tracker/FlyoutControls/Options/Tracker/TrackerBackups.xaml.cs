@@ -49,17 +49,8 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 												 MessageDialogStyle.AffirmativeAndNegative);
 			if(result != MessageDialogResult.Affirmative)
 				return;
-			var archive = new ZipArchive(selected.FileInfo.OpenRead(), ZipArchiveMode.Read);
-			archive.ExtractToDirectory(Config.Instance.DataDir, true);
-			Config.Load();
-			Config.Save();
-			DeckList.Reload();
-			DeckList.Save();
-			DeckStatsList.Reload();
-			DeckStatsList.Save();
-			DefaultDeckStats.Reload();
-			DefaultDeckStats.Save();
-			Core.MainWindow.ShowMessage("成功", "请重启该软件来生效.").Forget();
+			BackupManager.Restore(selected.FileInfo, true);
+			Core.MainWindow.ShowMessage("Success", "Please restart HDT for this to take effect.").Forget();
 		}
 
 		private void ButtonCreateNew_Click(object sender, RoutedEventArgs e)

@@ -9,8 +9,7 @@
                       xmlns:error="clr-namespace:Hearthstone_Deck_Tracker.Controls.Error"
                       xmlns:deckPicker="clr-namespace:Hearthstone_Deck_Tracker.Controls.DeckPicker"
                       xmlns:windows="clr-namespace:Hearthstone_Deck_Tracker.Windows"
-                      xmlns:stats="clr-namespace:Hearthstone_Deck_Tracker.Controls.Stats"
-                      xmlns:utility="clr-namespace:Hearthstone_Deck_Tracker.Utility"
+                      xmlns:utility="clr-namespace:Hearthstone_Deck_Tracker.Utility.Updating"
                       Title="HDT高级版" Height="603" Width="720"
                       MinHeight="584" MinWidth="720"
                       Closing="Window_Closing"
@@ -538,7 +537,7 @@
                     <MenuItem Name="MenuFilterSet" Header="卡集">
                         <!-- 汉化对应MainWindow.NewDeck.cs-->
                         <RadioButton Content="ALL" IsChecked="True" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
-                        <RadioButton Content="基础" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
+			<RadioButton Content="基础" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
                         <RadioButton Content="扩展" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
                         <RadioButton Content="活动" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
                         <RadioButton Content="纳克萨玛斯" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
@@ -547,6 +546,7 @@
                         <RadioButton Content="冠军试炼" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
                         <RadioButton Content="探险者协会" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
                         <RadioButton Content="上古之神" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
+                        <RadioButton Content="卡拉赞之夜" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
                     </MenuItem>
                 </MenuItem>
             </Menu>

@@ -45,21 +45,20 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 
 		private void ButtonOpenPluginsFolder_OnClick(object sender, RoutedEventArgs e)
 		{
-			var pluginDir = Path.Combine(Environment.CurrentDirectory, "Plugins");
-			if(!Directory.Exists(pluginDir))
+			var dir = PluginManager.PluginDirectory;
+			if(!dir.Exists)
 			{
 				try
 				{
-					Directory.CreateDirectory(pluginDir);
+					dir.Create();
 				}
 				catch(Exception)
 				{
 					Core.MainWindow.ShowMessage("错误",
-                                                "插件目录未找到并且无法创建。请在该程序的文件夹里手动创建它(目录名：Plugins)。").Forget();
-					return;
+												$"插件目录不能找到并且不能创建。请手动在目录{dir}下，创建一个目录名字叫做'Plugins'。").Forget();
 				}
 			}
-			Helper.TryOpenUrl(pluginDir);
+			Helper.TryOpenUrl(dir.FullName);
 		}
 	}
 }

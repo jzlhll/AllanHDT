@@ -1,5 +1,6 @@
 #region
 
+using System;
 using HearthDb.Enums;
 using Hearthstone_Deck_Tracker.Enums;
 using Hearthstone_Deck_Tracker.Hearthstone.Entities;
@@ -23,7 +24,7 @@ namespace Hearthstone_Deck_Tracker
 		void SetPlayerHero(string playerHero);
 		void HandlePlayerGetToDeck(Entity entity, string cardId, int turn);
 		void TurnStart(ActivePlayer player, int turnNumber);
-		void HandleGameStart();
+		void HandleGameStart(DateTime startTime);
 		void HandleGameEnd();
 		void HandleLoss();
 		void HandleWin();
@@ -76,5 +77,7 @@ namespace Hearthstone_Deck_Tracker
 		void HandleOpponentGetToDeck(Entity entity, int turn);
 
 		#endregion OpponentHandlers
+
+		void HandleEntityPredamage(Entity entity, int value);
 	}
 }

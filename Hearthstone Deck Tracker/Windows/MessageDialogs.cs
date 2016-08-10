@@ -1,12 +1,14 @@
 ﻿#region
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using HearthDb.Enums;
 using Hearthstone_Deck_Tracker.Enums;
 using Hearthstone_Deck_Tracker.FlyoutControls;
 using Hearthstone_Deck_Tracker.Hearthstone;
@@ -123,23 +125,25 @@ namespace Hearthstone_Deck_Tracker.Windows
 			}
 			var message = "下列这些卡没有找到:\n";
 			var totalDust = 0;
-			var sets = new string[5];
+			var sets = new List<string>();
 			foreach(var card in deck.MissingCards)
 			{
 				message += "\n• " + card.LocalizedName;
 				if(card.Count == 2)
 					message += " x2";
 
-				if(card.Set.Equals("CURSE OF NAXXRAMAS", CurrentCultureIgnoreCase))
-					sets[0] = "和NAXX冒险模式";
-				else if(card.Set.Equals("PROMOTION", CurrentCultureIgnoreCase))
-					sets[1] = "和活动卡牌 ";
-				else if(card.Set.Equals("REWARD", CurrentCultureIgnoreCase))
-					sets[2] = "和奖励卡牌 ";
-				else if(card.Set.Equals("BLACKROCK MOUNTAIN", CurrentCultureIgnoreCase))
-					sets[3] = "和黑石山冒险模式";
-				else if(card.Set.Equals("LEAGUE OF EXPLORERS", CurrentCultureIgnoreCase))
-					sets[4] = "和探险者协会冒险模式";
+				if(card.Set == HearthDbConverter.SetConverter(CardSet.NAXX))
+					sets.Add("and the Naxxramas DLC ");
+				else if(card.Set == HearthDbConverter.SetConverter(CardSet.PROMO))
+					sets.Add("and Promotion cards ");
+				else if(card.Set == HearthDbConverter.SetConverter(CardSet.REWARD))
+					sets.Add("and the Reward cards ");
+				else if(card.Set == HearthDbConverter.SetConverter(CardSet.BRM))
+					sets.Add("and the Blackrock Mountain DLC ");
+				else if(card.Set == HearthDbConverter.SetConverter(CardSet.LOE))
+					sets.Add("and the League of Explorers DLC ");
+				else if(card.Set == HearthDbConverter.SetConverter(CardSet.KARA))
+					sets.Add("and the One Night in Karazhan DLC ");
 				else
 					totalDust += card.DustCost * card.Count;
 			}
