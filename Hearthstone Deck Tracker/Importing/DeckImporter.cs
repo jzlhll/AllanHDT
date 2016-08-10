@@ -26,6 +26,7 @@ namespace Hearthstone_Deck_Tracker.Importing
 			{"hearthstats", Hearthstats.Import},
 			{"hss.io", Hearthstats.Import},
 			{"hearthpwn", Hearthpwn.Import},
+			{"marduktv", Marduktv.Import},
 			{"hearthhead", Hearthhead.Import},
 			{"hearthstoneplayers", Hearthstoneplayers.Import},
 			{"tempostorm", Tempostorm.Import},
@@ -44,14 +45,14 @@ namespace Hearthstone_Deck_Tracker.Importing
 		};
 
 		private const int BrawlDeckType = 6;
-		private static List<HearthMirror.Objects.Deck> _constructedDecksCahe;
+		private static List<HearthMirror.Objects.Deck> _constructedDecksCache;
 		private static List<HearthMirror.Objects.Deck> _brawlDecksCache;
 		private static ArenaInfo _arenaInfoCache;
 
 		public static List<HearthMirror.Objects.Deck> ConstructedDecksCache
 		{
-			get { return _constructedDecksCahe ?? (_constructedDecksCahe = GetConstructedDecks()); }
-			set { _constructedDecksCahe = value; }
+			get { return _constructedDecksCache ?? (_constructedDecksCache = GetConstructedDecks()); }
+			set { _constructedDecksCache = value; }
 		}
 
 		public static ArenaInfo ArenaInfoCache
@@ -130,9 +131,11 @@ namespace Hearthstone_Deck_Tracker.Importing
 		private static List<ImportedDeck> GetImportedDecks(IEnumerable<HearthMirror.Objects.Deck> decks)
 		{
 			var importedDecks = new List<ImportedDeck>();
-			foreach (var deck in decks)
+			var hsDecks = decks.ToList();
+			foreach (var deck in hsDecks)
 			{
-				var existing = DeckList.Instance.Decks.Select(x =>
+				var otherDecks = hsDecks.Except(new[] {deck});
+				var existing = DeckList.Instance.Decks.Where(x => otherDecks.All(d => d.Id != x.HsId)).Select(x =>
 					new
 					{
 						Deck = x,

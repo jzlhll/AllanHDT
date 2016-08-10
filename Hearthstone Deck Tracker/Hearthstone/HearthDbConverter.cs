@@ -31,13 +31,25 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 			{17, "Hero Skins"},
 			{18, "Tavern Brawl"},
 			{20, "League of Explorers"},
-			{21, "Whispers of the Old Gods"}
+			{21, "Whispers of the Old Gods"},
+			{23, "One Night in Karazhan"}
 		};
 
 		public static string ConvertClass(CardClass cardClass) => (int)cardClass < 2 || (int)cardClass > 10
 																	  ? null : CultureInfo.InvariantCulture.TextInfo.ToTitleCase(cardClass.ToString().ToLowerInvariant());
 
-		public static string CardTypeConverter(CardType type) => type == CardType.HERO_POWER ? "Hero Power" : CultureInfo.InvariantCulture.TextInfo.ToTitleCase(type.ToString().ToLowerInvariant().Replace("_", ""));
+		public static string CardTypeConverter(CardType type)
+		{
+			switch(type)
+			{
+				case CardType.ABILITY:
+					return "Spell";
+				case CardType.HERO_POWER:
+					return "Hero Power";
+				default:
+					return CultureInfo.InvariantCulture.TextInfo.ToTitleCase(type.ToString().ToLowerInvariant());
+			}
+		}
 
 
 		public static string RaceConverter(Race race)
@@ -74,7 +86,7 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 					return GameMode.Arena;
 				case GameType.GT_RANKED:
 					return GameMode.Ranked;
-				case GameType.GT_UNRANKED:
+				case GameType.GT_CASUAL:
 					return GameMode.Casual;
 				case GameType.GT_TAVERNBRAWL:
 				case GameType.GT_TB_2P_COOP:
@@ -101,6 +113,19 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 				return BGT_VS_AI;
 			default:
 				return BGT_UNKNOWN;
+			}
+		}
+
+		public static Format? GetFormat(FormatType format)
+		{
+			switch(format)
+			{
+				case FormatType.FT_WILD:
+					return Format.Wild;
+				case FormatType.FT_STANDARD:
+					return Format.Standard;
+				default:
+					return null;
 			}
 		}
 	}
