@@ -26,14 +26,9 @@
             <Border BorderThickness="1" BorderBrush="{DynamicResource AccentColorBrush}" HorizontalAlignment="Center" Margin="5">
                 <DockPanel Margin="0,0,0,5">
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-<<<<<<< HEAD
-                        <Label Content="卡组" Margin="120,0,0,0" FontWeight="SemiBold"/>
-                        <Label Content="保存到" Margin="160,0,0,0" FontWeight="SemiBold"/>
-=======
                         <CheckBox Name="CheckBoxImportAll" IsChecked="True" Margin="5,0,0,0" Click="CheckBoxImportAll_OnClicked"/>
-                        <Label Content="DECK" Margin="90,0,0,0" FontWeight="SemiBold"/>
-                        <Label Content="SAVE TO" Margin="160,0,0,0" FontWeight="SemiBold"/>
->>>>>>> 6ae7c2a... english version v1.0.5
+                            <Label Content="卡组" Margin="90,0,0,0" FontWeight="SemiBold"/>
+                        <Label Content="保存到" Margin="160,0,0,0" FontWeight="SemiBold"/>
                     </StackPanel>
                     <Separator DockPanel.Dock="Top"/>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">

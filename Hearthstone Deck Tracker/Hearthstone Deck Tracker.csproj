@@ -1360,23 +1360,10 @@ if "$(ConfigurationName)" == "Release" (
     xcopy /Y "*.dll" "..\Hearthstone Deck Tracker"
     xcopy /Y "..\..\..\..\HDTUpdate\bin\Release\HDTUpdate.exe" "..\Hearthstone Deck Tracker"
     xcopy /Y "..\..\..\..\HDTUninstaller\bin\Release\HDTUninstaller.exe" "..\Hearthstone Deck Tracker"
-    signtool sign /tr http://timestamp.digicert.com /a /f "..\..\..\HearthSimCodeSigningCert.pfx" /p %25HearthSimCert%25 "..\Hearthstone Deck Tracker/\*.exe"
 )</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>if exist $(SolutionDir)HearthDb (
-  git -C $(SolutionDir)HearthDb fetch
-  git -C $(SolutionDir)HearthDb reset --hard origin/master
-) else (
-  git clone https://github.com/HearthSim/HearthDb.git $(SolutionDir)HearthDb
-)
-if exist $(SolutionDir)HearthMirror (
-  git -C $(SolutionDir)HearthMirror fetch
-  git -C $(SolutionDir)HearthMirror reset --hard origin/master
-) else (
-  git clone https://github.com/HearthSim/HearthMirror.git $(SolutionDir)HearthMirror 
-)
-mkdir "$(TargetDir)\Images\Bars"
+    <PreBuildEvent>mkdir "$(TargetDir)\Images\Bars"
 mkdir "$(TargetDir)\Images\Themes"
 xcopy /E /Y /Q "$(ProjectDir)Images\Bars" "$(TargetDir)\Images\Bars"
 xcopy /E /Y /Q "$(ProjectDir)Images\Themes" "$(TargetDir)\Images\Themes"</PreBuildEvent>
@@ -1389,8 +1376,8 @@ xcopy /E /Y /Q "$(ProjectDir)Images\Themes" "$(TargetDir)\Images\Themes"</PreBui
   </Target>
   -->
   <Target Name="AfterBuild">
-    <CallTarget Condition=" '$(Configuration)' == 'Squirrel'" Targets="SquirrelAfterBuild"/>
-    <CallTarget Condition=" '$(Configuration)' == 'Release'" Targets="ReleaseAfterBuild"/>
+    <CallTarget Condition=" '$(Configuration)' == 'Squirrel'" Targets="SquirrelAfterBuild" />
+    <CallTarget Condition=" '$(Configuration)' == 'Release'" Targets="ReleaseAfterBuild" />
   </Target>
   <Target Name="SquirrelAfterBuild">
     <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
@@ -1404,10 +1391,9 @@ xcopy /E /Y /Q "$(ProjectDir)Images\Themes" "$(TargetDir)\Images\Themes"</PreBui
       <Output TaskParameter="Assemblies" ItemName="myAssemblyInfo" />
     </GetAssemblyIdentity>
     <PropertyGroup>
-        <Regex>(\d+)\.(\d+)\.(\d+)(\.[1-9]\d*)?</Regex>
-        <Version>$([System.Text.RegularExpressions.Regex]::Match(%(myAssemblyInfo.Version), $(Regex)))</Version>
+      <Regex>(\d+)\.(\d+)\.(\d+)(\.[1-9]\d*)?</Regex>
+      <Version>$([System.Text.RegularExpressions.Regex]::Match(%(myAssemblyInfo.Version), $(Regex)))</Version>
     </PropertyGroup>
     <Exec Command="if not exist Releases mkdir Releases" />
-    <Exec Command="cd bin/x86 &amp; zip -9 -r -q ../../Releases/Hearthstone.Deck.Tracker-v$(Version).zip &quot;Hearthstone Deck Tracker&quot;" />
   </Target>
 </Project>

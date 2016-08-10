@@ -77,7 +77,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 
 		public async void LoadUpdateNotes()
 		{
-			const string latestReleaseRequestUrl = @"https://api.github.com/repos/HearthSim/Hearthstone-Deck-Tracker/releases";
+			const string latestReleaseRequestUrl = @"https://api.github.com/repos/jzlhll/AllanHDT/releases";
 
 			try
 			{
@@ -116,7 +116,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 
 		private void ButtonShowGithub_OnClick(object sender, RoutedEventArgs e)
 		{
-			const string url = "https://github.com/HearthSim/Hearthstone-Deck-Tracker/releases";
+			const string url = "https://github.com/jzlhll/AllanHDT/releases";
 			if (!Helper.TryOpenUrl(url))
 				Core.MainWindow.ShowMessage("打不开浏览器", $"你可以找到releases在这里 \"{url}\"").Forget();
 		}
@@ -131,7 +131,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 		{
 			_fullReleaseNotes = new List<GithubRelease>
 			{
-				new GithubRelease {Name = "Loading...", Body = "Loading...", TagName = CurrentVersion.ToString(true)}
+				new GithubRelease {Name = "加载中...", Body = "加载中...", TagName = CurrentVersion.ToString(true)}
 			};
 			OnPropertyChanged(nameof(ReleaseNotes));
 		}
@@ -180,7 +180,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 				set
 				{
 					_body = Regex.Replace(value, "\r\n", "\r\n\n");
-					_body = Regex.Replace(_body, "#(\\d+)", "[#$1](https://github.com/HearthSim/Hearthstone-Deck-Tracker/issues/$1)");
+					_body = Regex.Replace(_body, "#(\\d+)", "[#$1](https://github.com/jzlhll/AllanHDT/issues/$1)");
 				}
 			}
 

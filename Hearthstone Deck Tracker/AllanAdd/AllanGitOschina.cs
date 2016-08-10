@@ -15,10 +15,10 @@ namespace Hearthstone_Deck_Tracker.AllanAdd
 {
     class AllanGitOschina
     {
-        public const string AllanVersion = "0.9.4"; //每次更新版本都需要修改@！！！
-        public const string DATA_IN_UPDATEFILE = "0806";
+        public const string AllanVersion = "0.9.5"; //每次更新版本都需要修改@！！！
+        public const string DATA_IN_UPDATEFILE = "0811";
         public const bool DEBUG_FORCE_UPDATE = true;
-        public const string DEBUG_FORCE_UPDATE_TO_VERSION = "0.9.4";
+        public const string DEBUG_FORCE_UPDATE_TO_VERSION = "0.9.5";
 
         public static async Task<Release> CheckForUpdate(Version currentVersion)
         {
@@ -30,7 +30,6 @@ namespace Hearthstone_Deck_Tracker.AllanAdd
                 ass.Name = "HDThanhua_super_" + rel.Tag + ".zip";
                 rel.Assets = new List<Release.Asset>();
                 rel.Assets.Add(ass);
-                Utility.Updater.Cleanup();
                 return rel;
             }
             //删除多余东西
@@ -76,7 +75,6 @@ namespace Hearthstone_Deck_Tracker.AllanAdd
                     if (latest.GetVersion()?.CompareTo(currentVersion) > 0)
                     {
                         Log.Info("AllanLog:AllanGitOschina " + $"A new version is available (latest={latest.Tag})");
-                        Utility.Updater.Cleanup();
                         return latest;
                     }
                     Log.Info("AllanLog:AllanGitOschina " + $"We are up-to-date (latest={latest.Tag})");

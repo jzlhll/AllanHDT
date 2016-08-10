@@ -45,7 +45,7 @@ namespace Hearthstone_Deck_Tracker.Utility.Updating
 				return;
 			_showingUpdateMessage = true;
 
-			var settings = new MessageDialogs.Settings {AffirmativeButtonText = "Download", NegativeButtonText = "Not now"};
+			var settings = new MessageDialogs.Settings {AffirmativeButtonText = "下载", NegativeButtonText = "稍后"};
 			if(_release == null)
 			{
 				_showingUpdateMessage = false;
@@ -60,8 +60,8 @@ namespace Hearthstone_Deck_Tracker.Utility.Updating
 				var betaString = beta ? " BETA" : "";
 				var result =
 					await
-						Core.MainWindow.ShowMessageAsync("New" + betaString + " Update available!",
-							"Press \"Download\" to automatically download.",
+						Core.MainWindow.ShowMessageAsync("新的beta" + betaString + " 更新到了!",
+							"点击 \"下载\" 开始自动下载.",
 							MessageDialogStyle.AffirmativeAndNegative, settings);
 
 				if(result == MessageDialogResult.Affirmative)
@@ -130,10 +130,12 @@ namespace Hearthstone_Deck_Tracker.Utility.Updating
 
 		private static async Task<GitHub.Release> GetLatestRelease(bool beta)
 		{
-			var currentVersion = Helper.GetCurrentVersion();
-			if(currentVersion == null)
-				return null;
-			return await GitHub.CheckForUpdate("HearthSim", "Hearthstone-Deck-Tracker", currentVersion, beta);
+			//var currentVersion = Helper.GetCurrentVersion();
+            
+			//if(currentVersion == null)
+			//	return null;
+            //TODO 每次更新放在这里修改
+			return await GitHub.CheckForUpdate("jzlhll", "AllanHDT", new Version(0,9,5), beta);
 		}
 	}
 }

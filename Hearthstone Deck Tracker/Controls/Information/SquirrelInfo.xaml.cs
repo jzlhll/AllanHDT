@@ -54,7 +54,7 @@ namespace Hearthstone_Deck_Tracker.Controls.Information
 			}
 			catch
 			{
-				ErrorManager.AddError("Error running the installer.", $"Please manually run '{InstallerFile}'.");
+				ErrorManager.AddError("安装错误", $"请手动运行安装程序 '{InstallerFile}'.");
 			}
 		}
 
@@ -78,7 +78,7 @@ namespace Hearthstone_Deck_Tracker.Controls.Information
 				catch(Exception)
 				{
 					_inProgress = false;
-					ErrorManager.AddError("Installer file already exists.", $"Please delete '{InstallerFile}' and try again.");
+					ErrorManager.AddError("安装程序已经存在.", $"请删除 '{InstallerFile}' 并重试.");
 					return;
 				}
 			}

@@ -178,18 +178,15 @@ namespace Hearthstone_Deck_Tracker
 			Influx.OnAppStart(Helper.GetCurrentVersion(), loginType, newUser);
 		}
 
-        private static async void checkUpdateWhenBoot() {
-            if (Config.Instance.CheckForUpdates)
-                await Task.Run(() => { return Updater.CheckForUpdates(true); });
-        }
-
 		private static async void UpdateOverlayAsync()
 		{
 #if(!SQUIRREL)
 			if(Config.Instance.CheckForUpdates)
 				Updater.CheckForUpdates(true);
 #endif
-			var hsForegroundChanged = false;
+            if (Config.Instance.CheckForUpdates)
+                Updater.CheckForUpdates(true);
+            var hsForegroundChanged = false;
 			var useNoDeckMenuItem = TrayIcon.NotifyIcon.ContextMenu.MenuItems.IndexOfKey("startHearthstone");
 			while(UpdateOverlay)
 			{
@@ -206,9 +203,6 @@ namespace Hearthstone_Deck_Tracker
 						}
 					}
 					Overlay.UpdatePosition();
-
-					if(Config.Instance.CheckForUpdates)
-						Updater.CheckForUpdates(); //todo allan
 
 					if(!Game.IsRunning)
 					{
