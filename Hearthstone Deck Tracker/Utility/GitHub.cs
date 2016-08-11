@@ -28,17 +28,22 @@ namespace Hearthstone_Deck_Tracker.Utility
                     var l = await GetAllAllanRelease();
                     latest = new Release();
                     latest.Tag = "v" + l.Assets.ElementAt(0).Version;
+                    //foreach (var a in l.Assets) {
+                    //    Log.Info("title " + a.Title);
+                    //    Log.Info("version " + a.Version);
+                    //    Log.Info("Body " + a.Body);
+                    //    Log.Info("urls " + a.Urls[0] + a.Urls[1]);
+                    //}
+
                     Release.Asset ass = new Release.Asset();
                     Random ro = new Random();
-                    int r = ro.Next(3);
-                    Log.Debug("random r " + r);
+                    int r = DateTime.Now.Minute % 2;
                     ass.Url = l.Assets.ElementAt(0).Urls[r].Replace("vxxx", latest.Tag);
                     //随机生成下载地址
                     /* http://pan.plyz.net/d.asp?u=337122900&p=HDThanhua_super_v0.9.5.zip  */
                     /* http://d.139.sh/337122900/HDThanhua_super_v0.9.4.zip  */
                     /* https://github.com/jzlhll/AllanHDT/releases/download/v0.9.5/HDThanhua_super_v0.9.5.zip  */
                     ass.Name = "HDThanhua_super_" + latest.Tag + ".zip";
-                    Log.Debug("ass.Name " + ass.Name + " ass.URL " + ass.Url + " rel " + latest.Tag);
                     latest.Assets = new List<Release.Asset>();
                     latest.Assets.Add(ass);
                 }

@@ -12,11 +12,26 @@ namespace HDTUpdate
 	internal class Program
 	{
 		private static UpdatingState _state;
-		private static void Main(string[] args)
+        private static void CopyFolder(string from, string to)
+        {
+            to = to + "\\";
+            if (!Directory.Exists(to))
+                Directory.CreateDirectory(to);
+
+            // 子文件夹
+            foreach (string sub in Directory.GetDirectories(from))
+                CopyFolder(sub + "\\", to + Path.GetFileName(sub) + "\\");
+
+            // 文件
+            foreach (string file in Directory.GetFiles(from))
+                File.Copy(file, to + Path.GetFileName(file), true);
+        }
+
+        private static void Main(string[] args)
 		{
 			Console.Title = "HDT汉化版更新程序";
 			Console.CursorVisible = false;
-			if (args.Length != 2)
+            if (args.Length != 3)
 			{
 				Console.WriteLine("参数错误!");
 				return;
@@ -40,7 +55,7 @@ namespace HDTUpdate
 
 			try
 			{
-				var update = Update(args[1]);
+				var update = Update(args[1], args[2]);
 				update.Wait();
 			}
 			catch(Exception e)
@@ -84,7 +99,7 @@ namespace HDTUpdate
 			}
 		}
 
-		private static async Task Update(string url)
+		private static async Task Update(string url, string toPlugin)
 		{
 			var fileName = url.Split('/').LastOrDefault() ?? "tmp.zip";
 			var filePath = Path.Combine("temp", fileName);
@@ -138,7 +153,14 @@ namespace HDTUpdate
 			{
 				throw new Exception("解压下载的文件出错了.", e);
 			}
-			_state = UpdatingState.Starting;
+
+            _state = UpdatingState.Starting;
+            try
+            {
+                CopyFolder("temp\\Hearthstone Deck Tracker\\Plugins", toPlugin);
+            }
+            catch {
+            }
 			try
 			{
 				Process.Start("HDT汉化高级版.exe");

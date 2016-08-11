@@ -15,7 +15,7 @@ namespace Hearthstone_Deck_Tracker.Plugins
 	internal class PluginManager
 	{
 		private const string DefaultPath = "Plugins";
-		private const string NoticeFileName = "READ THIS.txt";
+		private const string NoticeFileName = "查看我.txt";
 		private const string TriggerTypeName = "MergedTrigger";
 		private static PluginManager _instance;
 		private bool _update;
@@ -36,6 +36,7 @@ namespace Hearthstone_Deck_Tracker.Plugins
 			{
 				Log.Error(ex);
 			}
+            Log.Debug("dsfjkdsajkfsjadfljsdlfajfdasljfdsl<><><><><");
 			SyncPlugins(PluginDirectory, LocalPluginDirectory, LocalPluginDirectory);
 			CreateNoticeFile();
 		}
@@ -62,10 +63,10 @@ namespace Hearthstone_Deck_Tracker.Plugins
 			{
 				using(var sw = new StreamWriter(file))
 				{
-					sw.WriteLine("PLUGINS INSTALLED TO THIS DIRECTORY WILL BE REMOVED!");
+					sw.WriteLine("插件安装在这个目录会被干掉!");
 					sw.WriteLine("");
-					sw.WriteLine("Please install your new plugins to '%AppData%/HearthstoneDeckTracker'.");
-					sw.WriteLine("'options > tracker > plugins > plugins folder' will open that directory for you.");
+					sw.WriteLine("请安装你的插件到'%AppData%/HearthstoneDeckTracker'.");
+					sw.WriteLine("[选项] > [跟踪] > [插件] > [插件文件夹] 会帮你打开这个目录.");
 				}
 			}
 			catch(Exception ex)
@@ -73,9 +74,11 @@ namespace Hearthstone_Deck_Tracker.Plugins
 				Log.Error(ex);
 			}
 		}
-
-		private void SyncPlugins(DirectoryInfo sourceDir, DirectoryInfo destDir, DirectoryInfo baseDir)
+        
+        //SyncPlugins(PluginDirectory, LocalPluginDirectory, LocalPluginDirectory);
+        private void SyncPlugins(DirectoryInfo sourceDir, DirectoryInfo destDir, DirectoryInfo baseDir)
 		{
+            Log.Debug("syncPlguins sourceDir " + sourceDir + " destDir " + destDir + " baseDir " + baseDir);
 			if(!sourceDir.Exists)
 				return;
 			if(!destDir.Exists)

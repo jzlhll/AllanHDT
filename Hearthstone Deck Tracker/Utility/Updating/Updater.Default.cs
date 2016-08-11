@@ -53,15 +53,16 @@ namespace Hearthstone_Deck_Tracker.Utility.Updating
             }
             try
             {
-                await Task.Delay(10000);
+                await Task.Delay(3000);
                 Core.MainWindow.ActivateWindow();
                 while (Core.MainWindow.Visibility != Visibility.Visible || Core.MainWindow.WindowState == WindowState.Minimized)
                     await Task.Delay(100);
-                var betaString = beta ? " BETA" : "";
+                var betaString = beta ? " BETA版" : "";
+                GitHub.AllanRelease allanRel = await GitHub.GetAllAllanRelease();
                 var result =
                     await
-                        Core.MainWindow.ShowMessageAsync("新的beta" + betaString + " 更新到了!",
-                            "点击 \"下载\" 开始自动下载.",
+                        Core.MainWindow.ShowMessageAsync("新的更新" + betaString + "到了!",
+                            "点击 \"下载\" 开始自动下载.\r\n" + allanRel.Assets[0].Title + "\r\n" + allanRel.Assets[0].Body,
                             MessageDialogStyle.AffirmativeAndNegative, settings);
 
                 if (result == MessageDialogResult.Affirmative)
@@ -90,7 +91,7 @@ namespace Hearthstone_Deck_Tracker.Utility.Updating
             }
             try
             {
-                Process.Start("HDTUpdate.exe", $"{Process.GetCurrentProcess().Id} {_release.Assets[0].Url}");
+                Process.Start("HDTUpdate.exe", $"{Process.GetCurrentProcess().Id} {_release.Assets[0].Url} {Plugins.PluginManager.PluginDirectory}");
                 Core.MainWindow.Close();
                 Application.Current.Shutdown();
             }
@@ -134,10 +135,6 @@ namespace Hearthstone_Deck_Tracker.Utility.Updating
 
             //if(currentVersion == null)
             //	return null;
-            //todo:每次更新放在这里修改
-            //删除多余东西
-            //Log.Info("System.Environment.CurrentDirectory " + System.Environment.CurrentDirectory+ " AppDomain.CurrentDomain.BaseDirectory " + AppDomain.CurrentDomain.BaseDirectory);
-
             var exFiles = Directory.GetFiles(Environment.CurrentDirectory);
             if (exFiles != null)
             {
@@ -147,7 +144,7 @@ namespace Hearthstone_Deck_Tracker.Utility.Updating
                     {
                         Log.Error("file " + file);
                         if (file.Contains("更新说明") && !file.Contains("0811"))
-                        { //TODO每次都要修改！
+                        { //TODO:每次都要修改！
                             File.Delete(file);
                         }
                     }
@@ -170,7 +167,8 @@ namespace Hearthstone_Deck_Tracker.Utility.Updating
                     MessageBox.Show("建议关闭HDT，点击[HDT汉化高级版.exe]运行, [Hearthstone Deck Tracker.exe]要被删除。", "重启");
                 }
             }
-            return await GitHub.CheckForUpdate("jzlhll", "AllanHDT", new Version(0, 9, 5), beta);
+            //TODO:每次都要修改！
+            return await GitHub.CheckForUpdate("jzlhll", "AllanHDT", new Version(0, 9, 6), beta);
         }
     }
 }

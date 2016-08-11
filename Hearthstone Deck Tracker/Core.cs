@@ -181,7 +181,10 @@ namespace Hearthstone_Deck_Tracker
 		private static async void UpdateOverlayAsync()
 		{
             if (Config.Instance.CheckForUpdates)
+            {
                 Updater.CheckForUpdates(true);
+                Updater.Cleanup();
+            }
             var hsForegroundChanged = false;
 			var useNoDeckMenuItem = TrayIcon.NotifyIcon.ContextMenu.MenuItems.IndexOfKey("startHearthstone");
 			while(UpdateOverlay)
