@@ -203,7 +203,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AllanAdd\AllanConverter.cs" />
-    <Compile Include="AllanAdd\AllanGitOschina.cs" />
     <Compile Include="AllanAdd\ChinaWebImport.cs" />
     <Compile Include="AllanAdd\CardTool.cs" />
     <Compile Include="AllanAdd\GraveyardWindow.xaml.cs">
