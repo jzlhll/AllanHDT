@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Linq;
 using System.Text;
+using Hearthstone_Deck_Tracker.Utility.Logging;
+
 namespace AllanPlugins
 {
     class AllanConverter
@@ -153,7 +155,7 @@ namespace AllanPlugins
             for (int i = 0; i < totalSize; i++)
             {
                 CardTool.CardSturct cs = mCardTool.getCardByDuowanId(duowan_ids[i]);
-                //Debug.WriteLine("num " + nums[i] + " " + cs.ToStr());
+                Log.Info("num " + nums[i] + " " + cs.ToStr());
                 ret[0] += cs.enCard;
                 if (nums[i] == 2) ret[0] += " x 2";
                 if (i != totalSize - 1)

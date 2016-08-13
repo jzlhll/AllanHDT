@@ -168,7 +168,7 @@ namespace Hearthstone_Deck_Tracker.Utility.Updating
                 }
             }
             //TODO:每次都要修改！
-            return await GitHub.CheckForUpdate("jzlhll", "AllanHDT", new Version(0, 9, 6), beta);
+            return await GitHub.CheckForUpdate("jzlhll", "AllanHDT", new Version(0, 9, 7), beta);
         }
     }
 }
