@@ -46,11 +46,11 @@ namespace Hearthstone_Deck_Tracker
 				else if(plugin.UnhandledException())
 				{
 					plugin.IsEnabled = false;
-					header = $"{plugin.NameAndVersion} threw too many exceptions and has been disabled.";
+					header = $"{plugin.NameAndVersion} 抛出太多异常需要禁用.";
 				}
 				else
-					header = $"{plugin.NameAndVersion} threw an exception.";
-				ErrorManager.AddError(header, "Make sure you are using the latest version of the Plugin and HDT.\n\n" + e.Exception);
+					header = $"{plugin.NameAndVersion} 抛出一个异常.";
+				ErrorManager.AddError(header, "确保你在使用最新的插件和最新的HDT.\n\n" + e.Exception);
 				e.Handled = true;
 				return;
 			}

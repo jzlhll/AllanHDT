@@ -50,7 +50,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 			if(result != MessageDialogResult.Affirmative)
 				return;
 			BackupManager.Restore(selected.FileInfo, true);
-			Core.MainWindow.ShowMessage("Success", "Please restart HDT for this to take effect.").Forget();
+			Core.MainWindow.ShowMessage("成功", "重启来生效").Forget();
 		}
 
 		private void ButtonCreateNew_Click(object sender, RoutedEventArgs e)

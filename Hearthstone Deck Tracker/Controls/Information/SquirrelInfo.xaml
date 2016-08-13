@@ -7,22 +7,22 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600">
     <DockPanel>
-        <Label Name="LabelHeader" Content="New updater available!" FontWeight="SemiBold" DockPanel.Dock="Top" FontSize="18" HorizontalAlignment="Center"/>
+        <Label Name="LabelHeader" Content="新的更新程序来了!" FontWeight="SemiBold" DockPanel.Dock="Top" FontSize="18" HorizontalAlignment="Center"/>
         <Separator DockPanel.Dock="Top"/>
         <TabControl Name="TabControl" controls:TabControlHelper.Transition="Left">
             <TabItem>
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock TextWrapping="Wrap" FontSize="15" HorizontalAlignment="Center" Width="420">
-                        <Run>Hearthstone Deck Tracker now has a new and improved automated updater. This simplifies updating and fixes several long-standing installation and update issues.</Run>
+                        <Run>HDT现在有一个新的高效的自动升级程序. 这将简化升级过程和解决一些长期安装和更新的问题.</Run>
                         <LineBreak/><LineBreak/>
-                        <Run>We strongly recommend upgrading. Your settings and data will not be affected.</Run>
+                        <Run>我们强烈建议您升级. 你的设置和数据不会丢失的。(Allan汉化提示如果你不小心出来这个界面，会升级到英文版不建议下载)</Run>
                     </TextBlock>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,40,0,0">
                         <Button Style="{DynamicResource AccentedSquareButtonStyle}" Width="200" Click="ButtonUpgrade_OnClick">
-                            <TextBlock>Upgrade now</TextBlock>
+                            <TextBlock>现在升级</TextBlock>
                         </Button>
                         <Button Style="{DynamicResource SquareButtonStyle}" Margin="10,0,0,0" Width="200" Click="ButtonContinue_OnClick">
-                            <TextBlock>Maybe later</TextBlock>
+                            <TextBlock>以后</TextBlock>
                         </Button>
                     </StackPanel>
                 </StackPanel>

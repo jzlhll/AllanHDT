@@ -10,7 +10,7 @@
         <GroupBox Header="设置">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
-                    <GroupBox Header="分析(no google)">
+                    <GroupBox Header="分析">
                         <StackPanel>
                             <CheckBox Name="CheckBoxAnalytics" Content="提交匿名数据"
                                       Checked="CheckBoxAnalytics_OnChecked" Unchecked="CheckBoxAnalytics_OnUnchecked" />

@@ -12,7 +12,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 {
 	public partial class SplashScreenWindow : INotifyPropertyChanged
 	{
-		private string _loadingString = "Loading...";
+		private string _loadingString = "加载中...";
 		private string _versionString = Helper.GetCurrentVersion().ToVersionString();
 		private Visibility _skipVisibility = Visibility.Collapsed;
 		private SolidColorBrush _skipBackground = new SolidColorBrush(Colors.White);
@@ -81,7 +81,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 		{
 			if(SkipWasPressed)
 				return;
-			LoadingString = "Updating...";
+			LoadingString = "更新中...";
 			VersionString = percentage + "%";
 		}
 
@@ -89,7 +89,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 		{
 			if(SkipWasPressed)
 				return;
-			LoadingString = "Installing...";
+			LoadingString = "安装中...";
 			VersionString = percentage + "%";
 		}
 

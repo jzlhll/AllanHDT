@@ -83,7 +83,7 @@ namespace Hearthstone_Deck_Tracker.Controls.Information
 				}
 			}
 			TabControl.SelectedIndex = 1;
-			LabelHeader.Content = "Downloading...";
+			LabelHeader.Content = "下载中...";
 			try
 			{
 				using(var wc = new WebClient())
@@ -97,14 +97,14 @@ namespace Hearthstone_Deck_Tracker.Controls.Information
 					}
 					ButtonRestart.IsEnabled = true;
 					ButtonBack.Visibility = Visibility.Collapsed;
-					LabelHeader.Content = "Download complete";
+					LabelHeader.Content = "下载完成";
 				}
 			}
 			catch(Exception ex)
 			{
 				_inProgress = false;
 				Log.Error(ex);
-				ErrorManager.AddError("Could not download new installer.", "Please manually download it from 'https://hsdecktracker.net/download'.");
+				ErrorManager.AddError("无法现在新的更新程序.", "请手动下载 'https://hsdecktracker.net/download'.");
 				if(File.Exists(InstallerFile))
 				{
 					try
