@@ -28,6 +28,10 @@ namespace Hearthstone_Deck_Tracker.Utility
                     var l = await GetAllAllanRelease();
                     latest = new Release();
                     latest.Tag = "v" + l.Assets.ElementAt(0).Version;
+                    bool forceupdateAllan = false;
+                    if (forceupdateAllan) {
+                        latest.Tag = "v0.9.7";
+                    }
                     //foreach (var a in l.Assets) {
                     //    Log.Info("title " + a.Title);
                     //    Log.Info("version " + a.Version);
