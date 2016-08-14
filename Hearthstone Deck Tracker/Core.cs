@@ -55,13 +55,28 @@ namespace Hearthstone_Deck_Tracker
 		internal static bool UpdateOverlay { get; set; } = true;
 		internal static bool Update { get; set; }
 		internal static bool CanShutdown { get; set; }
+        private static void CopyFolder(string from, string to)
+        {
+            to = to + "\\";
+            if (!Directory.Exists(to))
+                Directory.CreateDirectory(to);
 
-		public static async void Initialize()
+            // 子文件夹
+            foreach (string sub in Directory.GetDirectories(from))
+                CopyFolder(sub + "\\", to + Path.GetFileName(sub) + "\\");
+
+            // 文件
+            foreach (string file in Directory.GetFiles(from))
+                File.Copy(file, to + Path.GetFileName(file), true);
+        }
+
+        public static async void Initialize()
 		{
 			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 			Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
 			var newUser = !Directory.Exists(Config.AppDataPath);
 			Config.Load();
+
 			var splashScreenWindow = new SplashScreenWindow();
 			splashScreenWindow.ShowConditional();
 #if(SQUIRREL)
@@ -82,7 +97,9 @@ namespace Hearthstone_Deck_Tracker
 			LogConfigWatcher.Start();
 			Helper.UpdateAppTheme();
 			ThemeManager.Run();
-			Game = new GameV2();
+            
+
+            Game = new GameV2();
 			LoginType loginType;
 			var loggedIn = HearthStatsAPI.LoadCredentials();
 			if(!loggedIn && Config.Instance.ShowLoginDialog)
@@ -145,8 +162,26 @@ namespace Hearthstone_Deck_Tracker
 
 			if(Config.Instance.HearthStatsSyncOnStart && HearthStatsAPI.IsLoggedIn)
 				HearthStatsManager.SyncAsync(background: true);
+            //allan add for plugins use
+            if (Config.Instance.ALLAN_LAST_SAVE_VERSION == null || Config.Instance.ALLAN_LAST_SAVE_VERSION.Equals("")
+                || !Config.Instance.ALLAN_LAST_SAVE_VERSION.Equals(Helper.getAllanCurrentVersionStr()))
+            {
+                if (Directory.Exists("AllanPlugins"))
+                {
+                    if (Directory.Exists("Plugins")) Directory.Delete("Plugins", true);
+                    Directory.CreateDirectory("Plugins");
+                    string appDataPluginDir = Path.Combine(Config.AppDataPath, "Plugins");
+                    if (Directory.Exists(appDataPluginDir)) Directory.Delete(appDataPluginDir, true);
+                    Directory.CreateDirectory(appDataPluginDir);
 
-			PluginManager.Instance.LoadPlugins();
+                    string appDataPluginXml = Path.Combine(Config.AppDataPath, "plugins.xml");
+                    if (File.Exists(appDataPluginXml)) File.Delete(appDataPluginXml);
+                    CopyFolder("AllanPlugins", appDataPluginDir);
+                    Config.Instance.ALLAN_LAST_SAVE_VERSION = Helper.getAllanCurrentVersionStr();
+                    Config.Save();
+                }
+            }
+            PluginManager.Instance.LoadPlugins();
 			MainWindow.Options.OptionsTrackerPlugins.Load();
 			PluginManager.Instance.StartUpdateAsync();
 

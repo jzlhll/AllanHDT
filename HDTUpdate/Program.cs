@@ -12,21 +12,7 @@ namespace HDTUpdate
 	internal class Program
 	{
 		private static UpdatingState _state;
-        private static void CopyFolder(string from, string to)
-        {
-            to = to + "\\";
-            if (!Directory.Exists(to))
-                Directory.CreateDirectory(to);
-
-            // 子文件夹
-            foreach (string sub in Directory.GetDirectories(from))
-                CopyFolder(sub + "\\", to + Path.GetFileName(sub) + "\\");
-
-            // 文件
-            foreach (string file in Directory.GetFiles(from))
-                File.Copy(file, to + Path.GetFileName(file), true);
-        }
-
+       
         private static void Main(string[] args)
 		{
 			Console.Title = "HDT汉化版更新程序";
@@ -155,12 +141,8 @@ namespace HDTUpdate
 			}
 
             _state = UpdatingState.Starting;
-            try
-            {
-                CopyFolder("temp\\Hearthstone Deck Tracker\\Plugins", toPlugin);
-            }
-            catch {
-            }
+            
+            
 			try
 			{
 				Process.Start("HDT汉化高级版.exe");

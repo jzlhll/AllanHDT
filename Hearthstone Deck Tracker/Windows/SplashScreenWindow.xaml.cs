@@ -13,7 +13,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 	public partial class SplashScreenWindow : INotifyPropertyChanged
 	{
 		private string _loadingString = "加载中...";
-		private string _versionString = Helper.GetCurrentVersion().ToVersionString();
+		private string _versionString = Helper.GetAllanCurrentVersion().ToVersionString();
 		private Visibility _skipVisibility = Visibility.Collapsed;
 		private SolidColorBrush _skipBackground = new SolidColorBrush(Colors.White);
 

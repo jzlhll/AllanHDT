@@ -35,7 +35,7 @@ namespace Hearthstone_Deck_Tracker
 				Icon = new Icon(@"Images/HearthstoneDeckTracker16.ico"),
 				Visible = true,
 				ContextMenu = new ContextMenu(),
-				Text = "HDT汉化版 v" + (Helper.GetCurrentVersion() ?? new Version("0.0")).ToVersionString()
+				Text = "HDT汉化版 v" + (Helper.GetAllanCurrentVersion() ?? new Version("0.0")).ToVersionString()
 			};
 
 			var startHearthstonMenuItem = new MenuItem("打开launcher/炉石", (sender, args) => Helper.StartHearthstoneAsync().Forget())

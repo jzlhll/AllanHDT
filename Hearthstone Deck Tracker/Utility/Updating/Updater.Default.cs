@@ -143,8 +143,8 @@ namespace Hearthstone_Deck_Tracker.Utility.Updating
                     foreach (var file in exFiles)
                     {
                         Log.Error("file " + file);
-                        if (file.Contains("更新说明") && !file.Contains("0813"))
-                        { //TODO:每次都要修改！
+                        if (file.Contains("更新说明") && !file.Contains(Helper.getAllanCurrentDateStr()))
+                        {
                             File.Delete(file);
                         }
                     }
@@ -167,8 +167,7 @@ namespace Hearthstone_Deck_Tracker.Utility.Updating
                     MessageBox.Show("建议关闭HDT，点击[HDT汉化高级版.exe]运行, [Hearthstone Deck Tracker.exe]要被删除。", "重启");
                 }
             }
-            //TODO:每次都要修改！上面日期也要记得修改哦
-            return await GitHub.CheckForUpdate("jzlhll", "AllanHDT", new Version(0, 9, 7), beta);
+            return await GitHub.CheckForUpdate("jzlhll", "AllanHDT", Helper.GetAllanCurrentVersion(), beta);
         }
     }
 }

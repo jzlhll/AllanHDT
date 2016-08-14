@@ -26,18 +26,19 @@ namespace Hearthstone_Deck_Tracker.Utility
                 if (user.Equals("jzlhll"))
                 {
                     var l = await GetAllAllanRelease();
+                    Log.Info("allanReleaseVersion count= " + l.Assets.Count);
                     latest = new Release();
                     latest.Tag = "v" + l.Assets.ElementAt(0).Version;
                     bool forceupdateAllan = false;
                     if (forceupdateAllan) {
-                        latest.Tag = "v0.9.7";
+                        latest.Tag = "v0.9.8";
                     }
-                    //foreach (var a in l.Assets) {
-                    //    Log.Info("title " + a.Title);
-                    //    Log.Info("version " + a.Version);
-                    //    Log.Info("Body " + a.Body);
-                    //    Log.Info("urls " + a.Urls[0] + a.Urls[1]);
-                    //}
+                    foreach (var a in l.Assets) {
+                        Log.Info("title " + a.Title);
+                        Log.Info("version " + a.Version);
+                        Log.Info("Body " + a.Body);
+                        Log.Info("urls " + a.Urls[0] + a.Urls[1]);
+                    }
 
                     Release.Asset ass = new Release.Asset();
                     Random ro = new Random();
@@ -142,7 +143,7 @@ namespace Hearthstone_Deck_Tracker.Utility
                 {
                     wc.Headers.Add(HttpRequestHeader.UserAgent, "allan.jiang");
                     wc.Encoding = Encoding.GetEncoding("GB2312");
-                    var url = "https://code.aliyun.com/allan.jiang/HDTCN/tags";
+                    var url = "https://code.aliyun.com/allan.jiang/CNHDT_NEW/tags";
                     await Task.Delay(10);
                     json = Encoding.UTF8.GetString(wc.DownloadData(url));
                     string[] ss = json.Split('\n');
@@ -153,33 +154,36 @@ namespace Hearthstone_Deck_Tracker.Utility
                     {
                         if (s != null && s.Contains("webversion"))
                         {
+                            Log.Info("webversion= line " + s);
                             string webTitle = "";
                             string webBody = "";
                             string webVer = "";
                             List<string> urls = new List<string>();
                             string ns = s.Replace("&#x000A;", "\n").Replace("&amp;", "&").Replace("</p>", "").Replace("</div>", "");
-
+                            Log.Info("Line- " + s);
+                            Log.Info("Line= " + ns);
                             string[] sls = ns.Split('\n');
                             for (int i = 0; i < sls.Length; i++)
                             {
                                 if (sls[i].Contains("webversion"))
                                 { //解析版本
-
                                     Regex reg = new Regex(".*webversion:v(?<ret>)");
                                     webVer = reg.Replace(sls[i], "${ret}");
+                                    Log.Info("webVersion " + webVer);
                                 }
                                 else if (sls[i].Contains("webtitle")) //解析title
                                 {
                                     Regex reg = new Regex(".*webtitle:(?<ret>)");
                                     webTitle = reg.Replace(sls[i], "${ret}");
+                                    Log.Info("webTitle " + webTitle);
                                 }
                                 else if (sls[i].Contains("href=")) //解析N个连接
                                 {
                                     string u = sls[i].Replace("</a>", "").Replace("\" rel=\"nofollow\">", " ").Replace("href=\"", "");
                                     string[] us = u.Split(' ');
                                     u = us[1];
-
                                     urls.Add(u);
+                                    Log.Info("webURL " + u);
                                 }
                                 else if (sls[i].Contains("webbody_start")) //解析title
                                 {
@@ -187,6 +191,7 @@ namespace Hearthstone_Deck_Tracker.Utility
                                     {
                                         webBody += sls[i] + "\r\n";
                                     }
+                                    Log.Info("webBody " + webBody);
                                 }
                             }
                             AllanRelease.Asset ase = new AllanRelease.Asset();
@@ -196,6 +201,7 @@ namespace Hearthstone_Deck_Tracker.Utility
                             ase.Urls = urls.ToArray();
                             rel.Assets = new List<AllanRelease.Asset>();
                             rel.Assets.Add(ase);
+                            Log.Info("rel.Assets++ ");
                         }
                         si++;
                     }
@@ -206,6 +212,7 @@ namespace Hearthstone_Deck_Tracker.Utility
                 Console.WriteLine(ex);
                 return null;
             }
+            Log.Info("=============end================");
             return rel.Assets.Count == 0 ? null : rel;
         }
 

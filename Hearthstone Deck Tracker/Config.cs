@@ -672,7 +672,10 @@ namespace Hearthstone_Deck_Tracker
 
 		[DefaultValue(false)]
 		public bool PlayerWindowOnStart = false;
-		//<!--allan add for graveryard-->
+        //<!--allan add for graveryard-->
+        [DefaultValue("")]
+        public string ALLAN_LAST_SAVE_VERSION = "";
+
         [DefaultValue(false)]
         public bool GraveYardWindowOnStart = false;
         [DefaultValue(false)]
