@@ -16,8 +16,13 @@ using System.Text.RegularExpressions;
 namespace Hearthstone_Deck_Tracker.Utility
 {
 	public class GitHub
-	{
-		public static async Task<Release> CheckForUpdate(string user, string repo, Version version, bool preRelease = false)
+    {
+        //随机生成下载地址
+     /* http://pan.plyz.net/d.asp?u=337122900&p=HDThanhua_super_v0.9.5.zip  */
+     /* http://d.139.sh/337122900/HDThanhua_super_v0.9.4.zip  */
+     /* https://github.com/jzlhll/AllanHDT/releases/download/v0.9.5/HDThanhua_super_v0.9.5.zip  */
+
+        public static async Task<Release> CheckForUpdate(string user, string repo, Version version, bool preRelease = false)
 		{
 			try
 			{
@@ -25,32 +30,30 @@ namespace Hearthstone_Deck_Tracker.Utility
                 Release latest = null;//= await GetLatestRelease(user, repo, preRelease);
                 if (user.Equals("jzlhll"))
                 {
-                    var l = await GetAllAllanRelease();
-                    Log.Info("allanReleaseVersion count= " + l.Assets.Count);
+                    var allanRel = await GetAllAllanRelease();
                     latest = new Release();
-                    latest.Tag = "v" + l.Assets.ElementAt(0).Version;
                     bool forceupdateAllan = false;
                     if (forceupdateAllan) {
                         latest.Tag = "v0.9.8";
                     }
-                    foreach (var a in l.Assets) {
-                        Log.Info("title " + a.Title);
-                        Log.Info("version " + a.Version);
-                        Log.Info("Body " + a.Body);
-                        Log.Info("urls " + a.Urls[0] + a.Urls[1]);
+                    int i = 0;
+                    foreach (var a in allanRel.Assets) {
+                        latest.Tag = "v" + allanRel.Assets.ElementAt(i).Version;
+                        latest.Assets = new List<Release.Asset>();
+                        Log.Info("))title " + a.Title);
+                        Log.Info("))version " + a.Version);
+                        Log.Info("))Body " + a.Body);
+                        foreach (var u in a.Urls) {
+                            Log.Info("))urls " + u);
+                            Release.Asset ass = new Release.Asset();
+                            ass.Url = u; //allanRel.Assets获取的其实是所有的历史记录因此assets0就是最新的
+                            ass.Name = "HDThanhua_super_" + latest.Tag + ".zip";
+                            latest.Assets.Add(ass);
+                        }
+                        i++;
                     }
-
-                    Release.Asset ass = new Release.Asset();
-                    Random ro = new Random();
-                    int r = DateTime.Now.Minute % 2;
-                    ass.Url = l.Assets.ElementAt(0).Urls[r].Replace("vxxx", latest.Tag);
-                    //随机生成下载地址
-                    /* http://pan.plyz.net/d.asp?u=337122900&p=HDThanhua_super_v0.9.5.zip  */
-                    /* http://d.139.sh/337122900/HDThanhua_super_v0.9.4.zip  */
-                    /* https://github.com/jzlhll/AllanHDT/releases/download/v0.9.5/HDThanhua_super_v0.9.5.zip  */
-                    ass.Name = "HDThanhua_super_" + latest.Tag + ".zip";
-                    latest.Assets = new List<Release.Asset>();
-                    latest.Assets.Add(ass);
+                    //这个时候，latest就是最新的，而且是多个url的。
+                    Log.Info("latest count= " + latest.Assets.Count);
                 }
                 else {
                     latest = await GetLatestRelease(user, repo, preRelease);

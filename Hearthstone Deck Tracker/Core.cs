@@ -171,9 +171,8 @@ namespace Hearthstone_Deck_Tracker
                     if (Directory.Exists("Plugins")) Directory.Delete("Plugins", true);
                     Directory.CreateDirectory("Plugins");
                     string appDataPluginDir = Path.Combine(Config.AppDataPath, "Plugins");
-                    if (Directory.Exists(appDataPluginDir)) Directory.Delete(appDataPluginDir, true);
-                    Directory.CreateDirectory(appDataPluginDir);
-
+                    if (!Directory.Exists(appDataPluginDir))
+                        Directory.CreateDirectory(appDataPluginDir);
                     string appDataPluginXml = Path.Combine(Config.AppDataPath, "plugins.xml");
                     if (File.Exists(appDataPluginXml)) File.Delete(appDataPluginXml);
                     CopyFolder("AllanPlugins", appDataPluginDir);
@@ -181,6 +180,7 @@ namespace Hearthstone_Deck_Tracker
                     Config.Save();
                 }
             }
+            //allan add
             PluginManager.Instance.LoadPlugins();
 			MainWindow.Options.OptionsTrackerPlugins.Load();
 			PluginManager.Instance.StartUpdateAsync();

@@ -91,7 +91,15 @@ namespace Hearthstone_Deck_Tracker.Utility.Updating
             }
             try
             {
-                Process.Start("HDTUpdate.exe", $"{Process.GetCurrentProcess().Id} {_release.Assets[0].Url} {Plugins.PluginManager.PluginDirectory}");
+                if (_release.Assets.Count == 1) {
+                    Process.Start("HDTUpdate.exe", $"{Process.GetCurrentProcess().Id} {_release.Assets[0].Url}");
+                } else if (_release.Assets.Count == 2) {
+                    Process.Start("HDTUpdate.exe", $"{Process.GetCurrentProcess().Id} {_release.Assets[0].Url} {_release.Assets[1].Url}");
+                }
+                else if (_release.Assets.Count == 3)
+                {
+                    Process.Start("HDTUpdate.exe", $"{Process.GetCurrentProcess().Id} {_release.Assets[0].Url} {_release.Assets[1].Url} {_release.Assets[2].Url}");
+                }
                 Core.MainWindow.Close();
                 Application.Current.Shutdown();
             }
