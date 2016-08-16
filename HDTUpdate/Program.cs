@@ -57,10 +57,13 @@ namespace HDTUpdate
                     case UpdatingState.Downloading:
                         if (args.Length == 2)
                         {
-                            Console.WriteLine("已经为您尝试了3个下载链接，还是失败了，只能手动更新，十分抱歉。");
+                            Console.WriteLine("已经为您尝试了多个下载链接，还是失败，只能手动去更新，十分抱歉。"
+                                + "\n按任意键跳转网盘下载，下载HDThanhua_super**.zip包(其他不用下)"
+                                + "\n解压直接覆盖原来程序的位置即可"
+                                + "\n提取码 xabs");
                             Console.ReadKey();
                             countConsole++;
-                            Process.Start(@"http://bbs.nga.cn/read.php?tid=9444162");
+                            Process.Start(@"http://pan.baidu.com/s/1nu9kFgd");
                         }
                         else
                         {
