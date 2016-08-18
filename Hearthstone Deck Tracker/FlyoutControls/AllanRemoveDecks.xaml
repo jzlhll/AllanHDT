@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="Hearthstone_Deck_Tracker.AllanRemoveDecks"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="300">
+    <Grid>
+
+        <DockPanel Margin="6,0,6,45">
+            <ListBox Name="ListboxAllVersions" Height="auto" Width="auto" DockPanel.Dock="Top" VirtualizingPanel.IsVirtualizing="False">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Content="{Binding Name}" IsChecked="{Binding Selected}"
+                                          Checked="CheckBox_Checked"
+                                          Unchecked="CheckBox_Unchecked" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+        <Button x:Name="BtnDeleteVersions" DockPanel.Dock="Bottom" Margin="0,3,0,0" Content="删除已选"
+                            VerticalAlignment="Bottom" Width="auto" Click="BtnDeteleVersions_Click" Height="45" FontSize="18"/>
+    </Grid>
+</UserControl>

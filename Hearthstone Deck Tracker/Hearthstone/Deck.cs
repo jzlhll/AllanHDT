@@ -186,7 +186,7 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 			set { _isArenaDeck = value; }
 		}
 
-		public bool IsBrawlDeck => Tags.Any(x => x.ToUpper().Contains("BRAWL"));
+		public bool IsBrawlDeck => (Tags.Any((x => x.ToUpper().Contains("BRAWL"))) || Tags.Any((x => x.Contains("乱斗"))));
 
 		public ArenaReward ArenaReward
 		{

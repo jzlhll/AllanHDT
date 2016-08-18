@@ -136,7 +136,7 @@ namespace Hearthstone_Deck_Tracker
 		public static WindowState GameWindowState { get; internal set; } = WindowState.Normal;
 
 		public static Version GetCurrentVersion() => Assembly.GetExecutingAssembly().GetName().Version;
-        //TODO:每次都要修改
+        //TODO:每次都要修改 allan
         public static Version GetAllanCurrentVersion() {
             return new Version(0,9,8);
         }
@@ -145,7 +145,7 @@ namespace Hearthstone_Deck_Tracker
         }
         public static string getAllanCurrentDateStr()
         {
-            return "0816";
+            return "0819";
         }
         public static bool IsHex(IEnumerable<char> chars)
 			=> chars.All(c => ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F')));

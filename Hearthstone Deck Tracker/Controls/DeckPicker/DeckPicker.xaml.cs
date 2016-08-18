@@ -68,9 +68,9 @@ namespace Hearthstone_Deck_Tracker.Controls.DeckPicker
 		public List<Deck> SelectedDecks
 		{
 			get { return ListViewDecks.SelectedItems.Cast<DeckPickerItem>().Select(x => x.Deck).ToList(); }
-		}
+		} 
 
-		public ObservableCollection<HeroClassAll> SelectedClasses { get; }
+        public ObservableCollection<HeroClassAll> SelectedClasses { get; }
 
 		public bool ArchivedClassVisible
 		{
@@ -766,5 +766,7 @@ namespace Hearthstone_Deck_Tracker.Controls.DeckPicker
 			if(!SelectedDecks.Any())
 				e.Handled = true;
 		}
-	}
+
+        private void BtnVersions_Click(object sender, RoutedEventArgs e) => Core.MainWindow.BtnVersions_Click(sender, e);
+    }
 }

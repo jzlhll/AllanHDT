@@ -120,6 +120,10 @@
                          Height="auto" Panel.ZIndex="100">
                 <local:SortFilterDecks Width="auto" Height="auto" x:Name="TagControlEdit" />
             </controls:Flyout>
+            <controls:Flyout x:Name="FlyoutMyDecksRmVersions" Header="移除版本(Allan)" Position="Right" Width="255"
+                         Height="auto" Panel.ZIndex="100">
+                <local:AllanRemoveDecks Width="auto" Height="auto" x:Name="RmVersionControlEdit" />
+            </controls:Flyout>
             <controls:Flyout x:Name="FlyoutHearthStatsLogin" Position="Top" Panel.ZIndex="1" Margin="0,50,0,0" CloseButtonVisibility="Collapsed">
                 <hearthStats:LoginControl x:Name="HearthstatsLoginControl" Margin="0,32,0,32"/>
             </controls:Flyout>

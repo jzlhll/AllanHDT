@@ -28,7 +28,8 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 			CheckboxNoteDialogDelayed.IsChecked = Config.Instance.NoteDialogDelayed;
 			CheckboxNoteDialogDelayed.IsEnabled = Config.Instance.ShowNoteDialogAfterGame;
 			CheckboxArenaRewardDialog.IsChecked = Config.Instance.ArenaRewardDialog;
-			_initialized = true;
+            TextboxTimerAlert.Text = "" + Config.Instance.NotificationFadeOutDelay;
+            _initialized = true;
 		}
 
 		private void TextboxTimerAlert_PreviewTextInput(object sender, TextCompositionEventArgs e)

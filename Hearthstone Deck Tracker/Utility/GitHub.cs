@@ -40,11 +40,11 @@ namespace Hearthstone_Deck_Tracker.Utility
                     foreach (var a in allanRel.Assets) {
                         latest.Tag = "v" + allanRel.Assets.ElementAt(i).Version;
                         latest.Assets = new List<Release.Asset>();
-                        Log.Info("))title " + a.Title);
-                        Log.Info("))version " + a.Version);
-                        Log.Info("))Body " + a.Body);
+                        //Log.Info("))title " + a.Title);
+                        //Log.Info("))version " + a.Version);
+                        //Log.Info("))Body " + a.Body);
                         foreach (var u in a.Urls) {
-                            Log.Info("))urls " + u);
+                            //Log.Info("))urls " + u);
                             Release.Asset ass = new Release.Asset();
                             ass.Url = u; //allanRel.Assets获取的其实是所有的历史记录因此assets0就是最新的
                             ass.Name = "HDThanhua_super_" + latest.Tag + ".zip";
@@ -53,7 +53,7 @@ namespace Hearthstone_Deck_Tracker.Utility
                         i++;
                     }
                     //这个时候，latest就是最新的，而且是多个url的。
-                    Log.Info("latest count= " + latest.Assets.Count);
+                    //Log.Info("latest count= " + latest.Assets.Count);
                 }
                 else {
                     latest = await GetLatestRelease(user, repo, preRelease);
@@ -157,14 +157,14 @@ namespace Hearthstone_Deck_Tracker.Utility
                     {
                         if (s != null && s.Contains("webversion"))
                         {
-                            Log.Info("webversion= line " + s);
+                            //Log.Info("webversion= line " + s);
                             string webTitle = "";
                             string webBody = "";
                             string webVer = "";
                             List<string> urls = new List<string>();
                             string ns = s.Replace("&#x000A;", "\n").Replace("&amp;", "&").Replace("</p>", "").Replace("</div>", "");
-                            Log.Info("Line- " + s);
-                            Log.Info("Line= " + ns);
+                            //Log.Info("Line- " + s);
+                            //Log.Info("Line= " + ns);
                             string[] sls = ns.Split('\n');
                             for (int i = 0; i < sls.Length; i++)
                             {
@@ -172,13 +172,13 @@ namespace Hearthstone_Deck_Tracker.Utility
                                 { //解析版本
                                     Regex reg = new Regex(".*webversion:v(?<ret>)");
                                     webVer = reg.Replace(sls[i], "${ret}");
-                                    Log.Info("webVersion " + webVer);
+                                   // Log.Info("webVersion " + webVer);
                                 }
                                 else if (sls[i].Contains("webtitle")) //解析title
                                 {
                                     Regex reg = new Regex(".*webtitle:(?<ret>)");
                                     webTitle = reg.Replace(sls[i], "${ret}");
-                                    Log.Info("webTitle " + webTitle);
+                                    //Log.Info("webTitle " + webTitle);
                                 }
                                 else if (sls[i].Contains("href=")) //解析N个连接
                                 {
@@ -186,7 +186,7 @@ namespace Hearthstone_Deck_Tracker.Utility
                                     string[] us = u.Split(' ');
                                     u = us[1];
                                     urls.Add(u);
-                                    Log.Info("webURL " + u);
+                                   // Log.Info("webURL " + u);
                                 }
                                 else if (sls[i].Contains("webbody_start")) //解析title
                                 {
@@ -194,7 +194,7 @@ namespace Hearthstone_Deck_Tracker.Utility
                                     {
                                         webBody += sls[i] + "\r\n";
                                     }
-                                    Log.Info("webBody " + webBody);
+                                   // Log.Info("webBody " + webBody);
                                 }
                             }
                             AllanRelease.Asset ase = new AllanRelease.Asset();
@@ -204,7 +204,7 @@ namespace Hearthstone_Deck_Tracker.Utility
                             ase.Urls = urls.ToArray();
                             rel.Assets = new List<AllanRelease.Asset>();
                             rel.Assets.Add(ase);
-                            Log.Info("rel.Assets++ ");
+                            //Log.Info("rel.Assets++ ");
                         }
                         si++;
                     }
@@ -215,7 +215,7 @@ namespace Hearthstone_Deck_Tracker.Utility
                 Console.WriteLine(ex);
                 return null;
             }
-            Log.Info("=============end================");
+            //Log.Info("=============end================");
             return rel.Assets.Count == 0 ? null : rel;
         }
 

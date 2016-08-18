@@ -384,6 +384,9 @@
     <Compile Include="Enums\TagFilterOperation.cs" />
     <Compile Include="Enums\TimeFrame.cs" />
     <Compile Include="Enums\YesNo.cs" />
+    <Compile Include="FlyoutControls\AllanRemoveDecks.xaml.cs">
+      <DependentUpon>AllanRemoveDecks.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Importing\Game\ImportOptions\ExistingDeck.cs" />
     <Compile Include="Exporting\ExportingActions.cs" />
     <Compile Include="Exporting\ExportingHelper.cs" />
@@ -1034,6 +1037,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="FlyoutControls\Options\Overlay\OverlayPlayer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FlyoutControls\AllanRemoveDecks.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

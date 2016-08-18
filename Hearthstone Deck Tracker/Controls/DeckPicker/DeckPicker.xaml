@@ -178,6 +178,7 @@
                 <MenuItem Header="编辑名字" Click="BtnName_Click" />
                 <MenuItem Header="编辑备注" Click="BtnNotes_Click" />
                 <MenuItem Header="编辑标签" Click="BtnTags_Click" />
+                <MenuItem Header="移除版本(Allan)" Click="BtnVersions_Click" />
                 <MenuItem Name="MenuItemQuickSetTag" Header="快速设置标签">
                     <MenuItem.ItemTemplate>
                         <DataTemplate>

@@ -280,7 +280,12 @@ namespace Hearthstone_Deck_Tracker.Windows
 			TagControlEdit.SetSelectedTags(DeckPickerList.SelectedDecks);
 		}
 
-		internal void BtnEditDeck_Click(object sender, RoutedEventArgs e)
+        internal void BtnVersions_Click(object sender, RoutedEventArgs e) {
+            FlyoutMyDecksRmVersions.IsOpen = true;
+            RmVersionControlEdit.loadCurrentVersions();
+        }
+
+        internal void BtnEditDeck_Click(object sender, RoutedEventArgs e)
 		{
 			var selectedDeck = DeckPickerList.SelectedDecks.FirstOrDefault();
 			if(selectedDeck == null)
