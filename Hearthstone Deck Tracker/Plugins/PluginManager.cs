@@ -36,7 +36,6 @@ namespace Hearthstone_Deck_Tracker.Plugins
 			{
 				Log.Error(ex);
 			}
-            Log.Debug("dsfjkdsajkfsjadfljsdlfajfdasljfdsl<><><><><");
 			SyncPlugins(PluginDirectory, LocalPluginDirectory, LocalPluginDirectory);
 			CreateNoticeFile();
 		}
@@ -65,9 +64,12 @@ namespace Hearthstone_Deck_Tracker.Plugins
 				{
 					sw.WriteLine("插件安装在这个目录会被干掉!");
 					sw.WriteLine("");
-					sw.WriteLine("请安装你的插件到'%AppData%/HearthstoneDeckTracker'.");
-					sw.WriteLine("[选项] > [跟踪] > [插件] > [插件文件夹] 会帮你打开这个目录.");
-				}
+                    sw.WriteLine("目前Allan已经整合自己安装好了，竞技场插件，卡牌收集插件和亡者归来插件，这三个不用单独下载.");
+                    sw.WriteLine("其他插件请按照如下：");
+                    sw.WriteLine("请安装你的插件到'%AppData%/HearthstoneDeckTracker'.");
+                    sw.WriteLine("[选项] > [跟踪] > [插件] > [插件文件夹] 会帮你打开这个目录.");
+                    sw.WriteLine("dll如果还是不行，需要检查下dll右键解除锁定");
+                }
 			}
 			catch(Exception ex)
 			{

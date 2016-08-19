@@ -60,5 +60,70 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 			}
 			Helper.TryOpenUrl(dir.FullName);
 		}
-	}
+
+        private async void ButtonTryToClean_OnClick(object sender, RoutedEventArgs e)
+        {
+            
+            PluginManager.SavePluginsSettings();
+            PluginManager.Instance.UnloadPlugins();
+            if (Directory.Exists("AllanPlugins"))
+            {
+    
+                string appDataPluginDir = Path.Combine(Config.AppDataPath, "Plugins");
+                if (!Directory.Exists(appDataPluginDir))
+                    Directory.CreateDirectory(appDataPluginDir);
+
+                string appDataArena = Path.Combine(Config.AppDataPath, "ArenaHelper");
+                string appDataCollectionTracker = Path.Combine(Config.AppDataPath, "CollectionTracker");
+                string appDataanyfin = Path.Combine(Config.AppDataPath, "anyfin.xml");
+
+                if (Directory.Exists(appDataArena))
+                {
+                    Directory.Delete(appDataArena, true);
+                }
+                if (Directory.Exists(appDataCollectionTracker))
+                {
+                    Directory.Delete(appDataCollectionTracker, true);
+                }
+                if (File.Exists(appDataanyfin)) File.Delete(appDataanyfin);
+
+                string appDataPluginXml = Path.Combine(Config.AppDataPath, "plugins.xml");
+                if (File.Exists(appDataPluginXml)) File.Delete(appDataPluginXml);
+
+                CopyFolder("AllanPlugins", appDataPluginDir);
+                bool isOk = true;
+                try
+                {
+                    if (Directory.Exists("Plugins")) Directory.Delete("Plugins", true);
+                    Directory.CreateDirectory("Plugins");
+                }
+                catch
+                {
+                    isOk = false;
+                    await Core.MainWindow.ShowMessage("提示",
+                                                "稍后程序会自动关闭，但是，请手动删除解压程序的Plugins目录即可完成清理！");
+                }
+                if (isOk) {
+                    await Core.MainWindow.ShowMessage("提示",
+                                                "马上程序会自动关闭！");
+                }
+                Application.Current.Shutdown();
+            }
+        }
+
+        private static void CopyFolder(string from, string to)
+        {
+            to = to + "\\";
+            if (!Directory.Exists(to))
+                Directory.CreateDirectory(to);
+
+            // 子文件夹
+            foreach (string sub in Directory.GetDirectories(from))
+                CopyFolder(sub + "\\", to + Path.GetFileName(sub) + "\\");
+
+            // 文件
+            foreach (string file in Directory.GetFiles(from))
+                File.Copy(file, to + Path.GetFileName(file), true);
+        }
+    }
 }
