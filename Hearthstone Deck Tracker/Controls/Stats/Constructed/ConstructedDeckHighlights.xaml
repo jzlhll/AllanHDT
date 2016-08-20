@@ -79,7 +79,7 @@
                 <TextBlock VerticalAlignment="Center" Foreground="{Binding BestMatchup.WinRateTextBrush}" Style="{StaticResource StyleVisibilityCollapsedIfDataContextNull}">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{}{0} ({1}-{2}, {3}%)">
-                            <Binding Path="BestMatchup.Class"/>
+                            <Binding Path="BestMatchup.CNClass"/>
                             <Binding Path="BestMatchup.Wins"/>
                             <Binding Path="BestMatchup.Losses"/>
                             <Binding Path="BestMatchup.WinRatePercent"/>
@@ -93,7 +93,7 @@
                 <TextBlock VerticalAlignment="Center" Foreground="{Binding WorstMatchup.WinRateTextBrush}" Style="{StaticResource StyleVisibilityCollapsedIfDataContextNull}">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{}{0} ({1}-{2}, {3}%)">
-                            <Binding Path="WorstMatchup.Class"/>
+                            <Binding Path="WorstMatchup.CNClass"/>
                             <Binding Path="WorstMatchup.Wins"/>
                             <Binding Path="WorstMatchup.Losses"/>
                             <Binding Path="WorstMatchup.WinRatePercent"/>

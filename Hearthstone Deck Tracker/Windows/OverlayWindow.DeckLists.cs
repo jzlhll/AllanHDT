@@ -88,6 +88,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 				LblWinRateAgainst.Text = $"VS {translateClass2CN(_game.Opponent.Class)}: {winsVs}-{lossesVs} ({percent}%)";
 			}
 		}
+
         private string translateClass2CN(string s)
         {
             s = s.ToLowerInvariant();
@@ -129,7 +130,6 @@ namespace Hearthstone_Deck_Tracker.Windows
             }
             return s;
         }
-
 
         private void SetDeckTitle() => LblDeckTitle.Text = DeckList.Instance.ActiveDeck?.Name ?? "";
 

@@ -73,14 +73,14 @@
             </Grid>
         </DockPanel>
         <DockPanel Margin="0,5,0,0">
-            <Label Content="职业:" Width="60"/>
+            <Label Content="英雄:" Width="60"/>
             <ComboBox Name="ComboBoxClass" SelectedIndex="0" SelectionChanged="ComboBoxClass_OnSelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Height="24">
                             <Image Source="{Binding ClassImage}" MaxWidth="24" MaxHeight="24" RenderOptions.BitmapScalingMode="Fant" 
                                    Margin="0,0,3,0" Visibility="{Binding ImageVisibility}" />
-                            <TextBlock Text="{Binding HeroClass}" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding CNHeroClass}" VerticalAlignment="Center" />
                         </StackPanel>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>

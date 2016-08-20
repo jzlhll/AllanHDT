@@ -139,7 +139,7 @@
                     </Style>
                 </DataGridTextColumn.ElementStyle>
             </DataGridTextColumn>
-            <DataGridTextColumn Header="Total" Binding="{Binding Total.Summary}" MinWidth="47">
+            <DataGridTextColumn Header="全部" Binding="{Binding Total.Summary}" MinWidth="47">
                 <DataGridTextColumn.ElementStyle>
                     <Style TargetType="TextBlock">
                         <Setter Property="HorizontalAlignment" Value="Center" />

@@ -30,8 +30,9 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats
 			InitializeComponent();
 			ComboBoxTimeframe.ItemsSource = Enum.GetValues(typeof(DisplayedTimeFrame));
 			ComboBoxTimeframe.SelectedItem = Config.Instance.ConstructedStatsTimeFrameFilter;
-			ComboBoxClass.ItemsSource =
-				Enum.GetValues(typeof(HeroClassStatsFilter)).Cast<HeroClassStatsFilter>().Select(x => new HeroClassStatsFilterWrapper(x));
+			ComboBoxClass.ItemsSource = 
+                Enum.GetValues(typeof(HeroClassStatsFilter)).Cast<HeroClassStatsFilter>().Select(x => new HeroClassStatsFilterWrapper(x));
+            
 			ComboBoxClass.SelectedItem = new HeroClassStatsFilterWrapper(Config.Instance.ConstructedStatsClassFilter);
 			ComboBoxRegion.ItemsSource = Enum.GetValues(typeof(RegionAll));
 			ComboBoxRegion.SelectedItem = Config.Instance.ConstructedStatsRegionFilter;
