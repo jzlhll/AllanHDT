@@ -208,6 +208,7 @@
     <Compile Include="AllanAdd\GraveyardWindow.xaml.cs">
       <DependentUpon>GraveyardWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AllanAdd\MyUtils.cs" />
     <Compile Include="API\ActionList.cs" />
     <Compile Include="API\AttackInfo.cs" />
     <Compile Include="API\DeckManagerEvents.cs" />

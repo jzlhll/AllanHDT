@@ -159,11 +159,6 @@
         <DockPanel Margin="0,5,0,0">
             <Label Content="结果:" Width="60"/>
             <ComboBox Name="ComboBoxResult" SelectionChanged="ComboBoxResult_OnSelectionChanged">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Path=., Converter={StaticResource EnumDescriptionConverter}}" />
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
             </ComboBox>
         </DockPanel>
         <DockPanel Margin="0,5,0,0">
@@ -209,7 +204,7 @@
                   IsEnabled="{Binding IsChecked, ElementName=CheckBoxDecks, Converter={StaticResource InverseBooleanConverter}}"
                   Checked="CheckBox_UpdateStats" Unchecked="CheckBox_UpdateStats" />
         <CheckBox Name="CheckBoxTags" Content="应用标签过滤" Margin="5,5,0,0" 
-                  ToolTip="Apply tag filteres currently set in 'DeckPicker' > 'Sort/Filter Decks' (double arrow button)."
+                  ToolTip="应用标签过滤现在在主界面，第二行的向下双箭头，中设置."
                   IsChecked="{Binding Path=ConstructedStatsApplyTagFilters, Source={StaticResource ConfigWrapper}}"
                   Checked="CheckBox_UpdateStats" Unchecked="CheckBox_UpdateStats" />
     </StackPanel>

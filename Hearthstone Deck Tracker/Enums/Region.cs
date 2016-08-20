@@ -8,31 +8,36 @@ namespace Hearthstone_Deck_Tracker.Enums
 {
 	public enum Region
 	{
-		UNKNOWN = 0,
-		US = 1,
-		EU = 2,
-		ASIA = 3,
-		CHINA = 5
+        [Description("未知")]
+        UNKNOWN = 0,
+        [Description("美国")]
+        US = 1,
+        [Description("欧洲")]
+        EU = 2,
+        [Description("亚洲")]
+        ASIA = 3,
+        [Description("中国")]
+        CHINA = 5
 	}
 
 	public enum RegionAll
 	{
-		[Description("All")]
+		[Description("全部")]
 		ALL = -1,
 
-		[Description("Unknown")]
+		[Description("未知")]
 		UNKNOWN = 0,
 
-		[Description("US")]
+		[Description("美国")]
 		US = 1,
 
-		[Description("EU")]
+		[Description("欧洲")]
 		EU = 2,
 
-		[Description("Asia")]
+		[Description("亚洲")]
 		ASIA = 3,
 
-		[Description("China")]
+		[Description("中国")]
 		CHINA = 5
 	}
 }

@@ -55,10 +55,10 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats
 			ComboBoxMode.SelectedItem = GameModeConverter.convert(Config.Instance.ConstructedStatsModeFilter);
 			ComboBoxFormat.ItemsSource = Enum.GetValues(typeof(Format));
 			ComboBoxFormat.SelectedItem = Config.Instance.ConstructedStatsFormatFilter;
-			ComboBoxCoin.ItemsSource = Enum.GetValues(typeof(AllYesNo));
+            ComboBoxCoin.ItemsSource = new[] { "全部", "是", "否"};//Enum.GetValues(typeof(AllYesNo));
 			ComboBoxCoin.SelectedItem = AllYesNoConverter.convert(Config.Instance.ConstructedStatsCoinFilter);
-			ComboBoxResult.ItemsSource = Enum.GetValues(typeof(GameResultAll));
-			ComboBoxResult.SelectedItem = Config.Instance.ConstructedStatsResultFilter;
+			ComboBoxResult.ItemsSource = new[] { "全部", "胜利", "失败", "弃局" };  //Enum.GetValues(typeof(GameResultAll));
+			ComboBoxResult.SelectedItem = GameResultAllConverter.convert(Config.Instance.ConstructedStatsResultFilter);
 			ComboBoxOpponentClass.ItemsSource =
 				Enum.GetValues(typeof(HeroClassStatsFilter)).Cast<HeroClassStatsFilter>().Select(x => new HeroClassStatsFilterWrapper(x));
 			ComboBoxOpponentClass.SelectedItem = new HeroClassStatsFilterWrapper(Config.Instance.ConstructedStatsOpponentClassFilter);
@@ -191,7 +191,7 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats
 		{
 			if(!_initialized)
 				return;
-			Config.Instance.ConstructedStatsResultFilter = (GameResultAll)ComboBoxResult.SelectedItem;
+			Config.Instance.ConstructedStatsResultFilter = GameResultAllConverter.convert((string)ComboBoxResult.SelectedItem);
 			Config.Save();
 			_updateCallback?.Invoke();
 		}
