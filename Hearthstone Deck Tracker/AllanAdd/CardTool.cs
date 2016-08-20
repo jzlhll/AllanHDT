@@ -8,7 +8,51 @@
             {
                 return true;
             }
+            char[] chs = web.ToCharArray();
+            int i0 = chs[0] - '0';
+            char i1 = chs[1];
+            if (i0 >= 1 && i0 <= 9 && i1 == '#')
+            {
+                return true;
+            }
             return false;
+        }
+
+        /**
+        * 将62进制转换成10进制数
+        * 
+        * @param ident62
+        * @return
+        */
+        public static int _62_to_10(string ident62)
+        {
+            int dec = 0;
+            int bas = 62;
+            int keisu = 0;
+            int cnt = 0;
+
+            byte[] ident = System.Text.Encoding.ASCII.GetBytes(ident62);
+            for (int i = ident.Length - 1; i >= 0; i--)
+            {
+                int num = 0;
+                if (ident[i] > 48 && ident[i] <= 57)
+                {
+                    num = ident[i] - 48;
+                }
+                else if (ident[i] >= 65 && ident[i] <= 90)
+                {
+                    num = ident[i] - 65 + 10;
+                }
+                else if (ident[i] >= 97 && ident[i] <= 122)
+                {
+                    num = ident[i] - 97 + 10 + 26;
+                }
+
+                keisu = (int)System.Math.Pow(bas, cnt);
+                dec += num * keisu;
+                cnt++;
+            }
+            return dec;
         }
 
         public static string getHeroNameBy178ID(int id)

@@ -29,6 +29,59 @@ namespace AllanPlugins
             mCardTool = new CardTool();
         }
 
+        private static string getHeroIdByMyApk(int i) {
+            switch (i) {
+                case 1:
+                    return "德鲁伊";
+                case 2:
+                    return "猎人";
+                case 3:
+                    return "法师";
+                case 4:
+                    return "圣骑士";
+                case 5:
+                    return "牧师";
+                case 6:
+                    return "潜行者";
+                case 7:
+                    return "萨满";
+                case 8:
+                    return "术士";
+                case 9:
+                    return "战士";
+            }
+            return "";
+        }
+
+        public string[] getMyApkConvertedToEngNames(string myapkStr, int heroId) {
+            myapkStr = myapkStr.Substring(2);
+            char[] chs = myapkStr.ToCharArray();
+            List<string> cards = new List<string>();
+            Log.Info("myapkstr " + myapkStr);
+            string ret = "";
+            for (int i = 0; i < chs.Length; i += 2) {
+                string ss = ("" + chs[i]) + chs[i + 1];
+                int duowan_id = CardTool._62_to_10(ss);
+                string encard = mCardTool.getCardByDuowanId(duowan_id).enCard;
+                bool isAdd = false;
+                for (int j = 0; j<cards.Count;j++) {
+                    if (cards[j] == encard) {
+                        cards[j] = encard + " x 2";
+                        isAdd = true;
+                        break;
+                    }
+                }
+                if (!isAdd) {
+                    cards.Add(encard);
+                }
+            }
+            chs = null;
+            foreach (string s in cards) {
+                ret += s + "\r\n";
+            }
+            return new string[]{ ret , getHeroIdByMyApk(heroId)};
+        }
+
         public string[] get178hsdeckConvertedToEngNames(string _178hsdeck) {
             //            [hsdeck]
             //3559466,法力浮龙,NEW1_012,1,1,1
