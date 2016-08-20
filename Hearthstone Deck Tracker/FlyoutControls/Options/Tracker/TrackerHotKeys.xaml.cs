@@ -68,7 +68,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 			var success = HotKeyManager.AddPredefinedHotkey(SelectedHotKey,
 			                                                ((PredefinedHotKeyActionInfo)ComboBoxActions.SelectedItem).MethodName);
 			if(!success)
-				ErrorText = "Could not register hotkey.";
+				ErrorText = "不能注册热键.";
 		}
 
 		private void ComboBoxMod_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -93,7 +93,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 			}
 			catch(Exception ex)
 			{
-				Log.Error("Error deleting hotkey: " + ex);
+				Log.Error("删除热键失败: " + ex);
 			}
 		}
 

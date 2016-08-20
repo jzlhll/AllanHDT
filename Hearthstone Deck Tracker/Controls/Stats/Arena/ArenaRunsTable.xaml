@@ -80,7 +80,7 @@
                     </Style>
                 </DataGridTextColumn.ElementStyle>
             </DataGridTextColumn>
-            <DataGridTextColumn Header="地区" Binding="{Binding Region}">
+            <DataGridTextColumn Header="服务器" Binding="{Binding Region}">
                 <DataGridTextColumn.ElementStyle>
                     <Style TargetType="TextBlock">
                         <Setter Property="HorizontalAlignment" Value="Center" />

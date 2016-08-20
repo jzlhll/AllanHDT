@@ -37,19 +37,26 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats
 			ComboBoxRegion.SelectedItem = Config.Instance.ConstructedStatsRegionFilter;
 			ComboBoxMode.ItemsSource = new[]
 			{
-				GameMode.All,
-				GameMode.Ranked,
-				GameMode.Casual,
-				GameMode.Brawl,
-				GameMode.Friendly,
-				GameMode.Practice,
-				GameMode.Spectator
+                "全部",
+                "天梯",
+                "休闲",
+                "乱斗",
+                "友谊",
+                "练习",
+                "观众"
+				//GameMode.All,
+				//GameMode.Ranked,
+				//GameMode.Casual,
+				//GameMode.Brawl,
+				//GameMode.Friendly,
+				//GameMode.Practice,
+				//GameMode.Spectator
 			};
-			ComboBoxMode.SelectedItem = Config.Instance.ConstructedStatsModeFilter;
+			ComboBoxMode.SelectedItem = GameModeConverter.convert(Config.Instance.ConstructedStatsModeFilter);
 			ComboBoxFormat.ItemsSource = Enum.GetValues(typeof(Format));
 			ComboBoxFormat.SelectedItem = Config.Instance.ConstructedStatsFormatFilter;
 			ComboBoxCoin.ItemsSource = Enum.GetValues(typeof(AllYesNo));
-			ComboBoxCoin.SelectedItem = Config.Instance.ConstructedStatsCoinFilter;
+			ComboBoxCoin.SelectedItem = AllYesNoConverter.convert(Config.Instance.ConstructedStatsCoinFilter);
 			ComboBoxResult.ItemsSource = Enum.GetValues(typeof(GameResultAll));
 			ComboBoxResult.SelectedItem = Config.Instance.ConstructedStatsResultFilter;
 			ComboBoxOpponentClass.ItemsSource =
@@ -135,7 +142,8 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats
 		{
 			if(!_initialized)
 				return;
-			Config.Instance.ConstructedStatsModeFilter = (GameMode)ComboBoxMode.SelectedItem;
+            
+			Config.Instance.ConstructedStatsModeFilter = GameModeConverter.convert((string)ComboBoxMode.SelectedItem);
 			Config.Save();
 			_updateCallback?.Invoke();
 			OnPropertyChanged(nameof(RankFilterVisibility));
@@ -146,7 +154,7 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats
 		{
 			if(!_initialized)
 				return;
-			Config.Instance.ConstructedStatsCoinFilter = (AllYesNo)ComboBoxCoin.SelectedItem;
+			Config.Instance.ConstructedStatsCoinFilter = AllYesNoConverter.convert((string)ComboBoxCoin.SelectedItem);
 			Config.Save();
 			_updateCallback?.Invoke();
 		}

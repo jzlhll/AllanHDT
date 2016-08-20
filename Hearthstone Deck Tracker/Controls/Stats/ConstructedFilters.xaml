@@ -79,7 +79,7 @@
             </Grid>
         </DockPanel>
         <DockPanel Margin="0,5,0,0">
-            <Label Content="职业:" Width="60"/>
+            <Label Content="己方英雄:" Width="60"/>
             <ComboBox Name="ComboBoxClass" SelectedIndex="0" SelectionChanged="ComboBoxClass_OnSelectionChanged"
                       IsEnabled="{Binding IsChecked, ElementName=CheckBoxDecks, Converter={StaticResource InverseBooleanConverter}}">
                 <ComboBox.ItemTemplate>
@@ -94,7 +94,7 @@
             </ComboBox>
         </DockPanel>
         <DockPanel Margin="0,5,0,0">
-            <Label Content="对阵:" Width="60"/>
+            <Label Content="对手英雄:" Width="60"/>
             <ComboBox Name="ComboBoxOpponentClass" SelectionChanged="ComboBoxOpponentClass_OnSelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
@@ -109,13 +109,8 @@
             </ComboBox>
         </DockPanel>
         <DockPanel Margin="0,5,0,0">
-            <Label Content="模式:(翻译?)" Width="60" ToolTip="Ranked-天梯 Casual-休闲 Arena-竞技场 Brawl-乱斗 Friendly-好友 Practice-练习 Spectator-观众 none-无"/>
-            <ComboBox Name="ComboBoxMode" SelectedIndex="0" SelectionChanged="ComboBoxMode_OnSelectionChanged" ToolTip="Ranked-天梯 Casual-休闲 Arena-竞技场 Brawl-乱斗 Friendly-好友 Practice-练习 Spectator-观众 none-无">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Path=., Converter={StaticResource EnumDescriptionConverter}}" />
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
+            <Label Content="模式:" Width="60" />
+            <ComboBox Name="ComboBoxMode" SelectedIndex="0" SelectionChanged="ComboBoxMode_OnSelectionChanged">
             </ComboBox>
         </DockPanel>
         <DockPanel Margin="0,5,0,0" Visibility="{Binding RankFilterVisibility, RelativeSource={RelativeSource AncestorType=UserControl}}">
@@ -193,15 +188,10 @@
         <DockPanel Margin="0,5,0,0">
             <Label Content="硬币:" Width="60"/>
             <ComboBox Name="ComboBoxCoin" SelectedIndex="0" SelectionChanged="ComboBoxCoin_OnSelectionChanged">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Path=., Converter={StaticResource EnumDescriptionConverter}}" />
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
             </ComboBox>
         </DockPanel>
         <DockPanel Margin="0,5,0,0">
-            <Label Content="地区:" Width="60"/>
+            <Label Content="服务器:" Width="60"/>
             <ComboBox Name="ComboBoxRegion" SelectedIndex="0" SelectionChanged="ComboBoxRegion_OnSelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>

@@ -58,7 +58,7 @@
                               Unchecked="CheckBoxAttack_Unchecked" />
                     <CheckBox x:Name="CheckBoxCenterDeckVertically"
                               Content="卡组中心垂直" HorizontalAlignment="Left"
-                              ToolTip="垂直的卡组所选区域内的中心卡和信息面板。地区可以通过【界面】>【常规】>【解锁】来改变。"
+                              ToolTip="垂直的卡组所选区域内的中心卡和信息面板。可以通过【界面】>【常规】>【解锁】来改变。"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckBoxCenterDeckVertically_Checked"
                               Unchecked="CheckBoxCenterDeckVertically_Unchecked" />
