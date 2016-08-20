@@ -14,12 +14,17 @@ namespace HDTUpdate
         private static UpdatingState _state;
         private static int count = 0;
         private static int countConsole = 0;
+
+
+
         private static void Main(string[] args)
         {
             Console.Title = "HDT汉化版更新程序";
             Console.CursorVisible = false;
             if (args.Length < 2)
             {
+                Console.WriteLine("更新不是点击该程序！运行HDT汉化高级版.exe，如果有更新会提示。");
+                Console.ReadLine();
                 return;
             }
             try
