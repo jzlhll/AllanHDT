@@ -20,7 +20,7 @@
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="图表" Foreground="White"/>
-                        <CheckBox Name="CheckBoxShowLegends" Content="显示传说" Margin="20,0,0,0" Foreground="White" IsChecked="{Binding Path=ArenaStatsShowLegends, Source={StaticResource ConfigWrapper}}"/>
+                        <CheckBox Name="CheckBoxShowLegends" Content="柱状图" Margin="20,0,0,0" Foreground="White" IsChecked="{Binding Path=ArenaStatsShowLegends, Source={StaticResource ConfigWrapper}}"/>
                     </StackPanel>
                 </Expander.Header>
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" PreviewMouseWheel="ForwardScrollEvent">

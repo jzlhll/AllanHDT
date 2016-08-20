@@ -164,7 +164,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 						 .Select(x =>
 								 new ChartStats
 								 {
-									 Name = x.Key + " (" + Math.Round(100.0 * x.Count() / games.Count) + "%)",
+									 Name = AllanAdd.MyUtils.translateClass2CN(x.Key) + " (" + Math.Round(100.0 * x.Count() / games.Count) + "%)",
 									 Value = x.Count(),
 									 Brush = new SolidColorBrush(Helper.GetClassColor(x.Key, true))
 								 });
@@ -178,8 +178,8 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 				var games = GetFilteredGames().ToList();
 				var wins = games.Where(x => x.Result == GameResult.Win).ToList();
 				return wins.Count > 0
-						   ? wins.Select(x => new ChartStats {Name = "Wins", Value = Math.Round(100.0 * wins.Count() / games.Count)})
-						   : EmptyChartStats("Wins");
+						   ? wins.Select(x => new ChartStats {Name = "胜场", Value = Math.Round(100.0 * wins.Count() / games.Count)})
+						   : EmptyChartStats("胜场");
 			}
 		}
 
@@ -219,7 +219,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 						 .Select(g =>
 								 new ChartStats
 								 {
-									 Name = g.Key + " (" + Math.Round(100.0 * g.Count() / games.Count) + "%)",
+									 Name = AllanAdd.MyUtils.translateClass2CN(g.Key) + " (" + Math.Round(100.0 * g.Count() / games.Count) + "%)",
 									 Value = g.Count(),
 									 Brush = new SolidColorBrush(Helper.GetClassColor(g.Key, true))
 								 });

@@ -24,7 +24,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 		public MatchupStats Shaman => GetMatchupStats(HeroClass.Shaman);
 		public MatchupStats Warlock => GetMatchupStats(HeroClass.Warlock);
 		public MatchupStats Warrior => GetMatchupStats(HeroClass.Warrior);
-		public MatchupStats Total => new MatchupStats("Total", _games);
+		public MatchupStats Total => new MatchupStats("È«²¿", _games);
 
 		public MatchupStats GetMatchupStats(HeroClass opponent)
 			=> new MatchupStats(opponent.ToString(), _games.Where(x => x.OpponentHero == opponent.ToString()).Select(x => x));

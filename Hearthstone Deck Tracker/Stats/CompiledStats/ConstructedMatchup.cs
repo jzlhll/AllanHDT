@@ -27,7 +27,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 			_games = games;
 		}
 
-		public string Class => _player?.ToString() ?? "Total";
+		public string Class => _player?.ToString() ?? "全部";
 		public BitmapImage ClassImage => _player != null ? ImageCache.GetClassIcon(_player.ToString()) : new BitmapImage();
 		public Visibility TextVisibility => _player != null ? Visibility.Collapsed : Visibility.Visible;
 		public string Text => Class.ToUpper();
@@ -41,7 +41,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 		public MatchupStats Shaman => GetMatchupStats(HeroClass.Shaman);
 		public MatchupStats Warlock => GetMatchupStats(HeroClass.Warlock);
 		public MatchupStats Warrior => GetMatchupStats(HeroClass.Warrior);
-		public MatchupStats Total => new MatchupStats("Total", _games);
+		public MatchupStats Total => new MatchupStats("全部", _games);
 
 		public MatchupStats GetMatchupStats(HeroClass opponent)
 			=> new MatchupStats(opponent.ToString(), _games.Where(x => x.OpponentHero == opponent.ToString()).Select(x => x));

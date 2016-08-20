@@ -9,6 +9,7 @@ using System.Windows.Media;
 using Hearthstone_Deck_Tracker.Annotations;
 using Hearthstone_Deck_Tracker.Enums;
 using Hearthstone_Deck_Tracker.Hearthstone;
+using Hearthstone_Deck_Tracker.AllanAdd;
 
 #endregion
 
@@ -87,7 +88,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 				    x =>
 					new ChartStats
 					{
-						Name = x.Key + " (" + Math.Round(100.0 * x.Count() / ArenaDecks.Count()) + "%)",
+						Name = MyUtils.translateClass2CN(x.Key) + " (" + Math.Round(100.0 * x.Count() / ArenaDecks.Count()) + "%)",
 						Value = x.Count(),
 						Brush = new SolidColorBrush(Helper.GetClassColor(x.Key, true))
 					});
@@ -104,7 +105,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 					                 g =>
 					                 new ChartStats
 					                 {
-						                 Name = g.Key + " (" + Math.Round(100.0 * g.Count() / opponents.Count()) + "%)",
+						                 Name = MyUtils.translateClass2CN(g.Key) + " (" + Math.Round(100.0 * g.Count() / opponents.Count()) + "%)",
 						                 Value = g.Count(),
 						                 Brush = new SolidColorBrush(Helper.GetClassColor(g.Key, true))
 					                 });

@@ -31,55 +31,13 @@ namespace Hearthstone_Deck_Tracker.Windows
 			ExportDeck(deck);
 		}
 
-        private string translateClass2CN(string s)
-        {
-            s = s.ToLowerInvariant();
-            if (s.Equals("hunter"))
-            {
-                return "猎人";
-            }
-            else if (s.Equals("paladin"))
-            {
-                return "圣骑士";
-            }
-            else if (s.Equals("priest"))
-            {
-                return "牧师";
-            }
-            else if (s.Equals("warrior"))
-            {
-                return "战士";
-            }
-            else if (s.Equals("warlock"))
-            {
-                return "术士";
-            }
-            else if (s.Equals("druid"))
-            {
-                return "德鲁伊";
-            }
-            else if (s.Equals("mage"))
-            {
-                return "法师";
-            }
-            else if (s.Equals("shaman"))
-            {
-                return "萨满";
-            }
-            else if (s.Equals("rogue"))
-            {
-                return "潜行者";
-            }
-            return s;
-        }
-
         private async void ExportDeck(Deck deck)
 		{
 			var export = true;
 			if(Config.Instance.ShowExportingDialog)
 			{
 
-				var message = $"1) 创建一个新的或者打开一个存在的 【{translateClass2CN(deck.Class)} 】卡组.\n\n2) 离开卡组创建界面.\n\n3) 点击【导出】并且不要动鼠标或者点它直到完成。";
+				var message = $"1) 创建一个新的或者打开一个存在的 【{AllanAdd.MyUtils.translateClass2CN(deck.Class)} 】卡组.\n\n2) 离开卡组创建界面.\n\n3) 点击【导出】并且不要动鼠标或者点它直到完成。";
 				var settings = new MessageDialogs.Settings {AffirmativeButtonText = "导出"};
 				var result = await this.ShowMessageAsync("导出 " + deck.Name + " 到炉石", message, MessageDialogStyle.AffirmativeAndNegative, settings);
 				export = result == MessageDialogResult.Affirmative;
