@@ -41,6 +41,10 @@
             {
                 return "潜行者";
             }
+            else if (s.Equals("other"))
+            {
+                return "其他";
+            }
             return s;
         }
         public static string translateClass2EN(string s)

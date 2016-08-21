@@ -29,7 +29,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <DockPanel Height="300" MinWidth="300" Grid.Column="0">
-                            <TextBlock Text="胜率作为" Foreground="#FF666666" FontFamily="Segoe UI" FontSize="18" DockPanel.Dock="Top" Margin="20,0,0,0"/>
+                            <TextBlock Text="自己职业胜率分布" Foreground="#FF666666" FontFamily="Segoe UI" FontSize="18" DockPanel.Dock="Top" Margin="20,0,0,0"/>
                             <metroChart:ClusteredColumnChart Background="Transparent" ChartLegendVisibility="Collapsed" Margin="0,0,0,-30" ChartTitleVisibility="Collapsed" SelectedBrush="Transparent">
                                 <metroChart:ClusteredColumnChart.Series>
                                     <metroChart:ChartSeries SeriesTitle=" " DisplayMember="Name" ValueMember="Value" BrushMember="Brush"  ItemsSource="{Binding Path=AvgWinratePerClass, Source={x:Static compiledStats:ConstructedStats.Instance}, IsAsync=True}"/>
@@ -37,7 +37,7 @@
                             </metroChart:ClusteredColumnChart>
                         </DockPanel>
                         <DockPanel Height="300" MinWidth="300" Grid.Column="1">
-                            <TextBlock Text="胜率对抗" Foreground="#FF666666" FontFamily="Segoe UI" FontSize="18" DockPanel.Dock="Top" Margin="20,0,0,0"/>
+                            <TextBlock Text="对抗职业胜率分布" Foreground="#FF666666" FontFamily="Segoe UI" FontSize="18" DockPanel.Dock="Top" Margin="20,0,0,0"/>
                             <metroChart:ClusteredColumnChart Background="Transparent" ChartLegendVisibility="Collapsed" Margin="0,0,0,-30" ChartTitleVisibility="Collapsed" SelectedBrush="Transparent">
                                 <metroChart:ClusteredColumnChart.Series>
                                     <metroChart:ChartSeries SeriesTitle=" " DisplayMember="Name" ValueMember="Value" BrushMember="Brush"  ItemsSource="{Binding Path=WinrateAgainstClass, Source={x:Static compiledStats:ConstructedStats.Instance}, IsAsync=True}"/>

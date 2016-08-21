@@ -235,7 +235,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 					.Select(x =>
 							new ChartStats
 							{
-								Name = x.Key,
+								Name = AllanAdd.MyUtils.translateClass2CN(x.Key),
 								Value = Math.Round(100.0 * x.Count(g => g.Result == GameResult.Win) / x.Count(), 1),
 								Brush = new SolidColorBrush(Helper.GetClassColor(x.Key, true))
 							});
@@ -247,7 +247,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 					.Select(x =>
 							new ChartStats
 							{
-								Name = x.Key,
+								Name = AllanAdd.MyUtils.translateClass2CN(x.Key),
 								Value = Math.Round(100.0 * x.Count(g => g.Result == GameResult.Win) / x.Count(), 1),
 								Brush = new SolidColorBrush(Helper.GetClassColor(x.Key, true))
 							});

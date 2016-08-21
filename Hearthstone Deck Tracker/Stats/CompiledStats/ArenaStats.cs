@@ -125,8 +125,8 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 				{
 					var runs = groupedByWins.FirstOrDefault(x => x.Wins == n);
 					if(runs == null)
-						return new ChartStats {Name = n + " wins", Value = 0};
-					return new ChartStats {Name = n + " wins", Value = runs.Count};
+						return new ChartStats {Name = n + " 胜", Value = 0};
+					return new ChartStats {Name = n + " 胜", Value = runs.Count};
 				});
 			}
 		}
@@ -152,8 +152,8 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 						            x =>
 						            new ChartStats
 						            {
-							            Name = n + " wins (" + x.Key + ")",
-							            Value = x.Count(),
+                                        Name = n + " 胜 (" + MyUtils.translateClass2CN(x.Key) + ")",
+                                        Value = x.Count(),
 							            Brush = new SolidColorBrush(Helper.GetClassColor(x.Key, true))
 						            });
 				}).ToArray();
@@ -175,7 +175,8 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 						var color = Helper.GetClassColor(x, true);
 						if(g.Key == GameResult.Loss)
 							color = Color.FromRgb((byte)(color.R * 0.7), (byte)(color.G * 0.7), (byte)(color.B * 0.7));
-						return new ChartStats {Name = g.Key.ToString() + " vs " + x.ToString(), Value = g.Count(), Brush = new SolidColorBrush(color)};
+						return new ChartStats {Name = GameResultConvert.convert(g.Key) + " vs " 
+                            + MyUtils.translateClass2CN(x.ToString()), Value = g.Count(), Brush = new SolidColorBrush(color)};
 					});
 				}).ToArray();
 			}
@@ -192,7 +193,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 						        x =>
 						        new ChartStats
 						        {
-							        Name = x.Key,
+							        Name = MyUtils.translateClass2CN(x.Key),
 							        Value = Math.Round((double)x.Sum(d => d.Deck.DeckStats.Games.Count(g => g.Result == GameResult.Win)) / x.Count(), 1),
 							        Brush = new SolidColorBrush(Helper.GetClassColor(x.Key, true))
 						        })
