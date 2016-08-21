@@ -43,6 +43,45 @@
             }
             return s;
         }
-
+        public static string translateClass2EN(string s)
+        {
+            if (s.Equals("猎人"))
+            {
+                return "Hunter";
+            }
+            else if (s.Equals("圣骑士"))
+            {
+                return "Paladin";
+            }
+            else if (s.Equals("牧师"))
+            {
+                return "Priest";
+            }
+            else if (s.Equals("战士"))
+            {
+                return "Warrior";
+            }
+            else if (s.Equals("术士"))
+            {
+                return "Warlock";
+            }
+            else if (s.Equals("德鲁伊"))
+            {
+                return "Druid";
+            }
+            else if (s.Equals("法师"))
+            {
+                return "Mage";
+            }
+            else if (s.Equals("萨满"))
+            {
+                return "Shaman";
+            }
+            else if (s.Equals("潜行者"))
+            {
+                return "Rogue";
+            }
+            return s;
+        }
     }
 }

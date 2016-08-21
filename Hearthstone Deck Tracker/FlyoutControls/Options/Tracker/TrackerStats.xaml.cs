@@ -43,10 +43,22 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 			CheckboxStatsInWindow.IsChecked = Config.Instance.StatsInWindow;
 			CheckboxReplays.IsChecked = Config.Instance.RecordReplays;
 			ComboboxDisplayedStats.ItemsSource = Enum.GetValues(typeof(DisplayedStats));
-			ComboboxDisplayedMode.ItemsSource = Enum.GetValues(typeof(GameMode));
-			ComboboxDisplayedTimeFrame.ItemsSource = Enum.GetValues(typeof(DisplayedTimeFrame));
+			ComboboxDisplayedMode.ItemsSource = //Enum.GetValues(typeof(GameMode));
+            new[]
+            {
+                "全部",
+                "天梯",
+                "休闲",
+                "竞技场",
+                "乱斗",
+                "友谊",
+                "练习",
+                "观众",
+                "无"
+			};
+            ComboboxDisplayedTimeFrame.ItemsSource = Enum.GetValues(typeof(DisplayedTimeFrame));
 			ComboboxDisplayedStats.SelectedItem = Config.Instance.DisplayedStats;
-			ComboboxDisplayedMode.SelectedItem = Config.Instance.DisplayedMode;
+			ComboboxDisplayedMode.SelectedItem = GameModeConverter.convert(Config.Instance.DisplayedMode);
 			ComboboxDisplayedTimeFrame.SelectedItem = Config.Instance.DisplayedTimeFrame;
 			PanelCustomTimeFrame.Visibility = Config.Instance.DisplayedTimeFrame == DisplayedTimeFrame.Custom
 				                                  ? Visibility.Visible : Visibility.Collapsed;
@@ -279,7 +291,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 		{
 			if(!_initialized)
 				return;
-			Config.Instance.DisplayedMode = (GameMode)ComboboxDisplayedMode.SelectedItem;
+			Config.Instance.DisplayedMode = GameModeConverter.convert((string)ComboboxDisplayedMode.SelectedItem);
 			Config.Save();
 			foreach(var deck in DeckList.Instance.Decks)
 				deck.StatsUpdated();

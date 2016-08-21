@@ -20,6 +20,41 @@ namespace Hearthstone_Deck_Tracker.Enums
         CHINA = 5
 	}
 
+    public class RegionConvert {
+        public static Region convert(string s) {
+            switch (s) {
+                case "未知":
+                    return Region.UNKNOWN;
+                case "美国":
+                    return Region.US;
+                case "欧洲":
+                    return Region.EU;
+                case "亚洲":
+                    return Region.ASIA;
+                case "中国":
+                    return Region.CHINA;
+            }
+            return Region.CHINA;
+        }
+        public static string convert(Region r)
+        {
+            switch (r)
+            {
+                case Region.UNKNOWN:
+                    return "未知";
+                case Region.US:
+                    return "美国";
+                case Region.EU:
+                    return "欧洲";
+                case Region.ASIA:
+                    return "亚洲";
+                case Region.CHINA:
+                    return "中国";
+            }
+            return "中国";
+        }
+    }
+
 	public enum RegionAll
 	{
 		[Description("全部")]

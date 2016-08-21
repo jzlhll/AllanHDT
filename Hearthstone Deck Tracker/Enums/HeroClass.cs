@@ -12,6 +12,60 @@
         Warlock,
         Warrior
     }
+    public class HeroClassConverter
+    {
+        public static HeroClass convert(string cl)
+        {
+            switch (cl)
+            {
+                case "德鲁伊":
+                    return HeroClass.Druid;
+                case "猎人":
+                    return HeroClass.Hunter;
+                case "法师":
+                    return HeroClass.Mage;
+                case "圣骑士":
+                    return HeroClass.Paladin;
+                case "牧师":
+                    return HeroClass.Priest;
+                case "潜行者":
+                    return HeroClass.Rogue;
+                case "萨满":
+                    return HeroClass.Shaman;
+                case "术士":
+                    return HeroClass.Warlock;
+                case "战士":
+                    return HeroClass.Warrior;
+            }
+            return HeroClass.Druid;
+        }
+        public static string convert(HeroClass cl)
+        {
+            switch (cl)
+            {
+                case HeroClass.Druid:
+                    return "德鲁伊";
+                case HeroClass.Hunter:
+                    return "猎人";
+                case HeroClass.Mage:
+                    return "法师";
+                case HeroClass.Paladin:
+                    return "圣骑士";
+                case HeroClass.Priest:
+                    return "牧师";
+                case HeroClass.Rogue:
+                    return "潜行者";
+                case HeroClass.Shaman:
+                    return "萨满";
+                case HeroClass.Warlock:
+                    return "术士";
+                case HeroClass.Warrior:
+                    return "战士";
+            }
+            return "德鲁伊";
+        }
+    }
+
 
     public enum HeroClassAll
     {
@@ -28,6 +82,68 @@
         Archived
     }
 
+    public class HeroClassAllConverter
+    {
+        public static HeroClassAll convert(string cl)
+        {
+            switch (cl)
+            {
+                case "全部":
+                    return HeroClassAll.All;
+                case "德鲁伊":
+                    return HeroClassAll.Druid;
+                case "猎人":
+                    return HeroClassAll.Hunter;
+                case "法师":
+                    return HeroClassAll.Mage;
+                case "圣骑士":
+                    return HeroClassAll.Paladin;
+                case "牧师":
+                    return HeroClassAll.Priest;
+                case "潜行者":
+                    return HeroClassAll.Rogue;
+                case "萨满":
+                    return HeroClassAll.Shaman;
+                case "术士":
+                    return HeroClassAll.Warlock;
+                case "战士":
+                    return HeroClassAll.Warrior;
+                case "压缩/存储":
+                    return HeroClassAll.Archived;
+            }
+            return HeroClassAll.All;
+        }
+        public static string convert(HeroClassAll cl)
+        {
+            switch (cl)
+            {
+                case HeroClassAll.All:
+                    return "全部";
+                case HeroClassAll.Druid:
+                    return "德鲁伊";
+                case HeroClassAll.Hunter:
+                    return "猎人";
+                case HeroClassAll.Mage:
+                    return "法师";
+                case HeroClassAll.Paladin:
+                    return "圣骑士";
+                case HeroClassAll.Priest:
+                    return "牧师";
+                case HeroClassAll.Rogue:
+                    return "潜行者";
+                case HeroClassAll.Shaman:
+                    return "萨满";
+                case HeroClassAll.Warlock:
+                    return "术士";
+                case HeroClassAll.Warrior:
+                    return "战士";
+                case HeroClassAll.Archived:
+                    return "压缩/存储";
+            }
+            return "全部";
+        }
+    }
+
     public enum HeroClassStatsFilter
     {
         All,
@@ -42,7 +158,8 @@
         Warrior
     }
 
-    public class HeroClassStatsFilterConverter{
+    public class HeroClassStatsFilterConverter
+    {
         public static HeroClassStatsFilter convert(string cl)
         {
             switch (cl)
@@ -70,8 +187,10 @@
             }
             return HeroClassStatsFilter.All;
         }
-        public static string convert(HeroClassStatsFilter cl) {
-            switch (cl) {
+        public static string convert(HeroClassStatsFilter cl)
+        {
+            switch (cl)
+            {
                 case HeroClassStatsFilter.All:
                     return "全部";
                 case HeroClassStatsFilter.Druid:

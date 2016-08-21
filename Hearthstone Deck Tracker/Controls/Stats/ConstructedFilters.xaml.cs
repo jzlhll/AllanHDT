@@ -58,7 +58,7 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats
 			ComboBoxFormat.SelectedItem = Config.Instance.ConstructedStatsFormatFilter;
             ComboBoxCoin.ItemsSource = new[] { "全部", "是", "否"};//Enum.GetValues(typeof(AllYesNo));
 			ComboBoxCoin.SelectedItem = AllYesNoConverter.convert(Config.Instance.ConstructedStatsCoinFilter);
-			ComboBoxResult.ItemsSource = new[] { "全部", "胜利", "失败", "弃局" };  //Enum.GetValues(typeof(GameResultAll));
+			ComboBoxResult.ItemsSource = new[] { "全部", "胜利", "败北", "弃局" };  //Enum.GetValues(typeof(GameResultAll));
 			ComboBoxResult.SelectedItem = GameResultAllConverter.convert(Config.Instance.ConstructedStatsResultFilter);
 			ComboBoxOpponentClass.ItemsSource =
 				Enum.GetValues(typeof(HeroClassStatsFilter)).Cast<HeroClassStatsFilter>().Select(x => new HeroClassStatsFilterWrapper(x));

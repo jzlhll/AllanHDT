@@ -79,7 +79,7 @@
             }
             else if (id == 7)
             {
-                return "盗贼";
+                return "潜行者";
             }
             else if (id == 8)
             {
@@ -120,7 +120,7 @@
             }
             else if (id == 11)
             {
-                return "盗贼";
+                return "潜行者";
             }
             else if (id == 5)
             {

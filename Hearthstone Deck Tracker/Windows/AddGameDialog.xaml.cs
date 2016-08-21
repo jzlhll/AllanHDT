@@ -37,7 +37,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 			var lastGame = deck.DeckStats.Games.LastOrDefault();
 			if(deck.IsArenaDeck)
 			{
-				ComboBoxMode.SelectedItem = Arena;
+				ComboBoxMode.SelectedItem = GameModeConverter.convert(Arena);
 				ComboBoxMode.IsEnabled = false;
 			}
 			else
@@ -47,8 +47,8 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 				TextBoxLegendRank.IsEnabled = true;
 				if(lastGame != null)
 				{
-					ComboBoxFormat.SelectedItem = lastGame.Format;
-					ComboBoxMode.SelectedItem = lastGame.GameMode;
+                    ComboBoxFormat.SelectedItem = FormatConvert.convert_(lastGame.Format);
+					ComboBoxMode.SelectedItem = GameModeConverter.convert(lastGame.GameMode);
 					if(lastGame.GameMode == Ranked)
 					{
 						TextBoxRank.Text = lastGame.Rank.ToString();
@@ -62,11 +62,11 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 				PanelFormat.Visibility = lastGame.GameMode == Ranked || lastGame.GameMode == Casual ? Visible : Collapsed;
 				TextBoxPlayerName.Text = lastGame.PlayerName;
 				if(lastGame.Region != Region.UNKNOWN)
-					ComboBoxRegion.SelectedItem = lastGame.Region;
+					ComboBoxRegion.SelectedItem = RegionConvert.convert(lastGame.Region);
 			}
 			_deck = deck;
 			_game = new GameStats();
-			BtnSave.Content = "add game";
+			BtnSave.Content = "添加游戏";
 			Title = _deck.Name;
 		}
 
@@ -78,13 +78,13 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 			_game = game;
 			if(game == null)
 				return;
-			ComboBoxResult.SelectedItem = game.Result;
+			ComboBoxResult.SelectedItem = GameResultConvert.convert(game.Result);
 			HeroClass heroClass;
 			if(!string.IsNullOrWhiteSpace(game.OpponentHero) && Enum.TryParse(game.OpponentHero, out heroClass))
-				ComboBoxOpponent.SelectedItem = heroClass;
-			ComboBoxMode.SelectedItem = game.GameMode;
-			ComboBoxFormat.SelectedItem = game.Format;
-			ComboBoxRegion.SelectedItem = game.Region;
+				ComboBoxOpponent.SelectedItem = HeroClassConverter.convert(heroClass);
+			ComboBoxMode.SelectedItem = GameModeConverter.convert(game.GameMode);
+			ComboBoxFormat.SelectedItem = FormatConvert.convert_(game.Format);
+			ComboBoxRegion.SelectedItem = RegionConvert.convert(game.Region);
 			if(game.GameMode == Ranked)
 			{
 				TextBoxRank.Text = game.Rank.ToString();
@@ -125,9 +125,9 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 					_game.PlayerHero = _deck.Class;
 					_game.PlayerDeckVersion = _deck.SelectedVersion;
 				}
-				_game.Result = (GameResult)ComboBoxResult.SelectedItem;
-				_game.GameMode = (GameMode)ComboBoxMode.SelectedItem;
-				_game.OpponentHero = ComboBoxOpponent.SelectedValue.ToString();
+				_game.Result = GameResultConvert.convert((string)ComboBoxResult.SelectedItem);
+				_game.GameMode = GameModeConverter.convert((string)ComboBoxMode.SelectedItem);
+				_game.OpponentHero = AllanAdd.MyUtils.translateClass2EN(((string)ComboBoxOpponent.SelectedValue));
 				_game.Coin = (YesNo)ComboBoxCoin.SelectedValue == Yes;
 				_game.Rank = rank;
 				_game.LegendRank = legendRank;
@@ -136,9 +136,9 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 				_game.PlayerName = TextBoxPlayerName.Text;
 				_game.Turns = turns;
 				_game.WasConceded = (YesNo)ComboBoxConceded.SelectedValue == Yes;
-				_game.Region = (Region)ComboBoxRegion.SelectedItem;
+				_game.Region = RegionConvert.convert((string)ComboBoxRegion.SelectedItem);
 				if(_game.GameMode == Casual || _game.GameMode == Ranked)
-					_game.Format = (Format)ComboBoxFormat.SelectedItem;
+					_game.Format = FormatConvert.convert_((string)ComboBoxFormat.SelectedItem);
 				_tcs.SetResult(_game);
 			}
 			catch(Exception ex)

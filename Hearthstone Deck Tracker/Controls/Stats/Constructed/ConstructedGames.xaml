@@ -59,7 +59,7 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTemplateColumn Header="英雄" SortMemberPath="PlayerHero">
+                    <DataGridTemplateColumn Header="自己" SortMemberPath="PlayerHero">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Image Source="{Binding PlayerHeroImage}" Width="30" Height="30" RenderOptions.BitmapScalingMode="Fant" ToolTip="{Binding PlayerHero}" />

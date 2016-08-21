@@ -10,52 +10,52 @@
              d:DesignHeight="300" Title="添加新游戏" Height="525" d:DesignWidth="450">
     <StackPanel Width="300" Margin="0,15,0,0">
         <DockPanel Margin="0,2,0,0">
-            <Label Content="结果:" Width="90" ToolTip="Win胜,Loss败,Draw投"/>
-            <ComboBox Name="ComboBoxResult" SelectedIndex="0" ToolTip="Win胜,Loss败,Draw投">
-                <enums:GameResult>Win</enums:GameResult>
-                <enums:GameResult>Loss</enums:GameResult>
-                <enums:GameResult>Draw</enums:GameResult>
+            <Label Content="结果:" Width="90"/>
+            <ComboBox Name="ComboBoxResult" SelectedIndex="0">
+                <enums:GameResult>胜利</enums:GameResult>
+                <enums:GameResult>败北</enums:GameResult>
+                <enums:GameResult>弃局</enums:GameResult>
             </ComboBox>
         </DockPanel>
         <DockPanel Margin="0,2,0,0">
-            <Label Content="对阵:(翻译?)" Width="90" ToolTip="Druid德,Hunter猎,Mage法,Paladin骑,Priest牧,Rogue贼,Shaman萨,Warlock术,Warrior战"/>
-            <ComboBox Name="ComboBoxOpponent" SelectedIndex="0" ToolTip="Druid德,Hunter猎,Mage法,Paladin骑,Priest牧,Rogue贼,Shaman萨,Warlock术,Warrior战">
-                <enums:HeroClass>Druid</enums:HeroClass>
-                <enums:HeroClass>Hunter</enums:HeroClass>
-                <enums:HeroClass>Mage</enums:HeroClass>
-                <enums:HeroClass>Paladin</enums:HeroClass>
-                <enums:HeroClass>Priest</enums:HeroClass>
-                <enums:HeroClass>Rogue</enums:HeroClass>
-                <enums:HeroClass>Shaman</enums:HeroClass>
-                <enums:HeroClass>Warlock</enums:HeroClass>
-                <enums:HeroClass>Warrior</enums:HeroClass>
+            <Label Content="对阵:" Width="90" />
+            <ComboBox Name="ComboBoxOpponent" SelectedIndex="0" >
+                <enums:HeroClass>德鲁伊</enums:HeroClass>
+                <enums:HeroClass>猎人</enums:HeroClass>
+                <enums:HeroClass>法师</enums:HeroClass>
+                <enums:HeroClass>圣骑士</enums:HeroClass>
+                <enums:HeroClass>牧师</enums:HeroClass>
+                <enums:HeroClass>潜行者</enums:HeroClass>
+                <enums:HeroClass>萨满</enums:HeroClass>
+                <enums:HeroClass>术士</enums:HeroClass>
+                <enums:HeroClass>战士</enums:HeroClass>
             </ComboBox>
         </DockPanel>
         <DockPanel Margin="0,2,0,0">
-            <Label Content="模式:(翻译?)" Width="90" ToolTip="Ranked-天梯 Casual-休闲 Arena-竞技场 Brawl-乱斗 Friendly-好友 Practice-练习"/>
-            <ComboBox Name="ComboBoxMode" SelectedIndex="0" SelectionChanged="ComboBoxMode_OnSelectionChanged" ToolTip="Ranked-天梯 Casual-休闲 Arena-竞技场 Brawl-乱斗 Friendly-好友 Practice-练习">
-                <enums:GameMode>Ranked</enums:GameMode>
-                <enums:GameMode>Casual</enums:GameMode>
-                <enums:GameMode>Arena</enums:GameMode>
-                <enums:GameMode>Brawl</enums:GameMode>
-                <enums:GameMode>Friendly</enums:GameMode>
-                <enums:GameMode>Practice</enums:GameMode>
+            <Label Content="模式:" Width="90"/>
+            <ComboBox Name="ComboBoxMode" SelectedIndex="0" SelectionChanged="ComboBoxMode_OnSelectionChanged">
+                <enums:GameMode>天梯</enums:GameMode>
+                <enums:GameMode>休闲</enums:GameMode>
+                <enums:GameMode>竞技场</enums:GameMode>
+                <enums:GameMode>乱斗</enums:GameMode>
+                <enums:GameMode>友谊</enums:GameMode>
+                <enums:GameMode>练习</enums:GameMode>
             </ComboBox>
         </DockPanel>
         <DockPanel Margin="0,2,0,0" Name="PanelFormat">
-            <Label Content="格式化:(翻译?)" Width="90" ToolTip="Standard 标准；Wild 狂野"/>
-            <ComboBox Name="ComboBoxFormat" SelectedIndex="0" ToolTip="Standard 标准；Wild 狂野">
-                <enums:Format>Standard</enums:Format>
-                <enums:Format>Wild</enums:Format>
+            <Label Content="格式化:" Width="90"/>
+            <ComboBox Name="ComboBoxFormat" SelectedIndex="0">
+                <enums:Format>标准</enums:Format>
+                <enums:Format>狂野</enums:Format>
             </ComboBox>
         </DockPanel>
         <DockPanel Margin="0,2,0,0">
-            <Label Content="区域:" Width="90"/>
+            <Label Content="服务器:" Width="90"/>
             <ComboBox Name="ComboBoxRegion" SelectedIndex="0" SelectionChanged="ComboBoxMode_OnSelectionChanged">
-                <enums:Region>US</enums:Region>
-                <enums:Region>EU</enums:Region>
-                <enums:Region>ASIA</enums:Region>
-                <enums:Region>CHINA</enums:Region>
+                <enums:Region>美国</enums:Region>
+                <enums:Region>欧洲</enums:Region>
+                <enums:Region>亚洲</enums:Region>
+                <enums:Region>中国</enums:Region>
             </ComboBox>
         </DockPanel>
         <DockPanel Margin="0,2,0,0" Name="PanelRank">
