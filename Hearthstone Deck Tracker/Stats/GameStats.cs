@@ -35,6 +35,11 @@ namespace Hearthstone_Deck_Tracker.Stats
 		private string _playerHero;
 		private string _opponentHero;
 		private bool _coin;
+        public string CnCoin {
+            get {
+                return GotCoin == "Yes" ? "是" : "否";
+            }
+        }
 		private GameMode _gameMode;
 		private GameResult _result;
 		private int _turns;
@@ -44,6 +49,9 @@ namespace Hearthstone_Deck_Tracker.Stats
 		private int _stars;
 		private int _legendRank;
 		private Region _region;
+        public string CNRegion {
+            get { return RegionConvert.convert(_region); }
+        }
 		private int _opponentLegendRank;
 
 		public GameStats()
@@ -103,7 +111,15 @@ namespace Hearthstone_Deck_Tracker.Stats
 			}
 		}
 
-		public GameResult Result
+        public string CNGameMode {
+            get { return GameModeConverter.convert(GameMode); }
+        }
+
+        public string CNResult {
+            get { return GameResultConvert.convert(Result); }
+        }
+
+        public GameResult Result
 		{
 			get { return _result; }
 			set { _result = value;
@@ -212,12 +228,17 @@ namespace Hearthstone_Deck_Tracker.Stats
 		{
 			get { return _region; }
 			set { _region = value;
-				OnPropertyChanged();
+                OnPropertyChanged();
 				OnPropertyChanged(nameof(RegionString));
 			}
 		}
 
-		public Format? Format
+        public string CNFormat
+        {
+            get { return FormatConvert.convert_(Format);}
+        }
+        
+        public Format? Format
 		{
 			get
 			{

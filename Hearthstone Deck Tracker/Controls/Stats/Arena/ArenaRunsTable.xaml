@@ -80,7 +80,7 @@
                     </Style>
                 </DataGridTextColumn.ElementStyle>
             </DataGridTextColumn>
-            <DataGridTextColumn Header="服务器" Binding="{Binding Region}">
+            <DataGridTextColumn Header="服务器" Binding="{Binding CNRegion}">
                 <DataGridTextColumn.ElementStyle>
                     <Style TargetType="TextBlock">
                         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -133,7 +133,7 @@
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="结果" Binding="{Binding Result}">
+                            <DataGridTextColumn Header="结果" Binding="{Binding CNResult}">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -155,7 +155,7 @@
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="硬币" Binding="{Binding GotCoin}">
+                            <DataGridTextColumn Header="硬币" Binding="{Binding CnCoin}">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="HorizontalAlignment" Value="Center" />
