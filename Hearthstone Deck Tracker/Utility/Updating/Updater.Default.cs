@@ -94,11 +94,28 @@ namespace Hearthstone_Deck_Tracker.Utility.Updating
                 if (_release.Assets.Count == 1) {
                     Process.Start("HDTUpdate.exe", $"{Process.GetCurrentProcess().Id} {_release.Assets[0].Url}");
                 } else if (_release.Assets.Count == 2) {
-                    Process.Start("HDTUpdate.exe", $"{Process.GetCurrentProcess().Id} {_release.Assets[0].Url} {_release.Assets[1].Url}");
+                    bool b = (DateTime.Now.Minute % 2) == 0;
+                    if (b)
+                    {
+                        Process.Start("HDTUpdate.exe", $"{Process.GetCurrentProcess().Id} {_release.Assets[0].Url} {_release.Assets[1].Url}");
+                    }
+                    else {
+                        Process.Start("HDTUpdate.exe", $"{Process.GetCurrentProcess().Id} {_release.Assets[1].Url} {_release.Assets[0].Url}");
+                    }
                 }
                 else if (_release.Assets.Count == 3)
                 {
-                    Process.Start("HDTUpdate.exe", $"{Process.GetCurrentProcess().Id} {_release.Assets[0].Url} {_release.Assets[1].Url} {_release.Assets[2].Url}");
+                    switch (DateTime.Now.Minute % 3) {
+                        case 0:
+                            Process.Start("HDTUpdate.exe", $"{Process.GetCurrentProcess().Id} {_release.Assets[0].Url} {_release.Assets[1].Url} {_release.Assets[2].Url}");
+                            break;
+                        case 1:
+                            Process.Start("HDTUpdate.exe", $"{Process.GetCurrentProcess().Id} {_release.Assets[1].Url} {_release.Assets[0].Url} {_release.Assets[2].Url}");
+                            break;
+                        case 2:
+                            Process.Start("HDTUpdate.exe", $"{Process.GetCurrentProcess().Id} {_release.Assets[2].Url} {_release.Assets[0].Url} {_release.Assets[1].Url}");
+                            break;
+                    }
                 }
                 Core.MainWindow.Close();
                 Application.Current.Shutdown();

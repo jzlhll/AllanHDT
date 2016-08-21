@@ -15,7 +15,7 @@
                                        OnLabel="开启" OffLabel="关闭"
                                        Checked="ToggleSwitchExtraFeatures_Checked"
                                        Unchecked="ToggleSwitchExtraFeatures_Unchecked" />
-                <CheckBox Name="CheckBoxForceExtraFeatures" Content="强制开启/使用（除非你需要不使用这个）"
+                <CheckBox Name="CheckBoxForceExtraFeatures" Content="强制开启（如非必要请勿使用）"
                           Margin="10,0,5,0"
                           Checked="CheckBoxForceExtraFeatures_OnChecked"
                           Unchecked="CheckBoxForceExtraFeatures_OnUnchecked"
