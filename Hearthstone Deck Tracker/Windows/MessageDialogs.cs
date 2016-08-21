@@ -147,7 +147,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 				else
 					totalDust += card.DustCost * card.Count;
 			}
-			message += $"\n\n你需要 {totalDust} 尘 {string.Join("", sets)}来合成这些缺少的卡";
+			message += $"\n\n你需要 {totalDust} 尘 {string.Join("", sets.Distinct())}来合成这些缺少的卡";
 			await window.ShowMessageAsync("导出不完整", message, Affirmative, new Settings {AffirmativeButtonText = "OK"});
 		}
 
