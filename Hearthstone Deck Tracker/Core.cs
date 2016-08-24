@@ -163,8 +163,16 @@ namespace Hearthstone_Deck_Tracker
 			if(Config.Instance.HearthStatsSyncOnStart && HearthStatsAPI.IsLoggedIn)
 				HearthStatsManager.SyncAsync(background: true);
             //allan add for plugins use
-            if (Config.Instance.ALLAN_LAST_SAVE_VERSION == null || Config.Instance.ALLAN_LAST_SAVE_VERSION.Equals("")
-                || !Config.Instance.ALLAN_LAST_SAVE_VERSION.Equals(Helper.getAllanCurrentVersionStr()))
+            bool isNew = true;
+            if (Config.Instance.ALLAN_LAST_SAVE_VERSION != null && !Config.Instance.ALLAN_LAST_SAVE_VERSION.Equals("")) {
+                //当前的版本大于0.9.7代表用户已经使用过了。
+                if (Config.Instance.ALLAN_LAST_SAVE_VERSION.CompareTo("0.9.7")  == 1)
+                {
+                    isNew = false;
+                }
+            }
+
+            if (isNew)
             {
                 if (Directory.Exists("AllanPlugins"))
                 {
@@ -174,17 +182,7 @@ namespace Hearthstone_Deck_Tracker
                     if (!Directory.Exists(appDataPluginDir))
                         Directory.CreateDirectory(appDataPluginDir);
 
-                    string appDataArena = Path.Combine(Config.AppDataPath, "ArenaHelper");
-                    string appDataCollectionTracker = Path.Combine(Config.AppDataPath, "CollectionTracker");
                     string appDataanyfin = Path.Combine(Config.AppDataPath, "anyfin.xml");
-
-                    if (Directory.Exists(appDataArena)) {
-                        Directory.Delete(appDataArena, true);
-                    }
-                    if (Directory.Exists(appDataCollectionTracker))
-                    {
-                        Directory.Delete(appDataCollectionTracker, true);
-                    }
                     if (File.Exists(appDataanyfin)) File.Delete(appDataanyfin);
 
                     string appDataPluginXml = Path.Combine(Config.AppDataPath, "plugins.xml");

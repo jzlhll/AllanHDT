@@ -34,7 +34,7 @@ namespace Hearthstone_Deck_Tracker.Utility
                     latest = new Release();
                     bool forceupdateAllan = false;
                     if (forceupdateAllan) {
-                        latest.Tag = "v0.9.8";
+                        latest.Tag = "v0.9.10";
                     }
                     int i = 0;
                     foreach (var a in allanRel.Assets) {
