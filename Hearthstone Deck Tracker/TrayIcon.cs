@@ -60,7 +60,7 @@ namespace Hearthstone_Deck_Tracker
 			_notifyIcon.ContextMenu.MenuItems.Add(classCardsFirstMenuItem);
 
 			_notifyIcon.ContextMenu.MenuItems.Add("ÏÔÊ¾", (sender, args) => Core.MainWindow.ActivateWindow());
-			_notifyIcon.ContextMenu.MenuItems.Add("ÍË³ö", (sender, args) => Core.MainWindow.Close());
+			_notifyIcon.ContextMenu.MenuItems.Add("ÍË³ö", (sender, args) => Core.MainWindow.CloseByAllan(null));
 			_notifyIcon.MouseClick += (sender, args) =>
 			{
 				if(args.Button == MouseButtons.Left)

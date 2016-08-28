@@ -19,6 +19,7 @@
                                 TextWrapping="Wrap" />
                         </StackPanel>
                     </GroupBox>
+
                     <CheckBox x:Name="CheckboxConfigSaveAppData" Content="在AppData中保存配置文件"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
@@ -39,6 +40,10 @@
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxStartMinimized_Checked"
                               Unchecked="CheckboxStartMinimized_Unchecked" />
+                    <CheckBox x:Name="CheckboxConfigCloseByX" Content="关闭按钮=最小化(Allan)"
+                              HorizontalAlignment="Left" Margin="10,5,0,0"
+                              VerticalAlignment="Top" Checked="CheckboxConfigCloseByX_Checked"
+                              Unchecked="CheckboxConfigCloseByX_Unchecked" />
                     <CheckBox x:Name="CheckboxMinimizeTray" Content="最小化到托盘"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxMinimizeTray_Checked"
@@ -59,7 +64,7 @@
                               Checked="CheckboxCloseWithHearthstone_Checked"
                               Unchecked="CheckboxCloseWithHearthstone_Unchecked" />
                     <CheckBox x:Name="CheckboxStartHearthstoneWithHDT"
-                              Content="启动游戏当打开该软件" HorizontalAlignment="Left"
+                              Content="当打开该软件时启动游戏" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxStartHearthstoneWithHDT_Checked"
                               Unchecked="CheckboxStartHearthstoneWithHDT_Unchecked" />

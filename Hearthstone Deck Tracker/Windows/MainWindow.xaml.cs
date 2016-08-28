@@ -519,95 +519,16 @@ namespace Hearthstone_Deck_Tracker.Windows
 				MinimizeToTray();
 		}
 
-		private async void Window_Closing(object sender, CancelEventArgs e)
+		private void Window_Closing(object sender, CancelEventArgs e)
 		{
-			try
-			{
-				Log.Info("Shutting down...");
-				if(HearthStatsManager.SyncInProgress && !_closeAnyway)
-				{
-					e.Cancel = true;
-					var result =
-						await
-						this.ShowMessageAsync("警告！与hearthstats同步中！",
-                                              "关闭HDT会导致数据不一致。你肯定吗？",
-						                      MessageDialogStyle.AffirmativeAndNegative,
-						                      new MessageDialogs.Settings {AffirmativeButtonText = "继续关闭", NegativeButtonText = "等待"});
-					if(result == MessageDialogResult.Negative)
-					{
-						while(HearthStatsManager.SyncInProgress)
-							await Task.Delay(100);
-						await this.ShowMessage("同步完成了", "你可以关闭该软件，就是现在。");
-					}
-					else
-					{
-						_closeAnyway = true;
-						Close();
-					}
-				}
-				Core.UpdateOverlay = false;
-				Core.Update = false;
-
-				//wait for update to finish, might otherwise crash when overlay gets disposed
-				for(var i = 0; i < 100; i++)
-				{
-					if(Core.CanShutdown)
-						break;
-					await Task.Delay(50);
-				}
-
-				ReplayReader.CloseViewers();
-
-				Config.Instance.SelectedTags = Config.Instance.SelectedTags.Distinct().ToList();
-				//Config.Instance.ShowAllDecks = DeckPickerList.ShowAll;
-				Config.Instance.SelectedDeckPickerClasses = DeckPickerList.SelectedClasses.ToArray();
-
-				Config.Instance.WindowWidth = (int)(Width - (GridNewDeck.Visibility == Visible ? GridNewDeck.ActualWidth : 0));
-				Config.Instance.WindowHeight = (int)(Height - _heightChangeDueToSearchBox);
-				Config.Instance.TrackerWindowTop = (int)Top;
-				Config.Instance.TrackerWindowLeft = (int)(Left + (MovedLeft ?? 0));
-
-				//position of add. windows is NaN if they were never opened.
-				if(!double.IsNaN(Core.Windows.PlayerWindow.Left))
-					Config.Instance.PlayerWindowLeft = (int)Core.Windows.PlayerWindow.Left;
-				if(!double.IsNaN(Core.Windows.PlayerWindow.Top))
-					Config.Instance.PlayerWindowTop = (int)Core.Windows.PlayerWindow.Top;
-				Config.Instance.PlayerWindowHeight = (int)Core.Windows.PlayerWindow.Height;
-
-				if(!double.IsNaN(Core.Windows.OpponentWindow.Left))
-					Config.Instance.OpponentWindowLeft = (int)Core.Windows.OpponentWindow.Left;
-				if(!double.IsNaN(Core.Windows.OpponentWindow.Top))
-					Config.Instance.OpponentWindowTop = (int)Core.Windows.OpponentWindow.Top;
-				Config.Instance.OpponentWindowHeight = (int)Core.Windows.OpponentWindow.Height;
-
-				if(!double.IsNaN(Core.Windows.TimerWindow.Left))
-					Config.Instance.TimerWindowLeft = (int)Core.Windows.TimerWindow.Left;
-				if(!double.IsNaN(Core.Windows.TimerWindow.Top))
-					Config.Instance.TimerWindowTop = (int)Core.Windows.TimerWindow.Top;
-				Config.Instance.TimerWindowHeight = (int)Core.Windows.TimerWindow.Height;
-				Config.Instance.TimerWindowWidth = (int)Core.Windows.TimerWindow.Width;
-
-				Core.TrayIcon.NotifyIcon.Visible = false;
-				Core.Overlay.Close();
-				await LogReaderManager.Stop(true);
-				Core.Windows.TimerWindow.Shutdown();
-				Core.Windows.PlayerWindow.Shutdown();
-				Core.Windows.OpponentWindow.Shutdown();
-                Core.Windows.GraveryWindow.Shutdown();//<!--allan add for graveryard-->
-				Config.Save();
-				DeckList.Save();
-				DeckStatsList.Save();
-				PluginManager.SavePluginsSettings();
-				PluginManager.Instance.UnloadPlugins();
-			}
-			catch(Exception)
-			{
-				//doesnt matter
-			}
-			finally
-			{
-				Application.Current.Shutdown();
-			}
+            if (Config.Instance.CloseByX)
+            {
+                e.Cancel = true;
+                MinimizeToTray();
+            }
+            else {
+                CloseByAllan(e);
+            }
 		}
 
 		private void BtnOptions_OnClick(object sender, RoutedEventArgs e) => FlyoutOptions.IsOpen = true;
@@ -783,6 +704,96 @@ namespace Hearthstone_Deck_Tracker.Windows
 			}
 			DeckManagerEvents.OnDeckSelected.Execute(deck);
 		}
+
+        public async void CloseByAllan(CancelEventArgs e) {
+            try
+            {
+                Log.Info("Shutting down...");
+                if (HearthStatsManager.SyncInProgress && !_closeAnyway)
+                {
+                    if (e != null) e.Cancel = true;
+                    var result =
+                        await
+                        this.ShowMessageAsync("警告！与hearthstats同步中！",
+                                              "关闭HDT会导致数据不一致。你肯定吗？",
+                                              MessageDialogStyle.AffirmativeAndNegative,
+                                              new MessageDialogs.Settings { AffirmativeButtonText = "继续关闭", NegativeButtonText = "等待" });
+                    if (result == MessageDialogResult.Negative)
+                    {
+                        while (HearthStatsManager.SyncInProgress)
+                            await Task.Delay(100);
+                        await this.ShowMessage("同步完成了", "你可以关闭该软件，就是现在。");
+                    }
+                    else
+                    {
+                        _closeAnyway = true;
+                        Close();
+                    }
+                }
+                Core.UpdateOverlay = false;
+                Core.Update = false;
+
+                //wait for update to finish, might otherwise crash when overlay gets disposed
+                for (var i = 0; i < 100; i++)
+                {
+                    if (Core.CanShutdown)
+                        break;
+                    await Task.Delay(50);
+                }
+
+                ReplayReader.CloseViewers();
+
+                Config.Instance.SelectedTags = Config.Instance.SelectedTags.Distinct().ToList();
+                //Config.Instance.ShowAllDecks = DeckPickerList.ShowAll;
+                Config.Instance.SelectedDeckPickerClasses = DeckPickerList.SelectedClasses.ToArray();
+
+                Config.Instance.WindowWidth = (int)(Width - (GridNewDeck.Visibility == Visible ? GridNewDeck.ActualWidth : 0));
+                Config.Instance.WindowHeight = (int)(Height - _heightChangeDueToSearchBox);
+                Config.Instance.TrackerWindowTop = (int)Top;
+                Config.Instance.TrackerWindowLeft = (int)(Left + (MovedLeft ?? 0));
+
+                //position of add. windows is NaN if they were never opened.
+                if (!double.IsNaN(Core.Windows.PlayerWindow.Left))
+                    Config.Instance.PlayerWindowLeft = (int)Core.Windows.PlayerWindow.Left;
+                if (!double.IsNaN(Core.Windows.PlayerWindow.Top))
+                    Config.Instance.PlayerWindowTop = (int)Core.Windows.PlayerWindow.Top;
+                Config.Instance.PlayerWindowHeight = (int)Core.Windows.PlayerWindow.Height;
+
+                if (!double.IsNaN(Core.Windows.OpponentWindow.Left))
+                    Config.Instance.OpponentWindowLeft = (int)Core.Windows.OpponentWindow.Left;
+                if (!double.IsNaN(Core.Windows.OpponentWindow.Top))
+                    Config.Instance.OpponentWindowTop = (int)Core.Windows.OpponentWindow.Top;
+                Config.Instance.OpponentWindowHeight = (int)Core.Windows.OpponentWindow.Height;
+
+                if (!double.IsNaN(Core.Windows.TimerWindow.Left))
+                    Config.Instance.TimerWindowLeft = (int)Core.Windows.TimerWindow.Left;
+                if (!double.IsNaN(Core.Windows.TimerWindow.Top))
+                    Config.Instance.TimerWindowTop = (int)Core.Windows.TimerWindow.Top;
+                Config.Instance.TimerWindowHeight = (int)Core.Windows.TimerWindow.Height;
+                Config.Instance.TimerWindowWidth = (int)Core.Windows.TimerWindow.Width;
+
+                Core.TrayIcon.NotifyIcon.Visible = false;
+                Core.Overlay.Close();
+                await LogReaderManager.Stop(true);
+                Core.Windows.TimerWindow.Shutdown();
+                Core.Windows.PlayerWindow.Shutdown();
+                Core.Windows.OpponentWindow.Shutdown();
+                Core.Windows.GraveryWindow.Shutdown();//<!--allan add for graveryard-->
+                Config.Save();
+                DeckList.Save();
+                DeckStatsList.Save();
+                PluginManager.SavePluginsSettings();
+                PluginManager.Instance.UnloadPlugins();
+            }
+            catch (Exception)
+            {
+                //doesnt matter
+            }
+            finally
+            {
+                Application.Current.Shutdown();
+            }
+        }
 
 		public void SelectLastUsedDeck()
 		{

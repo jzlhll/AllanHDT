@@ -23,7 +23,7 @@ namespace Hearthstone_Deck_Tracker.Exporting
 
 		public static async Task SetDeckName(Deck deck, ExportingInfo info)
 		{
-			if(Config.Instance.ExportSetDeckName && !deck.TagList.ToLower().Contains("brawl"))
+			if(Config.Instance.ExportSetDeckName && !deck.TagList.ToLower().Contains("brawl") && !deck.TagList.Contains("ÂÒ¶·"))
 			{
 				var name = Regex.Replace(deck.Name, @"[\(\)\{\}]", "");
 				if(name != deck.Name)
@@ -74,7 +74,7 @@ namespace Hearthstone_Deck_Tracker.Exporting
 		///<summary>
 		/// Returns -1 if Hearthstone loses focus
 		/// </summary>
-		public static async Task<int> AddCardToDeck(Card card, ExportingInfo info)
+		public static async Task<int> AddCardToDeck(Card card, ExportingInfo info, int[] lastPos)
 		{
 			if(!User32.IsHearthstoneInForeground())
 			{
@@ -82,13 +82,12 @@ namespace Hearthstone_Deck_Tracker.Exporting
 				Log.Info("Exporting aborted, window lost focus");
 				return -1;
 			}
-
 			if(Config.Instance.ExportForceClear)
 				await ClearSearchBox(info.HsHandle, info.SearchBoxPos);
-
-			await ClickOnPoint(info.HsHandle, info.SearchBoxPos);
-
-			if(Config.Instance.ExportPasteClipboard || !Helper.LatinLanguages.Contains(Config.Instance.SelectedLanguage))
+ 
+            await ClickOnPoint(info.HsHandle, info.SearchBoxPos);
+            Point searchPoint = User32.GetMousePos();
+            if (Config.Instance.ExportPasteClipboard || !Helper.LatinLanguages.Contains(Config.Instance.SelectedLanguage))
 			{
 				Clipboard.SetText(GetSearchString(card));
 				SendKeys.SendWait("^{v}");
@@ -98,11 +97,15 @@ namespace Hearthstone_Deck_Tracker.Exporting
 			SendKeys.SendWait("{ENTER}");
 
 			Log.Info("try to export card: " + card);
-			await Task.Delay(Config.Instance.DeckExportDelay * 2);
+			await Task.Delay(Config.Instance.DeckExportDelay * 5);
 
-			//Check if Card exist in collection
-			var cardExists = await CardExists(info.HsHandle, (int)info.CardPosX, (int)info.CardPosY, info.HsRect.Width, info.HsRect.Height);
-			if(cardExists)
+            //Check if Card exist in collection
+            var cardExists = await CardExists(info.HsHandle, (int)info.CardPosX, (int)info.CardPosY, info.HsRect.Width, info.HsRect.Height);
+            Point nowPoint = User32.GetMousePos();
+            if (nowPoint.X!=searchPoint.X ||nowPoint.Y != searchPoint.Y) {
+                return -1;
+            }
+            if (cardExists)
 			{
 				//Check if a golden exist
 				if(Config.Instance.PrioritizeGolden
@@ -153,9 +156,10 @@ namespace Hearthstone_Deck_Tracker.Exporting
 		{
 			Log.Info("Creating deck...");
 			deck.MissingCards.Clear();
+            int[] lastPoint = { 0, 0 };
 			foreach(var card in deck.GetSelectedDeckVersion().Cards.ToSortedCardList())
 			{
-				var missingCardsCount = await AddCardToDeck(card, info);
+				var missingCardsCount = await AddCardToDeck(card, info, lastPoint);
 				if(missingCardsCount < 0)
 					return true;
 				if(missingCardsCount > 0)
@@ -223,7 +227,7 @@ namespace Hearthstone_Deck_Tracker.Exporting
 
 		public static async Task ClearSearchBox(IntPtr hsHandle, Point searchBoxPos)
 		{
-			await ClickOnPoint(hsHandle, searchBoxPos);
+            await ClickOnPoint(hsHandle, searchBoxPos);
 			SendKeys.SendWait("{DELETE}");
 			SendKeys.SendWait("{ENTER}");
 		}

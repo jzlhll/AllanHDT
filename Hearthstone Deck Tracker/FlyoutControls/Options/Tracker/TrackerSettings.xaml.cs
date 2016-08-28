@@ -48,8 +48,8 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 			CheckBoxShowSplashScreen.IsChecked = Config.Instance.ShowSplashScreen;
 			CheckboxStartWithWindows.IsChecked = Config.Instance.StartWithWindows;
 			CheckBoxAnalytics.IsChecked = Config.Instance.GoogleAnalytics;
-
-			CheckboxAlternativeScreenCapture.IsChecked = Config.Instance.AlternativeScreenCapture;
+            CheckboxConfigCloseByX.IsChecked = Config.Instance.CloseByX;
+            CheckboxAlternativeScreenCapture.IsChecked = Config.Instance.AlternativeScreenCapture;
 #if(!SQUIRREL)
 			CheckboxConfigSaveAppData.IsChecked = Config.Instance.SaveConfigInAppData;
 			CheckboxDataSaveAppData.IsChecked = Config.Instance.SaveDataInAppData;
@@ -430,5 +430,21 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 				Core.MainWindow.Restart();
 			}
 		}
-	}
+
+        private void CheckboxConfigCloseByX_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!_initialized)
+                return;
+            Config.Instance.CloseByX = true;
+            Config.Save();
+        }
+
+        private void CheckboxConfigCloseByX_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (!_initialized)
+                return;
+            Config.Instance.CloseByX = false;
+            Config.Save();
+        }
+    }
 }
