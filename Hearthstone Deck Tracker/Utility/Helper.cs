@@ -138,14 +138,14 @@ namespace Hearthstone_Deck_Tracker
 		public static Version GetCurrentVersion() => Assembly.GetExecutingAssembly().GetName().Version;
         //TODO:每次都要修改 allan
         public static Version GetAllanCurrentVersion() {
-            return new Version(0,9,10);
+            return new Version(0,9,11);
         }
         public static string getAllanCurrentVersionStr() {
-            return "0.9.10";
+            return "0.9.11";
         }
         public static string getAllanCurrentDateStr()
         {
-            return "0821";
+            return "0830";
         }
         public static bool IsHex(IEnumerable<char> chars)
 			=> chars.All(c => ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F')));

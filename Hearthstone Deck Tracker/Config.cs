@@ -423,8 +423,8 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(true)]
 		public bool GoogleAnalytics = true;
         //allan add
-        [DefaultValue(false)]
-        public bool CloseByX = false;
+        [DefaultValue(true)]
+        public bool CloseByX = true;
 
         [DefaultValue(null)]
 		public bool? HearthStatsAutoDeleteDecks = null;

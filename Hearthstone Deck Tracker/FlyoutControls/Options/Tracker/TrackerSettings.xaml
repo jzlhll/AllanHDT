@@ -40,7 +40,7 @@
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxStartMinimized_Checked"
                               Unchecked="CheckboxStartMinimized_Unchecked" />
-                    <CheckBox x:Name="CheckboxConfigCloseByX" Content="关闭按钮=最小化(Allan)"
+                    <CheckBox x:Name="CheckboxConfigCloseByX" Content="关闭按钮=最小化"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxConfigCloseByX_Checked"
                               Unchecked="CheckboxConfigCloseByX_Unchecked" />
