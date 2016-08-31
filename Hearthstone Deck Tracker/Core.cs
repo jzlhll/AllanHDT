@@ -163,19 +163,10 @@ namespace Hearthstone_Deck_Tracker
 			if(Config.Instance.HearthStatsSyncOnStart && HearthStatsAPI.IsLoggedIn)
 				HearthStatsManager.SyncAsync(background: true);
             //allan add for plugins use
-            bool isNew = true;
-            if (Config.Instance.ALLAN_LAST_SAVE_VERSION != null && !Config.Instance.ALLAN_LAST_SAVE_VERSION.Equals("")) {
-                //当前的版本大于0.9.7代表用户已经使用过了。
-                if (Config.Instance.ALLAN_LAST_SAVE_VERSION.CompareTo("0.9.7")  == 1)
-                {
-                    isNew = false;
-                }
-            }
-
-            if (isNew)
-            {
+            if (!Config.Instance.ALLAN_LAST_SAVE_VERSION.Equals(Helper.getAllanCurrentVersionStr())) {
                 if (Directory.Exists("AllanPlugins"))
                 {
+                    Log.Debug("Config do it replace plugin.");
                     if (Directory.Exists("Plugins")) Directory.Delete("Plugins", true);
                     Directory.CreateDirectory("Plugins");
                     string appDataPluginDir = Path.Combine(Config.AppDataPath, "Plugins");

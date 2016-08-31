@@ -145,7 +145,7 @@ namespace Hearthstone_Deck_Tracker
         }
         public static string getAllanCurrentDateStr()
         {
-            return "0830";
+            return "0901";
         }
         public static bool IsHex(IEnumerable<char> chars)
 			=> chars.All(c => ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F')));
