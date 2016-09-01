@@ -32,10 +32,6 @@ namespace Hearthstone_Deck_Tracker.Utility
                 {
                     var allanRel = await GetAllAllanRelease();
                     latest = new Release();
-                    bool forceupdateAllan = false;
-                    if (forceupdateAllan) {
-                        latest.Tag = "v0.9.10";
-                    }
                     int i = 0;
                     foreach (var a in allanRel.Assets) {
                         latest.Tag = "v" + allanRel.Assets.ElementAt(i).Version;
@@ -147,6 +143,10 @@ namespace Hearthstone_Deck_Tracker.Utility
                     wc.Headers.Add(HttpRequestHeader.UserAgent, "allan.jiang");
                     wc.Encoding = Encoding.GetEncoding("GB2312");
                     var url = "https://code.aliyun.com/allan.jiang/CNHDT_NEW/tags";
+                    if (File.Exists("AllanForceUpdate"))
+                    {
+                        url = "https://code.aliyun.com/allan.jiang/HDT_For_allan_rel/tags";
+                    }
                     await Task.Delay(10);
                     json = Encoding.UTF8.GetString(wc.DownloadData(url));
                     string[] ss = json.Split('\n');
