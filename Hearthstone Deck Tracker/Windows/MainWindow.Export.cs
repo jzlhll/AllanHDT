@@ -9,12 +9,14 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using HearthMirror;
 using Hearthstone_Deck_Tracker.Controls;
 using Hearthstone_Deck_Tracker.Exporting;
 using Hearthstone_Deck_Tracker.Hearthstone;
 using Hearthstone_Deck_Tracker.Utility.Extensions;
 using Hearthstone_Deck_Tracker.Utility.Logging;
 using MahApps.Metro.Controls.Dialogs;
+using static MahApps.Metro.Controls.Dialogs.MessageDialogStyle;
 using Clipboard = System.Windows.Clipboard;
 
 #endregion
@@ -33,39 +35,66 @@ namespace Hearthstone_Deck_Tracker.Windows
 
         private async void ExportDeck(Deck deck)
 		{
-			var export = true;
 			if(Config.Instance.ShowExportingDialog)
 			{
-
 				var message = $"1) 创建一个新的或者打开一个存在的 【{AllanAdd.MyUtils.translateClass2CN(deck.Class)} 】卡组.\n\n2) 离开卡组创建界面.\n\n3) 点击【导出】并且不要动鼠标或者点它直到完成。";
-				var settings = new MessageDialogs.Settings {AffirmativeButtonText = "导出"};
-				var result = await this.ShowMessageAsync("导出 " + deck.Name + " 到炉石", message, MessageDialogStyle.AffirmativeAndNegative, settings);
-				export = result == MessageDialogResult.Affirmative;
+				var result = await this.ShowMessageAsync("导出 " + deck.Name + " 到炉石", message, AffirmativeAndNegative, new MessageDialogs.Settings { AffirmativeButtonText = "导出" });
+				if(result == MessageDialogResult.Negative)
+					return;
 			}
-			if(export)
+			HearthMirror.Objects.Deck openDeck;
+			var settings = new MessageDialogs.Settings() {AffirmativeButtonText = "继续", NegativeButtonText = "取消"};
+			while((openDeck = Reflection.GetEditedDeck()) == null)
 			{
-				var controller = await this.ShowProgressAsync("创建卡组中", "别乱动鼠标和点击");
-				Topmost = false;
-				await Task.Delay(500);
-				var success = await DeckExporter.Export(deck);
-				await controller.CloseAsync();
-
-				if(success)
-				{
-					var hsDeck = HearthMirror.Reflection.GetEditedDeck();
-					if(hsDeck != null)
-					{
-						var existingHsId = DeckList.Instance.Decks.Where(x => x.DeckId != deck.DeckId).FirstOrDefault(x => x.HsId == hsDeck.Id);
-						if(existingHsId != null)
-							existingHsId.HsId = 0;
-						deck.HsId = hsDeck.Id;
-						DeckList.Save();
-					}
-				}
-
-				if(deck.MissingCards.Any())
-					this.ShowMissingCardsMessage(deck);
+				var result = await this.ShowMessageAsync("没有找到打开的卡组", "继续之前请在炉石中打开一个编辑中的卡组", AffirmativeAndNegative, settings);
+				if(result == MessageDialogResult.Negative)
+					return;
 			}
+			string selectedClass;
+			while((selectedClass = Database.GetCardFromId(openDeck.Hero).PlayerClass) != deck.Class)
+			{
+				var result = await this.ShowMessageAsync("错误的英雄", $"打开的英雄卡组与导出的卡组不匹配，请确认是否一致！", AffirmativeAndNegative, settings);
+				if(result == MessageDialogResult.Negative)
+					return;
+				openDeck = Reflection.GetEditedDeck();
+			}
+			while(!deck.StandardViable && !openDeck.IsWild)
+			{
+				var result = await this.ShowMessageAsync("不是狂野卡组", "正在导入狂野卡组，但是打开的是标准模式！", AffirmativeAndNegative, settings);
+				if(result == MessageDialogResult.Negative)
+					return;
+				openDeck = Reflection.GetEditedDeck();
+			}
+			var controller = await this.ShowProgressAsync("卡组创建中", "不要点击或者乱动鼠标！");
+			Topmost = false;
+			await Task.Delay(500);
+			var success = await DeckExporter.Export(deck, async () =>
+			{
+				if(controller != null)
+					await controller.CloseAsync();
+				ActivateWindow();
+				var result = await this.ShowMessageAsync("导入中断", "继续?", AffirmativeAndNegative,
+					new MessageDialogs.Settings() { AffirmativeButtonText = "继续", NegativeButtonText = "取消" });
+				if(result == MessageDialogResult.Affirmative)
+					controller = await this.ShowProgressAsync("卡组创建中", "不要点击或者乱动鼠标！");
+				return result == MessageDialogResult.Affirmative;
+			});
+			if(controller.IsOpen)
+				await controller.CloseAsync();
+			if(success)
+			{
+				var hsDeck = Reflection.GetEditedDeck();
+				if(hsDeck != null)
+				{
+					var existingHsId = DeckList.Instance.Decks.Where(x => x.DeckId != deck.DeckId).FirstOrDefault(x => x.HsId == hsDeck.Id);
+					if(existingHsId != null)
+						existingHsId.HsId = 0;
+					deck.HsId = hsDeck.Id;
+					DeckList.Save();
+				}
+			}
+			if(deck.MissingCards.Any())
+				this.ShowMissingCardsMessage(deck);
 		}
 
 		private void BtnScreenhot_Click(object sender, RoutedEventArgs e) => CaptureScreenshot(true);
@@ -156,7 +185,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 				{
 					var result = await
 						this.ShowMessageAsync("导出多个卡组！", $"你将要导出 {selectedDecks.Count} 个卡组.确定吗?",
-											  MessageDialogStyle.AffirmativeAndNegative);
+											  AffirmativeAndNegative);
 					if(result != MessageDialogResult.Affirmative)
 						return;
 				}
@@ -233,14 +262,13 @@ namespace Hearthstone_Deck_Tracker.Windows
 
 		private async void BtnExportFromWeb_Click(object sender, RoutedEventArgs e)
 		{
-			var url = await InputDeckURL();
-			if(url == null)
+			var result = await ImportDeckFromUrl();
+			if(result.WasCancelled)
 				return;
-			var deck = await ImportDeckFromURL(url);
-			if(deck != null)
-				ExportDeck(deck);
+			if(result.Deck != null)
+				ExportDeck(result.Deck);
 			else
-				await this.ShowMessageAsync("错误", "不能从url中加载卡组");
+				await this.ShowMessageAsync("没有找到卡组", "不能从 " + Environment.NewLine + result.Url+" 找到卡组");
 		}
 
 		internal void MenuItemMissingDust_OnClick(object sender, RoutedEventArgs e)

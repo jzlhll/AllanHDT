@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using HearthMirror.Enums;
 using HearthMirror.Objects;
+using HearthMirror.Util;
 
 namespace HearthMirror
 {
@@ -65,7 +66,9 @@ namespace HearthMirror
 			{
 				if(val == null || val.Class.Name != "CollectionDeck")
 					continue;
-				yield return GetDeck(val);
+				var deck = GetDeck(val);
+				if(deck != null)
+					yield return deck;
 			}
 		}
 
@@ -117,7 +120,7 @@ namespace HearthMirror
 				var wLegendRank = wMedalInfo?["legendIndex"] ?? 0;
 				var cardBack = players[i]["m_cardBackId"];
 				var id = playerIds[i];
-				if((bool)players[i]["m_local"])
+				if((Side)players[i]["m_side"] == Side.FRIENDLY)
 				{
 					dynamic netCacheMedalInfo = null;
 					foreach(var netCache in netCacheValues)
@@ -151,10 +154,15 @@ namespace HearthMirror
 		private static ArenaInfo GetArenaDeckInternal()
 		{
 			var draftManager = Mirror.Root["DraftManager"]["s_instance"];
+			var deck = GetDeck(draftManager["m_draftDeck"]);
+			if(deck == null)
+				return null;
 			return new ArenaInfo {
 				Wins = draftManager["m_wins"],
 				Losses = draftManager["m_losses"],
-				Deck = GetDeck(draftManager["m_draftDeck"])
+				CurrentSlot = draftManager["m_currentSlot"],
+				Deck = deck,
+				Rewards = RewardDataParser.Parse(draftManager["m_chest"]?["<Rewards>k__BackingField"]?["_items"])
 			};
 		}
 
@@ -174,6 +182,8 @@ namespace HearthMirror
 
 		private static Deck GetDeck(dynamic deckObj)
 		{
+			if(deckObj == null)
+				return null;
 			var deck = new Deck
 			{
 				Id = deckObj["ID"],
@@ -221,5 +231,77 @@ namespace HearthMirror
 		}
 
 		public static bool IsFriendsListVisible() => TryGetInternal(() => Mirror.Root["ChatMgr"]["s_instance"]["m_friendListFrame"] != null);
+
+		public static int GetCurrentManaFilter() => TryGetInternal(() => (int)Mirror.Root["CollectionManagerDisplay"]["s_instance"]["m_manaTabManager"]["m_currentFilterValue"]);
+
+		public static SetFilterItem GetCurrentSetFilter() => TryGetInternal(GetCurrentSetFilterInternal);
+
+		private static SetFilterItem GetCurrentSetFilterInternal()
+		{
+			var item = Mirror.Root["CollectionManagerDisplay"]["s_instance"]["m_setFilterTray"]["m_selected"];
+			return new SetFilterItem()
+			{
+				IsAllStandard =  (bool)item["m_isAllStandard"],
+				IsWild = (bool)item["m_isWild"]
+			};
+		}
+
+		public static BattleTag GetBattleTag() => TryGetInternal(GetBattleTagInternal);
+
+		private static BattleTag GetBattleTagInternal()
+		{
+			var bTag = Mirror.Root["BnetPresenceMgr"]["s_instance"]["m_myPlayer"]["m_account"]["m_battleTag"];
+			return new BattleTag
+			{
+				Name = bTag["m_name"],
+				Number = bTag["m_number"]
+			};
+		}
+
+		public static List<Card> GetPackCards() => TryGetInternal(() => GetPackCardsInternal().ToList());
+
+		private static IEnumerable<Card> GetPackCardsInternal()
+		{
+			var cards = Mirror.Root["PackOpening"]["s_instance"]["m_director"]?["m_hiddenCards"]?["_items"];
+			if(cards == null)
+				yield break;
+			foreach(var card in cards)
+			{
+				if(card?.Class.Name != "PackOpeningCard")
+					continue;
+				var def = card["m_boosterCard"]?["<Def>k__BackingField"];
+				if(def == null)
+					continue;
+				yield return new Card((string)def["<Name>k__BackingField"], 1, (int)def["<Premium>k__BackingField"] > 0);
+			}
+		}
+
+		public static List<RewardData> GetArenaRewards() => TryGetInternal(() => GetArenaRewardsInternal().ToList());
+
+		private static IEnumerable<RewardData> GetArenaRewardsInternal()
+		{
+			var rewards = Mirror.Root["DraftManager"]["s_instance"]["m_chest"]?["<Rewards>k__BackingField"]?["_items"];
+			return RewardDataParser.Parse(rewards);
+		}
+
+		public static SeasonEndInfo GetSeasonEndInfo() => TryGetInternal(GetSeasonEndInfoInternal);
+
+		private static SeasonEndInfo GetSeasonEndInfoInternal()
+		{
+			var dialog = Mirror.Root["DialogManager"]["s_instance"]["m_currentDialog"];
+			if(dialog?.Class.Name != "SeasonEndDialog" || !dialog["m_shown"])
+				return null;
+			var info = dialog["m_seasonEndInfo"];
+			var rewards = RewardDataParser.Parse(info["m_rankedRewards"]["_items"]);
+			return new SeasonEndInfo(
+				(int)info["m_bonusStars"],
+				(int)info["m_boostedRank"],
+				(int)info["m_chestRank"],
+				(bool)info["m_isWild"],
+				(int)info["m_legendIndex"],
+				(int)info["m_rank"],
+				(int)info["m_seasonID"],
+				rewards);
+		}
 	}
 }

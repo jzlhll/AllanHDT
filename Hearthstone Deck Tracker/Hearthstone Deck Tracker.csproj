@@ -410,6 +410,7 @@
     <Compile Include="Hearthstone\DeckState.cs" />
     <Compile Include="Hearthstone\PredictedCard.cs" />
     <Compile Include="Importing\Game\ImportOptions\IImportOption.cs" />
+    <Compile Include="Importing\MetaTagImporter.cs" />
     <Compile Include="Importing\Websites\Manacrystals.cs" />
     <Compile Include="Importing\Websites\Marduktv.cs" />
     <Compile Include="Importing\Websites\Powned.cs" />
@@ -423,6 +424,8 @@
     <Compile Include="Utility\Analytics\Influx.cs" />
     <Compile Include="Utility\Analytics\InfluxPoint.cs" />
     <Compile Include="Utility\Analytics\InfluxPointBuilder.cs" />
+    <Compile Include="Utility\Exceptions\ExportingInterruptedException.cs" />
+    <Compile Include="Utility\ResourceMonitor.cs" />
     <Compile Include="Utility\Updating\ReleaseUrls.cs" />
     <Compile Include="Utility\Updating\StatusBarHelper.cs" />
     <Compile Include="Windows\CrashDialog.xaml.cs">

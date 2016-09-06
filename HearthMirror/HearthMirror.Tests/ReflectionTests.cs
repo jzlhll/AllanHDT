@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using HearthMirror.Enums;
+using HearthMirror.Objects;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HearthMirror.Tests
@@ -81,6 +84,62 @@ namespace HearthMirror.Tests
 		public void UI_FriendsList_IsVisible()
 		{
 			Assert.IsTrue(Reflection.IsFriendsListVisible(), "friendslist is visible");
+		}
+
+		[TestMethod]
+		public void UI_Collection_ManaFilterIsDisabled()
+		{
+			Assert.AreEqual(-1, Reflection.GetCurrentManaFilter());
+		}
+
+		[TestMethod]
+		public void UI_Collection_SetFilterAllStandardSelected()
+		{
+			Assert.IsTrue(Reflection.GetCurrentSetFilter().IsAllStandard);
+			Assert.IsFalse(Reflection.GetCurrentSetFilter().IsWild);
+		}
+
+		[TestMethod]
+		public void UI_Collection_SetFilterWildSelected()
+		{
+			Assert.IsFalse(Reflection.GetCurrentSetFilter().IsAllStandard);
+			Assert.IsTrue(Reflection.GetCurrentSetFilter().IsWild);
+		}
+
+		[TestMethod]
+		public void UI_PackOpening_OpenedPackContainsCards()
+		{
+			var pack = Reflection.GetPackCards();
+			Assert.AreEqual(5, pack.Count);
+			Assert.IsFalse(string.IsNullOrEmpty(pack[0].Id));
+			Assert.IsFalse(string.IsNullOrEmpty(pack[1].Id));
+			Assert.IsFalse(string.IsNullOrEmpty(pack[2].Id));
+			Assert.IsFalse(string.IsNullOrEmpty(pack[3].Id));
+			Assert.IsFalse(string.IsNullOrEmpty(pack[4].Id));
+		}
+
+		[TestMethod]
+		public void Output_ArenaRewards()
+		{
+			var rewards = Reflection.GetArenaRewards();
+			foreach(var reward in rewards)
+			{
+				switch(reward.Type)
+				{
+					case RewardType.ARCANE_DUST:
+						Console.WriteLine("Dust: " + ((ArcaneDustRewardData)reward).Amount);
+						break;
+					case RewardType.BOOSTER_PACK:
+						Console.WriteLine("Pack: " + ((BoosterPackRewardData)reward).Id);
+						break;
+					case RewardType.CARD:
+						Console.WriteLine("Card: " + ((CardRewardData)reward).Id);
+						break;
+					case RewardType.GOLD:
+						Console.WriteLine("Dust: " + ((GoldRewardData)reward).Amount);
+						break;
+				}
+			}
 		}
 	}
 }

@@ -118,7 +118,7 @@ namespace Hearthstone_Deck_Tracker.Utility.HotKeys
 		public static void ExportDeck()
 		{
 			if(DeckList.Instance.ActiveDeck != null && Core.Game.IsInMenu)
-				DeckExporter.Export(DeckList.Instance.ActiveDeckVersion).Forget();
+				DeckExporter.Export(DeckList.Instance.ActiveDeckVersion, null).Forget();
 		}
 
 		[PredefinedHotKeyAction("编辑激活的卡组", "打开编辑激活的卡组对话框（如果有的话）和让该软件切到前台。")]
