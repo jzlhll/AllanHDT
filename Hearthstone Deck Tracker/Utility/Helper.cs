@@ -133,7 +133,7 @@ namespace Hearthstone_Deck_Tracker
 
 		public static int CurrentSeason => (DateTime.Now.Year - 2014) * 12 - 3 + DateTime.Now.Month;
 
-		public static WindowState GameWindowState { get; internal set; } = WindowState.Normal;
+		public static WindowState GameWindowState { get; internal set; } = User32.GetHearthstoneWindowState();
 
 		public static Version GetCurrentVersion() => Assembly.GetExecutingAssembly().GetName().Version;
 
@@ -208,46 +208,6 @@ namespace Hearthstone_Deck_Tracker
 
 		public static string DeckToIdString(Deck deck)
 			=> deck.GetSelectedDeckVersion().Cards.Aggregate("", (current, card) => current + (card.Id + ":" + card.Count + ";"));
-
-		public static async Task<bool> FriendsListOpen()
-		{
-			//wait for friendslist to open/close
-			await Task.Delay(300);
-
-			var rect = User32.GetHearthstoneRect(false);
-			var capture = await ScreenCapture.CaptureHearthstoneAsync(new Point(0, (int)(rect.Height * 0.85)), (int)(rect.Width * 0.1), (int)(rect.Height * 0.15));
-			if(capture == null)
-				return false;
-
-			for(var y = 0; y < capture.Height; y++)
-			{
-				for(var x = 0; x < capture.Width; x++)
-				{
-					if(!IsYellowPixel(capture.GetPixel(x, y)))
-						continue;
-					var foundFriendsList = true;
-
-					//check for a straight yellow line (left side of add button)
-					for(var i = 0; i < 5; i++)
-					{
-						if(x + i >= capture.Width || !IsYellowPixel(capture.GetPixel(x + i, y)))
-							foundFriendsList = false;
-					}
-					if(foundFriendsList)
-						return true;
-				}
-			}
-			return false;
-		}
-
-		private static bool IsYellowPixel(Color pixel)
-		{
-			const int red = 216;
-			const int green = 174;
-			const int blue = 10;
-			const int deviation = 10;
-			return Math.Abs(pixel.R - red) <= deviation && Math.Abs(pixel.G - green) <= deviation && Math.Abs(pixel.B - blue) <= deviation;
-		}
 
 		public static void UpdateEverything(GameV2 game)
 		{
@@ -708,6 +668,43 @@ namespace Hearthstone_Deck_Tracker
 				return null;
 			var color = ColorTranslator.FromHtml("#" + hex);
 			return new SolidColorBrush(MediaColor.FromRgb(color.R, color.G, color.B));
+		}
+
+		//See https://msdn.microsoft.com/en-us/library/hh925568(v=vs.110).aspx for value conversion
+		public static int GetInstalledDotNetVersion()
+		{
+			try
+			{
+				const string subkey = @"SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\";
+				using(var ndpKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32).OpenSubKey(subkey))
+					return (int)(ndpKey?.GetValue("Release") ?? -1);
+			}
+			catch(Exception ex)
+			{
+				Log.Error(ex);
+				return -1;
+			}
+		}
+
+		public static string GetWindowsVersion()
+		{
+			try
+			{
+				var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion");
+				return reg == null ? "Unknown" : $"{reg.GetValue("ProductName")} {reg.GetValue("CurrentBuild")}";
+			}
+			catch(Exception ex)
+			{
+				Log.Error(ex);
+				return "Unknown";
+			}
+		}
+
+		public static bool IsValidUrl(string url)
+		{
+			Uri result;
+			return Uri.TryCreate(url, UriKind.Absolute, out result)
+				&& (result.Scheme == Uri.UriSchemeHttp || result.Scheme == Uri.UriSchemeHttps);
 		}
 	}
 }
