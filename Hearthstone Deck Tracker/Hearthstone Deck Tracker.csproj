@@ -1369,7 +1369,7 @@ if "$(ConfigurationName)" == "Release" (
     ren "..\Hearthstone Deck Tracker\HearthstoneDeckTracker.exe.config" "Hearthstone Deck Tracker.exe.config"
     xcopy /Y "*.dll" "..\Hearthstone Deck Tracker"
     xcopy /Y "..\..\..\..\HDTUpdate\bin\Release\HDTUpdate.exe" "..\Hearthstone Deck Tracker"
-    xcopy /Y "..\..\..\..\..\AllanReleaseCopyFiles\*.*" "..\Hearthstone Deck Tracker"
+    xcopy /E /Y /Q "..\..\..\..\..\AllanReleaseCopyFiles\*.*" "..\Hearthstone Deck Tracker"
     xcopy /Y "..\..\..\..\HDTUninstaller\bin\Release\HDTUninstaller.exe" "..\Hearthstone Deck Tracker"
 )</PostBuildEvent>
   </PropertyGroup>

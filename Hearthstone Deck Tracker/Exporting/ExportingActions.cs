@@ -117,7 +117,8 @@ namespace Hearthstone_Deck_Tracker.Exporting
 				await ClearSearchBox();
 
 			await _mouse.ClickOnPoint(_info.SearchBoxPos);
-			await Task.Delay(Config.Instance.DeckExportDelay);
+
+			await Task.Delay(Config.Instance.DeckExportDelay * 4);
 
 			if(Config.Instance.ExportPasteClipboard || !Helper.LatinLanguages.Contains(Config.Instance.SelectedLanguage))
 			{
@@ -126,10 +127,11 @@ namespace Hearthstone_Deck_Tracker.Exporting
 			}
 			else
 				SendKeys.SendWait(GetSearchString(card));
-			SendKeys.SendWait("{ENTER}");
+            await Task.Delay(300);
+            SendKeys.SendWait("{ENTER}");
 
 			Log.Info($"Adding {card}, in collection: {normal} normal, {golden} golden");
-			await Task.Delay(Config.Instance.DeckExportDelay * 2);
+			await Task.Delay(Config.Instance.DeckExportDelay * 4);
 
 			if(Config.Instance.PrioritizeGolden && golden > 0)
 			{
@@ -186,7 +188,8 @@ namespace Hearthstone_Deck_Tracker.Exporting
 			foreach(var card in _deck.GetSelectedDeckVersion().Cards.ToSortedCardList())
 			{
 				var missingCardsCount = await AddCardToDeck(card, collection);
-				if(missingCardsCount > 0)
+                await Task.Delay(200);
+                if (missingCardsCount > 0)
 				{
 					var missingCard = (Card)card.Clone();
 					missingCard.Count = missingCardsCount;
@@ -231,12 +234,14 @@ namespace Hearthstone_Deck_Tracker.Exporting
 			await _mouse.ClickOnPoint(_setFilterAllPoint);
 			await Task.Delay(500);
 			await _mouse.ClickOnPoint(_setFilterMenuPoint);
-		}
+            await Task.Delay(100);
+        }
 
 		public async Task ClearSearchBox()
 		{
 			await _mouse.ClickOnPoint(_info.SearchBoxPos);
 			SendKeys.SendWait("{DELETE}");
+            await Task.Delay(100);
 			SendKeys.SendWait("{ENTER}");
 		}
 
