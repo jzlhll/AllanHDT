@@ -32,7 +32,12 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 		public AddGameDialog(Deck deck)
 		{
 			InitializeComponent();
-			_tcs = new TaskCompletionSource<GameStats>();
+            ComboBoxResult.ItemsSource = new[]{"胜利","败北","弃局"};
+            ComboBoxOpponent.ItemsSource = new[] { "德鲁伊", "猎人", "法师", "圣骑士", "牧师", "潜行者", "萨满", "术士", "战士" };
+            ComboBoxMode.ItemsSource = new[] { "天梯", "休闲", "竞技场", "乱斗", "友谊", "练习" };
+            ComboBoxFormat.ItemsSource = new[] { "标准", "狂野" };
+            ComboBoxRegion.ItemsSource = new[] { "美国", "欧洲", "亚洲", "中国" };
+            _tcs = new TaskCompletionSource<GameStats>();
 			_editing = false;
 			var lastGame = deck.DeckStats.Games.LastOrDefault();
 			if(deck.IsArenaDeck)

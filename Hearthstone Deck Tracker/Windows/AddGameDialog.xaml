@@ -12,50 +12,26 @@
         <DockPanel Margin="0,2,0,0">
             <Label Content="结果:" Width="90"/>
             <ComboBox Name="ComboBoxResult" SelectedIndex="0">
-                <enums:GameResult>胜利</enums:GameResult>
-                <enums:GameResult>败北</enums:GameResult>
-                <enums:GameResult>弃局</enums:GameResult>
             </ComboBox>
         </DockPanel>
         <DockPanel Margin="0,2,0,0">
             <Label Content="对阵:" Width="90" />
             <ComboBox Name="ComboBoxOpponent" SelectedIndex="0" >
-                <enums:HeroClass>德鲁伊</enums:HeroClass>
-                <enums:HeroClass>猎人</enums:HeroClass>
-                <enums:HeroClass>法师</enums:HeroClass>
-                <enums:HeroClass>圣骑士</enums:HeroClass>
-                <enums:HeroClass>牧师</enums:HeroClass>
-                <enums:HeroClass>潜行者</enums:HeroClass>
-                <enums:HeroClass>萨满</enums:HeroClass>
-                <enums:HeroClass>术士</enums:HeroClass>
-                <enums:HeroClass>战士</enums:HeroClass>
             </ComboBox>
         </DockPanel>
         <DockPanel Margin="0,2,0,0">
             <Label Content="模式:" Width="90"/>
             <ComboBox Name="ComboBoxMode" SelectedIndex="0" SelectionChanged="ComboBoxMode_OnSelectionChanged">
-                <enums:GameMode>天梯</enums:GameMode>
-                <enums:GameMode>休闲</enums:GameMode>
-                <enums:GameMode>竞技场</enums:GameMode>
-                <enums:GameMode>乱斗</enums:GameMode>
-                <enums:GameMode>友谊</enums:GameMode>
-                <enums:GameMode>练习</enums:GameMode>
             </ComboBox>
         </DockPanel>
         <DockPanel Margin="0,2,0,0" Name="PanelFormat">
             <Label Content="格式化:" Width="90"/>
             <ComboBox Name="ComboBoxFormat" SelectedIndex="0">
-                <enums:Format>标准</enums:Format>
-                <enums:Format>狂野</enums:Format>
             </ComboBox>
         </DockPanel>
         <DockPanel Margin="0,2,0,0">
             <Label Content="服务器:" Width="90"/>
             <ComboBox Name="ComboBoxRegion" SelectedIndex="0" SelectionChanged="ComboBoxMode_OnSelectionChanged">
-                <enums:Region>美国</enums:Region>
-                <enums:Region>欧洲</enums:Region>
-                <enums:Region>亚洲</enums:Region>
-                <enums:Region>中国</enums:Region>
             </ComboBox>
         </DockPanel>
         <DockPanel Margin="0,2,0,0" Name="PanelRank">
@@ -74,7 +50,7 @@
             </ComboBox>
         </DockPanel>
         <DockPanel Margin="0,2,0,0">
-            <Label Content="丢失:" Width="90"/>
+            <Label Content="逃跑:" Width="90"/>
             <ComboBox Name="ComboBoxConceded" SelectedIndex="1">
                 <enums:YesNo>Yes</enums:YesNo>
                 <enums:YesNo>No</enums:YesNo>
