@@ -29,7 +29,7 @@
                           Checked="CheckBoxSecrets_OnChecked" Unchecked="CheckBoxSecrets_OnUnchecked" Margin="10,5,0,0"
                           IsEnabled="{Binding ElementName=ToggleSwitchExtraFeatures, Path=IsChecked}" />
                 <TextBlock
-                    Text="注意：可能无法正常工作，如果【选项】>【界面】>【常规】>【奥秘自动变灰】已启用。"
+                    Text="注意：可能无法正常工作，如果【选项】>【界面】>【一般】>【奥秘自动变灰】已启用。"
                     TextWrapping="Wrap" FontStyle="Italic" Margin="34,0,0,0" />
             </StackPanel>
         </GroupBox>
