@@ -35,7 +35,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 		public async void ImportDeck(string url = null)
 		{
 			var result = await ImportDeckFromUrl(url);
-			if(result.WasCancelled)
+            if (result == null || result.WasCancelled)
 				return;
 			if(result.Deck != null)
 			{
@@ -86,6 +86,13 @@ namespace Hearthstone_Deck_Tracker.Windows
 			}
 			if(url == null)
 				return new ImportingResult {WasCancelled = true};
+            if (CardTool.isMineWeb(url))
+            {
+                bool bl = ChinaWebImport.import(url, "");
+                if (!bl)
+                    await this.ShowMessageAsync("使用国内网址导入出错", ChinaWebImport.getSupportDemo());
+                return null;
+            }
 			var controller = await this.ShowProgressAsync("加载卡组中", "请等待...");
 			var deck = await DeckImporter.Import(url);
 			if(deck != null && string.IsNullOrEmpty(deck.Url))
@@ -101,7 +108,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			try
 			{
 				var validUrls = DeckImporter.Websites.Keys.Select(x => x.Split('.')[0]).ToArray();
-				return await this.ShowInputAsync("导入卡组", "一些支持的网址:\n" + validUrls.Aggregate((x, next) => x + ", " + next), new MessageDialogs.Settings());
+				return await this.ShowInputAsync("导入卡组", "一些支持的网址:\n" + validUrls.Aggregate((x, next) => x + ", " + next) + "\n国内支持的网址:\n多玩", new MessageDialogs.Settings());
 			}
 			catch(Exception e)
 			{
