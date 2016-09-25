@@ -88,10 +88,11 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 			ComboBoxSpells.SelectedItem = Config.Instance.OpponentSpellsCounter;
 
 			ElementSorterOpponent.IsPlayer = false;
-			foreach(var itemName in Config.Instance.PanelOrderOpponent)
+			foreach(var panel in Config.Instance.DeckPanelOrderOpponent)
 			{
-				switch(itemName)
+				switch(panel)
 				{
+<<<<<<< HEAD
 					case "卡牌":
 						ElementSorterOpponent.AddItem(new ElementSorterItem("卡牌", !Config.Instance.HideOpponentCards,
 						                                                    value => Config.Instance.HideOpponentCards = !value, false));
@@ -111,6 +112,27 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 					case "胜率":
 						ElementSorterOpponent.AddItem(new ElementSorterItem("胜率", Config.Instance.ShowWinRateAgainst,
 						                                                    value => Config.Instance.ShowWinRateAgainst = value, false));
+=======
+					case Enums.DeckPanel.Winrate:
+						ElementSorterOpponent.AddItem(new ElementSorterItem(panel, Config.Instance.ShowWinRateAgainst,
+																			value => Config.Instance.ShowWinRateAgainst = value, false));
+						break;
+					case Enums.DeckPanel.Cards:
+						ElementSorterOpponent.AddItem(new ElementSorterItem(panel, !Config.Instance.HideOpponentCards,
+																			value => Config.Instance.HideOpponentCards = !value, false));
+						break;
+					case Enums.DeckPanel.CardCounter:
+						ElementSorterOpponent.AddItem(new ElementSorterItem(panel, !Config.Instance.HideOpponentCardCount,
+																			value => Config.Instance.HideOpponentCardCount = !value, false));
+						break;
+					case Enums.DeckPanel.DrawChances:
+						ElementSorterOpponent.AddItem(new ElementSorterItem(panel, !Config.Instance.HideOpponentDrawChances,
+																			value => Config.Instance.HideOpponentDrawChances = !value, false));
+						break;
+					case Enums.DeckPanel.Fatigue:
+						ElementSorterOpponent.AddItem(new ElementSorterItem(panel, !Config.Instance.HideOpponentFatigueCount,
+																			value => Config.Instance.HideOpponentFatigueCount = !value, false));
+>>>>>>> c693a4c... update code to 0925
 						break;
 				}
 			}

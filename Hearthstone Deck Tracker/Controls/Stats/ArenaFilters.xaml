@@ -3,10 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Hearthstone_Deck_Tracker.Controls.Stats"
              xmlns:enums="clr-namespace:Hearthstone_Deck_Tracker.Enums"
              xmlns:converters="clr-namespace:Hearthstone_Deck_Tracker.Controls.Stats.Converters"
-             xmlns:utility="clr-namespace:Hearthstone_Deck_Tracker.Utility"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             lex:LocalizeDictionary.DesignCulture="en"
+             lex:ResxLocalizationProvider.DefaultAssembly="HearthstoneDeckTracker"
+             lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -16,7 +18,11 @@
     </UserControl.Resources>
     <StackPanel>
         <DockPanel Margin="0,5,0,0">
+<<<<<<< HEAD
             <Label Content="时间:" Width="60"/>
+=======
+            <Label Content="{lex:Loc Stats_Arena_Filters_Label_Time}" Width="60"/>
+>>>>>>> c693a4c... update code to 0925
             <ComboBox Name="ComboBoxTimeframe" SelectedIndex="3" SelectionChanged="ComboBoxTimeframe_OnSelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
@@ -26,19 +32,31 @@
             </ComboBox>
         </DockPanel>
         <DockPanel Margin="0,5,0,0" Visibility="{Binding ElementName=ComboBoxTimeframe, Path=SelectedItem, Converter={StaticResource CustomTimeframeVisibilityConverter}}">
+<<<<<<< HEAD
             <Label Content="起始:" Margin="10,0,0,0" Width="50"/>
+=======
+            <Label Content="{lex:Loc Stats_Arena_Filters_Label_Start}" Margin="10,0,0,0" Width="50"/>
+>>>>>>> c693a4c... update code to 0925
             <DatePicker Name="DatePickerCustomTimeFrameStart" DockPanel.Dock="Right"
                                     SelectedDate="{Binding Path=ArenaStatsTimeFrameCustomStart, Source={StaticResource ConfigWrapper}}"
                                     SelectedDateChanged="DatePickerCustomTimeFrame_OnSelectedDateChanged" />
         </DockPanel>
         <DockPanel Margin="0,5,0,0" Visibility="{Binding ElementName=ComboBoxTimeframe, Path=SelectedItem, Converter={StaticResource CustomTimeframeVisibilityConverter}}">
+<<<<<<< HEAD
             <Label Content="结束:" Margin="10,0,0,0" Width="50"/>
+=======
+            <Label Content="{lex:Loc Stats_Arena_Filters_Label_End}" Margin="10,0,0,0" Width="50"/>
+>>>>>>> c693a4c... update code to 0925
             <DatePicker Name="DatePickerCustomTimeFrameEnd" DockPanel.Dock="Right"
                                     SelectedDate="{Binding Path=ArenaStatsTimeFrameCustomEnd, Source={StaticResource ConfigWrapper}}"
                                     SelectedDateChanged="DatePickerCustomTimeFrame_OnSelectedDateChanged" />
         </DockPanel>
         <DockPanel Margin="0,5,0,0" Visibility="{Binding ElementName=ComboBoxTimeframe, Path=SelectedItem, Converter={StaticResource CustomTimeframeSeasonVisibilityConverter}}">
+<<<<<<< HEAD
             <Label Content="季节:" Width="60"/>
+=======
+            <Label Content="{lex:Loc Stats_Arena_Filters_Label_Season}" Width="60"/>
+>>>>>>> c693a4c... update code to 0925
             <Grid VerticalAlignment="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="22*"/>
@@ -73,7 +91,11 @@
             </Grid>
         </DockPanel>
         <DockPanel Margin="0,5,0,0">
+<<<<<<< HEAD
             <Label Content="英雄:" Width="60"/>
+=======
+            <Label Content="{lex:Loc Stats_Arena_Filters_Label_Class}" Width="60"/>
+>>>>>>> c693a4c... update code to 0925
             <ComboBox Name="ComboBoxClass" SelectedIndex="0" SelectionChanged="ComboBoxClass_OnSelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
@@ -87,7 +109,11 @@
             </ComboBox>
         </DockPanel>
         <DockPanel Margin="0,5,0,0">
+<<<<<<< HEAD
             <Label Content="服务器:" Width="60"/>
+=======
+            <Label Content="{lex:Loc Stats_Arena_Filters_Label_Region}" Width="60"/>
+>>>>>>> c693a4c... update code to 0925
             <ComboBox Name="ComboBoxRegion" SelectedIndex="0" SelectionChanged="ComboBoxRegion_OnSelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
@@ -96,7 +122,11 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </DockPanel>
+<<<<<<< HEAD
         <CheckBox Name="CheckBoxArchived" Content="包含存档的场次" Margin="5,5,0,0" 
+=======
+        <CheckBox Name="CheckBoxArchived" Content="{lex:Loc Stats_Arena_Filters_CheckBox_Archive}" Margin="5,5,0,0" 
+>>>>>>> c693a4c... update code to 0925
                   IsChecked="{Binding Path=ArenaStatsIncludeArchived, Source={StaticResource ConfigWrapper}}"
                   Checked="CheckBoxArchived_OnChecked" Unchecked="CheckBoxArchived_OnUnchecked" />
     </StackPanel>

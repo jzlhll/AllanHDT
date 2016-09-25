@@ -1,4 +1,4 @@
-﻿#region
+#region
 
 using System;
 using System.Collections.Generic;
@@ -14,6 +14,7 @@ using Hearthstone_Deck_Tracker.FlyoutControls;
 using Hearthstone_Deck_Tracker.Hearthstone;
 using Hearthstone_Deck_Tracker.HearthStats.API;
 using Hearthstone_Deck_Tracker.Stats;
+using Hearthstone_Deck_Tracker.Utility;
 using Hearthstone_Deck_Tracker.Utility.Extensions;
 using Hearthstone_Deck_Tracker.Utility.Logging;
 using MahApps.Metro.Controls;
@@ -27,7 +28,46 @@ namespace Hearthstone_Deck_Tracker.Windows
 {
 	public static class MessageDialogs
 	{
+		private static string LocDeleteGameStatsTitle = "MessageDialogs_DeleteGameStats_Title";
+		private static string LocDeleteGameStatsMultiTitle = "MessageDialogs_DeleteGameStats_Multi_Title";
+		private static string LocDeleteGameStatsMultiText = "MessageDialogs_DeleteGameStats_Multi_Text";
+		private static string LocDeleteGameStatsSure = "MessageDialogs_DeleteGameStats_Label_Sure";
+		private static string LocDeleteGameStatsButtonDelete = "MessageDialogs_DeleteGameStats_Button_Delete";
+		private static string LocDeleteGameStatsButtonCancel = "MessageDialogs_DeleteGameStats_Button_Cancel";
+
+		private static string LocRestartTitle = "MessageDialogs_Restart_Title";
+		private static string LocRestartText = "MessageDialogs_Restart_Text";
+		private static string LocRestartButtonRestart = "MessageDialogs_Restart_Button_Restart";
+		private static string LocRestartButtonLater = "MessageDialogs_Restart_Button_Later";
+
+		private const string LocSavedFileText = "MessageDialogs_SavedFile_Title";
+		private const string LocSavedFileButtonOk = "MessageDialogs_SavedFile_Button_Ok";
+		private const string LocSavedFileButtonOpen = "MessageDialogs_SavedFile_Button_OpenFolder";
+		
+		private const string LocSaveUploadSaved = "MessageDialogs_SaveUpload_Text_Saved";
+		private const string LocSaveUploadUploaded = "MessageDialogs_SaveUpload_Text_Uploaded";
+		private const string LocSaveUploadButtonOk = "MessageDialogs_SaveUpload_Button_Ok";
+		private const string LocSaveUploadButtonBrowser = "MessageDialogs_SaveUpload_Button_Browser";
+		private const string LocSaveUploadButtonClipboard = "MessageDialogs_SaveUpload_Button_Clipboard";
+
+		private const string LocScreenshotActionTitle = "MessageDialogs_ScrenshotAction_Title";
+		private const string LocScreenshotActionDescription = "MessageDialogs_ScrenshotAction_Description";
+		private const string LocScreenshotActionButtonSave = "MessageDialogs_ScrenshotAction_Button_Save";
+		private const string LocScreenshotActionButtonSaveUpload = "MessageDialogs_ScrenshotAction_Button_SaveUpload";
+		private const string LocScreenshotActionButtonUpload = "MessageDialogs_ScrenshotAction_Button_Upload";
+		private const string LocScreenshotActionButtonCancel = "MessageDialogs_ScrenshotAction_Button_Cancel";
+
+		private const string LocLogConfigTitle = "MessageDialogs_LogConfig_Title";
+		private const string LocLogConfigDescription1 = "MessageDialogs_LogConfig_Description1";
+		private const string LocLogConfigDescription2 = "MessageDialogs_LogConfig_Description2";
+		private const string LocLogConfigDescription3 = "MessageDialogs_LogConfig_Description3";
+		private const string LocLogConfigButtonInstructions = "MessageDialogs_LogConfig_Button_Instructions";
+		private const string LocLogConfigButtonClose = "MessageDialogs_LogConfig_Button_Close";
+
+		//LocUtil.Get()}
+
 		public static async Task<MessageDialogResult> ShowDeleteGameStatsMessage(this MetroWindow window, GameStats stats)
+<<<<<<< HEAD
 			=> await window.ShowMessageAsync("删除游戏", $"{stats.Result} vs {stats.OpponentHero}\n从 {stats.StartTime}\n\n确定吗?",
 				AffirmativeAndNegative, new Settings {AffirmativeButtonText = "是", NegativeButtonText = "不"});
 
@@ -49,6 +89,37 @@ namespace Hearthstone_Deck_Tracker.Windows
 				await Core.MainWindow.ShowMessageAsync("需要重启.", "HDT汉化版需要重启才能生效.",
 					MessageDialogStyle.AffirmativeAndNegative,
 					new MessageDialogs.Settings() { AffirmativeButtonText = "立刻重启", NegativeButtonText = "稍后" });
+=======
+			=> await window.ShowMessageAsync(LocUtil.Get(LocDeleteGameStatsTitle),
+				stats + Environment.NewLine + Environment.NewLine + LocUtil.Get(LocDeleteGameStatsSure),
+				AffirmativeAndNegative,
+				new Settings
+				{
+					AffirmativeButtonText = LocUtil.Get(LocDeleteGameStatsButtonDelete),
+					NegativeButtonText = LocUtil.Get(LocDeleteGameStatsButtonCancel)
+				});
+
+		public static async Task<MessageDialogResult> ShowDeleteMultipleGameStatsMessage(this MetroWindow window, int count)
+			=> await window.ShowMessageAsync(LocUtil.Get(LocDeleteGameStatsMultiTitle),
+				$"{LocUtil.Get(LocDeleteGameStatsMultiText)} ({count})." + Environment.NewLine
+				+ Environment.NewLine + LocUtil.Get(LocDeleteGameStatsSure),
+				AffirmativeAndNegative,
+				new Settings
+				{
+					AffirmativeButtonText = LocUtil.Get(LocDeleteGameStatsButtonDelete),
+					NegativeButtonText = LocUtil.Get(LocDeleteGameStatsButtonCancel)
+				});
+
+		public static async void ShowRestartDialog()
+		{
+			var result = await Core.MainWindow.ShowMessageAsync(LocUtil.Get(LocRestartTitle), LocUtil.Get(LocRestartText),
+				AffirmativeAndNegative,
+				new Settings()
+				{
+					AffirmativeButtonText = LocUtil.Get(LocRestartButtonRestart),
+					NegativeButtonText = LocUtil.Get(LocRestartButtonLater)
+				});
+>>>>>>> c693a4c... update code to 0925
 			if(result == MessageDialogResult.Affirmative)
 				Core.MainWindow.Restart();
 		}
@@ -57,8 +128,19 @@ namespace Hearthstone_Deck_Tracker.Windows
 
 		public static async Task ShowSavedFileMessage(this MainWindow window, string fileName)
 		{
+<<<<<<< HEAD
 			var result = await window.ShowMessageAsync("", $"保存到\n\"{fileName}\"", AffirmativeAndNegative,
 							new Settings {NegativeButtonText = "打开文件夹"});
+=======
+			var result = await window.ShowMessageAsync("", 
+						LocUtil.Get(LocSavedFileText) + Environment.NewLine + Environment.NewLine + fileName,
+						AffirmativeAndNegative,
+						new Settings
+						{
+							AffirmativeButtonText = LocUtil.Get(LocSavedFileButtonOk),
+							NegativeButtonText = LocUtil.Get(LocSavedFileButtonOpen)
+						});
+>>>>>>> c693a4c... update code to 0925
 			if(result == MessageDialogResult.Negative)
 				Process.Start(Path.GetDirectoryName(fileName));
 		}
@@ -67,10 +149,24 @@ namespace Hearthstone_Deck_Tracker.Windows
 		{
 			var sb = new StringBuilder();
 			if(fileName != null)
-				sb.AppendLine($"Saved to\n\"{fileName}\"");
-			sb.AppendLine($"Uploaded to\n{url}");
+			{
+				sb.AppendLine(LocUtil.Get(LocSaveUploadSaved));
+				sb.AppendLine(fileName);
+				sb.AppendLine();
+			}
+			sb.AppendLine(LocUtil.Get(LocSaveUploadUploaded));
+			sb.AppendLine(url);
 			var result = await window.ShowMessageAsync("", sb.ToString(), AffirmativeAndNegativeAndSingleAuxiliary,
+<<<<<<< HEAD
 							new Settings {NegativeButtonText = "打开浏览器", FirstAuxiliaryButtonText = "拷贝了url到剪贴板"});
+=======
+				new Settings
+				{
+					AffirmativeButtonText = LocUtil.Get(LocSaveUploadButtonOk),
+					NegativeButtonText = LocUtil.Get(LocSaveUploadButtonBrowser),
+					FirstAuxiliaryButtonText = LocUtil.Get(LocSaveUploadButtonClipboard)
+				});
+>>>>>>> c693a4c... update code to 0925
 			if(result == MessageDialogResult.Negative)
 				Helper.TryOpenUrl(url);
 			else if(result == MessageDialogResult.FirstAuxiliary)
@@ -88,6 +184,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 
 		public static async Task<SaveScreenshotOperation> ShowScreenshotUploadSelectionDialog(this MainWindow window)
 		{
+<<<<<<< HEAD
 			var result = await window.ShowMessageAsync("选择操作", "\"上传\" 将会自动传图片到imgur.com",
 							AffirmativeAndNegativeAndDoubleAuxiliary, new Settings
 							{
@@ -95,6 +192,15 @@ namespace Hearthstone_Deck_Tracker.Windows
 								NegativeButtonText = "保存并上传",
 								FirstAuxiliaryButtonText = "上传",
 								SecondAuxiliaryButtonText = "取消"
+=======
+			var result = await window.ShowMessageAsync(LocUtil.Get(LocScreenshotActionTitle), LocUtil.Get(LocScreenshotActionDescription),
+							AffirmativeAndNegativeAndDoubleAuxiliary, new Settings
+							{
+								AffirmativeButtonText = LocUtil.Get(LocScreenshotActionButtonSave),
+								NegativeButtonText = LocUtil.Get(LocScreenshotActionButtonSaveUpload),
+								FirstAuxiliaryButtonText = LocUtil.Get(LocScreenshotActionButtonUpload),
+								SecondAuxiliaryButtonText = LocUtil.Get(LocScreenshotActionButtonCancel)
+>>>>>>> c693a4c... update code to 0925
 							});
 			return new SaveScreenshotOperation
 			{
@@ -106,9 +212,21 @@ namespace Hearthstone_Deck_Tracker.Windows
 
 		public static async Task ShowLogConfigUpdateFailedMessage(this MetroWindow window)
 		{
+<<<<<<< HEAD
 			var settings = new Settings {AffirmativeButtonText = "显示介绍", NegativeButtonText = "关闭"};
 			var result = await window.ShowMessageAsync("无法生成log.config",
                                         "HDT需要正常使用的话，需要log.config的正常设置，\n\n需要使用管理员启动HDT程序。\n\n如果需要帮助，点击“显示说明”如何手动更新。",
+=======
+			var settings = new Settings
+			{
+				AffirmativeButtonText = LocUtil.Get(LocLogConfigButtonInstructions),
+				NegativeButtonText = LocUtil.Get(LocLogConfigButtonClose)
+			};
+			var result = await window.ShowMessageAsync(LocUtil.Get(LocLogConfigTitle),
+										LocUtil.Get(LocLogConfigDescription1) + Environment.NewLine + Environment.NewLine
+										+ LocUtil.Get(LocLogConfigDescription2) + Environment.NewLine + Environment.NewLine
+										+ LocUtil.Get(LocLogConfigDescription3),
+>>>>>>> c693a4c... update code to 0925
 										AffirmativeAndNegative, settings);
 			if(result == MessageDialogResult.Affirmative)
 				Helper.TryOpenUrl("https://github.com/HearthSim/Hearthstone-Deck-Tracker/wiki/Setting-up-the-log.config");

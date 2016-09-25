@@ -1,8 +1,12 @@
-﻿<UserControl x:Class="Hearthstone_Deck_Tracker.Controls.DeckImportingControl"
+<UserControl x:Class="Hearthstone_Deck_Tracker.Controls.DeckImportingControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             lex:LocalizeDictionary.DesignCulture="en"
+             lex:ResxLocalizationProvider.DefaultAssembly="HearthstoneDeckTracker"
+             lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -15,6 +19,7 @@
         <DockPanel Visibility="{Binding ContentVisibility}">
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="0,10,0,30">
                 <Button Name="ButtonImport" Width="150" Style="{DynamicResource AccentedSquareButtonStyle}" Click="ButtonImport_OnClick">
+<<<<<<< HEAD
                     <TextBlock Text="导入"/>
                 </Button>
                 <Button Name="ButtonAutoImport" Width="150" Margin="10,0,0,0" Style="{DynamicResource SquareButtonStyle}" Click="ButtonAutoImport_OnClick"
@@ -23,12 +28,27 @@
                 </Button>
             </StackPanel>
             <Label Content="选择卡组导入:" DockPanel.Dock="Top" FontSize="18" HorizontalAlignment="Center" Foreground="White"/>
+=======
+                    <TextBlock Text="{lex:Loc Importing_Constructed_Button_Import}"/>
+                </Button>
+                <Button Name="ButtonAutoImport" Width="150" Margin="10,0,0,0" Style="{DynamicResource SquareButtonStyle}" Click="ButtonAutoImport_OnClick"
+                        Visibility="{Binding AutoImportingVisibility, RelativeSource={RelativeSource AncestorType=UserControl}}">
+                    <TextBlock Text="{lex:Loc Importing_Constructed_Button_AutoImporting}"/>
+                </Button>
+            </StackPanel>
+            <Label Content="{lex:Loc Importing_Constructed_Label_Title}" DockPanel.Dock="Top" FontSize="18" HorizontalAlignment="Center" Foreground="White"/>
+>>>>>>> c693a4c... update code to 0925
             <Border BorderThickness="1" BorderBrush="{DynamicResource AccentColorBrush}" HorizontalAlignment="Center" Margin="5">
                 <DockPanel Margin="0,0,0,5">
                     <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
                         <CheckBox Name="CheckBoxImportAll" IsChecked="True" Margin="5,0,0,0" Click="CheckBoxImportAll_OnClicked"/>
+<<<<<<< HEAD
                             <Label Content="卡组" Margin="90,0,0,0" FontWeight="SemiBold"/>
                         <Label Content="保存到" Margin="160,0,0,0" FontWeight="SemiBold"/>
+=======
+                        <Label Content="{lex:LocTextUpper Importing_Constructed_Label_Deck}" Margin="90,0,0,0" FontWeight="SemiBold"/>
+                        <Label Content="{lex:LocTextUpper Importing_Constructed_Label_SaveTo}" Margin="160,0,0,0" FontWeight="SemiBold"/>
+>>>>>>> c693a4c... update code to 0925
                     </StackPanel>
                     <Separator DockPanel.Dock="Top"/>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">

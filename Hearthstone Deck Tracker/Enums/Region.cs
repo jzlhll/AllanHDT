@@ -1,13 +1,8 @@
-﻿#region
-
-using System.ComponentModel;
-
-#endregion
-
 namespace Hearthstone_Deck_Tracker.Enums
 {
 	public enum Region
 	{
+<<<<<<< HEAD
         [Description("未知")]
         UNKNOWN = 0,
         [Description("美国")]
@@ -18,6 +13,18 @@ namespace Hearthstone_Deck_Tracker.Enums
         ASIA = 3,
         [Description("中国")]
         CHINA = 5
+=======
+		[LocDescription("Enum_Region_Unknown")]
+		UNKNOWN = 0,
+		[LocDescription("Enum_Region_US")]
+		US = 1,
+		[LocDescription("Enum_Region_EU")]
+		EU = 2,
+		[LocDescription("Enum_Region_Asia")]
+		ASIA = 3,
+		[LocDescription("Enum_Region_China")]
+		CHINA = 5
+>>>>>>> c693a4c... update code to 0925
 	}
 
     public class RegionConvert {
@@ -57,6 +64,7 @@ namespace Hearthstone_Deck_Tracker.Enums
 
 	public enum RegionAll
 	{
+<<<<<<< HEAD
 		[Description("全部")]
 		ALL = -1,
 
@@ -73,6 +81,19 @@ namespace Hearthstone_Deck_Tracker.Enums
 		ASIA = 3,
 
 		[Description("中国")]
+=======
+		[LocDescription("Enum_Region_All")]
+		ALL = -1,
+		[LocDescription("Enum_Region_Unknown")]
+		UNKNOWN = 0,
+		[LocDescription("Enum_Region_US")]
+		US = 1,
+		[LocDescription("Enum_Region_EU")]
+		EU = 2,
+		[LocDescription("Enum_Region_Asia")]
+		ASIA = 3,
+		[LocDescription("Enum_Region_China")]
+>>>>>>> c693a4c... update code to 0925
 		CHINA = 5
 	}
 }

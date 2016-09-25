@@ -1,27 +1,39 @@
-﻿<UserControl x:Class="Hearthstone_Deck_Tracker.Help"
+<UserControl x:Class="Hearthstone_Deck_Tracker.Help"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             lex:LocalizeDictionary.DesignCulture="en"
+             lex:ResxLocalizationProvider.DefaultAssembly="HearthstoneDeckTracker"
+             lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              mc:Ignorable="d"
              d:DesignHeight="800" d:DesignWidth="600">
     <DockPanel>
         <Border BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1" Margin="-1"
                 DockPanel.Dock="Bottom">
             <DockPanel VerticalAlignment="Bottom">
+<<<<<<< HEAD
                 <Button Name="ButtonUpdateNotes" Content="显示更新日志(release note)" Click="ButtonUpdateNotes_OnClick"
                         DockPanel.Dock="Right" Margin="2" Width="200"
                         Style="{DynamicResource AccentedSquareButtonStyle}" />
                 <TextBlock Name="TxtblockVersion" Text="版本:" VerticalAlignment="Center" Margin="10,0,0,0" />
+=======
+                <Button Name="ButtonUpdateNotes" Content="{lex:Loc Help_Button_Updatenotes}" Click="ButtonUpdateNotes_OnClick"
+                        DockPanel.Dock="Right" Margin="2" Width="200"
+                        Style="{DynamicResource AccentedSquareButtonStyle}" />
+                <TextBlock Name="TxtblockVersion" Text="{lex:Loc Help_Label_Version}" VerticalAlignment="Center" Margin="10,0,0,0" />
+>>>>>>> c693a4c... update code to 0925
             </DockPanel>
         </Border>
         <ScrollViewer>
             <StackPanel>
-                <GroupBox Header="FAQ">
+                <GroupBox Header="{lex:Loc Help_Label_Faq}">
                     <TextBlock Margin="10,0,10,0" VerticalAlignment="Top" Width="auto" TextWrapping="Wrap">
                         <Hyperlink
                             NavigateUri="https://github.com/HearthSim/Hearthstone-Deck-Tracker/wiki/FAQ"
                             RequestNavigate="Hyperlink_RequestNavigate">
+<<<<<<< HEAD
                             进入FAQ.一般的，可以进入【选项】->
                         </Hyperlink>
                     </TextBlock>
@@ -50,12 +62,43 @@
                         <GroupBox Header="百分比">
                             <StackPanel Margin="10,0">
                                 <TextBlock Text="一般的:" FontWeight="Bold" />
+=======
+                            <Run Text="{lex:Loc Help_Faq_Hyperlink}"/>
+                        </Hyperlink>
+                    </TextBlock>
+                </GroupBox>
+                <GroupBox Header="{lex:Loc Help_Label_Overlay}">
+                    <StackPanel>
+                        <GroupBox Header="{lex:Loc Help_Overlay_Label_CardMarks}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/HearthstoneDeckTracker;component/Images/card-icon-coin.png"
+                                       RenderOptions.BitmapScalingMode="Fant" Width="16" />
+                                <Label Content="{lex:Loc Help_Overlay_CardMarks_Label_Coin}" />
+                                <Image Source="/HearthstoneDeckTracker;component/Images/card-icon-mulligan.png"
+                                       RenderOptions.BitmapScalingMode="Fant"
+                                       Width="16" Margin="10,0,0,0" />
+                                <Label Content="{lex:Loc Help_Overlay_CardMarks_Label_Mulligan}" />
+                                <Image Source="/HearthstoneDeckTracker;component/Images/card-icon-returned.png"
+                                       RenderOptions.BitmapScalingMode="Fant"
+                                       Width="16" Margin="10,0,0,0" />
+                                <Label Content="{lex:Loc Help_Overlay_CardMarks_Label_Returned}" />
+                                <Image Source="/HearthstoneDeckTracker;component/Images/card-icon-created.png"
+                                       RenderOptions.BitmapScalingMode="Fant"
+                                       Width="16" Margin="10,0,0,0" />
+                                <Label Content="{lex:Loc Help_Overlay_CardMarks_Label_Created}" />
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="{lex:Loc Help_Overlay_Label_Percentages}">
+                            <StackPanel Margin="10,0">
+                                <TextBlock Text="{lex:Loc Help_Overlay_Percentages_Label_General}" FontWeight="Bold" />
+>>>>>>> c693a4c... update code to 0925
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="/HearthstoneDeckTracker;component/Resources/overlay_1.png"
                                            Height="13" Margin="5,0,0,0" RenderOptions.BitmapScalingMode="Fant" />
                                     <TextBlock Text=" /" VerticalAlignment="Center" />
                                     <Image Source="/HearthstoneDeckTracker;component/Resources/overlay_2.png"
                                            Height="13" Margin="5,0,0,0" RenderOptions.BitmapScalingMode="Fant" />
+<<<<<<< HEAD
                                     <TextBlock Text=" 在卡组中剩下的某张卡的数量."
                                                VerticalAlignment="Center" />
                                 </StackPanel>
@@ -88,9 +131,37 @@
                                     <Run>在这里可以找到这个选项</Run>
                                     <Italic>
                                         <Run>【选项】> 【界面】 > 【一般】 / 【玩家】 / 【对手】</Run>
+=======
+                                    <TextBlock Text="{lex:LocText Help_Overlay_Percentages_Text_General, Suffix=' '}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <TextBlock Text="{lex:Loc Help_Overlay_Percentages_Label_Draw}" FontWeight="Bold" Margin="0,5,0,0"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,5">
+                                    <Image Source="/HearthstoneDeckTracker;component/Resources/overlay_deck.png"
+                                           Width="18" Margin="5,0,0,0" RenderOptions.BitmapScalingMode="Fant" />
+                                    <TextBlock Text="{lex:Loc Help_Overlay_Percentages_Text_Draw}" Margin="5,0,0,0" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <TextBlock Text="{lex:Loc Help_Overlay_Percentages_Label_Holding}" FontWeight="Bold" />
+                                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                    <Image Source="/HearthstoneDeckTracker;component/Resources/overlay_hand.png"
+                                           Width="18" Margin="5,0,0,0" RenderOptions.BitmapScalingMode="Fant" />
+                                    <TextBlock Margin="5,0,0,0" Text="{lex:Loc Help_Overlay_Percentages_Text1_Holding}" VerticalAlignment="Center" />
+                                </StackPanel>
+                                <TextBlock Margin="28,0,0,0" Text="{lex:Loc Help_Overlay_Percentages_Text2_Holding}" FontStyle="Italic" />
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="{lex:Loc Help_Overlay_Label_Customization}">
+                            <StackPanel Margin="10, 0">
+                                <TextBlock Text="{lex:Loc Help_Overlay_Customization_Text_Intro}" />
+                                <TextBlock Text="{lex:Loc Help_Overlay_Customization_Label_OnOff}" FontWeight="Bold" Margin="0,5,0,0" />
+                                <TextBlock>
+                                    <Run Text="{lex:Loc Help_Overlay_Customization_OnOff_Text}"/>
+                                    <Italic>
+                                        <Run Text="{lex:Loc Help_Overlay_Customization_OnOff_OptionPath}"/>
+>>>>>>> c693a4c... update code to 0925
                                     </Italic>
-                                    <Run>.</Run>
+                                    .
                                 </TextBlock>
+<<<<<<< HEAD
                                 <TextBlock Text="移动/缩放: " FontWeight="Bold" Margin="0,5,0,0" />
                                 <TextBlock>
                                     <Run>界面可以通过解锁</Run>
@@ -98,6 +169,15 @@
                                         <Run>【选项】>【界面】>【一般】>【解锁】 </Run>
                                     </Italic>
                                     <Run>(按钮在底部).</Run>
+=======
+                                <TextBlock Text="{lex:Loc Help_Overlay_Customization_Label_Unlock}" FontWeight="Bold" Margin="0,5,0,0" />
+                                <TextBlock>
+                                    <Run Text="{lex:Loc Help_Overlay_Customization_Unlock_Text1}"/> 
+                                    <Italic>
+                                        <Run Text="{lex:Loc Help_Overlay_Customization_Unlock_OptionPath}"/>
+                                    </Italic> 
+                                    <Run Text="{lex:Loc Help_Overlay_Customization_Unlock_Text2}"/>
+>>>>>>> c693a4c... update code to 0925
                                 </TextBlock>
                             </StackPanel>
                         </GroupBox>
@@ -105,50 +185,76 @@
                             <Hyperlink
                                 NavigateUri="https://github.com/HearthSim/Hearthstone-Deck-Tracker/wiki/Overlay"
                                 RequestNavigate="Hyperlink_RequestNavigate">
+<<<<<<< HEAD
                                 更多的信息点击这里。
+=======
+                                    <Run Text="{lex:Loc Help_Overlay_Customization_Hyperlink}"/>
+>>>>>>> c693a4c... update code to 0925
                             </Hyperlink>
                         </TextBlock>
                     </StackPanel>
-
                 </GroupBox>
+<<<<<<< HEAD
                 <GroupBox Header="报告错误/请求功能">
                     <TextBlock Margin="10,0,10,0" VerticalAlignment="Top" Width="auto" TextWrapping="Wrap">
                         <Run Text="2个选择:" />
                         <LineBreak />
                         <Run Text="1) Check out the" />
+=======
+                <GroupBox Header="{lex:Loc Help_Label_BugsFeatures}">
+                    <TextBlock Margin="10,0,10,0" VerticalAlignment="Top" Width="auto" TextWrapping="Wrap">
+                        <Run Text="{lex:Loc Help_BugsFeatures_Option1_Text1}" />
+>>>>>>> c693a4c... update code to 0925
                         <Hyperlink
                             NavigateUri="https://github.com/HearthSim/Hearthstone-Deck-Tracker/issues?state=open"
                             RequestNavigate="Hyperlink_RequestNavigate">
-                            issues on GitHub.
+                            <Run Text="{lex:Loc Help_BugsFeatures_Option1_Hyperlink_Github1}" />
                         </Hyperlink>
+<<<<<<< HEAD
                         <Run
                             Text="如果这个主题没有问题，请随意打开一个新的和/或修复它自己，并创建一个拉请求。一些更多的信息对你可能希望包含在问题" />
+=======
+                        <Run Text="{lex:Loc Help_BugsFeatures_Option1_Text2}"/> 
+>>>>>>> c693a4c... update code to 0925
                         <Hyperlink
                             NavigateUri="https://github.com/HearthSim/Hearthstone-Deck-Tracker/wiki/Reporting-Issues"
                             RequestNavigate="Hyperlink_RequestNavigate">
-                            click here.
+                            <Run Text="{lex:Loc Help_BugsFeatures_Option1_Hyperlink_Github2}" />
                         </Hyperlink>
                         <LineBreak />
-                        <Run Text="2) Send an email to support@hsdecktracker.net" />
+                        <Run Text="{lex:Loc Help_BugsFeatures_Text_Or}" />
+                        <LineBreak />
+                        <Run Text="{lex:Loc Help_BugsFeatures_Option2_Text_Email}" />
                     </TextBlock>
                 </GroupBox>
-                <GroupBox Header="GitHub Project">
+                <GroupBox Header="{lex:Loc Help_Label_Github}">
                     <StackPanel>
                         <TextBlock Margin="10,0,10,0" VerticalAlignment="Top">
+<<<<<<< HEAD
                             <Run Text="代码project找不到" />
                             <Hyperlink NavigateUri="https://github.com/HearthSim/Hearthstone-Deck-Tracker/"
                                        RequestNavigate="Hyperlink_RequestNavigate">
                                 点击这里
+=======
+                            <Run Text="{lex:Loc Help_Github_Text1}" />
+                            <Hyperlink NavigateUri="https://github.com/HearthSim/Hearthstone-Deck-Tracker/"
+                                       RequestNavigate="Hyperlink_RequestNavigate">
+                             <Run Text="{lex:Loc Help_Github_Hyperlink1}" />
+>>>>>>> c693a4c... update code to 0925
                             </Hyperlink>
                             <LineBreak />
-                            <Run Text="The" />
+                            <Run Text="{lex:Loc Help_Github_Text2}" /> 
                             <Hyperlink
                                 NavigateUri="https://github.com/HearthSim/Hearthstone-Deck-Tracker/blob/master/README.md"
                                 RequestNavigate="Hyperlink_RequestNavigate">
-                                readme
+                                <Run Text="{lex:Loc Help_Github_Hyperlink2}" />
                             </Hyperlink>
+<<<<<<< HEAD
                             <Run
                                 Text="包含所有功能的简要概述。" />
+=======
+                            <Run Text="{lex:Loc Help_Github_Text3}" />
+>>>>>>> c693a4c... update code to 0925
                         </TextBlock>
                     </StackPanel>
                 </GroupBox>

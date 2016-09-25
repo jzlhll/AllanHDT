@@ -1,4 +1,4 @@
-﻿#region
+#region
 
 using System;
 using System.Linq;
@@ -9,6 +9,7 @@ using System.Windows.Input;
 using Hearthstone_Deck_Tracker.Enums;
 using Hearthstone_Deck_Tracker.Hearthstone;
 using Hearthstone_Deck_Tracker.Stats;
+using Hearthstone_Deck_Tracker.Utility;
 using Hearthstone_Deck_Tracker.Utility.Logging;
 using MahApps.Metro.Controls.Dialogs;
 using static System.Windows.Visibility;
@@ -24,20 +25,38 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 	/// </summary>
 	public partial class AddGameDialog : CustomDialog
 	{
+		private const string LocAddGame = "AddGameDialog_Button_AddGame";
+		private const string LocSaveGame = "AddGameDialog_Button_SaveGame";
+		private const string LocEditTitle = "AddGameDialog_Title_Edit";
 		private readonly Deck _deck;
 		private readonly bool _editing;
 		private readonly GameStats _game;
 		private readonly TaskCompletionSource<GameStats> _tcs;
 
-		public AddGameDialog(Deck deck)
+		private AddGameDialog()
 		{
 			InitializeComponent();
+<<<<<<< HEAD
             ComboBoxResult.ItemsSource = new[]{"胜利","败北","弃局"};
             ComboBoxOpponent.ItemsSource = new[] { "德鲁伊", "猎人", "法师", "圣骑士", "牧师", "潜行者", "萨满", "术士", "战士" };
             ComboBoxMode.ItemsSource = new[] { "天梯", "休闲", "竞技场", "乱斗", "友谊", "练习" };
             ComboBoxFormat.ItemsSource = new[] { "标准", "狂野" };
             ComboBoxRegion.ItemsSource = new[] { "美国", "欧洲", "亚洲", "中国" };
             _tcs = new TaskCompletionSource<GameStats>();
+=======
+			ComboBoxResult.ItemsSource = new[] { GameResult.Win, GameResult.Loss, GameResult.Draw};
+			ComboBoxOpponent.ItemsSource = Enum.GetValues(typeof(HeroClass));
+			ComboBoxMode.ItemsSource = new[] {Ranked, Casual, Arena, Brawl, Friendly, Practice};
+			ComboBoxFormat.ItemsSource = new[] {Format.Standard, Format.Wild};
+			ComboBoxRegion.ItemsSource = new[] { Region.US, Region.EU, Region.ASIA, Region.CHINA};
+			ComboBoxCoin.ItemsSource = Enum.GetValues(typeof(YesNo));
+			ComboBoxConceded.ItemsSource = Enum.GetValues(typeof(YesNo));
+			_tcs = new TaskCompletionSource<GameStats>();
+		}
+
+		public AddGameDialog(Deck deck) : this()
+		{
+>>>>>>> c693a4c... update code to 0925
 			_editing = false;
 			var lastGame = deck.DeckStats.Games.LastOrDefault();
 			if(deck.IsArenaDeck)
@@ -71,14 +90,16 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 			}
 			_deck = deck;
 			_game = new GameStats();
+<<<<<<< HEAD
 			BtnSave.Content = "添加游戏";
+=======
+			BtnSave.Content = LocUtil.Get(LocAddGame);
+>>>>>>> c693a4c... update code to 0925
 			Title = _deck.Name;
 		}
 
-		public AddGameDialog(GameStats game)
+		public AddGameDialog(GameStats game) : this()
 		{
-			InitializeComponent();
-			_tcs = new TaskCompletionSource<GameStats>();
 			_editing = true;
 			_game = game;
 			if(game == null)
@@ -105,8 +126,13 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 			TextBoxNote.Text = game.Note;
 			TextBoxOppName.Text = game.OpponentName;
 			TextBoxPlayerName.Text = game.PlayerName;
+<<<<<<< HEAD
 			BtnSave.Content = "保存";
 			Title = "编辑游戏";
+=======
+			BtnSave.Content = LocUtil.Get(LocSaveGame);
+			Title = LocUtil.Get(LocEditTitle);
+>>>>>>> c693a4c... update code to 0925
 		}
 
 		private void BtnSave_OnClick(object sender, RoutedEventArgs e)
@@ -141,7 +167,12 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 				_game.PlayerName = TextBoxPlayerName.Text;
 				_game.Turns = turns;
 				_game.WasConceded = (YesNo)ComboBoxConceded.SelectedValue == Yes;
+<<<<<<< HEAD
 				_game.Region = RegionConvert.convert((string)ComboBoxRegion.SelectedItem);
+=======
+				_game.Region = (Region)ComboBoxRegion.SelectedItem;
+				_game.HearthstoneBuild = Helper.GetHearthstoneBuild();
+>>>>>>> c693a4c... update code to 0925
 				if(_game.GameMode == Casual || _game.GameMode == Ranked)
 					_game.Format = FormatConvert.convert_((string)ComboBoxFormat.SelectedItem);
 				_tcs.SetResult(_game);

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker.TrackerHotKeys"
+<UserControl x:Class="Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker.TrackerHotKeys"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -7,9 +7,17 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
              xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             lex:LocalizeDictionary.DesignCulture="en"
+             lex:ResxLocalizationProvider.DefaultAssembly="HearthstoneDeckTracker"
+             lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="300">
+<<<<<<< HEAD
     <GroupBox Header="热键">
+=======
+    <GroupBox Header="{lex:LocTextUpper Options_Tracker_Hotkeys_Header}">
+>>>>>>> c693a4c... update code to 0925
         <GroupBox.Resources>
             <hotKeys:HotKeyManager x:Key="HotKeyManager" />
             <hotKeys:PredefinedHotKeyActions x:Key="PredefinedHotKeyActions" />
@@ -33,6 +41,7 @@
                       CanUserDeleteRows="False" CanUserResizeColumns="False" CanUserResizeRows="False"
                       CanUserSortColumns="False" IsReadOnly="True">
                 <DataGrid.Columns>
+<<<<<<< HEAD
                     <DataGridTextColumn Header="修改" Binding="{Binding Key.Mod}" />
                     <DataGridTextColumn Header="按键" Binding="{Binding Key.Key}" />
                     <DataGridTextColumn Header="动作" Binding="{Binding Value}" />
@@ -40,6 +49,15 @@
             </DataGrid>
             <Button Margin="0,5" Content="删除已选" Click="ButtonDelete_OnClick" />
             <GroupBox Header="新建">
+=======
+                    <DataGridTextColumn Header="{lex:Loc Options_Tracker_Hotkeys_Table_Mod}" Binding="{Binding Key.Mod}" />
+                    <DataGridTextColumn Header="{lex:Loc Options_Tracker_Hotkeys_Table_Key}" Binding="{Binding Key.Key}" />
+                    <DataGridTextColumn Header="{lex:Loc Options_Tracker_Hotkeys_Table_Action}" Binding="{Binding Value}" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Margin="0,5" Content="{lex:Loc Options_Tracker_Hotkeys_Button_Delete}" Click="ButtonDelete_OnClick" />
+            <GroupBox Header="{lex:LocTextUpper Options_Tracker_Hotkeys_LabelNew}">
+>>>>>>> c693a4c... update code to 0925
                 <StackPanel>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -51,6 +69,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
+<<<<<<< HEAD
                         <Label Content="修改:" DockPanel.Dock="Left" Grid.Column="0" Grid.Row="0" />
                         <ComboBox Name="ComboBoxMod" ItemsSource="{Binding Source={StaticResource Mods}}"
                                   SelectedIndex="0" Margin="5,2" Grid.Column="1" Grid.Row="0"
@@ -59,6 +78,16 @@
                         <TextBox Name="TextBoxKey" controls:TextBoxHelper.Watermark="按键" Margin="5,2"
                                  Grid.Column="1" Grid.Row="1" PreviewKeyDown="TextBoxKey_OnPreviewKeyDown" />
                         <Label Content="动作:" Grid.Column="0" Grid.Row="2" />
+=======
+                        <Label Content="{lex:Loc Options_Tracker_Hotkeys_Label_Mod}" DockPanel.Dock="Left" Grid.Column="0" Grid.Row="0" />
+                        <ComboBox Name="ComboBoxMod" ItemsSource="{Binding Source={StaticResource Mods}}"
+                                  SelectedIndex="0" Margin="5,2" Grid.Column="1" Grid.Row="0"
+                                  SelectionChanged="ComboBoxMod_OnSelectionChanged" />
+                        <Label Content="{lex:Loc Options_Tracker_Hotkeys_Label_Key}" DockPanel.Dock="Left" Grid.Column="0" Grid.Row="1" />
+                        <TextBox Name="TextBoxKey" controls:TextBoxHelper.Watermark="{lex:Loc Options_Tracker_Hotkeys_Text_Key_Watermark}" Margin="5,2"
+                                 Grid.Column="1" Grid.Row="1" PreviewKeyDown="TextBoxKey_OnPreviewKeyDown" />
+                        <Label Content="{lex:Loc Options_Tracker_Hotkeys_Label_Action}" Grid.Column="0" Grid.Row="2" />
+>>>>>>> c693a4c... update code to 0925
                         <ComboBox Name="ComboBoxActions" Margin="5,2"
                                   ItemsSource="{Binding Path=PredefinedActionNames, Source={StaticResource PredefinedHotKeyActions}}"
                                   SelectedIndex="1" Grid.Column="1" Grid.Row="2">
@@ -75,7 +104,11 @@
                                TextWrapping="Wrap" FontStyle="Italic" />
                     <TextBlock TextWrapping="Wrap" Foreground="Red"
                                Text="{Binding Path=ErrorText, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+<<<<<<< HEAD
                     <Button Content="添加" Margin="0,5,0,0" Click="ButtonAddNew_OnClick"
+=======
+                    <Button Content="{lex:Loc Options_Tracker_Hotkeys_Button_AddNew}" Margin="0,5,0,0" Click="ButtonAddNew_OnClick"
+>>>>>>> c693a4c... update code to 0925
                             IsEnabled="{Binding Path=SelectedHotKeyIsValue, RelativeSource={RelativeSource AncestorType=UserControl}}" />
                 </StackPanel>
             </GroupBox>

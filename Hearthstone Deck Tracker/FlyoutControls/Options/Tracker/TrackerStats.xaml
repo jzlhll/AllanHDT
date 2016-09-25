@@ -1,16 +1,21 @@
-﻿<UserControl x:Class="Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker.TrackerStats"
+<UserControl x:Class="Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker.TrackerStats"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:enums="clr-namespace:Hearthstone_Deck_Tracker.Enums"
              xmlns:options="clr-namespace:Hearthstone_Deck_Tracker.FlyoutControls.Options"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             lex:LocalizeDictionary.DesignCulture="en"
+             lex:ResxLocalizationProvider.DefaultAssembly="HearthstoneDeckTracker"
+             lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              mc:Ignorable="d"
              d:DesignHeight="700" d:DesignWidth="300">
     <UserControl.Resources>
         <enums:EnumDescriptionConverter x:Key="EnumDescriptionConverter" />
     </UserControl.Resources>
     <Grid>
+<<<<<<< HEAD
         <GroupBox Header="统计">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
@@ -45,14 +50,56 @@
                                       VerticalAlignment="Top" Checked="CheckboxRecordSpectator_Checked"
                                       Unchecked="CheckboxRecordSpectator_Unchecked" />
                             <CheckBox x:Name="CheckboxRecordOther" Content="其他"
+=======
+        <GroupBox Header="{lex:LocTextUpper Options_Tracker_Stats_Header}">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <GroupBox Header="{lex:LocTextUpper Options_Tracker_Stats_Label_Record}">
+                        <StackPanel>
+                            <CheckBox x:Name="CheckboxRecordRanked" Content="{lex:Loc Options_Tracker_Stats_CheckBox_Ranked}"
+                                      HorizontalAlignment="Left" Margin="0,0,0,0"
+                                      VerticalAlignment="Top" Checked="CheckboxRecordRanked_Checked"
+                                      Unchecked="CheckboxRecordRanked_Unchecked" />
+                            <CheckBox x:Name="CheckboxRecordArena" Content="{lex:Loc Options_Tracker_Stats_CheckBox_Arena}"
+                                      HorizontalAlignment="Left" Margin="0,5,0,0"
+                                      VerticalAlignment="Top" Checked="CheckboxRecordArena_Checked"
+                                      Unchecked="CheckboxRecordArena_Unchecked" />
+                            <CheckBox x:Name="CheckboxRecordBrawl" Content="{lex:Loc Options_Tracker_Stats_CheckBox_Brawl}"
+                                      HorizontalAlignment="Left" Margin="0,5,0,0"
+                                      VerticalAlignment="Top" Checked="CheckboxRecordBrawl_Checked"
+                                      Unchecked="CheckboxRecordBrawl_Unchecked" />
+                            <CheckBox x:Name="CheckboxRecordCasual" Content="{lex:Loc Options_Tracker_Stats_CheckBox_Casual}"
+                                      HorizontalAlignment="Left" Margin="0,5,0,0"
+                                      VerticalAlignment="Top" Checked="CheckboxRecordCasual_Checked"
+                                      Unchecked="CheckboxRecordCasual_Unchecked" />
+                            <CheckBox x:Name="CheckboxRecordFriendly" Content="{lex:Loc Options_Tracker_Stats_CheckBox_Friendly}"
+                                      HorizontalAlignment="Left" Margin="0,5,0,0"
+                                      VerticalAlignment="Top" Checked="CheckboxRecordFriendly_Checked"
+                                      Unchecked="CheckboxRecordFriendly_Unchecked" />
+                            <CheckBox x:Name="CheckboxRecordPractice" Content="{lex:Loc Options_Tracker_Stats_CheckBox_AdventurePractive}"
+                                      HorizontalAlignment="Left" Margin="0,5,0,0"
+                                      VerticalAlignment="Top" Checked="CheckboxRecordPractice_Checked"
+                                      Unchecked="CheckboxRecordPractice_Unchecked" />
+                            <CheckBox x:Name="CheckboxRecordSpectator" Content="{lex:Loc Options_Tracker_Stats_CheckBox_Spectator}"
+                                      HorizontalAlignment="Left" Margin="0,5,0,0"
+                                      VerticalAlignment="Top" Checked="CheckboxRecordSpectator_Checked"
+                                      Unchecked="CheckboxRecordSpectator_Unchecked" />
+                            <CheckBox x:Name="CheckboxRecordOther" Content="{lex:Loc Options_Tracker_Stats_CheckBox_Other}"
+>>>>>>> c693a4c... update code to 0925
                                       HorizontalAlignment="Left" Margin="0,5,0,0"
                                       VerticalAlignment="Top" Checked="CheckboxRecordOther_Checked"
                                       Unchecked="CheckboxRecordOther_Unchecked" />
                         </StackPanel>
                     </GroupBox>
+<<<<<<< HEAD
                     <GroupBox Header="显示">
                         <StackPanel>
                             <Label Content="(在主界面卡组中)" Margin="0,-8,0,0" />
+=======
+                    <GroupBox Header="{lex:LocTextUpper Options_Tracker_Stats_Label_Display}">
+                        <StackPanel>
+                            <Label Content="{lex:Loc Options_Tracker_Stats_Label_DecksOverlay}" Margin="0,-8,0,0" />
+>>>>>>> c693a4c... update code to 0925
                             <DockPanel>
                                 <ComboBox Name="ComboboxDisplayedStats" Width="150"
                                           SelectionChanged="ComboboxDisplayedStats_SelectionChanged"
@@ -64,12 +111,21 @@
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>
                                 </ComboBox>
+<<<<<<< HEAD
                                 <Label Content="版本:" />
                             </DockPanel>
                             <DockPanel Margin="0,5,0,0">
                                 <ComboBox Name="ComboboxDisplayedMode" VerticalAlignment="Bottom" Width="150"
                                           DockPanel.Dock="Right" SelectionChanged="ComboboxGameMode_SelectionChanged"/>
                                 <Label Content="模式:"/>
+=======
+                                <Label Content="{lex:Loc Options_Tracker_Stats_Label_Versions}" />
+                            </DockPanel>
+                            <DockPanel Margin="0,5,0,0">
+                                <ComboBox Name="ComboboxDisplayedMode" VerticalAlignment="Bottom" Width="150"
+                                          DockPanel.Dock="Right" SelectionChanged="ComboboxGameMode_SelectionChanged" />
+                                <Label Content="{lex:Loc Options_Tracker_Stats_Label_Mode}" />
+>>>>>>> c693a4c... update code to 0925
                             </DockPanel>
                             <DockPanel Margin="0,5,0,0">
                                 <ComboBox Name="ComboboxDisplayedTimeFrame" VerticalAlignment="Bottom" Width="150"
@@ -82,55 +138,88 @@
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>
                                 </ComboBox>
+<<<<<<< HEAD
                                 <Label Content="时间段:" />
+=======
+                                <Label Content="{lex:Loc Options_Tracker_Stats_Label_Timeframe}" />
+>>>>>>> c693a4c... update code to 0925
                             </DockPanel>
                             <DockPanel Name="PanelCustomTimeFrame" Margin="0,5,0,0">
                                 <DatePicker Name="DatePickerCustomTimeFrame" Width="150" DockPanel.Dock="Right"
                                             SelectedDateChanged="DatePickerCustomTimeFrame_OnSelectedDateChanged" />
+<<<<<<< HEAD
                                 <Label Content="自从:" />
+=======
+                                <Label Content="{lex:Loc Options_Tracker_Stats_Label_Timeframe_Since}" />
+>>>>>>> c693a4c... update code to 0925
                             </DockPanel>
                         </StackPanel>
                     </GroupBox>
                     <CheckBox x:Name="CheckboxDiscardGame"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
+<<<<<<< HEAD
                               Content="丢弃录制，如果卡牌与卡组不符"
+=======
+                              Content="{lex:Loc Options_Tracker_Stats_CheckBox_DiscardNoMatch}"
+>>>>>>> c693a4c... update code to 0925
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxDiscardGame_Checked"
                               Unchecked="CheckboxDiscardGame_Unchecked" />
                     <CheckBox x:Name="CheckboxAskBeforeDiscarding"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
+<<<<<<< HEAD
                               Content="当丢弃的时候，询问"
+=======
+                              Content="{lex:Loc Options_Tracker_Stats_CheckBox_AskDiscard}"
+>>>>>>> c693a4c... update code to 0925
                               HorizontalAlignment="Left" Margin="35,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxAskBeforeDiscarding_Checked"
                               Unchecked="CheckboxAskBeforeDiscarding_Unchecked" />
                     <CheckBox x:Name="CheckboxDiscardZeroTurnGame"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
+<<<<<<< HEAD
                               Content="在0回合就丢弃录制"
+=======
+                              Content="{lex:Loc Options_Tracker_Stats_CheckBox_DiscardZeroTurns}"
+>>>>>>> c693a4c... update code to 0925
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxDiscardZeroTurnGame_Checked"
                               Unchecked="CheckboxDiscardZeroTurnGame_Unchecked" />
                     <CheckBox x:Name="CheckboxReplays"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
+<<<<<<< HEAD
                               Content="录制回放"
+=======
+                              Content="{lex:Loc Options_Tracker_Stats_CheckBox_RecordLocalReplays}"
+>>>>>>> c693a4c... update code to 0925
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxRecordReplays_Checked"
                               Unchecked="CheckboxRecordReplays_Unchecked" />
                     <CheckBox x:Name="CheckboxDeleteDeckKeepStats"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
+<<<<<<< HEAD
                               Content="删除一个卡组仍然保存统计"
                               ToolTip="这将移动到英雄的默认卡组（对应的匹配数据将被保存到【无卡组模式】）。这意味着，当删除竞技场卡组，竞技场上的统计数据将丢失！"
+=======
+                              Content="{lex:Loc Options_Tracker_Stats_CheckBox_KeepStatsWhenDeleting}"
+                              ToolTip="{lex:Loc Options_Tracker_Stats_CheckBox_KeepStatsWhenDeleting_Tooltip}"
+>>>>>>> c693a4c... update code to 0925
                               HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxDeleteDeckKeepStats_Checked"
                               Unchecked="CheckboxDeleteDeckKeepStats_Unchecked" />
                     <CheckBox x:Name="CheckboxStatsInWindow"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
+<<<<<<< HEAD
                               Content="在独立的窗口中显示卡组统计"
+=======
+                              Content="{lex:Loc Options_Tracker_Stats_CheckBox_StatsWindow}"
+>>>>>>> c693a4c... update code to 0925
                               HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxStatsInWindow_Checked"
                               Unchecked="CheckboxStatsInWindow_Unchecked" />

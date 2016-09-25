@@ -1,14 +1,22 @@
-﻿<UserControl x:Class="Hearthstone_Deck_Tracker.FlyoutControls.DeckPanel"
+<UserControl x:Class="Hearthstone_Deck_Tracker.FlyoutControls.DeckPanel"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:Hearthstone_Deck_Tracker.Controls"
              xmlns:hearthstoneDeckTracker="clr-namespace:Hearthstone_Deck_Tracker"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             lex:LocalizeDictionary.DesignCulture="en"
+             lex:ResxLocalizationProvider.DefaultAssembly="HearthstoneDeckTracker"
+             lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="245">
     <DockPanel>
+<<<<<<< HEAD
         <Button Name="ButtonImport" DockPanel.Dock="Bottom" Content="导入" Click="ButtonImport_OnClick" Margin="5"/>
+=======
+        <Button Name="ButtonImport" DockPanel.Dock="Bottom" Content="{lex:Loc DeckPanel_Button_Import}" Click="ButtonImport_OnClick" Margin="5"/>
+>>>>>>> c693a4c... update code to 0925
         <ListView x:Name="ListViewDeck"
                   Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"
                   Foreground="White" FontWeight="Bold" BorderThickness="1"

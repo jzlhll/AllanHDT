@@ -1,10 +1,11 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using Hearthstone_Deck_Tracker.Annotations;
+using Hearthstone_Deck_Tracker.Utility;
 using Hearthstone_Deck_Tracker.Utility.Extensions;
 using Hearthstone_Deck_Tracker.Utility.Logging;
 
@@ -12,8 +13,18 @@ namespace Hearthstone_Deck_Tracker.Windows
 {
 	public partial class SplashScreenWindow : INotifyPropertyChanged
 	{
+<<<<<<< HEAD
 		private string _loadingString = "加载中...";
 		private string _versionString = Helper.GetAllanCurrentVersion().ToVersionString();
+=======
+		private const string LocLoading = "SplashScreen_Text_Loading";
+		private const string LocUpdating = "SplashScreen_Text_Updating";
+		private const string LocInstalling = "SplashScreen_Text_Installing";
+		private readonly string _updating = LocUtil.Get(LocUpdating);
+		private readonly string _installing = LocUtil.Get(LocInstalling);
+		private string _loadingString = LocUtil.Get(LocLoading);
+		private string _versionString = Helper.GetCurrentVersion().ToVersionString();
+>>>>>>> c693a4c... update code to 0925
 		private Visibility _skipVisibility = Visibility.Collapsed;
 		private SolidColorBrush _skipBackground = new SolidColorBrush(Colors.White);
 
@@ -81,7 +92,11 @@ namespace Hearthstone_Deck_Tracker.Windows
 		{
 			if(SkipUpdate)
 				return;
+<<<<<<< HEAD
 			LoadingString = "更新中...";
+=======
+			LoadingString = _updating;
+>>>>>>> c693a4c... update code to 0925
 			VersionString = percentage + "%";
 		}
 
@@ -89,7 +104,11 @@ namespace Hearthstone_Deck_Tracker.Windows
 		{
 			if(SkipUpdate)
 				return;
+<<<<<<< HEAD
 			LoadingString = "安装中...";
+=======
+			LoadingString = _installing;
+>>>>>>> c693a4c... update code to 0925
 			VersionString = percentage + "%";
 		}
 

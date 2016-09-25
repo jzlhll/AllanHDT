@@ -1,19 +1,34 @@
-﻿<controls:MetroWindow x:Class="Hearthstone_Deck_Tracker.Windows.CrashDialog"
+<controls:MetroWindow x:Class="Hearthstone_Deck_Tracker.Windows.CrashDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        lex:LocalizeDictionary.DesignCulture="en"
+        lex:ResxLocalizationProvider.DefaultAssembly="HearthstoneDeckTracker"
+        lex:ResxLocalizationProvider.DefaultDictionary="Strings"
         mc:Ignorable="d" BorderBrush="{DynamicResource AccentColorBrush}"
+<<<<<<< HEAD
         Title="Crash报告" Height="350" Width="600">
     <DockPanel Margin="5">
         <Label Content="HDT挂掉啦 :(." FontWeight="SemiBold" DockPanel.Dock="Top"/>
+=======
+        Title="{lex:Loc CrashDialog_Title}" Height="350" Width="600">
+    <DockPanel Margin="5">
+        <Label Content="{lex:Loc CrashDialog_Label_Crashed}" FontWeight="SemiBold" DockPanel.Dock="Top"/>
+>>>>>>> c693a4c... update code to 0925
         <DockPanel DockPanel.Dock="Top">
             <DockPanel.Resources>
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />
             </DockPanel.Resources>
+<<<<<<< HEAD
             <Label Content="错误:" DockPanel.Dock="Left"/>
             <Button Name="ButtonShowStacktrace" Content="显示堆栈" Width="130" DockPanel.Dock="Right" Margin="5,0,0,0" Click="ButtonShowStacktrace_OnClick" />
+=======
+            <Label Content="{lex:Loc CrashDialog_Label_Error}" DockPanel.Dock="Left"/>
+            <Button Name="ButtonShowStacktrace" Content="{lex:Loc CrashDialog_Button_StackTrace}" Width="130" DockPanel.Dock="Right" Margin="5,0,0,0" Click="ButtonShowStacktrace_OnClick" />
+>>>>>>> c693a4c... update code to 0925
             <TextBlock Text="{Binding ExceptionMessage, RelativeSource={RelativeSource AncestorType=controls:MetroWindow}, Mode=OneWay}" TextTrimming="WordEllipsis" VerticalAlignment="Center"/>
         </DockPanel>
         <TextBox Name="TextBoxStackTrace" DockPanel.Dock="Top" Height="0" IsReadOnly="True" Margin="0,5,0,0" Visibility="Collapsed"
@@ -34,6 +49,7 @@
                 </Storyboard>
             </TextBox.Resources>
         </TextBox>
+<<<<<<< HEAD
         <TextBlock Text="挂掉了！先按照http://bbs.nga.cn/read.php?tid=9444162 中的注意事项删除config.xml。如果还不行，请截图到NGA帖子中谢谢。如果有crash出现，请一定将运行程序目录下的crash文件夹下面的(按照日期名字)内容粘贴到帖子中或者联系我QQ734419940。"
                    Margin="5,5,0,0" TextWrapping="Wrap"  DockPanel.Dock="Top" Height="132"/>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0" >
@@ -45,6 +61,19 @@
             </Button>
         </StackPanel>
         <TextBox Name="TextBoxDescription" controls:TextBoxHelper.Watermark="额外的信息(可选)" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,38,0,0"/>
+=======
+        <TextBlock Text="{lex:Loc CrashDialog_Text}" 
+                   Margin="5,5,0,0" TextWrapping="Wrap"  DockPanel.Dock="Top"/>
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0" >
+            <Button Name="ButtonSend" Width="120" Click="ButtonSend_Click" Style="{StaticResource AccentedSquareButtonStyle}">
+                <TextBlock Text="{lex:Loc CrashDialog_Button_Send}"/>
+            </Button>
+            <Button Name="ButtonClose" Width="120" Margin="5,0,0,0" Click="ButtonClose_Click" Style="{StaticResource SquareButtonStyle}">
+                <TextBlock Text="{lex:Loc CrashDialog_Button_Close}"/>
+            </Button>
+        </StackPanel>
+        <TextBox Name="TextBoxDescription" controls:TextBoxHelper.Watermark="{lex:Loc CrashDialog_TextBox_Info_Watermark}" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,5,0,0"/>
+>>>>>>> c693a4c... update code to 0925
     </DockPanel>
 </controls:MetroWindow>
 
