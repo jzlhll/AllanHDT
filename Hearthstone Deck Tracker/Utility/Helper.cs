@@ -1,4 +1,4 @@
-﻿#region
+#region
 
 using System;
 using System.Collections;
@@ -34,6 +34,7 @@ using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Win32;
 using Newtonsoft.Json;
+using WPFLocalizeExtension.Engine;
 using Application = System.Windows.Application;
 using Card = Hearthstone_Deck_Tracker.Hearthstone.Card;
 using Color = System.Drawing.Color;
@@ -53,8 +54,8 @@ namespace Hearthstone_Deck_Tracker
 		public static readonly Dictionary<string, string> LanguageDict = new Dictionary<string, string>
 		{
 			{"English", "enUS"},
-			{"Chinese (China)", "zhCN"},
-			{"Chinese (Taiwan)", "zhTW"},
+			{"简体中文", "zhCN"},
+			{"繁體中文", "zhTW"},
 			{"English (Great Britain)", "enGB"},
 			{"French", "frFR"},
 			{"German", "deDE"},
@@ -588,11 +589,17 @@ namespace Hearthstone_Deck_Tracker
 			}
 		}
 
+		private static int? _hearthstoneBuild;
 		public static int? GetHearthstoneBuild()
 		{
+			if(_hearthstoneBuild.HasValue)
+				return _hearthstoneBuild;
 			var exe = Path.Combine(Config.Instance.HearthstoneDirectory, "Hearthstone.exe");
-			return !File.Exists(exe) ? (int?)null : FileVersionInfo.GetVersionInfo(exe).FilePrivatePart;
+			_hearthstoneBuild = !File.Exists(exe) ? (int?)null : FileVersionInfo.GetVersionInfo(exe).FilePrivatePart;
+			return _hearthstoneBuild;
 		}
+
+		internal static void ClearCachedHearthstoneBuild() => _hearthstoneBuild = null;
 
 		public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
 		{

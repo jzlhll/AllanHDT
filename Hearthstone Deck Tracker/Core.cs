@@ -1,19 +1,17 @@
-﻿#region
+#region
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design.Serialization;
+using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
-using HearthMirror.Enums;
 using Hearthstone_Deck_Tracker.Controls.Stats;
 using Hearthstone_Deck_Tracker.Enums;
-using Hearthstone_Deck_Tracker.Controls.Information;
 using Hearthstone_Deck_Tracker.Hearthstone;
 using Hearthstone_Deck_Tracker.HearthStats.API;
+using Hearthstone_Deck_Tracker.HsReplay;
 using Hearthstone_Deck_Tracker.LogReader;
 using Hearthstone_Deck_Tracker.Plugins;
 using Hearthstone_Deck_Tracker.Utility;
@@ -26,7 +24,7 @@ using Hearthstone_Deck_Tracker.Windows;
 using MahApps.Metro.Controls.Dialogs;
 using Hearthstone_Deck_Tracker.Utility.Themes;
 using Hearthstone_Deck_Tracker.Utility.Updating;
-using Squirrel;
+using WPFLocalizeExtension.Engine;
 
 #endregion
 
@@ -40,6 +38,7 @@ namespace Hearthstone_Deck_Tracker
 		private static Overview _statsOverview;
 		private static int _updateRequestsPlayer;
 		private static int _updateRequestsOpponent;
+		private static DateTime _startUpTime;
 		public static Version Version { get; set; }
 		public static GameV2 Game { get; set; }
 		public static MainWindow MainWindow { get; set; }
@@ -58,7 +57,9 @@ namespace Hearthstone_Deck_Tracker
 
 		public static async void Initialize()
 		{
-			Log.Info($"Operating System: {Helper.GetWindowsVersion()}, .NET Framework: {Helper.GetInstalledDotNetVersion()}");
+			LocalizeDictionary.Instance.Culture = CultureInfo.GetCultureInfo("en-US");
+			_startUpTime = DateTime.UtcNow;
+			Log.Info($"HDT: {Helper.GetCurrentVersion()}, Operating System: {Helper.GetWindowsVersion()}, .NET Framework: {Helper.GetInstalledDotNetVersion()}");
 			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 			Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
 			Config.Load();
@@ -78,6 +79,7 @@ namespace Hearthstone_Deck_Tracker
 			splashScreenWindow.ShowConditional();
 			Log.Initialize();
 			ConfigManager.Run();
+			LocUtil.UpdateCultureInfo();
 			var newUser = ConfigManager.PreviousVersion == null;
 			LogConfigUpdater.Run().Forget();
 			LogConfigWatcher.Start();
@@ -105,14 +107,11 @@ namespace Hearthstone_Deck_Tracker
 				loginType = loggedIn ? LoginType.AutoLogin : LoginType.AutoGuest;
 			MainWindow = new MainWindow();
 			MainWindow.LoadConfigSettings();
-			if(Config.Instance.ReselectLastDeckUsed)
-			{
-				MainWindow.SelectLastUsedDeck();
-				Config.Instance.ReselectLastDeckUsed = false;
-				Config.Save();
-			}
 			MainWindow.Show();
 			splashScreenWindow.Close();
+
+			if(Config.Instance.DisplayHsReplayNoteLive)
+				MainWindow.FlyoutHsReplayNote.IsOpen = true;
 
 			if(ConfigManager.UpdatedVersion != null)
 			{
@@ -167,9 +166,11 @@ namespace Hearthstone_Deck_Tracker
 			if(Helper.HearthstoneDirExists && Config.Instance.StartHearthstoneWithHDT && !Game.IsRunning)
 				Helper.StartHearthstoneAsync().Forget();
 
+			ApiWrapper.UpdateAccountStatus().Forget();
+
 			Initialized = true;
 
-			Influx.OnAppStart(Helper.GetCurrentVersion(), loginType, newUser);
+			Influx.OnAppStart(Helper.GetCurrentVersion(), loginType, newUser, (int)(DateTime.UtcNow - _startUpTime).TotalSeconds);
 		}
 
 		private static async void UpdateOverlayAsync()
@@ -257,6 +258,7 @@ namespace Hearthstone_Deck_Tracker
 					Game.IsInMenu = true;
 					Game.InvalidateMatchInfoCache();
 					Overlay.HideRestartRequiredWarning();
+					Helper.ClearCachedHearthstoneBuild();
 					TurnTimer.Instance.Stop();
 
 					MainWindow.BtnStartHearthstone.Visibility = Visibility.Visible;
