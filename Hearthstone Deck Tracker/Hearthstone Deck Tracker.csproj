@@ -390,7 +390,10 @@
     <Compile Include="Enums\TimeFrame.cs" />
     <Compile Include="Enums\YesNo.cs" />
     <Compile Include="Enums\Language.cs" />
+    <Compile Include="Utility\RegistryHelper.cs" />
     <Compile Include="Hearthstone\Watchers.cs" />
+    <Compile Include="HsReplay\PackDataGenerator.cs" />
+    <Compile Include="HsReplay\PackUploader.cs" />
     <Compile Include="HsReplay\UploadMetaDataGenerator.cs" />
     <Compile Include="Importing\Game\ImportOptions\ExistingDeck.cs" />
     <Compile Include="Exporting\ExportingActions.cs" />
@@ -422,7 +425,6 @@
     <Compile Include="LogReader\Handlers\FullScreenFxHandler.cs" />
     <Compile Include="Importing\Game\ImportOptions\NewDeck.cs" />
     <Compile Include="Importing\Game\ImportedDeck.cs" />
-    <Compile Include="Hearthstone\PackOpeningWatcher.cs" />
     <Compile Include="Properties\Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -59,8 +59,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\BoxState.cs" />
     <Compile Include="Enums\Side.cs" />
     <Compile Include="Enums\Status.cs" />
+    <Compile Include="Objects\AccountId.cs" />
     <Compile Include="Objects\BattleTag.cs" />
     <Compile Include="Objects\GameServerInfo.cs" />
     <Compile Include="Objects\ArenaInfo.cs" />
@@ -84,12 +86,20 @@
     <Compile Include="Objects\RewardData.cs" />
     <Compile Include="Enums\RewardType.cs" />
     <Compile Include="Objects\SeasonEndInfo.cs" />
+    <Compile Include="Enums\SceneMode.cs" />
     <Compile Include="Status.cs" />
+    <Compile Include="Enums\UI_WINDOW.cs" />
     <Compile Include="Util\RewardDataParser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>if "$(ConfigurationName)" == "Release" (
+  if exist $(ProjectDir)hsdata (
+    git -C $(ProjectDir)hsdata fetch
+    git -C $(ProjectDir)hsdata reset --hard origin/master
+  ) else (
+    git clone --depth=1 https://github.com/HearthSim/hsdata.git $(ProjectDir)hsdata
+  )
   powershell -ExecutionPolicy Unrestricted -file $(ProjectDir)verify.ps1 $(ProjectDir)
 )</PreBuildEvent>
   </PropertyGroup>

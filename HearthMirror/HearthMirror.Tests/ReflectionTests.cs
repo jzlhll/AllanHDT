@@ -119,6 +119,14 @@ namespace HearthMirror.Tests
 		}
 
 		[TestMethod]
+		public void UI_PackOpening_GetLastOpenedBoosterId_IsClassic()
+		{
+			Assert.AreEqual(1, Reflection.GetLastOpenedBoosterId());
+		}
+
+
+
+		[TestMethod]
 		public void Output_ArenaRewards()
 		{
 			var rewards = Reflection.GetArenaRewards();
@@ -140,6 +148,13 @@ namespace HearthMirror.Tests
 						break;
 				}
 			}
+		}
+
+		[TestMethod]
+		public void Output_AccountId()
+		{
+			var id = Reflection.GetAccountId();
+			Console.WriteLine(id.Hi + " " + id.Lo);
 		}
 	}
 }
