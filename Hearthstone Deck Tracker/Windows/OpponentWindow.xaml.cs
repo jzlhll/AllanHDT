@@ -1,4 +1,4 @@
-#region
+﻿#region
 
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,6 @@ using System.Windows.Forms;
 using Hearthstone_Deck_Tracker.Annotations;
 using Hearthstone_Deck_Tracker.Enums;
 using Hearthstone_Deck_Tracker.Hearthstone;
-using Hearthstone_Deck_Tracker.Utility;
 using Point = System.Drawing.Point;
 using Panel = System.Windows.Controls.Panel;
 
@@ -24,7 +23,6 @@ namespace Hearthstone_Deck_Tracker
 	/// </summary>
 	public partial class OpponentWindow : INotifyPropertyChanged
 	{
-		private const string LocFatigue = "Overlay_DeckList_Label_Fatigue";
 		private readonly GameV2 _game;
 		private bool _appIsClosing;
 
@@ -82,11 +80,10 @@ namespace Hearthstone_Deck_Tracker
         public void UpdateOpponentLayout()
 		{
 			StackPanelMain.Children.Clear();
-			foreach(var item in Config.Instance.DeckPanelOrderOpponent)
+			foreach(var item in Config.Instance.PanelOrderOpponent)
 			{
 				switch(item)
 				{
-<<<<<<< HEAD
 					case "卡牌":
 						StackPanelMain.Children.Add(ViewBoxOpponent);
 						break;
@@ -100,21 +97,6 @@ namespace Hearthstone_Deck_Tracker
 						StackPanelMain.Children.Add(LblOpponentFatigue);
 						break;
 					case "胜率":
-=======
-					case DeckPanel.Cards:
-						StackPanelMain.Children.Add(ViewBoxOpponent);
-						break;
-					case DeckPanel.DrawChances:
-						StackPanelMain.Children.Add(CanvasOpponentChance);
-						break;
-					case DeckPanel.CardCounter:
-						StackPanelMain.Children.Add(CanvasOpponentCount);
-						break;
-					case DeckPanel.Fatigue:
-						StackPanelMain.Children.Add(LblOpponentFatigue);
-						break;
-					case DeckPanel.Winrate:
->>>>>>> c693a4c... update code to 0925
 						StackPanelMain.Children.Add(LblWinRateAgainst);
 						break;
 				}
@@ -129,11 +111,7 @@ namespace Hearthstone_Deck_Tracker
 
 			if(cardsLeftInDeck <= 0)
 			{
-<<<<<<< HEAD
 				LblOpponentFatigue.Text = "下一抽疲劳: " + (_game.Opponent.Fatigue + 1);
-=======
-				LblOpponentFatigue.Text = LocUtil.Get(LocFatigue) + " " + (_game.Opponent.Fatigue + 1);
->>>>>>> c693a4c... update code to 0925
 
 				LblOpponentDrawChance2.Text = "0%";
 				LblOpponentDrawChance1.Text = "0%";

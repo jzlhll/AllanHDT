@@ -1,4 +1,4 @@
-#region
+﻿#region
 
 using System.Collections.Generic;
 using System.IO;
@@ -14,10 +14,10 @@ namespace Hearthstone_Deck_Tracker.Replay
 	{
 		private static readonly List<ReplayViewer> Viewers = new List<ReplayViewer>();
 
-		public static void LaunchReplayViewer(string fileName, bool showHsReplayMessage)
+		public static void LaunchReplayViewer(string fileName)
 		{
 			var replay = LoadReplay(fileName);
-			var rv = new ReplayViewer(showHsReplayMessage);
+			var rv = new ReplayViewer();
 			rv.Show();
 			rv.Load(replay);
 			Viewers.Add(rv);

@@ -1,4 +1,4 @@
-#region
+﻿#region
 
 using System.Linq;
 using System.Windows;
@@ -7,7 +7,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using HearthDb;
 using Hearthstone_Deck_Tracker.Stats;
-using Hearthstone_Deck_Tracker.Utility;
 using static HearthDb.CardIds;
 using static System.Windows.Visibility;
 
@@ -20,8 +19,6 @@ namespace Hearthstone_Deck_Tracker
 	/// </summary>
 	public partial class NoteDialog
 	{
-		private const string LocShowDeck = "NoteWindow_Button_ShowOppDeck";
-		private const string LocHideDeck = "NoteWindow_Button_HideOppDeck";
 		private readonly GameStats _game;
 		private readonly bool _initialized;
 
@@ -52,19 +49,19 @@ namespace Hearthstone_Deck_Tracker
 			Close();
 		}
 
-		private void DeckPanelVisibility(Visibility visibility, int span, bool show)
+		private void DeckPanelVisibility(Visibility visibility, int span, string prefix)
 		{
 			DeckListContainer.Visibility = visibility;
 			TextBoxNote.SetValue(Grid.ColumnSpanProperty, span);
-			BtnDeck.Content = LocUtil.Get(show ? LocShowDeck : LocHideDeck);
+			BtnDeck.Content = $"{prefix} OPP DECK";
 		}
 
 		private void BtnDeck_Click(object sender, RoutedEventArgs e)
 		{
 			if(DeckListContainer.Visibility == Visible)
-				DeckPanelVisibility(Collapsed, 3, true);
+				DeckPanelVisibility(Collapsed, 3, "SHOW");
 			else
-				DeckPanelVisibility(Visible, 2, false);
+				DeckPanelVisibility(Visible, 2, "HIDE");
 
 			TextBoxNote.Focus();
 		}

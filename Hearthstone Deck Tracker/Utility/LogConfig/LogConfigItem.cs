@@ -1,7 +1,6 @@
 #region
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using Hearthstone_Deck_Tracker.Utility.Logging;
 
@@ -11,16 +10,14 @@ namespace Hearthstone_Deck_Tracker.Utility.LogConfig
 {
 	internal class LogConfigItem
 	{
-		private readonly Dictionary<string, object> _requiredValues = new Dictionary<string, object>
-		{
-			{ nameof(LogLevel), 1 },
-			{ nameof(FilePrinting), true }
-		};
-
+		[RequiredValue(1)]
 		public int LogLevel;
+		[RequiredValue(true)]
 		public bool FilePrinting;
+		[RequiredValue]
 		public bool ConsolePrinting;
 		public bool ScreenPrinting;
+		[RequiredValue]
 		public bool Verbose;
 
 		public LogConfigItem(string name, bool consolePrinting = false, bool verbose = false)
@@ -28,30 +25,31 @@ namespace Hearthstone_Deck_Tracker.Utility.LogConfig
 			Name = name;
 			if(verbose)
 			{
-				_requiredValues[nameof(Verbose)] = true;
+				SetRequiredValue(nameof(Verbose), true);
 				Verbose = true;
 			}
-			else if(LogConfigConstants.Verbose.Contains(name))
-				_requiredValues[nameof(Verbose)] = true;
 			if(consolePrinting)
 			{
-				_requiredValues[nameof(ConsolePrinting)] = true;
+				SetRequiredValue(nameof(ConsolePrinting), true);
 				ConsolePrinting = true;
 			}
 		}
 
 		public string Name { get; set; }
 
+		private void SetRequiredValue(string fieldName, object value)
+			=> ((RequiredValueAttribute)GetType().GetField(fieldName).GetCustomAttributes(typeof(RequiredValueAttribute), false)[0]).Value = value;
+
 		public bool VerifyAndUpdate()
 		{
 			var modified = false;
 			foreach(var field in GetType().GetFields())
 			{
-				object req;
-				if(!_requiredValues.TryGetValue(field.Name, out req) || Equals(field.GetValue(this), req))
+				var req = field.GetCustomAttributes(typeof(RequiredValueAttribute), false).FirstOrDefault() as RequiredValueAttribute;
+				if(req?.Value == null || Equals(field.GetValue(this), req.Value))
 					continue;
-				field.SetValue(this, req);
-				Log.Info($"[{Name}] set {field.Name}={req}");
+				field.SetValue(this, req.Value);
+				Log.Info($"[{Name}] set {field.Name}={req.Value}");
 				modified = true;
 			}
 			return modified;

@@ -1,12 +1,14 @@
+﻿using System.ComponentModel;
+
 namespace Hearthstone_Deck_Tracker.Enums
 {
 	public enum DeckLayout
 	{
-		[LocDescription("Enum_DeckLayout_Layout1")]
+		[Description("Default")]
 		Layout1,
-		[LocDescription("Enum_DeckLayout_Layout2")]
+		[Description("Alternative")]
 		Layout2,
-		[LocDescription("Enum_DeckLayout_Legacy")]
+		[Description("Legacy")]
 		Legacy
 	}
 }

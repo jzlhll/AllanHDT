@@ -29,6 +29,5 @@ namespace Hearthstone_Deck_Tracker.Utility.LogConfig
 			new LogConfigItem("Power", Console, true),
 			new LogConfigItem("Rachelle", Console)
 		};
-		public static string[] Verbose => new [] { "Power" };
 	}
 }

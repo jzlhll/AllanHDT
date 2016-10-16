@@ -4,14 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
-             xmlns:lex="http://wpflocalizeextension.codeplex.com"
-             lex:LocalizeDictionary.DesignCulture="en"
-             lex:ResxLocalizationProvider.DefaultAssembly="HearthstoneDeckTracker"
-             lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-<<<<<<< HEAD
         <GroupBox Header="互动性">
             <StackPanel>
                 <Label Content="警告:" FontWeight="Bold" Foreground="Red" />
@@ -21,24 +16,11 @@
                                        Checked="ToggleSwitchExtraFeatures_Checked"
                                        Unchecked="ToggleSwitchExtraFeatures_Unchecked" />
                 <CheckBox Name="CheckBoxForceExtraFeatures" Content="强制开启（如非必要请勿使用）"
-=======
-        <GroupBox Header="{lex:LocText Options_Overlay_Interactivity_Header}">
-            <StackPanel>
-                <Label Content="{lex:LocTextUpper Options_Overlay_Interactivity_Label_Warning}" FontWeight="Bold" Foreground="Red" />
-                <Label Content="{lex:Loc Options_Overlay_Interactivity_Label_Freezing}" Margin="0,-10,0,0" Foreground="Red" />
-                <controls:ToggleSwitch x:Name="ToggleSwitchExtraFeatures" Margin="10,0,0,0"
-                                       OnLabel="{lex:Loc Options_Overlay_Interactivity_Switch_Enabled}" 
-                                       OffLabel="{lex:Loc Options_Overlay_Interactivity_Switch_Disabled}"
-                                       Checked="ToggleSwitchExtraFeatures_Checked"
-                                       Unchecked="ToggleSwitchExtraFeatures_Unchecked" />
-                <CheckBox Name="CheckBoxForceExtraFeatures" Content="{lex:Loc Options_Overlay_Interactivity_CheckBox_ForceOn}"
->>>>>>> c693a4c... update code to 0925
                           Margin="10,0,5,0"
                           Checked="CheckBoxForceExtraFeatures_OnChecked"
                           Unchecked="CheckBoxForceExtraFeatures_OnUnchecked"
                           IsEnabled="{Binding ElementName=ToggleSwitchExtraFeatures, Path=IsChecked}" />
                 <Separator Margin="0,20,0,10" />
-<<<<<<< HEAD
                 <Label Content="功能:" FontWeight="Bold" />
                 <CheckBox Name="CheckBoxFriendslist" Content="当好友列表打开时，隐藏卡组"
                           Checked="CheckBoxFriendslist_OnChecked" Unchecked="CheckBoxFriendslist_OnUnchecked"
@@ -48,17 +30,6 @@
                           IsEnabled="{Binding ElementName=ToggleSwitchExtraFeatures, Path=IsChecked}" />
                 <TextBlock
                     Text="注意：可能无法正常工作，如果【选项】>【界面】>【一般】>【奥秘自动变灰】已启用。"
-=======
-                <Label Content="{lex:LocTextUpper Options_Overlay_Interactivity_Label_Features}" FontWeight="Bold" />
-                <CheckBox Name="CheckBoxFriendslist" Content="{lex:Loc Options_Overlay_Interactivity_CheckBox_FriendsList}"
-                          Checked="CheckBoxFriendslist_OnChecked" Unchecked="CheckBoxFriendslist_OnUnchecked"
-                          Margin="10,5,0,0" IsEnabled="{Binding ElementName=ToggleSwitchExtraFeatures, Path=IsChecked}" />
-                <CheckBox Name="CheckBoxSecrets" Content="{lex:Loc Options_Overlay_Interactivity_CheckBoxSecrets}"
-                          Checked="CheckBoxSecrets_OnChecked" Unchecked="CheckBoxSecrets_OnUnchecked" Margin="10,5,0,0"
-                          IsEnabled="{Binding ElementName=ToggleSwitchExtraFeatures, Path=IsChecked}" />
-                <TextBlock
-                    Text="{lex:Loc Options_Overlay_Interactivity_Label_Note}"
->>>>>>> c693a4c... update code to 0925
                     TextWrapping="Wrap" FontStyle="Italic" Margin="34,0,0,0" />
             </StackPanel>
         </GroupBox>

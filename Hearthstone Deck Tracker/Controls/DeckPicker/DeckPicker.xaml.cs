@@ -1,4 +1,4 @@
-#region
+﻿#region
 
 using System;
 using System.Collections.Generic;
@@ -18,7 +18,6 @@ using Hearthstone_Deck_Tracker.Annotations;
 using Hearthstone_Deck_Tracker.Controls.DeckPicker.DeckPickerItemLayouts;
 using Hearthstone_Deck_Tracker.Enums;
 using Hearthstone_Deck_Tracker.Hearthstone;
-using Hearthstone_Deck_Tracker.Utility;
 using Hearthstone_Deck_Tracker.Utility.Logging;
 using static System.ComponentModel.ListSortDirection;
 using static System.Windows.Visibility;
@@ -34,9 +33,6 @@ namespace Hearthstone_Deck_Tracker.Controls.DeckPicker
 	/// </summary>
 	public partial class DeckPicker : INotifyPropertyChanged
 	{
-		private const string LocLink = "DeckPicker_ContextMenu_LinkUrl";
-		private const string LocLinkNew = "DeckPicker_ContextMenu_LinkNewUrl";
-
 		public delegate void DoubleClickHandler(DeckPicker sender, Deck deck);
 
 		public delegate void SelectedDeckHandler(DeckPicker sender, Deck deck);
@@ -46,7 +42,7 @@ namespace Hearthstone_Deck_Tracker.Controls.DeckPicker
 		private readonly ObservableCollection<DeckPickerClassItem> _classItems;
 		private readonly ObservableCollection<DeckPickerItem> _displayedDecks;
 		private bool _clearingClasses;
-		private ObservableCollection<DeckType> _deckTypeItems;
+		private ObservableCollection<string> _deckTypeItems;
 		private bool _ignoreSelectionChange;
 		private DateTime _lastActiveDeckPanelClick = DateTime.MinValue;
 		private bool _reselectingClasses;
@@ -66,11 +62,7 @@ namespace Hearthstone_Deck_Tracker.Controls.DeckPicker
 			SelectedClasses = new ObservableCollection<HeroClassAll>();
 			_displayedDecks = new ObservableCollection<DeckPickerItem>();
 			ListViewDecks.ItemsSource = _displayedDecks;
-<<<<<<< HEAD
 			DeckTypeItems = new ObservableCollection<string> {"ALL", "竞技场", "标准", "狂野"};
-=======
-			DeckTypeItems = new ObservableCollection<DeckType>(Enum.GetValues(typeof(DeckType)).OfType<DeckType>().Take(4));
->>>>>>> c693a4c... update code to 0925
 		}
 
 		public List<Deck> SelectedDecks
@@ -107,7 +99,7 @@ namespace Hearthstone_Deck_Tracker.Controls.DeckPicker
 
 		public Visibility VisibilitySearchBar => SearchBarVisibile ? Visible : Collapsed;
 
-		public ObservableCollection<DeckType> DeckTypeItems
+		public ObservableCollection<string> DeckTypeItems
 		{
 			get { return _deckTypeItems; }
 			set
@@ -589,9 +581,9 @@ namespace Hearthstone_Deck_Tracker.Controls.DeckPicker
 		{
 			if(_ignoreSelectionChange || !Core.Initialized)
 				return;
+			var deckType = DeckType.All;
 			if(e.AddedItems.Count > 0)
 			{
-<<<<<<< HEAD
 				var item = e.AddedItems[0] as string;
 				if(item != null)
 				{
@@ -609,12 +601,8 @@ namespace Hearthstone_Deck_Tracker.Controls.DeckPicker
 					}
 				}
 				if(Config.Instance.SelectedDeckPickerDeckType != deckType)
-=======
-				var selected = (DeckType)ListViewDeckType.SelectedItem;
-				if(Config.Instance.SelectedDeckPickerDeckType != selected)
->>>>>>> c693a4c... update code to 0925
 				{
-					Config.Instance.SelectedDeckPickerDeckType = selected;
+					Config.Instance.SelectedDeckPickerDeckType = deckType;
 					Config.Save();
 				}
 				UpdateDecks();
@@ -673,11 +661,7 @@ namespace Hearthstone_Deck_Tracker.Controls.DeckPicker
 			MenuItemMoveDeckToConstructed.Visibility = selectedDecks.First().IsArenaDeck ? Visible : Collapsed;
 			MenuItemMissingCards.Visibility = selectedDecks.First().MissingCards.Any() ? Visible : Collapsed;
 			MenuItemSetDeckUrl.Visibility = selectedDecks.First().IsArenaDeck ? Collapsed : Visible;
-<<<<<<< HEAD
 			MenuItemSetDeckUrl.Header = string.IsNullOrEmpty(selectedDecks.First().Url) ? "链接到URL" : "链接到新的URL";
-=======
-			MenuItemSetDeckUrl.Header = string.IsNullOrEmpty(selectedDecks.First().Url) ? LocUtil.Get(LocLink, true) : LocUtil.Get(LocLinkNew, true);
->>>>>>> c693a4c... update code to 0925
 			MenuItemUpdateDeck.Visibility = string.IsNullOrEmpty(selectedDecks.First().Url) ? Collapsed : Visible;
 			MenuItemOpenUrl.Visibility = string.IsNullOrEmpty(selectedDecks.First().Url) ? Collapsed : Visible;
 			MenuItemArchive.Visibility = selectedDecks.Any(d => !d.Archived) ? Visible : Collapsed;
@@ -782,12 +766,7 @@ namespace Hearthstone_Deck_Tracker.Controls.DeckPicker
 			if(!SelectedDecks.Any())
 				e.Handled = true;
 		}
-<<<<<<< HEAD
 
         private void BtnVersions_Click(object sender, RoutedEventArgs e) => Core.MainWindow.BtnVersions_Click(sender, e);
     }
 }
-=======
-	}
-}
->>>>>>> c693a4c... update code to 0925

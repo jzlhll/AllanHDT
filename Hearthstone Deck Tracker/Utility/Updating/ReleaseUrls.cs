@@ -6,13 +6,9 @@ namespace Hearthstone_Deck_Tracker.Utility.Updating
 	{
 		private const string FieldLive = "live";
 		private const string FieldHsReplay = "hsreplay";
-		private const string FieldLiveChina = "live-china";
 
 		[JsonProperty(FieldLive)]
 		public string Live { get; set; }
-
-		[JsonProperty(FieldLiveChina)]
-		public string LiveChina { get; set; }
 
 		[JsonProperty(FieldHsReplay)]
 		public string HsReplay { get; set; }
@@ -25,8 +21,6 @@ namespace Hearthstone_Deck_Tracker.Utility.Updating
 					return !string.IsNullOrEmpty(HsReplay) ? HsReplay : Live;
 				case FieldLive:
 					return Live;
-				case FieldLiveChina:
-					return !string.IsNullOrEmpty(LiveChina) ? LiveChina : Live;
 				default:
 					return Live;
 			}

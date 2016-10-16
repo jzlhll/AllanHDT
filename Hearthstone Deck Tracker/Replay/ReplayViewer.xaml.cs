@@ -1,4 +1,4 @@
-#region
+﻿#region
 
 using System;
 using System.Collections.Generic;
@@ -42,7 +42,7 @@ namespace Hearthstone_Deck_Tracker.Replay
 		private int _playerController;
 		public List<ReplayKeyPoint> Replay;
 
-		public ReplayViewer(bool showHsReplayWarning)
+		public ReplayViewer()
 		{
 			InitializeComponent();
 			Height = Config.Instance.ReplayWindowHeight;
@@ -74,8 +74,6 @@ namespace Hearthstone_Deck_Tracker.Replay
 			CheckBoxPlay.IsChecked = Config.Instance.ReplayViewerShowPlay;
 			CheckBoxSecret.IsChecked = Config.Instance.ReplayViewerShowSecret;
 			CheckBoxSummon.IsChecked = Config.Instance.ReplayViewerShowSummon;
-			if(showHsReplayWarning)
-				StatusBar.Visibility = Visible;
 			_initialized = true;
 		}
 
@@ -874,7 +872,5 @@ namespace Hearthstone_Deck_Tracker.Replay
 			_showAllTurns.Remove(tvi.Turn.Value);
 			ReloadKeypoints();
 		}
-
-		private void BtnCloseStatusBar_OnClick(object sender, RoutedEventArgs e) => StatusBar.Visibility = Collapsed;
 	}
 }

@@ -4,14 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:options="clr-namespace:Hearthstone_Deck_Tracker.FlyoutControls.Options"
-             xmlns:lex="http://wpflocalizeextension.codeplex.com"
-             lex:LocalizeDictionary.DesignCulture="en"
-             lex:ResxLocalizationProvider.DefaultAssembly="HearthstoneDeckTracker"
-             lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="300" Loaded="TrackerSettings_Loaded">
     <Grid>
-<<<<<<< HEAD
         <GroupBox Header="设置">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
@@ -26,37 +21,17 @@
                     </GroupBox>
 
                     <CheckBox x:Name="CheckboxConfigSaveAppData" Content="在AppData中保存配置文件"
-=======
-        <GroupBox Header="{lex:LocTextUpper Options_Tracker_Settings_Header}">
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <StackPanel>
-                    <GroupBox Header="{lex:LocTextUpper Options_Tracker_Settings_Label_Analytics}">
-                        <StackPanel>
-                            <CheckBox Name="CheckBoxAnalytics" Content="{lex:Loc Options_Tracker_Settings_Label_SubmitData}"
-                                      Checked="CheckBoxAnalytics_OnChecked" Unchecked="CheckBoxAnalytics_OnUnchecked" />
-                            <TextBlock
-                                Text="{lex:Loc Options_Tracker_Settings_Analytics_Description}"
-                                TextWrapping="Wrap" />
-                        </StackPanel>
-                    </GroupBox>
-                    <CheckBox x:Name="CheckboxConfigSaveAppData" Content="{lex:Loc Options_Tracker_Settings_CheckBox_SaveConfigAppData}"
->>>>>>> c693a4c... update code to 0925
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxConfigSaveAppData_Checked"
                               Unchecked="CheckboxConfigSaveAppData_Unchecked" />
-<<<<<<< HEAD
                     <CheckBox x:Name="CheckboxDataSaveAppData" Content="在AppData中保存数据"
-=======
-                    <CheckBox x:Name="CheckboxDataSaveAppData" Content="{lex:Loc Options_Tracker_Settings_CheckBox_SaveDataAppData}"
->>>>>>> c693a4c... update code to 0925
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxDataSaveAppData_Checked"
                               Unchecked="CheckboxDataSaveAppData_Unchecked" />
-<<<<<<< HEAD
                     <CheckBox x:Name="CheckboxStartWithWindows" Content="窗口化运行"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxStartWithWindows_Checked"
@@ -74,21 +49,6 @@
                               VerticalAlignment="Top" Checked="CheckboxMinimizeTray_Checked"
                               Unchecked="CheckboxMinimizeTray_Unchecked" />
                     <CheckBox x:Name="CheckBoxShowSplashScreen" Content="显示加载动画"
-=======
-                    <CheckBox x:Name="CheckboxStartWithWindows" Content="{lex:Loc Options_Tracker_Settings_CheckBox_StartWithWindows}"
-                              HorizontalAlignment="Left" Margin="10,5,0,0"
-                              VerticalAlignment="Top" Checked="CheckboxStartWithWindows_Checked"
-                              Unchecked="CheckboxStartWithWindows_Unchecked" />
-                    <CheckBox x:Name="CheckboxStartMinimized" Content="{lex:Loc Options_Tracker_Settings_CheckBox_StartMinimized}"
-                              HorizontalAlignment="Left" Margin="10,5,0,0"
-                              VerticalAlignment="Top" Checked="CheckboxStartMinimized_Checked"
-                              Unchecked="CheckboxStartMinimized_Unchecked" />
-                    <CheckBox x:Name="CheckboxMinimizeTray" Content="{lex:Loc Options_Tracker_Settings_CheckBox_MinimizeToTray}"
-                              HorizontalAlignment="Left" Margin="10,5,0,0"
-                              VerticalAlignment="Top" Checked="CheckboxMinimizeTray_Checked"
-                              Unchecked="CheckboxMinimizeTray_Unchecked" />
-                    <CheckBox x:Name="CheckBoxShowSplashScreen" Content="{lex:Loc Options_Tracker_Settings_CheckBox_Splashscreen}"
->>>>>>> c693a4c... update code to 0925
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
@@ -97,86 +57,52 @@
                     <CheckBox x:Name="CheckboxCloseWithHearthstone"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
-<<<<<<< HEAD
                               Content="跟随炉石关闭" HorizontalAlignment="Left"
-=======
-                              Content="{lex:Loc Options_Tracker_Settings_CheckBox_CloseWithHearthstone}" HorizontalAlignment="Left"
->>>>>>> c693a4c... update code to 0925
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxCloseWithHearthstone_Checked"
                               Unchecked="CheckboxCloseWithHearthstone_Unchecked" />
                     <CheckBox x:Name="CheckboxStartHearthstoneWithHDT"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
-<<<<<<< HEAD
                               Content="当打开该软件时启动游戏" HorizontalAlignment="Left"
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxStartHearthstoneWithHDT_Checked"
                               Unchecked="CheckboxStartHearthstoneWithHDT_Unchecked" />
                     <CheckBox x:Name="CheckboxCheckForUpdates" Content="检查更新"
-=======
-                              Content="{lex:Loc Options_Tracker_Settings_CheckBox_StartHearthstone}" HorizontalAlignment="Left"
-                              Margin="10,5,0,0" VerticalAlignment="Top"
-                              Checked="CheckboxStartHearthstoneWithHDT_Checked"
-                              Unchecked="CheckboxStartHearthstoneWithHDT_Unchecked" />
-                    <CheckBox x:Name="CheckboxCheckForUpdates" Content="{lex:Loc Options_Tracker_Settings_CheckBox_Updates}"
->>>>>>> c693a4c... update code to 0925
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxCheckForUpdates_Checked"
                               Unchecked="CheckboxCheckForUpdates_Unchecked" />
-<<<<<<< HEAD
                     <CheckBox x:Name="CheckboxCheckForBetaUpdates" Content="检查beta更新"
-=======
-                    <CheckBox x:Name="CheckboxCheckForBetaUpdates" Content="{lex:Loc Options_Tracker_Settings_CheckBox_BetaUpdates}"
->>>>>>> c693a4c... update code to 0925
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxCheckForBetaUpdates_Checked"
                               Unchecked="CheckboxCheckForBetaUpdates_Unchecked" />
-<<<<<<< HEAD
                     <CheckBox x:Name="CheckboxAdvancedWindowSearch" Content="高级的窗口搜索"
-=======
-                    <CheckBox x:Name="CheckboxAdvancedWindowSearch" Content="{lex:Loc Options_Tracker_Settings_CheckBox_AdvancedWindowSearch}"
->>>>>>> c693a4c... update code to 0925
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxAdvancedWindowSearch_Checked"
                               Unchecked="CheckboxAdvancedWindowSearch_Unchecked"
-<<<<<<< HEAD
                               ToolTip="当在非炉石游戏窗口的时候，关闭显示。This can be turned off if the overlay shows up in non-Hearthstone windows." />
                     <CheckBox x:Name="CheckboxAlternativeScreenCapture" Content="选择屏幕捕捉"
-=======
-                              ToolTip="This can be turned off if the overlay shows up in non-Hearthstone windows." />
-                    <CheckBox x:Name="CheckboxAlternativeScreenCapture" Content="{lex:Loc Options_Tracker_Settings_CheckBox_AltScreenCapture}"
->>>>>>> c693a4c... update code to 0925
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxAlternativeScreenCapture_Checked"
                               Unchecked="CheckboxAlternativeScreenCapture_Unchecked"
-<<<<<<< HEAD
                               ToolTip="如果你在天梯中有检测问题的话，试着开启这个。" />
                     <CheckBox x:Name="CheckboxShowNewsBar" Content="显示新闻条"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Click="CheckboxShowNewsBar_OnClick" />
                     <CheckBox x:Name="CheckboxLogTab" Content="显示log"
-=======
-                              ToolTip="Try enabling this if you are having trouble with rank(ed) detection." />
-                    <CheckBox x:Name="CheckboxShowNewsBar" Content="{lex:Loc Options_Tracker_Settings_CheckBox_Newsbar}"
-                              HorizontalAlignment="Left" Margin="10,5,0,0"
-                              VerticalAlignment="Top" Click="CheckboxShowNewsBar_OnClick" />
-                    <CheckBox x:Name="CheckboxLogTab" Content="{lex:Loc Options_Tracker_Settings_CheckBox_Log}"
->>>>>>> c693a4c... update code to 0925
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxLogTab_Checked"
                               Unchecked="CheckboxLogTab_Unchecked" />
-<<<<<<< HEAD
                     <Button Name="ButtonGamePath" Margin="10,5,10,0" Content="设置炉石路径" Click="ButtonGamePath_OnClick"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}" />
                     <Button Name="ButtonOpenAppData" Margin="10,5,10,0" Content="打开appdata目录" Click="ButtonOpenAppData_OnClick" 
@@ -186,17 +112,6 @@
                             Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                             Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}" />
                     <Button Name="ButtonHearthstoneLogsDirectory" Margin="10,5,10,0" Content="设置炉石游戏的log目录" 
-=======
-                    <Button Name="ButtonGamePath" Margin="10,5,10,0" Content="{lex:Loc Options_Tracker_Settings_Button_HearthstonePath}" Click="ButtonGamePath_OnClick"
-                              Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}" />
-                    <Button Name="ButtonOpenAppData" Margin="10,5,10,0" Content="{lex:Loc Options_Tracker_Settings_Button_AppData}" Click="ButtonOpenAppData_OnClick" 
-                              Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}" />
-                    <Button Name="SelectSaveDataPath" Margin="10,5,10,0" Content="{lex:Loc Options_Tracker_Settings_Button_DataPath}"
-                            Click="SelectSaveDataPath_Click"
-                            Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
-                            Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}" />
-                    <Button Name="ButtonHearthstoneLogsDirectory" Margin="10,5,10,0" Content="{lex:Loc Options_Tracker_Settings_Button_LogDirectory}" 
->>>>>>> c693a4c... update code to 0925
                             Click="ButtonHearthstoneLogsDirectory_Click"
                             Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                             Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}" />

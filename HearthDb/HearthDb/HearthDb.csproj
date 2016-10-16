@@ -79,12 +79,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-<<<<<<< HEAD
     <PreBuildEvent>
 if "$(ConfigurationName)" == "Release" (
-=======
-    <PreBuildEvent>if "$(ConfigurationName)" == "Release" (
->>>>>>> c693a4c... update code to 0925
   powershell -ExecutionPolicy Unrestricted -file $(ProjectDir)verify.ps1 $(ProjectDir)
 )
 xcopy /Y "$(ProjectDir)hsdata\CardDefs.xml" "$(ProjectDir)CardDefs.xml*"</PreBuildEvent>

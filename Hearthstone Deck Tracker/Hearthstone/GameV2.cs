@@ -117,13 +117,10 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 				if(Spectator)
 					return GameMode.Spectator;
 				if(_currentGameMode == GameMode.None)
-					_currentGameMode = HearthDbConverter.GetGameMode(CurrentGameType);
+					_currentGameMode = HearthDbConverter.GetGameMode((GameType)HearthMirror.Reflection.GetGameType());
 				return _currentGameMode;
 			}
 		}
-
-		private GameType _currentGameType;
-		public GameType CurrentGameType => _currentGameType != GameType.GT_UNKNOWN ? _currentGameType : (_currentGameType = (GameType)HearthMirror.Reflection.GetGameType());
 
 		public MatchInfo MatchInfo => _matchInfo ?? (_matchInfo = HearthMirror.Reflection.GetMatchInfo());
 		private bool _matchInfoCacheInvalid = true;
@@ -143,14 +140,6 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 			Player.Id = matchInfo.LocalPlayer.Id;
 			Opponent.Id = matchInfo.OpposingPlayer.Id;
 		}
-
-		internal async void CacheGameType()
-		{
-			while((_currentGameType = (GameType)HearthMirror.Reflection.GetGameType()) == GameType.GT_UNKNOWN)
-				await Task.Delay(1000);
-		}
-
-		internal void CacheSpectator() => _spectator = HearthMirror.Reflection.IsSpectating();
 
 		internal void InvalidateMatchInfoCache() => _matchInfoCacheInvalid = true;
 
@@ -174,7 +163,6 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 			OpponentSecrets.ClearSecrets();
 			_spectator = null;
 			_currentGameMode = GameMode.None;
-			_currentGameType = GameType.GT_UNKNOWN;
 			_currentFormat = FormatType.FT_UNKNOWN;
 			if(!IsInMenu && resetStats)
 				CurrentGameStats = new GameStats(GameResult.None, "", "") {PlayerName = "", OpponentName = "", Region = CurrentRegion};

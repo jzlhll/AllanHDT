@@ -1,17 +1,12 @@
-<UserControl x:Class="Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker.TrackerPlugins"
+﻿<UserControl x:Class="Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker.TrackerPlugins"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
-             xmlns:lex="http://wpflocalizeextension.codeplex.com"
-             lex:LocalizeDictionary.DesignCulture="en"
-             lex:ResxLocalizationProvider.DefaultAssembly="HearthstoneDeckTracker"
-             lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="300">
     <Grid>
-<<<<<<< HEAD
         <GroupBox Header="插件">
             <DockPanel>
                 <DockPanel DockPanel.Dock="Top" Height="150">
@@ -19,14 +14,6 @@
                         <Button Click="ButtonAvailablePlugins_OnClick" Content="可用插件" />
                         <Button Click="ButtonOpenPluginsFolder_OnClick" Content="插件文件夹" Margin="0,5,0,0" />
                         <Button Click="ButtonTryToClean_OnClick" Content="尝试清理" Margin="0,5,0,0" />
-=======
-        <GroupBox Header="{lex:LocTextUpper Options_Tracker_Plugins_Header}">
-            <DockPanel>
-                <DockPanel DockPanel.Dock="Top" Height="150">
-                    <StackPanel DockPanel.Dock="Right" Margin="5,0,0,0">
-                        <Button Click="ButtonAvailablePlugins_OnClick" Content="{lex:Loc Options_Tracker_Plugins_Button_Avilable}" />
-                        <Button Click="ButtonOpenPluginsFolder_OnClick" Content="{lex:Loc Options_Tracker_Plugins_Button_Folder}" Margin="0,5,0,0" />
->>>>>>> c693a4c... update code to 0925
                     </StackPanel>
                     <Border BorderThickness="1" BorderBrush="{DynamicResource AccentColorBrush}">
                         <ListBox Name="ListBoxPlugins" SelectionChanged="ListBoxPlugins_OnSelectionChanged"
@@ -53,20 +40,11 @@
                           Header="{Binding ElementName=ListBoxPlugins, Path=SelectedItem.NameAndVersion}"
                           Margin="0,10,0,0">
                     <DockPanel>
-<<<<<<< HEAD
                         <controls:ToggleSwitch Margin="2" DockPanel.Dock="Top" OnLabel="启用" OffLabel="关闭"
                                                IsChecked="{Binding ElementName=ListBoxPlugins, Path=SelectedItem.IsEnabled}" />
                         <Separator DockPanel.Dock="Top" Margin="0,0,0,5" />
                         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
                             <TextBlock Text="被创建" TextWrapping="Wrap" />
-=======
-                        <controls:ToggleSwitch Margin="2" DockPanel.Dock="Top" OnLabel="{lex:Loc Options_Tracker_Plugins_Switch_Enabled}" 
-                                               OffLabel="{lex:Loc Options_Tracker_Plugins_Switch_Disabled}"
-                                               IsChecked="{Binding ElementName=ListBoxPlugins, Path=SelectedItem.IsEnabled}" />
-                        <Separator DockPanel.Dock="Top" Margin="0,0,0,5" />
-                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
-                            <TextBlock Text="{lex:Loc Options_Tracker_Plugins_Label_CreatedBy}" TextWrapping="Wrap" />
->>>>>>> c693a4c... update code to 0925
                             <TextBlock Text="{Binding ElementName=ListBoxPlugins, Path=SelectedItem.Plugin.Author}"
                                        TextWrapping="Wrap" Margin="2,0,0,0" />
                         </StackPanel>

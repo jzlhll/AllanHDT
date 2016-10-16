@@ -1,4 +1,4 @@
-#region
+﻿#region
 
 using System.Collections.Generic;
 using System.Windows;
@@ -6,7 +6,6 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using Hearthstone_Deck_Tracker.HearthStats.API;
-using Hearthstone_Deck_Tracker.HsReplay;
 using Hearthstone_Deck_Tracker.Replay;
 using Hearthstone_Deck_Tracker.Stats;
 using Hearthstone_Deck_Tracker.Stats.CompiledStats;
@@ -100,11 +99,12 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats.Arena
 			ArenaStats.Instance.UpdateArenaStats();
 		}
 
-		private async void ButtonShowReplay_OnClick(object sender, RoutedEventArgs e)
+		private void ButtonShowReplay_OnClick(object sender, RoutedEventArgs e)
 		{
-			var game = SelectedGame;
-			await ReplayLauncher.ShowReplay(game, true);
-			game.UpdateReplayState();
+			if(SelectedGame == null)
+				return;
+			if(SelectedGame.HasReplayFile)
+				ReplayReader.LaunchReplayViewer(SelectedGame.ReplayFile);
 		}
 
 		private void ButtonShowOppDeck_OnClick(object sender, RoutedEventArgs e)

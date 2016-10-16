@@ -1,27 +1,17 @@
-<UserControl x:Class="Hearthstone_Deck_Tracker.SortFilterDecks"
+﻿<UserControl x:Class="Hearthstone_Deck_Tracker.SortFilterDecks"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
-             xmlns:lex="http://wpflocalizeextension.codeplex.com"
-             lex:LocalizeDictionary.DesignCulture="en"
-             lex:ResxLocalizationProvider.DefaultAssembly="HearthstoneDeckTracker"
-             lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="300">
     <Grid>
         <DockPanel Margin="6,0,6,6">
-<<<<<<< HEAD
             <GroupBox Name="GroupBoxSortingAllConstructed" Header="卡组排序：全部/构筑" DockPanel.Dock="Top">
                 <StackPanel>
                     <CheckBox Name="CheckBoxSortByClass" Content="按英雄排序"
-=======
-            <GroupBox Name="GroupBoxSortingAllConstructed" Header="{lex:Loc SortFilter_Label_Constructed}" DockPanel.Dock="Top">
-                <StackPanel>
-                    <CheckBox Name="CheckBoxSortByClass" Content="{lex:Loc SortFilter_CheckBox_SortByClass}"
->>>>>>> c693a4c... update code to 0925
                         Checked="CheckBoxSortByClass_OnChecked" Unchecked="CheckBoxSortByClass_OnUnchecked" />
                     <ComboBox Name="ComboboxDeckSorting" SelectionChanged="Selector_OnSelectionChanged"
                         Margin="0,5,0,0">
@@ -34,15 +24,9 @@
                     </ComboBox>
                 </StackPanel>
             </GroupBox>
-<<<<<<< HEAD
             <GroupBox Name="GroupBoxSortingArena" Header="卡组排序：竞技场" DockPanel.Dock="Top">
                 <StackPanel>
                     <CheckBox Name="CheckBoxSortByClassArena" Content="按英雄排序"
-=======
-            <GroupBox Name="GroupBoxSortingArena" Header="{lex:Loc SortFilter_Label_Arena}" DockPanel.Dock="Top">
-                <StackPanel>
-                    <CheckBox Name="CheckBoxSortByClassArena" Content="{lex:Loc SortFilter_CheckBox_SortByClass}"
->>>>>>> c693a4c... update code to 0925
                             Checked="CheckBoxSortByClassArena_OnChecked" Unchecked="CheckBoxSortByClassArena_OnUnchecked" />
                         <ComboBox Name="ComboboxDeckSortingArena" SelectionChanged="SelectorArena_OnSelectionChanged"
                             Margin="0,5,0,0">
@@ -55,11 +39,7 @@
                         </ComboBox>
                     </StackPanel>
             </GroupBox>
-<<<<<<< HEAD
             <GroupBox Header="过滤">
-=======
-            <GroupBox Header="{lex:Loc SortFilter_Label_Filter}">
->>>>>>> c693a4c... update code to 0925
                 <DockPanel>
 
                     <Grid Margin="0,3,0,0" DockPanel.Dock="Bottom">
@@ -69,7 +49,6 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-<<<<<<< HEAD
                         <Button Name="BtnUp" Margin="0,0,3,0" Grid.Column="0" Content="上" Click="BtnUp_OnClick" />
                         <Button Name="BtnDown" Margin="3,0,3,0" Grid.Column="1" Content="下" Click="BtnDown_OnClick" />
                         <Button Name="BtnTop" Margin="3,0,3,0" Grid.Column="2" Content="顶" Click="BtnTop_OnClick" />
@@ -77,49 +56,27 @@
                                 Click="BtnBottom_OnClick" />
                     </Grid>
                     <Button x:Name="BtnDeleteTag" DockPanel.Dock="Bottom" Margin="0,3,0,0" Content="删除已选"
-=======
-                        <Button Name="BtnUp" Margin="0,0,3,0" Grid.Column="0" Content="{lex:Loc SortFilter_Filter_Button_Up}" Click="BtnUp_OnClick" />
-                        <Button Name="BtnDown" Margin="3,0,3,0" Grid.Column="1" Content="{lex:Loc SortFilter_Filter_Button_Down}" Click="BtnDown_OnClick" />
-                        <Button Name="BtnTop" Margin="3,0,3,0" Grid.Column="2" Content="{lex:Loc SortFilter_Filter_Button_Top}" Click="BtnTop_OnClick" />
-                        <Button Name="BtnBottom" Margin="3,0,0,0" Grid.Column="3" Content="{lex:Loc SortFilter_Filter_Button_Bottom}" Click="BtnBottom_OnClick" />
-                    </Grid>
-                    <Button x:Name="BtnDeleteTag" DockPanel.Dock="Bottom" Margin="0,3,0,0" Content="{lex:Loc SortFilter_Filter_Button_Delete}"
->>>>>>> c693a4c... update code to 0925
                             VerticalAlignment="Bottom" Width="auto" Click="BtnDeteleTag_Click" Height="26" />
+
                     <Grid Margin="0,3,0,0" DockPanel.Dock="Bottom">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-<<<<<<< HEAD
                         <TextBox controls:TextBoxHelper.Watermark="新标签" Name="TextboxNewTag" TextWrapping="NoWrap"
                                  Text=""
                                  Grid.Column="0" Width="auto" Margin="0,0,3,0" />
                         <Button Name="BtnAddTag" Content="添加" Click="BtnAddTag_Click" Height="26" Grid.Column="1"
-=======
-                        <TextBox controls:TextBoxHelper.Watermark="{lex:Loc SortFilter_Filter_Text_NewTag_Watermark}" Name="TextboxNewTag" TextWrapping="NoWrap"
-                                 Text=""
-                                 Grid.Column="0" Width="auto" Margin="0,0,3,0" />
-                        <Button Name="BtnAddTag" Content="{lex:Loc SortFilter_Filter_Button_Add}" Click="BtnAddTag_Click" Height="26" Grid.Column="1"
->>>>>>> c693a4c... update code to 0925
                                 Margin="3,0,0,0" Width="auto" />
                     </Grid>
                     <StackPanel Name="StackPanelFilterOptions" DockPanel.Dock="Bottom">
                         <Separator/>
                         <DockPanel>
-<<<<<<< HEAD
                             <Label Content="过滤操作:" VerticalAlignment="Center"/>
                             <controls:ToggleSwitch Name="OperationSwitch" OnLabel="与" OffLabel="或" Width="110" HorizontalAlignment="Right"
                                            Checked="OperationSwitch_OnChecked" Unchecked="OperationSwitch_OnUnchecked" />
                         </DockPanel>
                         <CheckBox Content="在【狂野】卡组包含【标准】卡组" Margin="0,0,0,5" IsChecked="{Binding Path=DeckPickerWildIncludesStandard, Source={StaticResource ConfigWrapper}}"/>
-=======
-                            <Label Content="{lex:Loc SortFilter_Filter_Label_FilterOperation}" VerticalAlignment="Center"/>
-                            <controls:ToggleSwitch Name="OperationSwitch" OnLabel="{lex:Loc SortFilter_Filter_SwitchLabel_And}" OffLabel="{lex:Loc SortFilter_Filter_SwitchLabel_Or}" Width="110" HorizontalAlignment="Right"
-                                           Checked="OperationSwitch_OnChecked" Unchecked="OperationSwitch_OnUnchecked" />
-                        </DockPanel>
-                        <CheckBox Content="{lex:Loc SortFilter_Filter_CheckBoxIncludeStandard}" Margin="0,0,0,5" IsChecked="{Binding Path=DeckPickerWildIncludesStandard, Source={StaticResource ConfigWrapper}}"/>
->>>>>>> c693a4c... update code to 0925
                     </StackPanel>
 
                     <ListBox Name="ListboxTags" Height="auto" Width="auto" DockPanel.Dock="Top" VirtualizingPanel.IsVirtualizing="False">

@@ -1,16 +1,8 @@
-<controls:MetroWindow x:Class="Hearthstone_Deck_Tracker.NoteDialog"
+﻿<controls:MetroWindow x:Class="Hearthstone_Deck_Tracker.NoteDialog"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-<<<<<<< HEAD
                       Title="这次游戏的备注" Height="240" Width="440" Topmost="True" WindowStyle="ToolWindow"
-=======
-                      xmlns:lex="http://wpflocalizeextension.codeplex.com"
-                      lex:LocalizeDictionary.DesignCulture="en"
-                      lex:ResxLocalizationProvider.DefaultAssembly="HearthstoneDeckTracker"
-                      lex:ResxLocalizationProvider.DefaultDictionary="Strings"
-                      Title="{lex:Loc NoteWindow_Title}" Height="240" Width="440" Topmost="True" WindowStyle="ToolWindow"
->>>>>>> c693a4c... update code to 0925
                       Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"
                       BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1"
                       WindowStartupLocation="CenterScreen">
@@ -50,34 +42,21 @@
                 </ItemsControl>
             </ScrollViewer>
         </Border>
-<<<<<<< HEAD
         
         <Button x:Name="BtnSave" Content="卡集"
-=======
-
-        <Button x:Name="BtnSave" Content="{lex:Loc NoteWindow_Button_Set}"
->>>>>>> c693a4c... update code to 0925
                 Grid.Row="1" Grid.Column="0"
                 VerticalAlignment="Center"
                 Click="Button_Click" Margin="10,10,0,10" />
 
         <CheckBox Name="CheckBoxEnterToSave"
                   Grid.Row="1" Grid.Column="1"
-<<<<<<< HEAD
                   Content="回车保存"
-=======
-                  Content="{lex:Loc NoteWindow_CheckBox_Save}"
->>>>>>> c693a4c... update code to 0925
                   HorizontalAlignment="Left"
                   Checked="CheckBoxEnterToSave_OnChecked"
                   Unchecked="CheckBoxEnterToSave_OnUnchecked"
                   VerticalAlignment="Center" Margin="10,0,0,0" />
 
-<<<<<<< HEAD
         <Button x:Name="BtnDeck" Content="显示对手卡组"
-=======
-        <Button x:Name="BtnDeck" Content="{lex:Loc NoteWindow_Button_ShowOppDeck}"
->>>>>>> c693a4c... update code to 0925
                 Grid.Row="1" Grid.Column="3"
                 Margin="0,10,10,10"
                 VerticalAlignment="Center"

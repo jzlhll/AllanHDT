@@ -1,14 +1,17 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using HearthMirror.Objects;
 
 namespace Hearthstone_Deck_Tracker.Hearthstone
 {
-	public class GameMetaData : ICloneable
+	public class GameMetaData
 	{
 		private int? _hearthstoneBuild;
 		public GameServerInfo ServerInfo;
 		public DateTime EnqueueTime { get; set; }
-		public bool Reconnected { get; set; }
 
 		public int? HearthstoneBuild
 		{
@@ -24,14 +27,5 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 
 		public override string ToString() 
 			=> $"HearthstoneBuild={HearthstoneBuild}, ServerAddress={ServerInfo?.Address}, ClientId={ServerInfo?.ClientHandle}, GameId={ServerInfo?.GameHandle}, EnqueueTime={EnqueueTime}";
-
-		public object Clone() => new GameMetaData
-		{
-			_hearthstoneBuild = _hearthstoneBuild,
-			EnqueueTime = EnqueueTime,
-			HearthstoneBuild = HearthstoneBuild,
-			Reconnected = Reconnected,
-			ServerInfo = ServerInfo
-		};
 	}
 }

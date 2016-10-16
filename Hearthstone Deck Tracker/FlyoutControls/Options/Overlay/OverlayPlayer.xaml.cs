@@ -71,11 +71,10 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 			ComboBoxSpells.SelectedItem = Config.Instance.PlayerSpellsCounter;
 
 			ElementSorterPlayer.IsPlayer = true;
-			foreach(var panel in Config.Instance.DeckPanelOrderPlayer)
+			foreach(var itemName in Config.Instance.PanelOrderPlayer)
 			{
-				switch(panel)
+				switch(itemName)
 				{
-<<<<<<< HEAD
 					case "卡组名字":
 						ElementSorterPlayer.AddItem(new ElementSorterItem("卡组名字", Config.Instance.ShowDeckTitle,
 						                                                  value => Config.Instance.ShowDeckTitle = value, true));
@@ -99,31 +98,6 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 					case "胜场":
 						ElementSorterPlayer.AddItem(new ElementSorterItem("胜场", Config.Instance.ShowDeckWins,
 						                                                  value => Config.Instance.ShowDeckWins = value, true));
-=======
-					case Enums.DeckPanel.Cards:
-						ElementSorterPlayer.AddItem(new ElementSorterItem(panel, !Config.Instance.HidePlayerCards,
-																		  value => Config.Instance.HidePlayerCards = !value, true));
-						break;
-					case Enums.DeckPanel.CardCounter:
-						ElementSorterPlayer.AddItem(new ElementSorterItem(panel, !Config.Instance.HidePlayerCardCount,
-																		  value => Config.Instance.HidePlayerCardCount = !value, true));
-						break;
-					case Enums.DeckPanel.DrawChances:
-						ElementSorterPlayer.AddItem(new ElementSorterItem(panel, !Config.Instance.HideDrawChances,
-																		  value => Config.Instance.HideDrawChances = !value, true));
-						break;
-					case Enums.DeckPanel.Fatigue:
-						ElementSorterPlayer.AddItem(new ElementSorterItem(panel, !Config.Instance.HidePlayerFatigueCount,
-																		  value => Config.Instance.HidePlayerFatigueCount = !value, true));
-						break;
-					case Enums.DeckPanel.DeckTitle:
-						ElementSorterPlayer.AddItem(new ElementSorterItem(panel, Config.Instance.ShowDeckTitle,
-																		  value => Config.Instance.ShowDeckTitle = value, true));
-						break;
-					case Enums.DeckPanel.Wins:
-						ElementSorterPlayer.AddItem(new ElementSorterItem(panel, Config.Instance.ShowDeckWins,
-																		  value => Config.Instance.ShowDeckWins = value, true));
->>>>>>> c693a4c... update code to 0925
 						break;
 				}
 			}

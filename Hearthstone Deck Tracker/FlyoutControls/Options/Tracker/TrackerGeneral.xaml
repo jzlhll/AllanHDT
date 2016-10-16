@@ -1,4 +1,4 @@
-<UserControl x:Class="Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker.TrackerGeneral"
+﻿<UserControl x:Class="Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker.TrackerGeneral"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -6,10 +6,6 @@
              xmlns:options="clr-namespace:Hearthstone_Deck_Tracker.FlyoutControls.Options"
              xmlns:converters="clr-namespace:Hearthstone_Deck_Tracker.Utility.Converters"
              xmlns:enums="clr-namespace:Hearthstone_Deck_Tracker.Enums"
-             xmlns:lex="http://wpflocalizeextension.codeplex.com"
-             lex:LocalizeDictionary.DesignCulture="en"
-             lex:ResxLocalizationProvider.DefaultAssembly="HearthstoneDeckTracker"
-             lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="300">
     <UserControl.Resources>
@@ -17,30 +13,17 @@
         <enums:EnumDescriptionConverter x:Key="EnumDescriptionConverter"/>
     </UserControl.Resources>
     <Grid>
-<<<<<<< HEAD
         <GroupBox Header="一般">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
                     <GroupBox Header="提示">
                         <StackPanel>
                             <CheckBox x:Name="CheckboxFlashHs" Content="在你的回合开始时,闪烁"
-=======
-        <GroupBox Header="{lex:LocTextUpper Options_Tracker_General_Header}">
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <StackPanel>
-                    <GroupBox Header="{lex:LocTextUpper Options_Tracker_General_Label_Alerts}">
-                        <StackPanel>
-                            <CheckBox x:Name="CheckboxFlashHs" Content="{lex:Loc Options_Tracker_General_CheckBox_Flash}"
->>>>>>> c693a4c... update code to 0925
                                   HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"
                                   Checked="CheckboxFlashHs_Checked"
                                   Unchecked="CheckboxFlashHs_Unchecked" />
                             <CheckBox x:Name="CheckboxBringHsToForegorund"
-<<<<<<< HEAD
                                   Content="在你的回合开始时,弹窗" HorizontalAlignment="Left"
-=======
-                                  Content="{lex:Loc Options_Tracker_General_CheckBox_Popup}" HorizontalAlignment="Left"
->>>>>>> c693a4c... update code to 0925
                                   Margin="10,5,0,0" VerticalAlignment="Top"
                                   Checked="CheckboxBringHsToForegorund_Checked"
                                   Unchecked="CheckboxBringHsToForegorund_Unchecked" />
@@ -63,17 +46,10 @@
                             </DockPanel>
                         </StackPanel>
                     </GroupBox>
-<<<<<<< HEAD
                     <GroupBox Header="卡牌语言">
                         <StackPanel>
                             <DockPanel Margin="0,5,0,0">
                                 <Label Content="主要的:" HorizontalAlignment="Left"
-=======
-                    <GroupBox Header="{lex:LocTextUpper Options_Tracker_General_Label_CardLanguage}">
-                        <StackPanel>
-                            <DockPanel Margin="0,5,0,0">
-                                <Label Content="{lex:Loc Options_Tracker_General_Label_Primary}" HorizontalAlignment="Left"
->>>>>>> c693a4c... update code to 0925
                                        VerticalAlignment="Top" />
                                 <ComboBox x:Name="ComboboxLanguages" HorizontalAlignment="Right"
                                           VerticalAlignment="Top" Width="170"
@@ -81,37 +57,23 @@
                             </DockPanel>
                             <DockPanel Margin="0,5,0,0">
                                 <StackPanel>
-<<<<<<< HEAD
                                     <Label Content="次要的:" HorizontalAlignment="Left" VerticalAlignment="Top" />
                                     <Label Content="(提示)" HorizontalAlignment="Left" VerticalAlignment="Top" />
-=======
-                                    <Label Content="{lex:Loc Options_Tracker_General_Label_Secondary}" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                                    <Label Content="{lex:Loc Options_Tracker_General_Label_Tooltips}" HorizontalAlignment="Left" VerticalAlignment="Top" />
->>>>>>> c693a4c... update code to 0925
                                 </StackPanel>
                                 <ListBox x:Name="ListBoxAlternativeLanguages" Height="120" Width="170"
                                          HorizontalAlignment="Right" />
                             </DockPanel>
-<<<<<<< HEAD
                             <CheckBox Name="CheckBoxDefaultFont" Content="对非拉丁语系语言使用默认字体"
-=======
-                            <CheckBox Name="CheckBoxDefaultFont" Content="{lex:Loc Options_Tracker_General_CheckBox_Font}"
->>>>>>> c693a4c... update code to 0925
                                       Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                                       Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                                       Margin="5,5,0,0" Checked="CheckBoxDefaultFont_OnChecked"
                                       Unchecked="CheckBoxDefaultFont_OnUnchecked" />
-<<<<<<< HEAD
                             <Label Visibility="{Binding RestartLabelVisibility, RelativeSource={RelativeSource AncestorType=UserControl}}" Foreground="Red" Content="重启来适配语言的修改" />
-=======
-                            <Label Visibility="{Binding RestartLabelVisibility, RelativeSource={RelativeSource AncestorType=UserControl}}" Foreground="Red" Content="{lex:Loc Options_Tracker_General_Label_Restart}" />
->>>>>>> c693a4c... update code to 0925
                         </StackPanel>
                     </GroupBox>
                     <CheckBox x:Name="CheckBoxAutoUse" Margin="10,5,0,0"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
-<<<<<<< HEAD
                               Content="自动【激活】卡组。 （禁止卡组上的按钮）"
                               Checked="CheckBoxAutoUse_OnChecked" Unchecked="CheckBoxAutoUse_OnUnchecked" />
                     <CheckBox x:Name="CheckboxAutoSelectDeck"
@@ -130,73 +92,42 @@
                               Unchecked="CheckboxSpectatorUseNoDeck_Unchecked" />
                     <CheckBox x:Name="CheckBoxClassCardsFirst" Margin="10,5,0,0"
                               Content="卡片分类：英雄卡优先"
-=======
-                              Content="{lex:Loc Options_Tracker_General_CheckBox_AutoUse}"
-                              Checked="CheckBoxAutoUse_OnChecked" Unchecked="CheckBoxAutoUse_OnUnchecked" />
-                    <CheckBox x:Name="CheckBoxClassCardsFirst" Margin="10,5,0,0"
-                              Content="{lex:Loc Options_Tracker_General_CheckBox_Sorting}"
->>>>>>> c693a4c... update code to 0925
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               Checked="CheckBoxClassCardsFirst_Checked"
                               Unchecked="CheckBoxClassCardsFirst_Unchecked" />
-<<<<<<< HEAD
                     <CheckBox x:Name="CheckboxTrackerCardToolTips" Content="显示卡片提示工具"
-=======
-                    <CheckBox x:Name="CheckboxTrackerCardToolTips" Content="{lex:Loc Options_Tracker_General_CheckBox_CardTooltips}"
->>>>>>> c693a4c... update code to 0925
                               HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxTrackerCardToolTips_Checked"
                               Unchecked="CheckboxTrackerCardToolTips_Unchecked" />
                     <CheckBox x:Name="CheckboxHideManaCurveMyDecks"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
-<<<<<<< HEAD
                               Content="显示的法力曲线" HorizontalAlignment="Left"
-=======
-                              Content="{lex:Loc Options_Tracker_General_CheckBox_ManaCurve}" HorizontalAlignment="Left"
->>>>>>> c693a4c... update code to 0925
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxManaCurveMyDecks_Checked"
                               Unchecked="CheckboxManaCurveMyDecks_Unchecked" />
                     <CheckBox x:Name="CheckboxFullTextSearch"
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
-<<<<<<< HEAD
                               Content="在卡组构筑使用全文搜索" HorizontalAlignment="Left"
-=======
-                              Content="{lex:Loc Options_Tracker_General_CheckBox_FullTextSearch}" HorizontalAlignment="Left"
->>>>>>> c693a4c... update code to 0925
                               Margin="10,5,0,0" VerticalAlignment="Top"
                               Checked="CheckboxFullTextSearch_Checked"
                               Unchecked="CheckboxFullTextSearch_Unchecked" />
                     <Separator Margin="0,5,0,0" Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}" />
-<<<<<<< HEAD
                     <CheckBox x:Name="CheckboxDeckPickerCaps" Content="使用大写的卡牌名称"
-=======
-                    <CheckBox x:Name="CheckboxDeckPickerCaps" Content="{lex:Loc Options_Tracker_General_CheckBox_UpperCaseDeckNames}"
->>>>>>> c693a4c... update code to 0925
                               Foreground="{Binding Color, Source={x:Static options:AdvancedOptions.Instance}}"
                               Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxDeckPickerCaps_Checked"
                               Unchecked="CheckboxDeckPickerCaps_Unchecked"
-<<<<<<< HEAD
                               ToolTip="在卡组选择器下，取消使用正常的情况。" />
                     <CheckBox x:Name="CheckBoxShowLastPlayedDate" Content="在卡组上显示最后一次玩过的日期"
-=======
-                              ToolTip="Uncheck to use normal case in Deck Picker." />
-                    <CheckBox x:Name="CheckBoxShowLastPlayedDate" Content="{lex:Loc Options_Tracker_General_CheckBox_LastPlayedDate}"
->>>>>>> c693a4c... update code to 0925
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckBoxShowLastPlayedDate_Checked"
                               Unchecked="CheckBoxShowLastPlayedDate_Unchecked" />
                     <Separator Margin="0,5,0,0" Visibility="{Binding Visibility, Source={x:Static options:AdvancedOptions.Instance}}" />
-<<<<<<< HEAD
                     <CheckBox x:Name="CheckBoxAutoArchiveArenaDecks" Content="当一局结束时，归档竞技场卡组"
-=======
-                    <CheckBox x:Name="CheckBoxAutoArchiveArenaDecks" Content="{lex:Loc Options_Tracker_General_CheckBox_AutoArchiveArena}"
->>>>>>> c693a4c... update code to 0925
 							  HorizontalAlignment="Left" Margin="10,5,0,0"
 							  VerticalAlignment="Top" Checked="CheckBoxAutoArchiveArenaDecks_Checked"
 							  Unchecked="CheckBoxAutoArchiveArenaDecks_Unchecked"/>
@@ -209,11 +140,7 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-<<<<<<< HEAD
                         <Label Content="格式化:"/>
-=======
-                        <Label Content="{lex:Loc Options_Tracker_General_Label_Format}"/>
->>>>>>> c693a4c... update code to 0925
                     </DockPanel>
                 </StackPanel>
             </ScrollViewer>

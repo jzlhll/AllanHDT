@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using HearthMirror.Objects;
 using Hearthstone_Deck_Tracker.Enums;
 using Hearthstone_Deck_Tracker.Hearthstone;
 using Hearthstone_Deck_Tracker.Hearthstone.Entities;
@@ -13,8 +12,6 @@ using Hearthstone_Deck_Tracker.Importing.Game.ImportOptions;
 using Hearthstone_Deck_Tracker.Utility.Extensions;
 using Hearthstone_Deck_Tracker.Utility.Logging;
 using Hearthstone_Deck_Tracker.Windows;
-using Card = Hearthstone_Deck_Tracker.Hearthstone.Card;
-using Deck = Hearthstone_Deck_Tracker.Hearthstone.Deck;
 
 namespace Hearthstone_Deck_Tracker
 {
@@ -85,11 +82,9 @@ namespace Hearthstone_Deck_Tracker
 			}
 			if(validDecks.Count == 0)
 			{
+				Log.Info("Could not find matching deck.");
 				if(cardEntites == null || !AutoSelectDeckVersion(heroClass, mode, currentFormat, cardEntites))
-				{
-					Log.Info("No matching deck found, using no-deck mode");
-					Core.MainWindow.SelectDeck(null, true);
-				}
+					ShowDeckSelectionDialog(validDecks);
 				return;
 			}
 			if(validDecks.Count == 1)
@@ -295,9 +290,9 @@ namespace Hearthstone_Deck_Tracker
 			return false;
 		}
 
-		public static bool AutoImportArena(ArenaImportingBehaviour behaviour, ArenaInfo info = null)
+		public static bool AutoImportArena(ArenaImportingBehaviour behaviour)
 		{
-			var deck = info ?? DeckImporter.FromArena();
+			var deck = DeckImporter.FromArena();
 			if(deck?.Deck.Cards.Sum(x => x.Count) != 30)
 				return false;
 			Log.Info($"Found new complete {deck.Deck.Hero} arena deck!");

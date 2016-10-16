@@ -3,17 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
         WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow"
-        xmlns:lex="http://wpflocalizeextension.codeplex.com"
-        lex:LocalizeDictionary.DesignCulture="en"
-        lex:ResxLocalizationProvider.DefaultAssembly="HearthstoneDeckTracker"
-        lex:ResxLocalizationProvider.DefaultDictionary="Strings"
         Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"
         BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1"
-<<<<<<< HEAD
         Title="放弃游戏?" Height="146" Width="400">
-=======
-        Title="{lex:Loc DiscardGameDialog_Title}" Height="146" Width="400">
->>>>>>> c693a4c... update code to 0925
     <controls:MetroWindow.IconTemplate>
         <DataTemplate>
             <Rectangle Margin="2" Opacity="0.7">
@@ -24,7 +16,6 @@
         </DataTemplate>
     </controls:MetroWindow.IconTemplate>
     <StackPanel VerticalAlignment="Center">
-<<<<<<< HEAD
         <Label Name="LblGameInfo" Content="[游戏信息]" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" />
         <Label Content="打牌与选定的卡组上不匹配" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14"
                FontWeight="Bold" />
@@ -32,15 +23,6 @@
             <Button Name="BtnDiscard" Content="丢弃" Width="120" Style="{StaticResource AccentedSquareButtonStyle}" Click="BtnDiscard_Click"/>
             <Button Name="BtnKeep" Content="保留" Width="120" Style="{StaticResource SquareButtonStyle}" Margin="5,0,0,0" Click="BtnKeep_Click"/>
             <Button Name="BtnMoveToOther" Content="移动到其他的卡组" Width="120" Style="{StaticResource SquareButtonStyle}"  Margin="5,0,0,0" Click="BtnMoveToOther_Click"/>
-=======
-        <Label Name="LblGameInfo" Content="[GAMEINFO]" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" />
-        <Label Content="{lex:Loc DiscardGameDialog_Label_Description}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14"
-               FontWeight="Bold" />
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
-            <Button Name="BtnDiscard" Content="{lex:Loc DiscardGameDialog_Button_Discard}" Width="120" Style="{StaticResource AccentedSquareButtonStyle}" Click="BtnDiscard_Click"/>
-            <Button Name="BtnKeep" Content="{lex:Loc DiscardGameDialog_Button_Keep}" Width="120" Style="{StaticResource SquareButtonStyle}" Margin="5,0,0,0" Click="BtnKeep_Click"/>
-            <Button Name="BtnMoveToOther" Content="{lex:Loc DiscardGameDialog_Button_Move}" Width="120" Style="{StaticResource SquareButtonStyle}"  Margin="5,0,0,0" Click="BtnMoveToOther_Click"/>
->>>>>>> c693a4c... update code to 0925
         </StackPanel>
     </StackPanel>
 </controls:MetroWindow>

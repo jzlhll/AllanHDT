@@ -1,4 +1,4 @@
-#region
+﻿#region
 
 using System;
 using System.Collections.Generic;
@@ -23,7 +23,6 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 {
 	public class Deck : ICloneable, INotifyPropertyChanged
 	{
-		private const string LocNoStats = "Deck_StatsString_NoStats";
 		private const string BaseHearthStatsUrl = @"http://hss.io/d/";
 
 		private readonly string[] _relevantMechanics =
@@ -291,11 +290,7 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 		}
 
 		[XmlIgnore]
-<<<<<<< HEAD
 		public string StatsString => GetRelevantGames().Any() ? $"{WinPercentString} | {WinLossString}" : "没有统计";
-=======
-		public string StatsString => GetRelevantGames().Any() ? $"{WinPercentString} | {WinLossString}" : LocUtil.Get(LocNoStats, true);
->>>>>>> c693a4c... update code to 0925
 
 		[XmlIgnore]
 		public DateTime LastPlayed => !DeckStats.Games.Any() ? DateTime.MinValue : DeckStats.Games.Max(g => g.StartTime);
