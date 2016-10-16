@@ -1,1 +1,0 @@
-# HSReplay-API-Client
