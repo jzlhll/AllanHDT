@@ -235,7 +235,8 @@ namespace Hearthstone_Deck_Tracker
 						DeckList.Instance.Decks.Remove(target);
 						var oldDeck = (Deck)target.Clone();
 						oldDeck.Versions = new List<Deck>();
-						target.Name = deck.Deck.Name;
+						if(!brawl)
+							target.Name = deck.Deck.Name;
 						target.LastEdited = DateTime.Now;
 						target.Versions.Add(oldDeck);
 						target.Version = existing.NewVersion;
@@ -284,12 +285,12 @@ namespace Hearthstone_Deck_Tracker
 			return false;
 		}
 
-		public static bool AutoImportConstructed(bool select)
+		public static bool AutoImportConstructed(bool select, bool brawl = false)
 		{
-			var decks = DeckImporter.FromConstructed();
+			var decks = brawl ? DeckImporter.FromBrawl() : DeckImporter.FromConstructed();
 			if(decks.Any() && (Config.Instance.ConstructedAutoImportNew || Config.Instance.ConstructedAutoUpdate))
 			{
-				ImportDecks(decks, false, Config.Instance.ConstructedAutoImportNew, Config.Instance.ConstructedAutoUpdate, select);
+				ImportDecks(decks, brawl, Config.Instance.ConstructedAutoImportNew, Config.Instance.ConstructedAutoUpdate, select);
 				return true;
 			}
 			return false;
