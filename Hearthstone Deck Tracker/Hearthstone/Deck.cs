@@ -1,4 +1,4 @@
-﻿#region
+#region
 
 using System;
 using System.Collections.Generic;
@@ -23,6 +23,7 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 {
 	public class Deck : ICloneable, INotifyPropertyChanged
 	{
+		private const string LocNoStats = "Deck_StatsString_NoStats";
 		private const string BaseHearthStatsUrl = @"http://hss.io/d/";
 
 		private readonly string[] _relevantMechanics =
@@ -186,7 +187,7 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 			set { _isArenaDeck = value; }
 		}
 
-		public bool IsBrawlDeck => (Tags.Any((x => x.ToUpper().Contains("BRAWL"))) || Tags.Any((x => x.Contains("乱斗"))));
+		public bool IsBrawlDeck => (Tags.Any((x => x.ToUpper().Contains("BRAWL"))) || Tags.Any((x => x.Contains("?��"))));
 
 		public ArenaReward ArenaReward
 		{
@@ -290,7 +291,7 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 		}
 
 		[XmlIgnore]
-		public string StatsString => GetRelevantGames().Any() ? $"{WinPercentString} | {WinLossString}" : "没有统计";
+		public string StatsString => GetRelevantGames().Any() ? $"{WinPercentString} | {WinLossString}" : LocUtil.Get(LocNoStats, true);
 
 		[XmlIgnore]
 		public DateTime LastPlayed => !DeckStats.Games.Any() ? DateTime.MinValue : DeckStats.Games.Max(g => g.StartTime);
@@ -299,7 +300,7 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 		public DateTime LastPlayedNewFirst => !DeckStats.Games.Any() ? LastEdited : DeckStats.Games.Max(g => g.StartTime);
 
 		[XmlIgnore]
-		public string GetClass => string.IsNullOrEmpty(Class) ? "(没有选择英雄)" : "(" + Class + ")";
+		public string GetClass => string.IsNullOrEmpty(Class) ? "(No Class Selected)" : "(" + Class + ")";
 
 		[XmlIgnore]
 		public FontWeight GetFontWeight => IsSelectedInGui ? FontWeights.Black : FontWeights.Regular;
@@ -507,7 +508,7 @@ namespace Hearthstone_Deck_Tracker.Hearthstone
 
 		public bool ContainsSet(string set) => Cards.Any(card => card.Set == set);
 
-		public override string ToString() => $"{Name} ({AllanAdd.MyUtils.translateClass2CN(Class)})";
+		public override string ToString() => $"{Name} ({Class})";
 
 		public override bool Equals(object obj)
 		{

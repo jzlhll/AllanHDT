@@ -1,4 +1,4 @@
-﻿#region
+#region
 
 using System.ComponentModel;
 
@@ -8,61 +8,61 @@ namespace Hearthstone_Deck_Tracker.Enums
 {
 	public enum TimeFrame
 	{
-		[Description("今天")]
+		[LocDescription("Enum_TimeFrame_Today")]
 		Today,
 
-		[Description("昨天")]
+		[LocDescription("Enum_TimeFrame_Yesterday")]
 		Yesterday,
 
-		[Description("过去24小时")]
+		[LocDescription("Enum_TimeFrame_Last24Hours")]
 		Last24Hours,
 
-		[Description("该星期")]
+		[LocDescription("Enum_TimeFrame_ThisWeek")]
 		ThisWeek,
 
-		[Description("上个星期")]
+		[LocDescription("Enum_TimeFrame_PreviousWeek")]
 		PreviousWeek,
 
-		[Description("过去7天")]
+		[LocDescription("Enum_TimeFrame_Last7Days")]
 		Last7Days,
 
-		[Description("该月")]
+		[LocDescription("Enum_TimeFrame_ThisMonth")]
 		ThisMonth,
 
-		[Description("上个月")]
+		[LocDescription("Enum_TimeFrame_PreviousMonth")]
 		PreviousMonth,
 
-		[Description("今年")]
+		[LocDescription("Enum_TimeFrame_ThisYear")]
 		ThisYear,
 
-		[Description("去年")]
+		[LocDescription("Enum_TimeFrame_PreviousYear")]
 		PreviousYear,
 
-		[Description("所有时段")]
+		[LocDescription("Enum_TimeFrame_AllTime")]
 		AllTime
 	}
 
 	public enum DisplayedTimeFrame
 	{
-		[Description("今天")]
+		[LocDescription("Enum_DisplayedTimeFrame_Today")]
 		Today,
 
-		[Description("星期")]
+		[LocDescription("Enum_DisplayedTimeFrame_ThisWeek")]
 		ThisWeek,
 
-		[Description("该赛季")]
+		[LocDescription("Enum_DisplayedTimeFrame_CurrentSeason")]
 		CurrentSeason,
 
-		[Description("上赛季")]
+		[LocDescription("Enum_DisplayedTimeFrame_LastSeason")]
 		LastSeason,
 
-		[Description("自定义赛季")]
+		[LocDescription("Enum_DisplayedTimeFrame_CustomSeason")]
 		CustomSeason,
 
-		[Description("所有时段")]
+		[LocDescription("Enum_DisplayedTimeFrame_AllTime")]
 		AllTime,
 
-		[Description("自定义")]
+		[LocDescription("Enum_DisplayedTimeFrame_Custom")]
 		Custom
 	}
 }

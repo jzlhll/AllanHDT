@@ -34,7 +34,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 			CheckboxPlayerWindowOpenAutomatically.IsChecked = Config.Instance.PlayerWindowOnStart;
 			//<!--allan add for graveryard-->
             CheckboxGraveyardWindowOpenAutomatically.IsChecked = Config.Instance.GraveYardWindowOnStart;
-            CheckboxOpponentWindowOpenAutomatically.IsChecked = Config.Instance.OpponentWindowOnStart;
+			CheckboxOpponentWindowOpenAutomatically.IsChecked = Config.Instance.OpponentWindowOnStart;
 			CheckboxTimerTopmost.IsChecked = Config.Instance.TimerWindowTopmost;
 			CheckboxTimerWindow.IsChecked = Config.Instance.TimerWindowOnStartup;
 			CheckboxTimerTopmostHsForeground.IsChecked = Config.Instance.TimerWindowTopmostIfHsForeground;
@@ -42,7 +42,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 			CheckboxWinTopmostHsForeground.IsChecked = Config.Instance.WindowsTopmostIfHsForeground;
 			CheckboxWinTopmostHsForeground.IsEnabled = Config.Instance.WindowsTopmost;
 			ComboboxWindowBackground.SelectedItem = Config.Instance.SelectedWindowBackground;
-			TextboxCustomBackground.IsEnabled = Config.Instance.SelectedWindowBackground == "自定义"; //Custom
+			TextboxCustomBackground.IsEnabled = Config.Instance.SelectedWindowBackground == "Custom";
 			TextboxCustomBackground.Text = string.IsNullOrEmpty(Config.Instance.WindowsBackgroundHex)
 				                               ? "#696969" : Config.Instance.WindowsBackgroundHex;
 			UpdateAdditionalWindowsBackground();
@@ -166,15 +166,15 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 		{
 			if(!_initialized)
 				return;
-			TextboxCustomBackground.IsEnabled = ComboboxWindowBackground.SelectedItem.ToString() == "自定义"; //Custom
+			TextboxCustomBackground.IsEnabled = ComboboxWindowBackground.SelectedItem.ToString() == "Custom";
 			Config.Instance.SelectedWindowBackground = ComboboxWindowBackground.SelectedItem.ToString();
 			UpdateAdditionalWindowsBackground();
 		}
 
 		private void TextboxCustomBackground_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			if(!_initialized || ComboboxWindowBackground.SelectedItem.ToString() != "自定义") //Custom
-                return;
+			if(!_initialized || ComboboxWindowBackground.SelectedItem.ToString() != "Custom")
+				return;
 			var background = Helper.BrushFromHex(TextboxCustomBackground.Text);
 			if(background != null)
 			{
@@ -246,13 +246,13 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
             try {
                 switch (ComboboxWindowBackground.SelectedItem.ToString())
                 {
-                    case "主题"://Theme
+                    case "Theme"://Theme
                         background = Background;
                         break;
-                    case "亮色": //Light
+                    case "Light": //Light
                         background = SystemColors.ControlLightBrush;
                         break;
-                    case "暗色"://Dark
+                    case "Dark"://Dark
                         background = SystemColors.ControlDarkDarkBrush;
                         break;
                 }

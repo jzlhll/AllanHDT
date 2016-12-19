@@ -23,13 +23,13 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <RadioButton Content="经典" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Checked="ToggleButton_OnChecked"/>
+            <RadioButton Content="Classic" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Checked="ToggleButton_OnChecked"/>
             <Rectangle Fill="{Binding ClassicCard, RelativeSource={RelativeSource AncestorType=UserControl}}" Width="217" Height="34" Grid.Row="0" Grid.Column="1" Margin="5"/>
-            <RadioButton Content="暗色" IsChecked="True" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Checked="ToggleButton_OnChecked"/>
+            <RadioButton Content="Dark" IsChecked="True" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Checked="ToggleButton_OnChecked"/>
             <Rectangle Fill="{Binding DarkCard, RelativeSource={RelativeSource AncestorType=UserControl}}" Width="217" Height="34" Grid.Row="1" Grid.Column="1" Margin="5"/>
-            <RadioButton Content="冷色" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Checked="ToggleButton_OnChecked"/>
+            <RadioButton Content="Frost" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Checked="ToggleButton_OnChecked"/>
             <Rectangle Fill="{Binding FrostCard, RelativeSource={RelativeSource AncestorType=UserControl}}" Width="217" Height="34" Grid.Row="2" Grid.Column="1" Margin="5"/>
-            <RadioButton Content="极简" VerticalAlignment="Center" Grid.Row="3" Grid.Column="0" Checked="ToggleButton_OnChecked"/>
+            <RadioButton Content="Minimal" VerticalAlignment="Center" Grid.Row="3" Grid.Column="0" Checked="ToggleButton_OnChecked"/>
             <Rectangle Fill="{Binding MinimalCard, RelativeSource={RelativeSource AncestorType=UserControl}}" Width="217" Height="34" Grid.Row="3" Grid.Column="1" Margin="5"/>
         </Grid>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">

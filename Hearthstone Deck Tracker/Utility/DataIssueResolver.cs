@@ -1,4 +1,4 @@
-ï»¿#region
+#region
 
 using System;
 using System.Collections.Generic;
@@ -30,6 +30,22 @@ namespace Hearthstone_Deck_Tracker.Utility
 				InitiateGameFilesCleanup();
 			if(RunDeckStatsFix)
 				FixDeckStats();
+			if(Directory.Exists("Images/Bars"))
+				CleanUpImageFiles();
+		}
+
+		private static void CleanUpImageFiles()
+		{
+			Log.Info("Cleaning up old card image files...");
+			try
+			{
+				Directory.Delete("Images/Bars", true);
+			}
+			catch(Exception ex)
+			{
+				Log.Error(ex);
+			}
+			Log.Info("Cleanup complete.");
 		}
 
 		//https://github.com/HearthSim/Hearthstone-Deck-Tracker/issues/2675
@@ -59,19 +75,19 @@ namespace Hearthstone_Deck_Tracker.Utility
 		{
 			while(!Core.MainWindow.IsLoaded || Core.MainWindow.WindowState == WindowState.Minimized || Core.MainWindow.FlyoutUpdateNotes.IsOpen)
 				await Task.Delay(500);
-			var result = await Core.MainWindow.ShowMessageAsync("æ•°æ®ç»´æŠ¤è¦æ±‚",
-                                                          "æœ‰äº›æ–‡ä»¶éœ€è¦è¢«æ¸…ç†ï¼Œå¸®åŠ©è¯¥ç¨‹åºè·‘å¾—å¥½ä¸€ç‚¹ã€‚\n\nè¿™ä¸åº”è¯¥è¯´å¾—å¤ªé•¿ï¼Œè™½ç„¶ä½ å¯ä»¥åœ¨ä¹‹åŽåŽ»åšã€‚",
+			var result = await Core.MainWindow.ShowMessageAsync("Êý¾ÝÎ¬»¤ÒªÇó",
+                                                          "ÓÐÐ©ÎÄ¼þÐèÒª±»ÇåÀí£¬°ïÖú¸Ã³ÌÐòÅÜµÃºÃÒ»µã¡£\n\nÕâ²»Ó¦¸ÃËµµÃÌ«³¤£¬ËäÈ»Äã¿ÉÒÔÔÚÖ®ºóÈ¥×ö¡£",
 														  MessageDialogStyle.AffirmativeAndNegative,
-														  new MetroDialogSettings() {AffirmativeButtonText = "å¼€å§‹", NegativeButtonText = "ä¸‹æ¬¡å†è¯´"});
+														  new MetroDialogSettings() {AffirmativeButtonText = "¿ªÊ¼", NegativeButtonText = "ÏÂ´ÎÔÙËµ"});
 			if(result == MessageDialogResult.Negative)
 				return;
-			var controller = await Core.MainWindow.ShowProgressAsync("æ¸…ç†ä¸œè¥¿â€¦", "", true);
+			var controller = await Core.MainWindow.ShowProgressAsync("ÇåÀí¶«Î÷¡­", "", true);
 			await CleanUpGameFiles(controller);
 			await controller.CloseAsync();
 			if(controller.IsCanceled)
-				await Core.MainWindow.ShowMessage("å·²å–æ¶ˆ", "æ²¡é—®é¢˜ï¼Œç¨åŽä½ å¯ä»¥å®Œæˆå®ƒã€‚");
+				await Core.MainWindow.ShowMessage("ÒÑÈ¡Ïû", "Ã»ÎÊÌâ£¬ÉÔºóÄã¿ÉÒÔÍê³ÉËü¡£");
 			else
-				await Core.MainWindow.ShowMessage("å…¨éƒ¨å®Œæˆ!", "");
+				await Core.MainWindow.ShowMessage("È«²¿Íê³É!", "");
 		}
 
 		private static string GamesDir => Path.Combine(Config.Instance.DataDir, "Games");

@@ -38,19 +38,22 @@ namespace Hearthstone_Deck_Tracker.Windows
             if (result == null || result.WasCancelled)
 				return;
 			if(result.Deck != null)
-			{
-				var reimport = EditingDeck && _newDeck != null && _newDeck.Url == result.Deck.Url;
-
-				if(reimport) //keep old notes
-					result.Deck.Note = _newDeck.Note;
-
-				SetNewDeck(result.Deck, reimport);
-				TagControlEdit.SetSelectedTags(result.Deck.Tags);
-				if(Config.Instance.AutoSaveOnImport)
-					SaveDeckWithOverwriteCheck();
-			}
+				SaveImportedDeck(result.Deck);
 			else
 				await this.ShowMessageAsync("没有找到卡组", "无法从这里找到卡组 " + Environment.NewLine + result.Url);
+		}
+
+		private void SaveImportedDeck(Deck deck)
+		{
+			var reimport = EditingDeck && _newDeck != null && _newDeck.Url == deck.Url;
+
+			if(reimport) //keep old notes
+				deck.Note = _newDeck.Note;
+
+			SetNewDeck(deck, reimport);
+			TagControlEdit.SetSelectedTags(deck.Tags);
+			if(Config.Instance.AutoSaveOnImport)
+				SaveDeckWithOverwriteCheck();
 		}
 
 		public class ImportingResult
@@ -86,6 +89,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			}
 			if(url == null)
 				return new ImportingResult {WasCancelled = true};
+				//allan add
             if (CardTool.isMineWeb(url))
             {
                 bool bl = ChinaWebImport.import(url, "");
@@ -93,6 +97,7 @@ namespace Hearthstone_Deck_Tracker.Windows
                     await this.ShowMessageAsync("使用国内网址导入出错", ChinaWebImport.getSupportDemo());
                 return null;
             }
+			//allan add end
 			var controller = await this.ShowProgressAsync("加载卡组中", "请等待...");
 			var deck = await DeckImporter.Import(url);
 			if(deck != null && string.IsNullOrEmpty(deck.Url))
@@ -122,9 +127,10 @@ namespace Hearthstone_Deck_Tracker.Windows
 			try
 			{
 				var settings = new MessageDialogs.Settings();
-                var clipboard = Clipboard.ContainsText() ? Clipboard.GetText() : "";
+				var clipboard = Clipboard.ContainsText() ? Clipboard.GetText() : "";
 				if(clipboard.Count(c => c == ':') > 0 && clipboard.Count(c => c == ';') > 0)
 					settings.DefaultText = clipboard;
+
 				//import dialog
 				var idString =
 					await
@@ -380,6 +386,33 @@ namespace Hearthstone_Deck_Tracker.Windows
 			var decks = brawl ? DeckImporter.FromBrawl() : DeckImporter.FromConstructed();
 			DeckImportingFlyout.SetDecks(decks);
 			Core.MainWindow.ActivateWindow();
+		}
+
+		private bool _clipboardImportingInProgress;
+		private async void ImportFromClipboard()
+		{
+			if(_clipboardImportingInProgress)
+				return;
+			_clipboardImportingInProgress = true;
+			var deck = await ClipboardImporter.Import();
+			if(deck == null)
+			{
+				const string dialogTitle = "MainWindow_Import_Dialog_NoDeckFound_Title";
+				const string dialogText = "MainWindow_Import_Dialog_NoDeckFound_Text";
+				this.ShowMessage(LocUtil.Get(dialogTitle), LocUtil.Get(dialogText)).Forget();
+				_clipboardImportingInProgress = false;
+				return;
+			}
+			var choice = Config.Instance.PasteImportingChoice == ImportingChoice.Manual
+				? await this.ShowImportingChoiceDialog() : Config.Instance.PasteImportingChoice;
+			if(choice.HasValue)
+			{
+				if(choice.Value == ImportingChoice.SaveLocal)
+					SaveImportedDeck(deck);
+				else
+					ExportDeck(deck);
+			}
+			_clipboardImportingInProgress = false;
 		}
 	}
 }

@@ -6,7 +6,7 @@
                       BorderThickness="1" BorderBrush="{DynamicResource AccentColorBrush}"
                       WindowStyle="None" ShowTitleBar="False"
                       ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Topmost="True"
-                      Title="HDT汉化" SizeToContent="WidthAndHeight">
+                      Title="HDT高级版" SizeToContent="WidthAndHeight">
     <controls:MetroWindow.Resources>
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" />
     </controls:MetroWindow.Resources>
@@ -17,7 +17,7 @@
                     <VisualBrush Visual="{StaticResource hdticon_black}" />
                 </Rectangle.Fill>
             </Rectangle>
-            <TextBlock HorizontalAlignment="Center" FontSize="13" FontWeight="SemiBold" Text="HearthstoneDeckTracker汉化版"/>
+            <TextBlock HorizontalAlignment="Center" FontSize="14" FontWeight="SemiBold" Text="Hearthstone Deck Tracker"/>
             <Button Name="ButtonExpandLogin" Margin="20,20,20,10" Style="{StaticResource SquareButtonStyle}">
                 <TextBlock Text="登陆HEARTHSTATS"/>
             </Button>

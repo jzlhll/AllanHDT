@@ -20,7 +20,7 @@ namespace Hearthstone_Deck_Tracker.LogReader
 		public HsGameState(GameV2 game)
 		{
 			_game = game;
-			KnownCardIds = new Dictionary<int, string>();
+			KnownCardIds = new Dictionary<int, IList<string>>();
 		}
 		public bool CurrentEntityHasCardId { get; set; }
 		public int CurrentEntityId { get; private set; }
@@ -28,13 +28,12 @@ namespace Hearthstone_Deck_Tracker.LogReader
 		public IGameHandler GameHandler { get; set; }
 		public DateTime LastGameStart { get; set; }
 		public int LastId { get; set; }
-		public int MaxId { get; set; }
 		public bool OpponentUsedHeroPower { get; set; }
 		public bool PlayerUsedHeroPower { get; set; }
 		public ReplayKeyPoint ProposedKeyPoint { get; set; }
 		public bool FoundSpectatorStart { get; set; }
 		public int JoustReveals { get; set; }
-		public Dictionary<int, string> KnownCardIds { get; set; }
+		public Dictionary<int, IList<string>> KnownCardIds { get; set; }
 		public int LastCardPlayed { get; set; }
 		public bool WasInProgress { get; set; }
 		public bool SetupDone { get; set; }
@@ -72,11 +71,12 @@ namespace Hearthstone_Deck_Tracker.LogReader
 			JoustReveals = 0;
 			KnownCardIds.Clear();
 			LastGameStart = DateTime.Now;
-			MaxId = 0;
 			WasInProgress = false;
 			SetupDone = false;
 			CurrentEntityId = 0;
 			GameTriggerCount = 0;
+			CurrentBlock = null;
+			_maxBlockId = 0;
 		}
 
 		public void SetCurrentEntity(int id)
@@ -88,5 +88,32 @@ namespace Hearthstone_Deck_Tracker.LogReader
 		}
 
 		public void ResetCurrentEntity() => CurrentEntityId = 0;
+
+		private int _maxBlockId;
+		public Block CurrentBlock { get; private set; }
+
+		public void BlockStart()
+		{
+			var blockId = _maxBlockId++;
+			CurrentBlock = CurrentBlock?.CreateChild(blockId) ?? new Block(null, blockId);
+		}
+
+		public void BlockEnd() => CurrentBlock = CurrentBlock?.Parent;
+	}
+
+	public class Block
+	{
+		public Block Parent { get; }
+		public IList<Block> Children { get; }
+		public int Id { get; }
+
+		public Block(Block parent, int blockId)
+		{
+			Parent = parent;
+			Children = new List<Block>();
+			Id = blockId;
+		}
+
+		public Block CreateChild(int blockId) => new Block(this, blockId);
 	}
 }

@@ -1,4 +1,4 @@
-ï»¿#region
+#region
 
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
 using Hearthstone_Deck_Tracker.Annotations;
+using Hearthstone_Deck_Tracker.HsReplay;
 using Hearthstone_Deck_Tracker.Replay;
 using Hearthstone_Deck_Tracker.Stats;
 using Hearthstone_Deck_Tracker.Stats.CompiledStats;
@@ -41,11 +42,11 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats.Constructed
 
 		public bool ButtonAddGameIsEnabled => !DeckList.Instance.ActiveDeck?.IsArenaDeck ?? false;
 
-		public string ButtonAddGameIsEnabledToolTip
-			=> DeckList.Instance.ActiveDeck == null
-					? "æ²¡æœ‰æ¿€æ´»å¡ç»„" : (DeckList.Instance.ActiveDeck.IsArenaDeck ? "æ¿€æ´»çš„å¡ç»„æ˜¯ä¸ªç«žæŠ€åœºå¡ç»„" : "å¡ç»„: " + DeckList.Instance.ActiveDeck.Name);
+        public string ButtonAddGameIsEnabledToolTip
+                => DeckList.Instance.ActiveDeck == null
+                        ? "Ã»ÓÐ¼¤»î¿¨×é" : (DeckList.Instance.ActiveDeck.IsArenaDeck ? "¼¤»îµÄ¿¨×éÊÇ¸ö¾º¼¼³¡¿¨×é" : "¿¨×é: " + DeckList.Instance.ActiveDeck.Name);
 
-		public Visibility MultiSelectPanelVisibility => SelectedGames.Count > 1 ? Visibility.Visible : Visibility.Collapsed;
+        public Visibility MultiSelectPanelVisibility => SelectedGames.Count > 1 ? Visibility.Visible : Visibility.Collapsed;
 		public bool ButtonMultiMoveEnabled => SelectedGames.All(g => g.PlayerHero == SelectedGames.First().PlayerHero);
 
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -66,17 +67,15 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats.Constructed
 			else
 			{
 				Core.MainWindow.DeckFlyout.SetDeck(SelectedGame.OpponentCards);
-                Core.MainWindow.FlyoutDeck.Header = "å¯¹æ‰‹";
 				Core.MainWindow.FlyoutDeck.IsOpen = true;
 			}
 		}
 
-		private void ButtonShowReplay_OnClick(object sender, RoutedEventArgs e)
+		private async void ButtonShowReplay_OnClick(object sender, RoutedEventArgs e)
 		{
-			if(SelectedGame == null)
-				return;
-			if(SelectedGame.HasReplayFile)
-				ReplayReader.LaunchReplayViewer(SelectedGame.ReplayFile);
+			var game = SelectedGame;
+			await ReplayLauncher.ShowReplay(game, true);
+			game.UpdateReplayState();
 		}
 
 		private async void ButtonEdit_OnClick(object sender, RoutedEventArgs e)
@@ -99,9 +98,9 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats.Constructed
 			var settings = new MessageDialogs.Settings {DefaultText = SelectedGame.Note};
 			string newNote;
 			if(Config.Instance.StatsInWindow)
-				newNote = await Core.Windows.StatsWindow.ShowInputAsync("å¤‡æ³¨", "", settings);
+				newNote = await Core.Windows.StatsWindow.ShowInputAsync("±¸×¢", "", settings);
 			else
-				newNote = await Core.MainWindow.ShowInputAsync("å¤‡æ³¨", "", settings);
+				newNote = await Core.MainWindow.ShowInputAsync("±¸×¢", "", settings);
 			if(newNote == null)
 				return;
 			SelectedGame.Note = newNote;
@@ -174,14 +173,6 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats.Constructed
 			var dialog = Helper.GetParentWindow(Core.StatsOverview)?.ShowAddGameDialog(deck);
 			if(dialog != null && await dialog)
 				ConstructedStats.Instance.UpdateGames();
-		}
-
-		private void ButtonSelectDeck_OnClick(object sender, RoutedEventArgs e)
-		{
-			var deck = DeckList.Instance.Decks.FirstOrDefault(x => x.DeckId == SelectedGame.DeckId);
-			if(deck?.Equals(DeckList.Instance.ActiveDeck) ?? true)
-				return;
-			Core.MainWindow.SelectDeck(deck, true);
 		}
 	}
 }

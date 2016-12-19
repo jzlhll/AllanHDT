@@ -1,4 +1,4 @@
-﻿#region
+#region
 
 using System;
 using System.Collections;
@@ -34,6 +34,7 @@ using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Win32;
 using Newtonsoft.Json;
+using WPFLocalizeExtension.Engine;
 using Application = System.Windows.Application;
 using Card = Hearthstone_Deck_Tracker.Hearthstone.Card;
 using Color = System.Drawing.Color;
@@ -85,9 +86,8 @@ namespace Hearthstone_Deck_Tracker
 
 		private static bool? _hearthstoneDirExists;
 
-		private static readonly Regex CardLineRegexCountFirst = new Regex(@"(^(\s*)(?<count>\d)(\s*x)?\s+)(?<cardname>[\w\s'\.:!-,]+)");
-		private static readonly Regex CardLineRegexCountLast = new Regex(@"(?<cardname>[\w\s'\.:!-,]+)(\s+(x\s*)(?<count>\d))(\s*)$");
-		private static readonly Regex CardLineRegexCountLast2 = new Regex(@"(?<cardname>[\w\s'\.:!-,]+)(\s+(?<count>\d))(\s*)$");
+		private static readonly Regex CardLineRegexCountFirst = new Regex(@"(^(\s*)(?<count>\d)(\s*x)?\s+)(?<cardname>[\w\s'\.:!\-,]+)");
+		private static readonly Regex CardLineRegexCountLast = new Regex(@"(?<cardname>[\w\s'\.:!\-,]+?)(\s+(x\s*)?(?<count>\d))(\s*)$");
 
 		public static Dictionary<string, MediaColor> ClassicClassColors = new Dictionary<string, MediaColor>
 		{
@@ -135,19 +135,19 @@ namespace Hearthstone_Deck_Tracker
 
 		public static WindowState GameWindowState { get; internal set; } = User32.GetHearthstoneWindowState();
 
-		public static Version GetCurrentVersion() => Assembly.GetExecutingAssembly().GetName().Version;
-        //TODO:每次都要修改 allan
+        public static Version GetCurrentVersion() => GetAllanCurrentVersion();// Assembly.GetExecutingAssembly().GetName().Version;
+        //TODO:每次都要修改 allan add
         public static Version GetAllanCurrentVersion() {
-            return new Version(0,9,13);
+            return new Version(1,1,1);
         }
         public static string getAllanCurrentVersionStr() {
-            return "0.9.13";
+            return "1.1.1";
         }
         public static string getAllanCurrentDateStr()
         {
-            return "0916";
+            return "1217";
         }
-        public static bool IsHex(IEnumerable<char> chars)
+		public static bool IsHex(IEnumerable<char> chars)
 			=> chars.All(c => ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F')));
 
 		public static double DrawProbability(int copies, int deck, int draw)
@@ -337,7 +337,7 @@ namespace Hearthstone_Deck_Tracker
 					Process.Start("battlenet://");
 
 					var foundBnetWindow = false;
-					Core.MainWindow.TextBlockBtnStartHearthstone.Text = "正在打开炉石中...";
+					Core.MainWindow.TextBlockBtnStartHearthstone.Text = "正在打开launcher...";
 					for(var i = 0; i < 20; i++)
 					{
 						bnetProc = Process.GetProcessesByName("Battle.net").FirstOrDefault();
@@ -429,7 +429,7 @@ namespace Hearthstone_Deck_Tracker
 			try
 			{
 				var deck = new Deck();
-				var lines = cards.Split('\n');
+				var lines = cards.Split(new [] {'\n', '|'}, StringSplitOptions.RemoveEmptyEntries);
 				foreach(var line in lines)
 				{
 					var count = 1;
@@ -439,8 +439,6 @@ namespace Hearthstone_Deck_Tracker
 						match = CardLineRegexCountFirst.Match(cardName);
 					else if(CardLineRegexCountLast.IsMatch(cardName))
 						match = CardLineRegexCountLast.Match(cardName);
-					else if(CardLineRegexCountLast2.IsMatch(cardName))
-						match = CardLineRegexCountLast2.Match(cardName);
 					if(match != null)
 					{
 						var tmpCount = match.Groups["count"];
@@ -598,11 +596,17 @@ namespace Hearthstone_Deck_Tracker
 			}
 		}
 
+		private static int? _hearthstoneBuild;
 		public static int? GetHearthstoneBuild()
 		{
+			if(_hearthstoneBuild.HasValue)
+				return _hearthstoneBuild;
 			var exe = Path.Combine(Config.Instance.HearthstoneDirectory, "Hearthstone.exe");
-			return !File.Exists(exe) ? (int?)null : FileVersionInfo.GetVersionInfo(exe).FilePrivatePart;
+			_hearthstoneBuild = !File.Exists(exe) ? (int?)null : FileVersionInfo.GetVersionInfo(exe).FilePrivatePart;
+			return _hearthstoneBuild;
 		}
+
+		internal static void ClearCachedHearthstoneBuild() => _hearthstoneBuild = null;
 
 		public static IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
 		{
@@ -716,5 +720,12 @@ namespace Hearthstone_Deck_Tracker
 			return Uri.TryCreate(url, UriKind.Absolute, out result)
 				&& (result.Scheme == Uri.UriSchemeHttp || result.Scheme == Uri.UriSchemeHttps);
 		}
+
+		public static readonly Dictionary<MultiClassGroup, CardClass[]> MultiClassGroups = new Dictionary<MultiClassGroup, CardClass[]>
+		{
+			{MultiClassGroup.GRIMY_GOONS, new[] {CardClass.HUNTER, CardClass.PALADIN, CardClass.WARRIOR}},
+			{MultiClassGroup.JADE_LOTUS, new[] {CardClass.DRUID, CardClass.ROGUE, CardClass.SHAMAN}},
+			{MultiClassGroup.KABAL, new[] {CardClass.MAGE, CardClass.PRIEST, CardClass.WARLOCK}}
+		};
 	}
 }

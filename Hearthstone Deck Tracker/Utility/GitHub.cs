@@ -71,7 +71,7 @@ namespace Hearthstone_Deck_Tracker.Utility
 			return null;
 		}
 
-        private static async Task<Release> GetLatestRelease(string user, string repo, bool preRelease)
+		private static async Task<Release> GetLatestRelease(string user, string repo, bool preRelease)
 		{
 			try
 			{

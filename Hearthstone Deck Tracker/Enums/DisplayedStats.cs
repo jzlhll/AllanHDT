@@ -1,26 +1,20 @@
-﻿#region
-
-using System.ComponentModel;
-
-#endregion
-
 namespace Hearthstone_Deck_Tracker.Enums
 {
 	public enum DisplayedStats
 	{
-		[Description("All")]
+		[LocDescription("Enum_DisplayedStats_All")]
 		All,
 
-		[Description("已选的")]
+		[LocDescription("Enum_DisplayedStats_Selected")]
 		Selected,
 
-		[Description("最近的")]
+		[LocDescription("Enum_DisplayedStats_Latest")]
 		Latest,
 
-		[Description("主要的已选的")]
+		[LocDescription("Enum_DisplayedStats_SelectedMajor")]
 		SelectedMajor,
 
-		[Description("主要的最近的")]
+		[LocDescription("Enum_DisplayedStats_LatestMajor")]
 		LatestMajor
 	}
 }

@@ -4,15 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             lex:LocalizeDictionary.DesignCulture="en"
+             lex:ResxLocalizationProvider.DefaultAssembly="HearthstoneDeckTracker"
+             lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="300">
     <Grid>
-        <GroupBox Header="导出到炉石">
+        <GroupBox Header="{lex:LocTextUpper Options_Tracker_Exporting_Header}">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
                     <DockPanel Margin="10,5,10,0">
-                        <Label Content="速度:" />
-                        <ComboBox Name="ComboboxExportSpeed" SelectedIndex="3"
+                        <Label Content="{lex:Loc Options_Tracker_Exporting_Label_Speed}" />
+                        <ComboBox Name="ComboboxExportSpeed" SelectedIndex="1"
                                   HorizontalAlignment="Right" Width="150"
                                   SelectionChanged="ComboboxExportSpeed_SelectionChanged">
                             <system:String>非常快 (20ms)</system:String>
@@ -23,46 +27,46 @@
                         </ComboBox>
                     </DockPanel>
                     <StackPanel Orientation="Horizontal" Margin="10,5,0,0">
-                        <Label Content="开始前等待" />
+                        <Label Content="{lex:Loc Options_Tracker_Exporting_Label_Wait}" />
                         <TextBox x:Name="TextboxExportDelay"
                                  HorizontalAlignment="Right" Height="23" HorizontalContentAlignment="Center"
                                  TextWrapping="Wrap" Text="0" VerticalAlignment="Top"
                                  Width="27" TextChanged="TextboxExportDelay_TextChanged"
                                  PreviewTextInput="TextboxExportDelay_PreviewTextInput" />
-                        <Label Content="秒" />
+                        <Label Content="{lex:Loc Options_Tracker_Exporting_Label_Wait2}" />
                     </StackPanel>
-                    <CheckBox x:Name="CheckboxPrioGolden" Content="优先金卡"
+                    <CheckBox x:Name="CheckboxPrioGolden" Content="{lex:Loc Options_Tracker_Exporting_CheckBox_Golden}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxPrioGolden_Checked"
                               Unchecked="CheckboxPrioGolden_Unchecked" />
-                    <CheckBox x:Name="CheckboxExportName" Content="设置卡组名字"
+                    <CheckBox x:Name="CheckboxExportName" Content="{lex:Loc Options_Tracker_Exporting_CheckBox_DeckName}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxExportName_Checked"
                               Unchecked="CheckboxExportName_Unchecked" />
-                    <CheckBox x:Name="CheckboxExportAddVersion" Content="名称中包含版本号"
+                    <CheckBox x:Name="CheckboxExportAddVersion" Content="{lex:Loc Options_Tracker_Exporting_CheckBox_Version}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxExportAddVersion_Checked"
                               Unchecked="CheckboxExportAddVersion_Unchecked" />
-                    <CheckBox x:Name="CheckboxAutoClear" Content="自动清除卡牌"
+                    <CheckBox x:Name="CheckboxAutoClear" Content="{lex:Loc Options_Tracker_Exporting_CheckBox_ClearCards}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxAutoClear_Checked"
                               Unchecked="CheckboxAutoClear_Unchecked" />
-                    <CheckBox x:Name="CheckboxAutoClearFilters" Content="自动清除过滤"
+                    <CheckBox x:Name="CheckboxAutoClearFilters" Content="{lex:Loc Options_Tracker_Exporting_CheckBox_ClearFilters}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxAutoClearFilters_Checked"
                               Unchecked="CheckboxAutoClearFilters_Unchecked" />
-                    <CheckBox x:Name="CheckboxForceClear" Content="强制清除搜索框搜到的卡组"
+                    <CheckBox x:Name="CheckboxForceClear" Content="{lex:Loc Options_Tracker_Exporting_CheckBox_ClearSearchbox}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxForceClear_Checked"
                               Unchecked="CheckboxForceClear_Unchecked" />
                     <CheckBox x:Name="CheckboxExportPasteClipboard"
-                              Content="从剪贴板粘贴名字"
+                              Content="{lex:Loc Options_Tracker_Exporting_CheckBox_Clipbard}"
                               ToolTip="试试这个，如果你导出某些卡牌/卡组名有问题 - 可能无法与所有的键盘布局有关"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top"
                               Checked="CheckboxExportPasteClipboard_Checked"
                               Unchecked="CheckboxExportPasteClipboard_Unchecked" />
-                    <CheckBox x:Name="CheckboxShowDialog" Content="在导出之前显示对话框"
+                    <CheckBox x:Name="CheckboxShowDialog" Content="{lex:Loc Options_Tracker_Exporting_CheckBox_Dialog}"
                               HorizontalAlignment="Left" Margin="10,5,0,0"
                               VerticalAlignment="Top" Checked="CheckboxShowDialog_OnChecked"
                               Unchecked="CheckboxShowDialog_OnUnchecked" />

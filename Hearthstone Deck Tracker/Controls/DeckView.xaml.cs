@@ -6,6 +6,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using HearthDb.Enums;
 using Hearthstone_Deck_Tracker.Hearthstone;
+using Hearthstone_Deck_Tracker.Utility;
 using Hearthstone_Deck_Tracker.Utility.Extensions;
 using static HearthDb.CardIds.Collectible;
 using static System.Windows.Visibility;
@@ -27,107 +28,65 @@ namespace Hearthstone_Deck_Tracker.Controls
 				DeckTitleContainer.Visibility = Collapsed;
 				DeckFormatPanel.Visibility = Collapsed;
 				SetDustPanel.Visibility = Collapsed;
+				BrandContainer.Visibility = Collapsed;
 			}
 			else
 			{
-                DeckTitlePanel.Background = DeckHeaderBackground(deck.Class);
+				DeckTitlePanel.Background = DeckHeaderBackground(deck.Class);
 				LblDeckTitle.Text = deck.Name;
-                LblDeckTag.Text = GetTagText(deck);
-                LblDeckFormat.Text = GetFormatText(deck);
+				LblDeckTag.Text = GetTagText(deck);
+				LblDeckFormat.Text = GetFormatText(deck);
 				LblDustCost.Text = TotalDust(deck).ToString();
 				ShowFormatIcon(deck);
 				SetIcons.Update(deck);
 			}
+		}
 
-            BrandContainer.Visibility = Hidden;
-        }
-
-        private ImageBrush DeckHeaderBackground(string deckClass)
+		private ImageBrush DeckHeaderBackground(string deckClass)
 		{
 			var heroId = ClassToID(deckClass);
 			var drawingGroup = new DrawingGroup();
+			var img = ImageCache.GetCardImage(Database.GetCardFromId(heroId));
+			drawingGroup.Children.Add(new ImageDrawing(img, new Rect(54, 0, 130, 34)));
 			drawingGroup.Children.Add(new ImageDrawing(new BitmapImage(new Uri(
-				$"Images/Bars/{heroId}.png", UriKind.Relative)), new Rect(54, 0, 130, 100)));
-			//drawingGroup.Children.Add(new ImageDrawing(new BitmapImage(new Uri(
-			//	"Images/Themes/Bars/dark/fade.png", UriKind.Relative)), new Rect(0, 0, 183, 34)));
+				"Images/Themes/Bars/dark/fade.png", UriKind.Relative)), new Rect(0, 0, 183, 34)));
+
 			return new ImageBrush {
 				ImageSource = new DrawingImage(drawingGroup),
 				AlignmentX = AlignmentX.Left,
-				Stretch = Stretch.Fill
-            };
+				Stretch = Stretch.UniformToFill
+			};
 		}
 
-        private string GetTagText(Deck deck)
+		private string GetTagText(Deck deck)
 		{
 			var predefined = new List<string>() {
-				"中速",
-                "动物园",
-				"快攻",
-				"控制",
-				"节奏",
-				"组合",
-                "打脸",
-                "疲劳",
-                "乱斗"
-            };
-            string ret = "";
-            if (deck.Tags.Count > 0)
-                foreach (var tag in predefined)
-                    if (_allTags.Contains(tag)) // tag.ToLowerInvariant()
-                        ret = tag;
-            return ret + translateClass2CN(deck.Class);
+				"Midrange",
+				"Aggro",
+				"Control",
+				"Tempo",
+				"Combo"
+			};
+
+			if(deck.Tags.Count > 0)
+				foreach(var tag in predefined)
+					if(_allTags.Contains(tag.ToLowerInvariant()))
+						return tag;
+
+			return deck.Class;
 		}
-        private string translateClass2CN(string s)
-        {
-            if (s.Equals("Hunter"))
-            {
-                return "猎";
-            }
-            else if (s.Equals("Paladin"))
-            {
-                return "骑";
-            }
-            else if (s.Equals("Priest"))
-            {
-                return "牧";
-            }
-            else if (s.Equals("Warrior"))
-            {
-                return "战";
-            }
-            else if (s.Equals("Warlock"))
-            {
-                return "术";
-            }
-            else if (s.Equals("Druid"))
-            {
-                return "德";
-            }
-            else if (s.Equals("Mage"))
-            {
-                return "法";
-            }
-            else if (s.Equals("Shaman"))
-            {
-                return "萨";
-            }
-            else if (s.Equals("Rogue"))
-            {
-                return "贼";
-            }
-            return s;
-        }
-        private string GetFormatText(Deck deck)
+
+		private string GetFormatText(Deck deck)
 		{
-            if (deck.IsArenaDeck)
-                return "竞技场";// "Arena";
-            if (_allTags.Contains("brawl"))
-                return "乱斗";// "Brawl";
-            if (_allTags.Contains("adventure") || _allTags.Contains("pve"))
-                return "冒险";//"Adventure";
-            if (deck.StandardViable)
-                return "标准";// "Standard";
-            return "狂野";// "Wild";
+			if(deck.IsArenaDeck)
+				return "Arena";
+			if(_allTags.Contains("brawl"))
+				return "Brawl";
+			if(_allTags.Contains("adventure") || _allTags.Contains("pve"))
+				return "Adventure";
+			if(deck.StandardViable)
+				return "Standard";
+			return "Wild";
 		}
 
 		private void ShowFormatIcon(Deck deck)
@@ -140,9 +99,9 @@ namespace Hearthstone_Deck_Tracker.Controls
 
 			if(deck.IsArenaDeck)
 				RectIconArena.Visibility = Visible;
-			else if(_allTags.Contains("乱斗"))
+			else if(_allTags.Contains("brawl"))
 				RectIconBrawl.Visibility = Visible;
-			else if(_allTags.Contains("冒险") || _allTags.Contains("pve"))
+			else if(_allTags.Contains("adventure") || _allTags.Contains("pve"))
 				RectIconAdventure.Visibility = Visible;
 			else if(deck.StandardViable)
 				RectIconStandard.Visibility = Visible;

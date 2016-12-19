@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using HearthMirror.Enums;
@@ -94,7 +94,7 @@ namespace HearthMirror
 		public static int GetGameType() => TryGetInternal(InternalGetGameType);
 		private static int InternalGetGameType() => (int) Mirror.Root["GameMgr"]["s_instance"]["m_gameType"];
 
-		public static bool IsSpectating() => TryGetInternal(() => (bool)Mirror.Root["GameMgr"]["s_instance"]["m_spectator"]);
+		public static bool IsSpectating() => TryGetInternal(() => Mirror.Root["GameMgr"]?["s_instance"]?["m_spectator"]) ?? false;
 
 		public static long GetSelectedDeckInMenu() => TryGetInternal(() => (long)Mirror.Root["DeckPickerTrayDisplay"]["s_instance"]["m_selectedCustomDeckBox"]["m_deckID"]);
 
@@ -230,7 +230,56 @@ namespace HearthMirror
 			return null;
 		}
 
-		public static bool IsFriendsListVisible() => TryGetInternal(() => Mirror.Root["ChatMgr"]["s_instance"]["m_friendListFrame"] != null);
+		public static bool IsFriendsListVisible() => TryGetInternal(() => Mirror.Root["ChatMgr"]?["s_instance"]?["m_friendListFrame"]) != null;
+
+		public static bool IsGameMenuVisible() => TryGetInternal(() => Mirror.Root["GameMenu"]?["s_instance"]?["m_isShown"]) ?? false;
+
+		public static bool IsOptionsMenuVisible() => TryGetInternal(() => Mirror.Root["OptionsMenu"]?["s_instance"]?["m_isShown"]) ?? false;
+
+		public static bool IsMulligan() => TryGetInternal(() => Mirror.Root["MulliganManager"]?["s_instance"]?["mulliganChooseBanner"]) != null;
+
+		public static int GetNumMulliganCards() => TryGetInternal(() => Mirror.Root["MulliganManager"]?["s_instance"]?["m_startingCards"]?["_size"]) ?? 0;
+
+		public static bool IsChoosingCard() => (TryGetInternal(() => Mirror.Root["ChoiceCardMgr"]?["s_instance"]?["m_subOptionState"]) != null)
+				|| ((int)(TryGetInternal(() => Mirror.Root["ChoiceCardMgr"]?["s_instance"]?["m_choiceStateMap"]?["count"]) ?? 0) > 0);
+
+		public static int GetNumChoiceCards() => TryGetInternal(() => Mirror.Root["ChoiceCardMgr"]?["s_instance"]?["m_lastShownChoices"]?["_size"]) ?? 0;
+
+		public static bool IsPlayerEmotesVisible() => TryGetInternal(() => Mirror.Root["EmoteHandler"]?["s_instance"]?["m_emotesShown"]) ?? false;
+
+		public static bool IsEnemyEmotesVisible() => TryGetInternal(() => Mirror.Root["EnemyEmoteHandler"]?["s_instance"]?["m_emotesShown"]) ?? false;
+
+		public static bool IsInBattlecryEffect() => TryGetInternal(() => Mirror.Root["InputManager"]?["s_instance"]?["m_isInBattleCryEffect"]) ?? false;
+
+		public static bool IsDragging() => TryGetInternal(() => Mirror.Root["InputManager"]?["s_instance"]?["m_dragging"]) ?? false;
+
+		public static bool IsTargetingHeroPower() => TryGetInternal(() => Mirror.Root["InputManager"]?["s_instance"]?["m_targettingHeroPower"]) ?? false;
+
+		public static int GetBattlecrySourceCardZonePosition() => TryGetInternal(() => Mirror.Root["InputManager"]?["s_instance"]?["m_battlecrySourceCard"]?["m_zonePosition"]) ?? 0;
+
+		public static bool IsHoldingCard() => TryGetInternal(() => Mirror.Root["InputManager"]?["s_instance"]?["m_heldCard"]) != null;
+
+		public static bool IsTargetReticleActive() => TryGetInternal(() => Mirror.Root["TargetReticleManager"]?["s_instance"]?["m_isActive"]) ?? false;
+
+		public static bool IsEnemyTargeting() => TryGetInternal(() => Mirror.Root["InputManager"]?["s_instance"]?["m_isEnemyArrow"]) ?? false;
+
+		public static bool IsGameOver() => TryGetInternal(() => Mirror.Root["GameState"]?["s_instance"]?["m_gameOver"]) ?? false;
+
+		public static bool IsInMainMenu() => (int)(TryGetInternal(() => Mirror.Root["Box"]?["s_instance"]?["m_state"]) ?? -1) == (int)BoxState.HUB_WITH_DRAWER;
+
+		public static UI_WINDOW GetShownUiWindowId() => (UI_WINDOW)(TryGetInternal(() => Mirror.Root["ShownUIMgr"]?["s_instance"]?["m_shownUI"]) ?? UI_WINDOW.NONE);
+
+		public static bool IsPlayerHandZoneUpdatingLayout() => TryGetInternal(() => Mirror.Root["InputManager"]?["s_instance"]?["m_myHandZone"]?["m_updatingLayout"]) ?? false;
+
+		public static bool IsPlayerPlayZoneUpdatingLayout() => TryGetInternal(() => Mirror.Root["InputManager"]?["s_instance"]?["m_myPlayZone"]?["m_updatingLayout"]) ?? false;
+
+		public static SceneMode GetCurrentSceneMode() => (SceneMode)(TryGetInternal(() => Mirror.Root["SceneMgr"]?["s_instance"]?["m_mode"]) ?? SceneMode.INVALID);
+
+		public static int GetNumCardsPlayerHand() => TryGetInternal(() => Mirror.Root["InputManager"]?["s_instance"]?["m_myHandZone"]?["m_cards"]?["_size"]) ?? 0;
+
+		public static int GetNumCardsPlayerBoard() => TryGetInternal(() => Mirror.Root["InputManager"]?["s_instance"]?["m_myPlayZone"]?["m_cards"]?["_size"]) ?? 0;
+
+		public static int GetNavigationHistorySize() => TryGetInternal(() => Mirror.Root["Navigation"]?["history"]?["_size"]) ?? 0;
 
 		public static int GetCurrentManaFilter() => TryGetInternal(() => (int)Mirror.Root["CollectionManagerDisplay"]["s_instance"]["m_manaTabManager"]["m_currentFilterValue"]);
 
@@ -302,6 +351,58 @@ namespace HearthMirror
 				(int)info["m_rank"],
 				(int)info["m_seasonID"],
 				rewards);
+		}
+
+		public static int GetLastOpenedBoosterId() => (int)(TryGetInternal(() => Mirror.Root["PackOpening"]?["s_instance"]?["m_lastOpenedBoosterId"]) ?? 0);
+
+		public static AccountId GetAccountId() => TryGetInternal(GetAccountIdInternal);
+
+		private static AccountId GetAccountIdInternal()
+		{
+			var accId = Mirror.Root["BnetPresenceMgr"]?["s_instance"]?["m_myGameAccountId"];
+			return accId == null ? null : new AccountId {Hi = accId["m_hi"], Lo = accId["m_lo"]};
+		}
+
+		public static BrawlInfo GetBrawlInfo() => TryGetInternal(GetBrawlInfoInternal);
+
+		private static BrawlInfo GetBrawlInfoInternal()
+		{
+			var brawlManager = Mirror.Root?["TavernBrawlManager"]?["s_instance"];
+			if(brawlManager == null)
+				return null;
+
+			var brawlInfo = new BrawlInfo();
+			var mission = brawlManager["m_currentMission"];
+			brawlInfo.MaxWins = mission?["maxWins"];
+			brawlInfo.MaxLosses = mission?["maxLosses"];
+
+			dynamic record = null;
+			var netCacheValues = Mirror.Root["NetCache"]["s_instance"]["m_netCache"]["valueSlots"];
+			foreach(var netCache in netCacheValues)
+			{
+				if(netCache?.Class.Name != "NetCacheTavernBrawlRecord")
+					continue;
+				record = netCache["<Record>k__BackingField"];
+			}
+			if(record == null)
+				return null;
+
+			brawlInfo.GamesPlayed = record["_GamesPlayed"];
+			brawlInfo.WinStreak = record["_WinStreak"];
+			if(brawlInfo.IsSessionBased)
+			{
+				if(!(bool)record["HasSession"])
+					return brawlInfo;
+				var session = record["_Session"];
+				brawlInfo.Wins = session["<Wins>k__BackingField"];
+				brawlInfo.Losses = session["<Losses>k__BackingField"];
+			}
+			else
+			{
+				brawlInfo.Wins = record["<GamesWon>k__BackingField"];
+				brawlInfo.Losses = brawlInfo.GamesPlayed - brawlInfo.Wins;
+			}
+			return brawlInfo;
 		}
 	}
 }

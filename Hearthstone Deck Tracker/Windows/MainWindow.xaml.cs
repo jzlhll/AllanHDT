@@ -18,8 +18,11 @@ using Hearthstone_Deck_Tracker.API;
 using Hearthstone_Deck_Tracker.Controls;
 using Hearthstone_Deck_Tracker.Controls.DeckPicker;
 using Hearthstone_Deck_Tracker.Controls.Error;
+using Hearthstone_Deck_Tracker.Enums;
 using Hearthstone_Deck_Tracker.Hearthstone;
 using Hearthstone_Deck_Tracker.HearthStats.API;
+using Hearthstone_Deck_Tracker.HsReplay;
+using Hearthstone_Deck_Tracker.HsReplay.Enums;
 using Hearthstone_Deck_Tracker.LogReader;
 using Hearthstone_Deck_Tracker.Plugins;
 using Hearthstone_Deck_Tracker.Replay;
@@ -28,12 +31,14 @@ using Hearthstone_Deck_Tracker.Utility;
 using Hearthstone_Deck_Tracker.Utility.Extensions;
 using Hearthstone_Deck_Tracker.Utility.Logging;
 using Hearthstone_Deck_Tracker.Utility.Updating;
+using Hearthstone_Deck_Tracker.Utility.Toasts;
 using MahApps.Metro.Controls.Dialogs;
 #if(SQUIRREL)
 	using Squirrel;
 #endif
 using static System.Windows.Visibility;
 using Application = System.Windows.Application;
+using MenuItem = System.Windows.Controls.MenuItem;
 
 #endregion
 
@@ -44,6 +49,9 @@ namespace Hearthstone_Deck_Tracker.Windows
 	/// </summary>
 	public partial class MainWindow : INotifyPropertyChanged
 	{
+		private const string LocLink = "MainWindow_Menu_Deck_LinkUrl";
+		private const string LocLinkNew = "MainWindow_Menu_Deck_LinkNewUrl";
+
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		public async void UseDeck(Deck selected)
@@ -62,7 +70,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			MenuItemMoveDeckToConstructed.Visibility = deck.IsArenaDeck ? Visible : Collapsed;
 			MenuItemMissingCards.Visibility = deck.MissingCards.Any() ? Visible : Collapsed;
 			MenuItemSetDeckUrl.Visibility = deck.IsArenaDeck ? Collapsed : Visible;
-			MenuItemSetDeckUrl.Header = string.IsNullOrEmpty(deck.Url) ? "链接到URL" : "链接到新的URL";
+			MenuItemSetDeckUrl.Header = string.IsNullOrEmpty(deck.Url) ? LocUtil.Get(LocLink, true) : LocUtil.Get(LocLinkNew, true);
 			MenuItemUpdateDeck.Visibility = string.IsNullOrEmpty(deck.Url) ? Collapsed : Visible;
 			MenuItemOpenUrl.Visibility = string.IsNullOrEmpty(deck.Url) ? Collapsed : Visible;
 			MenuItemArchive.Visibility = DeckPickerList.SelectedDecks.Any(d => !d.Archived) ? Visible : Collapsed;
@@ -143,21 +151,6 @@ namespace Hearthstone_Deck_Tracker.Windows
 			Core.TrayIcon.SetContextMenuProperty(TrayIcon.ClassCardsFirstMenuItemName, TrayIcon.CheckedProperty, classFirst);
 		}
 
-		private void MenuItemReplayLastGame_OnClick(object sender, RoutedEventArgs e)
-		{
-			try
-			{
-				var newest =
-					Directory.GetFiles(Config.Instance.ReplayDir).Select(x => new FileInfo(x)).OrderByDescending(x => x.CreationTime).FirstOrDefault();
-				if(newest != null)
-					ReplayReader.LaunchReplayViewer(newest.FullName);
-			}
-			catch(Exception ex)
-			{
-				Log.Error(ex);
-			}
-		}
-
 		private void MenuItemReplayFromFile_OnClick(object sender, RoutedEventArgs e)
 		{
 			try
@@ -171,7 +164,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 				};
 				var dialogResult = dialog.ShowDialog();
 				if(dialogResult == System.Windows.Forms.DialogResult.OK)
-					ReplayReader.LaunchReplayViewer(dialog.FileName);
+					ReplayLauncher.ShowReplay(dialog.FileName, true);
 			}
 			catch(Exception ex)
 			{
@@ -423,6 +416,10 @@ namespace Hearthstone_Deck_Tracker.Windows
 
 		public Visibility IntroductionLabelVisibility => DeckList.Instance.Decks.Any() ? Collapsed : Visible;
 
+		public Visibility MenuItemReplayClaimAccountVisibility => Account.Instance.Status == AccountStatus.Anonymous ? Visible : Collapsed;
+		public Visibility MenuItemReplayMyAccountVisibility => Account.Instance.Status == AccountStatus.Anonymous ? Collapsed : Visible;
+		public Visibility MenuItemHearthStatsVisibility => Config.Instance.ShowHearthStatsMenu || HearthStatsAPI.IsLoggedIn ? Visible : Collapsed;
+
 		public void UpdateIntroLabelVisibility() => OnPropertyChanged(nameof(IntroductionLabelVisibility));
 
 		public string LastSync
@@ -464,6 +461,9 @@ namespace Hearthstone_Deck_Tracker.Windows
 			TagControlEdit.GroupBoxSortingArena.Visibility = Collapsed;
 			SortFilterDecksFlyout.HideStuffToCreateNewTag();
 			FlyoutNotes.ClosingFinished += (sender, args) => DeckNotesEditor.SaveDeck();
+#if(DEBUG)
+			Title += " [DEBUG]";
+#endif
 		}
 
 		public void LoadAndUpdateDecks()
@@ -519,6 +519,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 				MinimizeToTray();
 		}
 
+		//allan add
 		private void Window_Closing(object sender, CancelEventArgs e)
 		{
             if (Config.Instance.CloseByX)
@@ -705,6 +706,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			DeckManagerEvents.OnDeckSelected.Execute(deck);
 		}
 
+		//allan add
         public async void CloseByAllan(CancelEventArgs e) {
             try
             {
@@ -836,6 +838,33 @@ namespace Hearthstone_Deck_Tracker.Windows
 #endregion
 
 		private void HyperlinkUpdateNow_OnClick(object sender, RoutedEventArgs e) => Updater.StartUpdate();
+
+private async void MenuItemLastGamesReplay_OnClick(object sender, RoutedEventArgs e)
+		{
+			var game = (e.OriginalSource as MenuItem)?.DataContext as GameStats;
+			if(game == null)
+				return;
+			await ReplayLauncher.ShowReplay(game, true);
+		}
+
+		private void MenuItemReplayClaimAccount_OnClick(object sender, RoutedEventArgs e)
+		{
+			Options.TreeViewItemTrackerReplays.IsSelected = true;
+			FlyoutOptions.IsOpen = true;
+		}
+
+		private void MenuItemReplayMyAccount_OnClick(object sender, RoutedEventArgs e)
+			=> Helper.TryOpenUrl("https://hsreplay.net/games/mine/?utm_source=hdt&utm_medium=client");
+
+		private void MenuItemReplays_OnSubmenuOpened(object sender, RoutedEventArgs e)
+		{
+			OnPropertyChanged(nameof(MenuItemReplayClaimAccountVisibility));
+			OnPropertyChanged(nameof(MenuItemReplayMyAccountVisibility));
+		}
+
+		public void UpdateHearthStatsMenuItem() => OnPropertyChanged(nameof(MenuItemHearthStatsVisibility));
+
+		private void MenuItemHsReplay_OnClick(object sender, RoutedEventArgs e) => Helper.TryOpenUrl("https://hsreplay.net/?utm_source=hdt&utm_medium=client");
 
         private void MenuItemFeedBack_Click(object sender, RoutedEventArgs e)
         {

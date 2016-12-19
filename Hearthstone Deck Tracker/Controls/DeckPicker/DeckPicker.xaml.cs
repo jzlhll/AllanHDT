@@ -1,4 +1,4 @@
-﻿#region
+#region
 
 using System;
 using System.Collections.Generic;
@@ -18,6 +18,7 @@ using Hearthstone_Deck_Tracker.Annotations;
 using Hearthstone_Deck_Tracker.Controls.DeckPicker.DeckPickerItemLayouts;
 using Hearthstone_Deck_Tracker.Enums;
 using Hearthstone_Deck_Tracker.Hearthstone;
+using Hearthstone_Deck_Tracker.Utility;
 using Hearthstone_Deck_Tracker.Utility.Logging;
 using static System.ComponentModel.ListSortDirection;
 using static System.Windows.Visibility;
@@ -33,6 +34,9 @@ namespace Hearthstone_Deck_Tracker.Controls.DeckPicker
 	/// </summary>
 	public partial class DeckPicker : INotifyPropertyChanged
 	{
+		private const string LocLink = "DeckPicker_ContextMenu_LinkUrl";
+		private const string LocLinkNew = "DeckPicker_ContextMenu_LinkNewUrl";
+
 		public delegate void DoubleClickHandler(DeckPicker sender, Deck deck);
 
 		public delegate void SelectedDeckHandler(DeckPicker sender, Deck deck);
@@ -42,7 +46,7 @@ namespace Hearthstone_Deck_Tracker.Controls.DeckPicker
 		private readonly ObservableCollection<DeckPickerClassItem> _classItems;
 		private readonly ObservableCollection<DeckPickerItem> _displayedDecks;
 		private bool _clearingClasses;
-		private ObservableCollection<string> _deckTypeItems;
+		private ObservableCollection<DeckType> _deckTypeItems;
 		private bool _ignoreSelectionChange;
 		private DateTime _lastActiveDeckPanelClick = DateTime.MinValue;
 		private bool _reselectingClasses;
@@ -62,15 +66,15 @@ namespace Hearthstone_Deck_Tracker.Controls.DeckPicker
 			SelectedClasses = new ObservableCollection<HeroClassAll>();
 			_displayedDecks = new ObservableCollection<DeckPickerItem>();
 			ListViewDecks.ItemsSource = _displayedDecks;
-			DeckTypeItems = new ObservableCollection<string> {"ALL", "竞技场", "标准", "狂野"};
+			DeckTypeItems = new ObservableCollection<DeckType>(Enum.GetValues(typeof(DeckType)).OfType<DeckType>().Take(4));
 		}
 
 		public List<Deck> SelectedDecks
 		{
 			get { return ListViewDecks.SelectedItems.Cast<DeckPickerItem>().Select(x => x.Deck).ToList(); }
-		} 
+		}
 
-        public ObservableCollection<HeroClassAll> SelectedClasses { get; }
+		public ObservableCollection<HeroClassAll> SelectedClasses { get; }
 
 		public bool ArchivedClassVisible
 		{
@@ -99,7 +103,7 @@ namespace Hearthstone_Deck_Tracker.Controls.DeckPicker
 
 		public Visibility VisibilitySearchBar => SearchBarVisibile ? Visible : Collapsed;
 
-		public ObservableCollection<string> DeckTypeItems
+		public ObservableCollection<DeckType> DeckTypeItems
 		{
 			get { return _deckTypeItems; }
 			set
@@ -414,22 +418,22 @@ namespace Hearthstone_Deck_Tracker.Controls.DeckPicker
 				                  ? Config.Instance.SelectedDeckSortingArena : Config.Instance.SelectedDeckSorting;
 			switch(deckSorting)
 			{
-				case "名字":
+				case "Name":
 					view.SortDescriptions.Add(new SortDescription("DeckName", Ascending));
 					break;
-				case "最近玩的":
+				case "Last Played":
 					view.SortDescriptions.Add(new SortDescription("LastPlayed", Descending));
 					break;
-				case "最近玩的(新的)":
+				case "Last Played (new first)":
 					view.SortDescriptions.Add(new SortDescription("LastPlayedNewFirst", Descending));
 					break;
-				case "最近改动":
+				case "Last Edited":
 					view.SortDescriptions.Add(new SortDescription("LastEdited", Descending));
 					break;
-				case "标签":
+				case "Tag":
 					view.SortDescriptions.Add(new SortDescription("TagList", Ascending));
 					break;
-				case "胜率":
+				case "Win Rate":
 					view.SortDescriptions.Add(new SortDescription("WinPercent", Descending));
 					break;
 			}
@@ -581,28 +585,12 @@ namespace Hearthstone_Deck_Tracker.Controls.DeckPicker
 		{
 			if(_ignoreSelectionChange || !Core.Initialized)
 				return;
-			var deckType = DeckType.All;
 			if(e.AddedItems.Count > 0)
 			{
-				var item = e.AddedItems[0] as string;
-				if(item != null)
+				var selected = (DeckType)ListViewDeckType.SelectedItem;
+				if(Config.Instance.SelectedDeckPickerDeckType != selected)
 				{
-					switch(item)
-					{
-						case "竞技场":
-							deckType = DeckType.Arena;
-							break;
-						case "标准":
-							deckType = DeckType.Standard;
-							break;
-						case "狂野":
-							deckType = DeckType.Wild;
-							break;
-					}
-				}
-				if(Config.Instance.SelectedDeckPickerDeckType != deckType)
-				{
-					Config.Instance.SelectedDeckPickerDeckType = deckType;
+					Config.Instance.SelectedDeckPickerDeckType = selected;
 					Config.Save();
 				}
 				UpdateDecks();
@@ -661,7 +649,7 @@ namespace Hearthstone_Deck_Tracker.Controls.DeckPicker
 			MenuItemMoveDeckToConstructed.Visibility = selectedDecks.First().IsArenaDeck ? Visible : Collapsed;
 			MenuItemMissingCards.Visibility = selectedDecks.First().MissingCards.Any() ? Visible : Collapsed;
 			MenuItemSetDeckUrl.Visibility = selectedDecks.First().IsArenaDeck ? Collapsed : Visible;
-			MenuItemSetDeckUrl.Header = string.IsNullOrEmpty(selectedDecks.First().Url) ? "链接到URL" : "链接到新的URL";
+			MenuItemSetDeckUrl.Header = string.IsNullOrEmpty(selectedDecks.First().Url) ? LocUtil.Get(LocLink, true) : LocUtil.Get(LocLinkNew, true);
 			MenuItemUpdateDeck.Visibility = string.IsNullOrEmpty(selectedDecks.First().Url) ? Collapsed : Visible;
 			MenuItemOpenUrl.Visibility = string.IsNullOrEmpty(selectedDecks.First().Url) ? Collapsed : Visible;
 			MenuItemArchive.Visibility = selectedDecks.Any(d => !d.Archived) ? Visible : Collapsed;
@@ -766,7 +754,7 @@ namespace Hearthstone_Deck_Tracker.Controls.DeckPicker
 			if(!SelectedDecks.Any())
 				e.Handled = true;
 		}
-
+		//allan add
         private void BtnVersions_Click(object sender, RoutedEventArgs e) => Core.MainWindow.BtnVersions_Click(sender, e);
     }
 }

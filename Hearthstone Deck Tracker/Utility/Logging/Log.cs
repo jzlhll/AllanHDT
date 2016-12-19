@@ -76,7 +76,7 @@ namespace Hearthstone_Deck_Tracker.Utility.Logging
 			}
 			catch (Exception ex)
 			{
-				ErrorManager.AddError("不能打开log文件.", ex.ToString());
+				ErrorManager.AddError("不能访问log文件.", ex.ToString());
 			}
 			Initialized = true;
 			foreach(var line in LogQueue)

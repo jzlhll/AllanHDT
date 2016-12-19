@@ -1,19 +1,17 @@
-Ôªø#region
+#region
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design.Serialization;
+using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
-using HearthMirror.Enums;
 using Hearthstone_Deck_Tracker.Controls.Stats;
 using Hearthstone_Deck_Tracker.Enums;
-using Hearthstone_Deck_Tracker.Controls.Information;
 using Hearthstone_Deck_Tracker.Hearthstone;
 using Hearthstone_Deck_Tracker.HearthStats.API;
+using Hearthstone_Deck_Tracker.HsReplay;
 using Hearthstone_Deck_Tracker.LogReader;
 using Hearthstone_Deck_Tracker.Plugins;
 using Hearthstone_Deck_Tracker.Utility;
@@ -26,7 +24,7 @@ using Hearthstone_Deck_Tracker.Windows;
 using MahApps.Metro.Controls.Dialogs;
 using Hearthstone_Deck_Tracker.Utility.Themes;
 using Hearthstone_Deck_Tracker.Utility.Updating;
-using Squirrel;
+using WPFLocalizeExtension.Engine;
 
 #endregion
 
@@ -40,6 +38,7 @@ namespace Hearthstone_Deck_Tracker
 		private static Overview _statsOverview;
 		private static int _updateRequestsPlayer;
 		private static int _updateRequestsOpponent;
+		private static DateTime _startUpTime;
 		public static Version Version { get; set; }
 		public static GameV2 Game { get; set; }
 		public static MainWindow MainWindow { get; set; }
@@ -55,28 +54,30 @@ namespace Hearthstone_Deck_Tracker
 		internal static bool UpdateOverlay { get; set; } = true;
 		internal static bool Update { get; set; }
 		internal static bool CanShutdown { get; set; }
+		//allan add
         private static void CopyFolder(string from, string to)
         {
             to = to + "\\";
             if (!Directory.Exists(to))
                 Directory.CreateDirectory(to);
 
-            // Â≠êÊñá‰ª∂Â§π
+            // ◊”Œƒº˛º–
             foreach (string sub in Directory.GetDirectories(from))
                 CopyFolder(sub + "\\", to + Path.GetFileName(sub) + "\\");
 
-            // Êñá‰ª∂
+            // Œƒº˛
             foreach (string file in Directory.GetFiles(from))
                 File.Copy(file, to + Path.GetFileName(file), true);
         }
 
         public static async void Initialize()
 		{
-			Log.Info($"Operating System: {Helper.GetWindowsVersion()}, .NET Framework: {Helper.GetInstalledDotNetVersion()}");
+			LocalizeDictionary.Instance.Culture = CultureInfo.GetCultureInfo("en-US");
+			_startUpTime = DateTime.UtcNow;
+			Log.Info($"HDT: {Helper.GetCurrentVersion()}, Operating System: {Helper.GetWindowsVersion()}, .NET Framework: {Helper.GetInstalledDotNetVersion()}");
 			ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 			Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
 			Config.Load();
-
 			var splashScreenWindow = new SplashScreenWindow();
 #if(SQUIRREL)
 			if(Config.Instance.CheckForUpdates)
@@ -93,12 +94,12 @@ namespace Hearthstone_Deck_Tracker
 			splashScreenWindow.ShowConditional();
 			Log.Initialize();
 			ConfigManager.Run();
+			LocUtil.UpdateCultureInfo();
 			var newUser = ConfigManager.PreviousVersion == null;
 			LogConfigUpdater.Run().Forget();
 			LogConfigWatcher.Start();
 			Helper.UpdateAppTheme();
 			ThemeManager.Run();
-
 			ResourceMonitor.Run();
 			Game = new GameV2();
 			LoginType loginType;
@@ -121,14 +122,11 @@ namespace Hearthstone_Deck_Tracker
 				loginType = loggedIn ? LoginType.AutoLogin : LoginType.AutoGuest;
 			MainWindow = new MainWindow();
 			MainWindow.LoadConfigSettings();
-			if(Config.Instance.ReselectLastDeckUsed)
-			{
-				MainWindow.SelectLastUsedDeck();
-				Config.Instance.ReselectLastDeckUsed = false;
-				Config.Save();
-			}
 			MainWindow.Show();
 			splashScreenWindow.Close();
+
+			if(Config.Instance.DisplayHsReplayNoteLive && ConfigManager.PreviousVersion != null && ConfigManager.PreviousVersion < new Version(1, 1, 0))
+				MainWindow.FlyoutHsReplayNote.IsOpen = true;
 
 			if(ConfigManager.UpdatedVersion != null)
 			{
@@ -146,15 +144,12 @@ namespace Hearthstone_Deck_Tracker
 #endif
 			BackupManager.Run();
 
-            if (Config.Instance.PlayerWindowOnStart)
-            {
-                Windows.PlayerWindow.Show();
-            }
+			if(Config.Instance.PlayerWindowOnStart)
+				Windows.PlayerWindow.Show();
 //<!--allan add for graveryard-->
             if (Config.Instance.GraveYardWindowOnStart) {
                 Windows.GraveryWindow.Show();
             }
-
 			if(Config.Instance.OpponentWindowOnStart)
 				Windows.OpponentWindow.Show();
 			if(Config.Instance.TimerWindowOnStartup)
@@ -163,29 +158,29 @@ namespace Hearthstone_Deck_Tracker
 			if(Config.Instance.HearthStatsSyncOnStart && HearthStatsAPI.IsLoggedIn)
 				HearthStatsManager.SyncAsync(background: true);
             //allan add for plugins use
-            if (!Config.Instance.ALLAN_LAST_SAVE_VERSION.Equals(Helper.getAllanCurrentVersionStr())) {
-                if (Directory.Exists("AllanPlugins"))
-                {
-                    Log.Debug("Config do it replace plugin.");
-                    if (Directory.Exists("Plugins")) Directory.Delete("Plugins", true);
-                    Directory.CreateDirectory("Plugins");
-                    string appDataPluginDir = Path.Combine(Config.AppDataPath, "Plugins");
-                    if (!Directory.Exists(appDataPluginDir))
-                        Directory.CreateDirectory(appDataPluginDir);
+            //if (!Config.Instance.ALLAN_LAST_SAVE_VERSION.Equals(Helper.getAllanCurrentVersionStr())) {
+            //    if (Directory.Exists("AllanPlugins"))
+            //    {
+            //        Log.Debug("Config do it replace plugin.");
+            //        if (Directory.Exists("Plugins")) Directory.Delete("Plugins", true);
+            //        Directory.CreateDirectory("Plugins");
+            //        string appDataPluginDir = Path.Combine(Config.AppDataPath, "Plugins");
+            //        if (!Directory.Exists(appDataPluginDir))
+            //            Directory.CreateDirectory(appDataPluginDir);
 
-                    string appDataanyfin = Path.Combine(Config.AppDataPath, "anyfin.xml");
-                    if (File.Exists(appDataanyfin)) File.Delete(appDataanyfin);
+            //        string appDataanyfin = Path.Combine(Config.AppDataPath, "anyfin.xml");
+            //        if (File.Exists(appDataanyfin)) File.Delete(appDataanyfin);
 
-                    string appDataPluginXml = Path.Combine(Config.AppDataPath, "plugins.xml");
-                    if (File.Exists(appDataPluginXml)) File.Delete(appDataPluginXml);
+            //        string appDataPluginXml = Path.Combine(Config.AppDataPath, "plugins.xml");
+            //        if (File.Exists(appDataPluginXml)) File.Delete(appDataPluginXml);
 
-                    CopyFolder("AllanPlugins", appDataPluginDir);
-                    Config.Instance.ALLAN_LAST_SAVE_VERSION = Helper.getAllanCurrentVersionStr();
-                    Config.Save();
-                }
-            }
+            //        CopyFolder("AllanPlugins", appDataPluginDir);
+            //        Config.Instance.ALLAN_LAST_SAVE_VERSION = Helper.getAllanCurrentVersionStr();
+            //        Config.Save();
+            //    }
+            //}
             //allan add
-            PluginManager.Instance.LoadPlugins();
+			PluginManager.Instance.LoadPlugins();
 			MainWindow.Options.OptionsTrackerPlugins.Load();
 			PluginManager.Instance.StartUpdateAsync();
 
@@ -201,7 +196,7 @@ namespace Hearthstone_Deck_Tracker
 				MainWindow.ShowLogConfigUpdateFailedMessage().Forget();
 			else if(LogConfigUpdater.LogConfigUpdated && Game.IsRunning)
 			{
-				MainWindow.ShowMessageAsync("ÁÇâÁü≥ÈúÄË¶ÅÈáçÂêØ", "log.configÊñá‰ª∂Ë¢´ÊîπÂèò‰∫ÜÔºåHDTÂèØËÉΩÂ∑•‰Ωú‰∏çÊ≠£Â∏∏Áõ¥Âà∞ÁÇâÁü≥ÈáçÂêØ.");
+				MainWindow.ShowMessageAsync("¬Ø Ø–Ë“™÷ÿ∆Ù", "log.configŒƒº˛±ª∏ƒ±‰¡À£¨HDTø…ƒ‹π§◊˜≤ª’˝≥£÷±µΩ¬Ø Ø÷ÿ∆Ù.");
 				Overlay.ShowRestartRequiredWarning();
 			}
 			LogReaderManager.Start(Game).Forget();
@@ -212,19 +207,20 @@ namespace Hearthstone_Deck_Tracker
 			if(Helper.HearthstoneDirExists && Config.Instance.StartHearthstoneWithHDT && !Game.IsRunning)
 				Helper.StartHearthstoneAsync().Forget();
 
+			ApiWrapper.UpdateAccountStatus().Forget();
+
 			Initialized = true;
 
-			Influx.OnAppStart(Helper.GetCurrentVersion(), loginType, newUser);
+			Influx.OnAppStart(Helper.GetCurrentVersion(), loginType, newUser, (int)(DateTime.UtcNow - _startUpTime).TotalSeconds);
 		}
 
 		private static async void UpdateOverlayAsync()
 		{
-            if (Config.Instance.CheckForUpdates)
-            {
-                Updater.CheckForUpdates(true);
-                Updater.Cleanup();
-            }
-            var hsForegroundChanged = false;
+#if(!SQUIRREL)
+			if(Config.Instance.CheckForUpdates)
+				Updater.CheckForUpdates(true);
+#endif
+			var hsForegroundChanged = false;
 			var useNoDeckMenuItem = TrayIcon.NotifyIcon.ContextMenu.MenuItems.IndexOfKey("startHearthstone");
 			while(UpdateOverlay)
 			{
@@ -303,6 +299,7 @@ namespace Hearthstone_Deck_Tracker
 					Game.IsInMenu = true;
 					Game.InvalidateMatchInfoCache();
 					Overlay.HideRestartRequiredWarning();
+					Helper.ClearCachedHearthstoneBuild();
 					TurnTimer.Instance.Stop();
 
 					MainWindow.BtnStartHearthstone.Visibility = Visibility.Visible;
@@ -357,18 +354,17 @@ namespace Hearthstone_Deck_Tracker
 			Overlay.UpdatePlayerCards(new List<Card>(Game.Player.PlayerCardList), reset);
 			if(Windows.PlayerWindow.IsVisible)
 				Windows.PlayerWindow.UpdatePlayerCards(new List<Card>(Game.Player.PlayerCardList), reset);
-        }
-
+		}
+		//allan add
         internal static async void UpdateGraveyardCards(bool reset = false)
         {
             await Task.Delay(100);
             if (Windows.GraveryWindow.IsVisible)
             {
-                Windows.GraveryWindow.UpdateGraveyardCards(reset);//TODO ‰øÆÊîπ‰∫ÜÊñπÂºè <!--allan add for graveryard-->
+                Windows.GraveryWindow.UpdateGraveyardCards(reset);//TODO –ﬁ∏ƒ¡À∑Ω Ω <!--allan add for graveryard-->
             }
-        }
-
-        internal static async void UpdateOpponentCards(bool reset = false)
+        }//allan add end
+		internal static async void UpdateOpponentCards(bool reset = false)
 		{
 			_updateRequestsOpponent++;
 			await Task.Delay(100);
@@ -378,11 +374,6 @@ namespace Hearthstone_Deck_Tracker
 			Overlay.UpdateOpponentCards(new List<Card>(Game.Opponent.OpponentCardList), reset);
 			if(Windows.OpponentWindow.IsVisible)
 				Windows.OpponentWindow.UpdateOpponentCards(new List<Card>(Game.Opponent.OpponentCardList), reset);
-            //if (Windows.GraveryWindow.IsVisible)
-            //{
-            //    Windows.GraveryWindow.UpdateGraveyardCards(reset);//TODO <!--allan add for graveryard-->
-            //    //todo Windows.GraveryWindow.UpdateOppoDeckCards(reset);//TODO  <!--allan add for graveryard-->
-            //}
 		}
 
 
@@ -392,8 +383,7 @@ namespace Hearthstone_Deck_Tracker
 			private static OpponentWindow _opponentWindow;
 			private static TimerWindow _timerWindow;
 			private static StatsWindow _statsWindow;
-            private static GraveyardWindow _graveryWindow;
-			//<!--allan add for graveryard-->
+            private static GraveyardWindow _graveryWindow;//<!--allan add for graveryard-->
             public static GraveyardWindow GraveryWindow => _graveryWindow ?? (_graveryWindow = new GraveyardWindow(Game));
             public static PlayerWindow PlayerWindow => _playerWindow ?? (_playerWindow = new PlayerWindow(Game));
 			public static OpponentWindow OpponentWindow => _opponentWindow ?? (_opponentWindow = new OpponentWindow(Game));

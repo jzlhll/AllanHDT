@@ -37,66 +37,35 @@ namespace Hearthstone_Deck_Tracker.Windows
 				return;
 			var selectedClass = _newDeck.Class;
 			string selectedNeutral;
-			string selectedManaCost;
+			int selectedManaCost;
 			string selectedSet;
 			try
 			{
-				selectedNeutral = MenuFilterType.Items.Cast<RadioButton>().First(x => x.IsChecked.HasValue && x.IsChecked.Value).Content.ToString();
+				selectedNeutral = MenuFilterType.Items.Cast<RadioButton>().First(x => x.IsChecked.HasValue && x.IsChecked.Value).Name.Substring(15);
 			}
 			catch(Exception)
 			{
-				selectedNeutral = "ALL";
+				selectedNeutral = "All";
 			}
 			try
 			{
-				selectedManaCost =
-					MenuFilterMana.Items.Cast<RadioButton>().First(x => x.IsChecked.HasValue && x.IsChecked.Value).Content.ToString();
+				if(!int.TryParse(MenuFilterMana.Items.Cast<RadioButton>().First(x => x.IsChecked.HasValue && x.IsChecked.Value).Content.ToString().Substring(0, 1),
+						out selectedManaCost))
+					selectedManaCost = -1;
 			}
 			catch(Exception)
 			{
-				selectedManaCost = "ALL";
+				selectedManaCost = -1;
 			}
 			try
 			{
-				selectedSet = MenuFilterSet.Items.Cast<RadioButton>().First(x => x.IsChecked.HasValue && x.IsChecked.Value).Content.ToString();
-                //汉化MainWindow.xaml
-                if (selectedSet == "基础") {
-                    selectedSet = "BASIC";
-                } else if (selectedSet == "扩展") {
-                    selectedSet = "CLASSIC";
-                }
-                else if (selectedSet == "活动")
-                {
-                    selectedSet = "PROMOTION";
-                }
-                else if (selectedSet == "纳克萨玛斯")
-                {
-                    selectedSet = "CURSE OF NAXXRAMAS";
-                }
-                else if (selectedSet == "地精对战侏儒")
-                {
-                    selectedSet = "GOBLINS VS GNOMES";
-                }
-                else if (selectedSet == "黑石山")
-                {
-                    selectedSet = "BLACKROCK MOUNTAIN";
-                }
-                else if (selectedSet == "冠军试炼")
-                {
-                    selectedSet = "THE GRAND TOURNAMENT";
-                }
-                else if (selectedSet == "探险者协会")
-                {
-                    selectedSet = "LEAGUE OF EXPLORERS";
-                }
-                else if (selectedSet == "上古之神")
-                {
-                    selectedSet = "WHISPERS OF THE OLD GODS";
-                }                                         
-            }
+				int value;
+				int.TryParse(MenuFilterSet.Items.Cast<RadioButton>().First(x => x.IsChecked.HasValue && x.IsChecked.Value).Name.Substring(14), out value);
+				selectedSet = value > 0 ? HearthDbConverter.SetConverter((CardSet)value) : "All";
+			}
 			catch(Exception)
 			{
-				selectedSet = "ALL";
+				selectedSet = "All";
 			}
 			if(selectedClass == "Select a Class")
 				ListViewDB.Items.Clear();
@@ -125,23 +94,23 @@ namespace Hearthstone_Deck_Tracker.Windows
 						continue;
 
 					// mana filter
-					if(selectedManaCost != "ALL" && ((selectedManaCost != "9+" || card.Cost < 9) && (selectedManaCost != card.Cost.ToString())))
+					if(selectedManaCost > -1 && ((selectedManaCost < 9 || card.Cost < 9) && (selectedManaCost != card.Cost)))
 						continue;
-					if(selectedSet != "ALL" && !string.Equals(selectedSet, card.Set, StringComparison.InvariantCultureIgnoreCase))
+					if(selectedSet != "All" && !string.Equals(selectedSet, card.Set, StringComparison.InvariantCultureIgnoreCase))
 						continue;
 					if(!_newDeck.IsArenaDeck && !_newDeck.IsBrawlDeck && !(CheckBoxIncludeWild.IsChecked ?? true) && Helper.WildOnlySets.Contains(card.Set))
 						continue;
 					switch(selectedNeutral)
 					{
-						case "ALL":
-							if(card.GetPlayerClass == selectedClass || card.GetPlayerClass == "Neutral")
+						case "All":
+							if(card.IsClass(selectedClass) || card.GetPlayerClass == "Neutral")
 								ListViewDB.Items.Add(card);
 							break;
-						case "职业卡":
-							if(card.GetPlayerClass == selectedClass)
+						case "Class":
+							if(card.IsClass(selectedClass))
 								ListViewDB.Items.Add(card);
 							break;
-						case "中立卡":
+						case "Neutral":
 							if(card.GetPlayerClass == "Neutral")
 								ListViewDB.Items.Add(card);
 							break;
@@ -519,11 +488,11 @@ namespace Hearthstone_Deck_Tracker.Windows
 			{
 				if(!DeckList.Instance.AllTags.Contains("Brawl") && !DeckList.Instance.AllTags.Contains("乱斗"))
 				{
-					DeckList.Instance.AllTags.Add("乱斗");
+					DeckList.Instance.AllTags.Add("Brawl");
 					DeckList.Save();
 					Core.MainWindow?.ReloadTags();
 				}
-				_newDeck.Tags.Add("乱斗");
+				_newDeck.Tags.Add("Brawl");
 			}
 
 			BorderConstructedCardLimits.Visibility = _newDeck.IsArenaDeck ? Collapsed : Visible;

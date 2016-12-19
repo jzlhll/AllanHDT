@@ -1,4 +1,4 @@
-﻿#region
+#region
 
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,6 @@ using System.Windows.Media;
 using Hearthstone_Deck_Tracker.Annotations;
 using Hearthstone_Deck_Tracker.Enums;
 using Hearthstone_Deck_Tracker.Hearthstone;
-using Hearthstone_Deck_Tracker.AllanAdd;
 
 #endregion
 
@@ -32,6 +31,8 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 		public int PacksCountTgt => GetFilteredRuns().Sum(x => x.Packs.Count(p => p == ArenaRewardPacks.TheGrandTournament));
 
 		public int PacksCountWotog => GetFilteredRuns().Sum(x => x.Packs.Count(p => p == ArenaRewardPacks.WhispersOfTheOldGods));
+
+		public int PacksCountMsg => GetFilteredRuns().Sum(x => x.Packs.Count(p => p == ArenaRewardPacks.MeanStreetsOfGadgetzan));
 
 		public int PacksCountTotal => GetFilteredRuns().Sum(x => x.PackCount);
 
@@ -88,7 +89,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 				    x =>
 					new ChartStats
 					{
-						Name = MyUtils.translateClass2CN(x.Key) + " (" + Math.Round(100.0 * x.Count() / ArenaDecks.Count()) + "%)",
+						Name = x.Key + " (" + Math.Round(100.0 * x.Count() / RunsCount) + "%)",
 						Value = x.Count(),
 						Brush = new SolidColorBrush(Helper.GetClassColor(x.Key, true))
 					});
@@ -105,7 +106,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 					                 g =>
 					                 new ChartStats
 					                 {
-						                 Name = MyUtils.translateClass2CN(g.Key) + " (" + Math.Round(100.0 * g.Count() / opponents.Count()) + "%)",
+						                 Name = g.Key + " (" + Math.Round(100.0 * g.Count() / opponents.Count()) + "%)",
 						                 Value = g.Count(),
 						                 Brush = new SolidColorBrush(Helper.GetClassColor(g.Key, true))
 					                 });
@@ -152,8 +153,8 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 						            x =>
 						            new ChartStats
 						            {
-                                        Name = n + " 胜 (" + MyUtils.translateClass2CN(x.Key) + ")",
-                                        Value = x.Count(),
+							            Name = n + " 胜 (" + x.Key + ")",
+							            Value = x.Count(),
 							            Brush = new SolidColorBrush(Helper.GetClassColor(x.Key, true))
 						            });
 				}).ToArray();
@@ -175,8 +176,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 						var color = Helper.GetClassColor(x, true);
 						if(g.Key == GameResult.Loss)
 							color = Color.FromRgb((byte)(color.R * 0.7), (byte)(color.G * 0.7), (byte)(color.B * 0.7));
-						return new ChartStats {Name = GameResultConvert.convert(g.Key) + " vs " 
-                            + MyUtils.translateClass2CN(x.ToString()), Value = g.Count(), Brush = new SolidColorBrush(color)};
+						return new ChartStats {Name = g.Key.ToString() + " vs " + x.ToString(), Value = g.Count(), Brush = new SolidColorBrush(color)};
 					});
 				}).ToArray();
 			}
@@ -193,7 +193,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 						        x =>
 						        new ChartStats
 						        {
-							        Name = MyUtils.translateClass2CN(x.Key),
+							        Name = x.Key,
 							        Value = Math.Round((double)x.Sum(d => d.Deck.DeckStats.Games.Count(g => g.Result == GameResult.Win)) / x.Count(), 1),
 							        Brush = new SolidColorBrush(Helper.GetClassColor(x.Key, true))
 						        })
@@ -248,7 +248,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 						}
 						break;
 					case DisplayedTimeFrame.ThisWeek:
-						filtered = filtered.Where(g => g.StartTime > DateTime.Today.AddDays(-((int)g.StartTime.DayOfWeek + 1)));
+						filtered = filtered.Where(g => g.StartTime > DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + 1));
 						break;
 					case DisplayedTimeFrame.Today:
 						filtered = filtered.Where(g => g.StartTime > DateTime.Today);

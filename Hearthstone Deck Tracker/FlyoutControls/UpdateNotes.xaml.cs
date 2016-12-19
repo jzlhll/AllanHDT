@@ -11,6 +11,8 @@ using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using Hearthstone_Deck_Tracker.Annotations;
 using Hearthstone_Deck_Tracker.Controls.Information;
+using Hearthstone_Deck_Tracker.HearthStats.API;
+using Hearthstone_Deck_Tracker.Utility;
 using Hearthstone_Deck_Tracker.Utility.Extensions;
 using Hearthstone_Deck_Tracker.Utility.Logging;
 using Hearthstone_Deck_Tracker.Windows;
@@ -38,8 +40,8 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 			UserControl infoControl = null;
 			if(previousVersion < new Version(0, 13, 18))
 				infoControl = new CardThemesInfo();
-#if (false) //!SQUIRREL todo: allan removed
-            if (previousVersion < new Version(0, 15, 14) && Config.Instance.SaveConfigInAppData != false && Config.Instance.SaveDataInAppData != false)
+#if(!SQUIRREL)
+			if(previousVersion < new Version(0, 15, 14) && Config.Instance.SaveConfigInAppData != false && Config.Instance.SaveDataInAppData != false)
 			{
 				ContentControlHighlight.Content = new SquirrelInfo();
 				ButtonContinue.Visibility = Visibility.Collapsed;
@@ -47,6 +49,23 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 				return;
 			}
 #endif
+
+			if(previousVersion <= new Version(1, 1, 3, 1) && ConfigManager.UpdatedVersion == new Version(1, 1, 4, 0))
+			{
+				if(File.Exists(Config.Instance.HearthStatsFilePath) && HearthStatsAPI.Logout())
+				{
+					ContentControlHighlight.Content = new HearthStatsLogoutInfo();
+					_continueToHighlight = true;
+					ButtonContinue.Visibility = Visibility.Collapsed;
+
+					Core.MainWindow.UpdateHearthStatsMenuItem();
+					Core.MainWindow.EnableHearthStatsMenu(false);
+					Core.MainWindow.MenuItemLogin.Visibility = Visibility.Visible;
+					Core.MainWindow.MenuItemLogout.Visibility = Visibility.Collapsed;
+					Config.Instance.ShowLoginDialog = false;
+					Config.Save();
+				}
+			}
 			if(infoControl == null)
 				return;
 			ContentControlHighlight.Content = infoControl;
@@ -87,20 +106,20 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 		{
 			const string url = "https://github.com/HearthSim/Hearthstone-Deck-Tracker/releases";
 			if (!Helper.TryOpenUrl(url))
-				Core.MainWindow.ShowMessage("æ‰“ä¸å¼€æµè§ˆå™¨", $"ä½ å¯ä»¥æ‰¾åˆ°releasesåœ¨è¿™é‡Œ \"{url}\"").Forget();
+				Core.MainWindow.ShowMessage("´ò²»¿ªä¯ÀÀÆ÷", $"Äã¿ÉÒÔÕÒµ½releasesÔÚÕâÀï \"{url}\"").Forget();
 		}
 
 		private void ButtonPaypal_Click(object sender, RoutedEventArgs e)
 		{
 			if (!Helper.TryOpenUrl("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PZDMUT88NLFYJ"))
-				Core.MainWindow.ShowMessage("æ‰“ä¸å¼€æµè§ˆå™¨", "æ‚¨è¿˜å¯ä»¥æ‰¾åˆ°åœ¨GitHubçš„é¡µé¢åº•éƒ¨çš„é“¾æŽ¥ï¼").Forget();
+				Core.MainWindow.ShowMessage("´ò²»¿ªä¯ÀÀÆ÷", "Äú»¹¿ÉÒÔÕÒµ½ÔÚGitHubµÄÒ³Ãæµ×²¿µÄÁ´½Ó£¡").Forget();
 		}
 
 		private void ButtonPatreon_Click(object sender, RoutedEventArgs e)
 		{
 			const string url = "https://www.patreon.com/HearthstoneDeckTracker";
 			if (!Helper.TryOpenUrl(url))
-				Core.MainWindow.ShowMessage("æ‰“ä¸å¼€æµè§ˆå™¨", "ä½ å¯ä»¥åœ¨è¿™é‡Œæ‰¾åˆ°patreon(èµžåŠ©)é¡µï¼š" + url).Forget();
+				Core.MainWindow.ShowMessage("´ò²»¿ªä¯ÀÀÆ÷", "Äã¿ÉÒÔÔÚÕâÀïÕÒµ½patreon(ÔÞÖú)Ò³£º" + url).Forget();
 		}
 
 		private void ButtonClose_Click(object sender, RoutedEventArgs e)

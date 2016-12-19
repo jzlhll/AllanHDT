@@ -1,15 +1,17 @@
-﻿#region
+#region
 
 using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using HearthMirror;
 using HearthMirror.Enums;
 using Hearthstone_Deck_Tracker.Enums.Hearthstone;
 using Hearthstone_Deck_Tracker.Hearthstone;
 using Hearthstone_Deck_Tracker.Importing;
 using Hearthstone_Deck_Tracker.LogReader.Interfaces;
+using Hearthstone_Deck_Tracker.Utility.Analytics;
 using Hearthstone_Deck_Tracker.Utility.Extensions;
 using Hearthstone_Deck_Tracker.Utility.Logging;
 using Hearthstone_Deck_Tracker.Windows;
@@ -46,6 +48,19 @@ namespace Hearthstone_Deck_Tracker.LogReader.Handlers
 
 				if(game.CurrentMode == Mode.HUB && !_checkedMirrorStatus && (DateTime.Now - logLine.Time).TotalSeconds < 5)
 					CheckMirrorStatus();
+
+				if(game.CurrentMode == Mode.DRAFT)
+					Watchers.ArenaWatcher.Run();
+				else
+					Watchers.ArenaWatcher.Stop();
+
+				if(game.CurrentMode == Mode.PACKOPENING)
+					Watchers.PackWatcher.Run();
+				else
+					Watchers.PackWatcher.Stop();
+
+				if(game.CurrentMode == Mode.TAVERN_BRAWL)
+					Core.Game.CacheBrawlInfo();
 			}
 			else if(logLine.Line.Contains("Gameplay.Start"))
 			{
@@ -57,8 +72,8 @@ namespace Hearthstone_Deck_Tracker.LogReader.Handlers
 		private async void CheckMirrorStatus()
 		{
 			_checkedMirrorStatus = true;
-			HearthMirror.Status status;
-			while((status = HearthMirror.Status.GetStatus()).MirrorStatus == MirrorStatus.ProcNotFound)
+			Status status;
+			while((status = Status.GetStatus()).MirrorStatus == MirrorStatus.ProcNotFound)
 				await Task.Delay(1000);
 			Log.Info($"Mirror status: {status.MirrorStatus}");
 			if(status.MirrorStatus != MirrorStatus.Error)
@@ -70,6 +85,7 @@ namespace Hearthstone_Deck_Tracker.LogReader.Handlers
 				_checkedMirrorStatus = false;
 				return;
 			}
+			Influx.OnUnevenPermissions();
 			LogReaderManager.Stop(true).Forget();
 			Core.MainWindow.ActivateWindow();
 			while(Core.MainWindow.Visibility != Visibility.Visible || Core.MainWindow.WindowState == WindowState.Minimized)

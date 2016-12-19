@@ -1,4 +1,4 @@
-﻿#region
+#region
 
 using System;
 using System.Linq;
@@ -9,6 +9,7 @@ using System.Windows.Input;
 using Hearthstone_Deck_Tracker.Enums;
 using Hearthstone_Deck_Tracker.Hearthstone;
 using Hearthstone_Deck_Tracker.Stats;
+using Hearthstone_Deck_Tracker.Utility;
 using Hearthstone_Deck_Tracker.Utility.Logging;
 using MahApps.Metro.Controls.Dialogs;
 using static System.Windows.Visibility;
@@ -24,25 +25,34 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 	/// </summary>
 	public partial class AddGameDialog : CustomDialog
 	{
+		private const string LocAddGame = "AddGameDialog_Button_AddGame";
+		private const string LocSaveGame = "AddGameDialog_Button_SaveGame";
+		private const string LocEditTitle = "AddGameDialog_Title_Edit";
 		private readonly Deck _deck;
 		private readonly bool _editing;
 		private readonly GameStats _game;
 		private readonly TaskCompletionSource<GameStats> _tcs;
 
-		public AddGameDialog(Deck deck)
+		private AddGameDialog()
 		{
 			InitializeComponent();
-            ComboBoxResult.ItemsSource = new[]{"胜利","败北","弃局"};
-            ComboBoxOpponent.ItemsSource = new[] { "德鲁伊", "猎人", "法师", "圣骑士", "牧师", "潜行者", "萨满", "术士", "战士" };
-            ComboBoxMode.ItemsSource = new[] { "天梯", "休闲", "竞技场", "乱斗", "友谊", "练习" };
-            ComboBoxFormat.ItemsSource = new[] { "标准", "狂野" };
-            ComboBoxRegion.ItemsSource = new[] { "美国", "欧洲", "亚洲", "中国" };
-            _tcs = new TaskCompletionSource<GameStats>();
+			ComboBoxResult.ItemsSource = new[] { GameResult.Win, GameResult.Loss, GameResult.Draw};
+			ComboBoxOpponent.ItemsSource = Enum.GetValues(typeof(HeroClass));
+			ComboBoxMode.ItemsSource = new[] {Ranked, Casual, Arena, Brawl, Friendly, Practice};
+			ComboBoxFormat.ItemsSource = new[] {Format.Standard, Format.Wild};
+			ComboBoxRegion.ItemsSource = new[] { Region.US, Region.EU, Region.ASIA, Region.CHINA};
+			ComboBoxCoin.ItemsSource = Enum.GetValues(typeof(YesNo));
+			ComboBoxConceded.ItemsSource = Enum.GetValues(typeof(YesNo));
+			_tcs = new TaskCompletionSource<GameStats>();
+		}
+
+		public AddGameDialog(Deck deck) : this()
+		{
 			_editing = false;
 			var lastGame = deck.DeckStats.Games.LastOrDefault();
 			if(deck.IsArenaDeck)
 			{
-				ComboBoxMode.SelectedItem = GameModeConverter.convert(Arena);
+				ComboBoxMode.SelectedItem = Arena;
 				ComboBoxMode.IsEnabled = false;
 			}
 			else
@@ -52,8 +62,8 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 				TextBoxLegendRank.IsEnabled = true;
 				if(lastGame != null)
 				{
-                    ComboBoxFormat.SelectedItem = FormatConvert.convert_(lastGame.Format);
-					ComboBoxMode.SelectedItem = GameModeConverter.convert(lastGame.GameMode);
+					ComboBoxFormat.SelectedItem = lastGame.Format;
+					ComboBoxMode.SelectedItem = lastGame.GameMode;
 					if(lastGame.GameMode == Ranked)
 					{
 						TextBoxRank.Text = lastGame.Rank.ToString();
@@ -67,29 +77,27 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 				PanelFormat.Visibility = lastGame.GameMode == Ranked || lastGame.GameMode == Casual ? Visible : Collapsed;
 				TextBoxPlayerName.Text = lastGame.PlayerName;
 				if(lastGame.Region != Region.UNKNOWN)
-					ComboBoxRegion.SelectedItem = RegionConvert.convert(lastGame.Region);
+					ComboBoxRegion.SelectedItem = lastGame.Region;
 			}
 			_deck = deck;
 			_game = new GameStats();
-			BtnSave.Content = "添加游戏";
+			BtnSave.Content = LocUtil.Get(LocAddGame);
 			Title = _deck.Name;
 		}
 
-		public AddGameDialog(GameStats game)
+		public AddGameDialog(GameStats game) : this()
 		{
-			InitializeComponent();
-			_tcs = new TaskCompletionSource<GameStats>();
 			_editing = true;
 			_game = game;
 			if(game == null)
 				return;
-			ComboBoxResult.SelectedItem = GameResultConvert.convert(game.Result);
+			ComboBoxResult.SelectedItem = game.Result;
 			HeroClass heroClass;
 			if(!string.IsNullOrWhiteSpace(game.OpponentHero) && Enum.TryParse(game.OpponentHero, out heroClass))
-				ComboBoxOpponent.SelectedItem = HeroClassConverter.convert(heroClass);
-			ComboBoxMode.SelectedItem = GameModeConverter.convert(game.GameMode);
-			ComboBoxFormat.SelectedItem = FormatConvert.convert_(game.Format);
-			ComboBoxRegion.SelectedItem = RegionConvert.convert(game.Region);
+				ComboBoxOpponent.SelectedItem = heroClass;
+			ComboBoxMode.SelectedItem = game.GameMode;
+			ComboBoxFormat.SelectedItem = game.Format;
+			ComboBoxRegion.SelectedItem = game.Region;
 			if(game.GameMode == Ranked)
 			{
 				TextBoxRank.Text = game.Rank.ToString();
@@ -105,8 +113,8 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 			TextBoxNote.Text = game.Note;
 			TextBoxOppName.Text = game.OpponentName;
 			TextBoxPlayerName.Text = game.PlayerName;
-			BtnSave.Content = "保存";
-			Title = "编辑游戏";
+			BtnSave.Content = LocUtil.Get(LocSaveGame);
+			Title = LocUtil.Get(LocEditTitle);
 		}
 
 		private void BtnSave_OnClick(object sender, RoutedEventArgs e)
@@ -130,9 +138,9 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 					_game.PlayerHero = _deck.Class;
 					_game.PlayerDeckVersion = _deck.SelectedVersion;
 				}
-				_game.Result = GameResultConvert.convert((string)ComboBoxResult.SelectedItem);
-				_game.GameMode = GameModeConverter.convert((string)ComboBoxMode.SelectedItem);
-				_game.OpponentHero = AllanAdd.MyUtils.translateClass2EN(((string)ComboBoxOpponent.SelectedValue));
+				_game.Result = (GameResult)ComboBoxResult.SelectedItem;
+				_game.GameMode = (GameMode)ComboBoxMode.SelectedItem;
+				_game.OpponentHero = ComboBoxOpponent.SelectedValue.ToString();
 				_game.Coin = (YesNo)ComboBoxCoin.SelectedValue == Yes;
 				_game.Rank = rank;
 				_game.LegendRank = legendRank;
@@ -141,9 +149,10 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls
 				_game.PlayerName = TextBoxPlayerName.Text;
 				_game.Turns = turns;
 				_game.WasConceded = (YesNo)ComboBoxConceded.SelectedValue == Yes;
-				_game.Region = RegionConvert.convert((string)ComboBoxRegion.SelectedItem);
+				_game.Region = (Region)ComboBoxRegion.SelectedItem;
+				_game.HearthstoneBuild = Helper.GetHearthstoneBuild();
 				if(_game.GameMode == Casual || _game.GameMode == Ranked)
-					_game.Format = FormatConvert.convert_((string)ComboBoxFormat.SelectedItem);
+					_game.Format = (Format)ComboBoxFormat.SelectedItem;
 				_tcs.SetResult(_game);
 			}
 			catch(Exception ex)

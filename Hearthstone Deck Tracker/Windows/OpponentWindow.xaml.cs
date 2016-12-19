@@ -1,4 +1,4 @@
-﻿#region
+#region
 
 using System;
 using System.Collections.Generic;
@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Hearthstone_Deck_Tracker.Annotations;
 using Hearthstone_Deck_Tracker.Enums;
 using Hearthstone_Deck_Tracker.Hearthstone;
+using Hearthstone_Deck_Tracker.Utility;
 using Point = System.Drawing.Point;
 using Panel = System.Windows.Controls.Panel;
 
@@ -23,6 +24,7 @@ namespace Hearthstone_Deck_Tracker
 	/// </summary>
 	public partial class OpponentWindow : INotifyPropertyChanged
 	{
+		private const string LocFatigue = "Overlay_DeckList_Label_Fatigue";
 		private readonly GameV2 _game;
 		private bool _appIsClosing;
 
@@ -73,30 +75,30 @@ namespace Hearthstone_Deck_Tracker
 				var lossesVs = selectedDeck.GetRelevantGames().Count(g => g.Result == GameResult.Loss && g.OpponentHero == _game.Opponent.Class);
 				var percent = (winsVs + lossesVs) > 0
 					              ? Math.Round(winsVs * 100.0 / (winsVs + lossesVs), 0).ToString(CultureInfo.InvariantCulture) : "-";
-				LblWinRateAgainst.Text = $"VS {AllanAdd.MyUtils.translateClass2CN(_game.Opponent.Class)}: {winsVs}-{lossesVs} ({percent}%)";
+				LblWinRateAgainst.Text = $"VS {_game.Opponent.Class}: {winsVs}-{lossesVs} ({percent}%)";
 			}
 		}
 
-        public void UpdateOpponentLayout()
+		public void UpdateOpponentLayout()
 		{
 			StackPanelMain.Children.Clear();
-			foreach(var item in Config.Instance.PanelOrderOpponent)
+			foreach(var item in Config.Instance.DeckPanelOrderOpponent)
 			{
 				switch(item)
 				{
-					case "卡牌":
+					case DeckPanel.Cards:
 						StackPanelMain.Children.Add(ViewBoxOpponent);
 						break;
-					case "抽牌几率":
+					case DeckPanel.DrawChances:
 						StackPanelMain.Children.Add(CanvasOpponentChance);
 						break;
-					case "卡牌计数器":
+					case DeckPanel.CardCounter:
 						StackPanelMain.Children.Add(CanvasOpponentCount);
 						break;
-					case "疲劳计数器":
+					case DeckPanel.Fatigue:
 						StackPanelMain.Children.Add(LblOpponentFatigue);
 						break;
-					case "胜率":
+					case DeckPanel.Winrate:
 						StackPanelMain.Children.Add(LblWinRateAgainst);
 						break;
 				}
@@ -111,7 +113,7 @@ namespace Hearthstone_Deck_Tracker
 
 			if(cardsLeftInDeck <= 0)
 			{
-				LblOpponentFatigue.Text = "下一抽疲劳: " + (_game.Opponent.Fatigue + 1);
+				LblOpponentFatigue.Text = LocUtil.Get(LocFatigue) + " " + (_game.Opponent.Fatigue + 1);
 
 				LblOpponentDrawChance2.Text = "0%";
 				LblOpponentDrawChance1.Text = "0%";

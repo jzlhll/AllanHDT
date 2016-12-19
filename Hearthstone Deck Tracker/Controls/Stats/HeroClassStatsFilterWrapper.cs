@@ -10,13 +10,11 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats
 		public HeroClassStatsFilterWrapper(HeroClassStatsFilter heroClass)
 		{
 			HeroClass = heroClass;
-            CNHeroClass = HeroClassStatsFilterConverter.convert(heroClass);
-        }
+		}
 
 		public HeroClassStatsFilter HeroClass { get; }
-        public string CNHeroClass { get; }
 
-        public BitmapImage ClassImage => ImageCache.GetClassIcon(HeroClass.ToString());
+		public BitmapImage ClassImage => ImageCache.GetClassIcon(HeroClass.ToString());
 
 		public Visibility ImageVisibility => HeroClass == HeroClassStatsFilter.All ? Visibility.Collapsed : Visibility.Visible;
 

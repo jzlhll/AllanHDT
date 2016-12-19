@@ -1,9 +1,10 @@
-ï»¿#region
+#region
 
 using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using Hearthstone_Deck_Tracker.API;
 using Hearthstone_Deck_Tracker.Hearthstone;
@@ -33,14 +34,14 @@ namespace Hearthstone_Deck_Tracker.Windows
 			if(!decks.Any())
 				return;
 
-			var settings = new MessageDialogs.Settings {AffirmativeButtonText = "æ˜¯", NegativeButtonText = "ä¸"};
+			var settings = new MessageDialogs.Settings {AffirmativeButtonText = "ÊÇ", NegativeButtonText = "²»"};
 			var keepStatsInfo = Config.Instance.KeepStatsWhenDeletingDeck
-				                    ? "ç»Ÿè®¡ä¼šè¢«ä¿ç•™ï¼ˆå¯ä»¥è¢«æ”¹å˜åœ¨ã€é€‰é¡¹ã€‘ä¸­ï¼‰"
-				                    : "ç»Ÿè®¡ä¼šè¢«åˆ é™¤(å¯ä»¥è¢«æ”¹å˜åœ¨ã€é€‰é¡¹ä¸­ã€‘)";
+				                    ? "Í³¼Æ»á±»±£Áô£¨¿ÉÒÔ±»¸Ä±äÔÚ¡¾Ñ¡Ïî¡¿ÖĞ£©"
+				                    : "Í³¼Æ»á±»É¾³ı(¿ÉÒÔ±»¸Ä±äÔÚ¡¾Ñ¡ÏîÖĞ¡¿)";
 			var result =
 				await
-				this.ShowMessageAsync("åˆ é™¤ " + (decks.Count == 1 ? decks.First().Name : decks.Count + " å¡ç»„"),
-				                      "ä½ ç¡®å®šå—?\n" + keepStatsInfo, MessageDialogStyle.AffirmativeAndNegative, settings);
+				this.ShowMessageAsync("É¾³ı " + (decks.Count == 1 ? decks.First().Name : decks.Count + " ¿¨×é"),
+				                      "ÄãÈ·¶¨Âğ?\n" + keepStatsInfo, MessageDialogStyle.AffirmativeAndNegative, settings);
 			if(result == MessageDialogResult.Negative)
 				return;
 			DeckManagerEvents.OnDeckDeleted.Execute(decks);
@@ -180,12 +181,12 @@ namespace Hearthstone_Deck_Tracker.Windows
 				return;
 			var cloneStats =
 				(await
-				 this.ShowMessageAsync("å…‹éš†æ¸¸æˆå†å²?", "(å…‹éš†æ¸¸æˆä¸ç®—å¯¹è‹±é›„æˆ–æ•´ä½“ç»Ÿè®¡.)",
+				 this.ShowMessageAsync("¿ËÂ¡ÓÎÏ·ÀúÊ·?", "(¿ËÂ¡ÓÎÏ·²»Ëã¶ÔÓ¢ĞÛ»òÕûÌåÍ³¼Æ.)",
 				                       MessageDialogStyle.AffirmativeAndNegative,
 				                       new MessageDialogs.Settings
 				                       {
-					                       AffirmativeButtonText = "å…‹éš†å†å²",
-					                       NegativeButtonText = "ä¸å…‹éš†å†å²"
+					                       AffirmativeButtonText = "¿ËÂ¡ÀúÊ·",
+					                       NegativeButtonText = "²»¿ËÂ¡ÀúÊ·"
 				                       })) == MessageDialogResult.Affirmative;
 
 			var clone = (Deck)deck.CloneWithNewId(false);
@@ -231,12 +232,12 @@ namespace Hearthstone_Deck_Tracker.Windows
 
 			var cloneStats =
 				(await
-				 this.ShowMessageAsync("å…‹éš†æ¸¸æˆå†å²?", "(å…‹éš†æ¸¸æˆä¸ç®—å¯¹è‹±é›„æˆ–æ•´ä½“ç»Ÿè®¡.)",
+				 this.ShowMessageAsync("¿ËÂ¡ÓÎÏ·ÀúÊ·?", "(¿ËÂ¡ÓÎÏ·²»Ëã¶ÔÓ¢ĞÛ»òÕûÌåÍ³¼Æ.)",
 				                       MessageDialogStyle.AffirmativeAndNegative,
 				                       new MessageDialogs.Settings
 				                       {
-					                       AffirmativeButtonText = "å…‹éš†å†å²",
-					                       NegativeButtonText = "ä¸å…‹éš†"
+					                       AffirmativeButtonText = "¿ËÂ¡ÀúÊ·",
+					                       NegativeButtonText = "²»¿ËÂ¡"
 				                       })) == MessageDialogResult.Affirmative;
 
 			var clone = (Deck)deck.CloneWithNewId(false);
@@ -280,6 +281,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			TagControlEdit.SetSelectedTags(DeckPickerList.SelectedDecks);
 		}
 
+		//allan add
         internal void BtnVersions_Click(object sender, RoutedEventArgs e) {
             FlyoutMyDecksRmVersions.IsOpen = true;
             RmVersionControlEdit.loadCurrentVersions();
@@ -301,13 +303,13 @@ namespace Hearthstone_Deck_Tracker.Windows
 			var deck = await DeckImporter.Import(selectedDeck.Url);
 			if(deck == null)
 			{
-				await this.ShowMessageAsync("é”™è¯¯", "ä¸èƒ½åŠ è½½å¡ç»„ä»url.");
+				await this.ShowMessageAsync("´íÎó", "²»ÄÜ¼ÓÔØ¿¨×é´Óurl.");
 				return;
 			}
 			//this could be expanded to check against the last version of the deck that was not modified after downloading
 			if(deck.Cards.All(c1 => selectedDeck.GetSelectedDeckVersion().Cards.Any(c2 => c1.Name == c2.Name && c1.Count == c2.Count)))
 			{
-				await this.ShowMessageAsync("å·²ç»æœ€æ–°", "æ²¡æœ‰æ›´æ–°å¯ä»¥æ‰¾åˆ°.");
+				await this.ShowMessageAsync("ÒÑ¾­×îĞÂ", "Ã»ÓĞ¸üĞÂ¿ÉÒÔÕÒµ½.");
 				return;
 			}
 
@@ -370,8 +372,8 @@ namespace Hearthstone_Deck_Tracker.Windows
 			var deck = DeckPickerList.SelectedDecks.FirstOrDefault();
 			if(deck == null)
 				return;
-			var settings = new MessageDialogs.Settings {AffirmativeButtonText = "è®¾ç½®", NegativeButtonText = "å–æ¶ˆ", DefaultText = deck.Name};
-			var newName = await this.ShowInputAsync("è®¾ç½®å¡ç»„åå­—", "", settings);
+			var settings = new MessageDialogs.Settings {AffirmativeButtonText = "ÉèÖÃ", NegativeButtonText = "È¡Ïû", DefaultText = deck.Name};
+			var newName = await this.ShowInputAsync("ÉèÖÃ¿¨×éÃû×Ö", "", settings);
 			if(string.IsNullOrEmpty(newName) || deck.Name == newName)
 				return;
 			deck.Name = newName;
@@ -395,6 +397,12 @@ namespace Hearthstone_Deck_Tracker.Windows
 			{
 				MenuItemSave.IsSubmenuOpen = true;
 				MenuItemSave.Focus();
+			}
+			else if(e.Key == Key.V && Keyboard.Modifiers == ModifierKeys.Control)
+			{
+				if(Keyboard.FocusedElement is TextBox)
+					return;
+				ImportFromClipboard();
 			}
 		}
 	}

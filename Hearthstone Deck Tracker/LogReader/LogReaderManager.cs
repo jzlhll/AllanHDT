@@ -19,7 +19,7 @@ namespace Hearthstone_Deck_Tracker.LogReader
 {
 	public class LogReaderManager
 	{
-		internal const int UpdateDelay = 500;
+		internal const int UpdateDelay = 200;
 		private static readonly SortedList<DateTime, List<LogLineItem>> ToProcess = new SortedList<DateTime, List<LogLineItem>>();
 		private static readonly List<LogReader> LogReaders = new List<LogReader>();
 		private static readonly PowerHandler PowerLineHandler = new PowerHandler();

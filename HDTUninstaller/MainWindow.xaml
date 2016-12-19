@@ -14,7 +14,7 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="炉石Logging:" Grid.Row="0" Grid.Column="0" Margin="0,0,5,0" VerticalAlignment="Center" FontWeight="SemiBold"/>
+        <TextBlock Text="炉石调试:" Grid.Row="0" Grid.Column="0" Margin="0,0,5,0" VerticalAlignment="Center" FontWeight="SemiBold"/>
         <TextBlock Text="HDT数据:" Grid.Row="1" Grid.Column="0" Margin="0,5" VerticalAlignment="Center" FontWeight="SemiBold"/>
         <TextBlock Text="自动启动项:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" FontWeight="SemiBold"/>
         <Button Content="{Binding TextLogging, RelativeSource={RelativeSource AncestorType=hdtUninstaller:MainWindow}}" Grid.Row="0" Grid.Column="1" Background="{Binding BackgroundLogging, RelativeSource={RelativeSource AncestorType=hdtUninstaller:MainWindow}}" Click="ButtonLogging_Click" FontWeight="SemiBold"/>

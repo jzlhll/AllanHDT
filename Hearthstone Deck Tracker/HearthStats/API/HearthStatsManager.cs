@@ -439,7 +439,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 						if(controller == null || !controller.IsOpen)
 							controller = await Core.MainWindow.ShowProgressAsync("同步中...", "检查编辑过的卡组...");
 						else
-							controller.SetMessage("检查已经改变过的卡组...");
+							controller.SetMessage("检查已编辑的卡组...");
 					}
 					Log.Info("Checking for edited decks...");
 					var editedDecks =
@@ -595,7 +595,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 					DeckList.Save();
 				}
 				if(!background)
-					controller.SetMessage("检查本地改动过的卡组...");
+					controller.SetMessage("检查本地编辑后的卡组...");
 				Log.Info("Checking for edited local decks...");
 
 				var editedLocalDecks =
@@ -617,7 +617,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.API
 				}
 
 				if(!background)
-					controller.SetMessage("检查新的本地的对战...");
+					controller.SetMessage("检查新的本地对战...");
 				Log.Info("Checking for new local matches...");
 
 				var newMatches =

@@ -23,7 +23,7 @@ namespace HDTUpdate
             Console.CursorVisible = false;
             if (args.Length < 2)
             {
-                Console.WriteLine("更新不是点击该程序！运行HDT汉化高级版.exe，如果有更新会提示。");
+                Console.WriteLine("更新不是点击该程序！运行主exe，如果有更新会提示。");
                 Console.ReadLine();
                 return;
             }
@@ -181,7 +181,7 @@ namespace HDTUpdate
 
             try
             {
-                Process.Start("HDT汉化高级版.exe");
+                Process.Start("Hearthstone Deck Tracker.exe");
             }
             catch (Exception e)
             {

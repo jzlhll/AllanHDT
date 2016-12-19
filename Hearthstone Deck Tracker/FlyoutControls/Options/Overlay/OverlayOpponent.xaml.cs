@@ -84,33 +84,33 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 			CheckBoxAttack.IsChecked = !Config.Instance.HideOpponentAttackIcon;
 			ComboBoxCthun.ItemsSource = Enum.GetValues(typeof(DisplayMode)).Cast<DisplayMode>();
 			ComboBoxCthun.SelectedItem = Config.Instance.OpponentCthunCounter;
-			ComboBoxSpells.ItemsSource = new[] {DisplayMode.一直, DisplayMode.从不};
+			ComboBoxSpells.ItemsSource = new[] {DisplayMode.Always, DisplayMode.Never};
 			ComboBoxSpells.SelectedItem = Config.Instance.OpponentSpellsCounter;
 
 			ElementSorterOpponent.IsPlayer = false;
-			foreach(var itemName in Config.Instance.PanelOrderOpponent)
+			foreach(var panel in Config.Instance.DeckPanelOrderOpponent)
 			{
-				switch(itemName)
+				switch(panel)
 				{
-					case "卡牌":
-						ElementSorterOpponent.AddItem(new ElementSorterItem("卡牌", !Config.Instance.HideOpponentCards,
-						                                                    value => Config.Instance.HideOpponentCards = !value, false));
+					case Enums.DeckPanel.Winrate:
+						ElementSorterOpponent.AddItem(new ElementSorterItem(panel, Config.Instance.ShowWinRateAgainst,
+																			value => Config.Instance.ShowWinRateAgainst = value, false));
 						break;
-					case "卡牌计数器":
-						ElementSorterOpponent.AddItem(new ElementSorterItem("卡牌计数器", !Config.Instance.HideOpponentCardCount,
-						                                                    value => Config.Instance.HideOpponentCardCount = !value, false));
+					case Enums.DeckPanel.Cards:
+						ElementSorterOpponent.AddItem(new ElementSorterItem(panel, !Config.Instance.HideOpponentCards,
+																			value => Config.Instance.HideOpponentCards = !value, false));
 						break;
-					case "疲劳计数器":
-						ElementSorterOpponent.AddItem(new ElementSorterItem("疲劳计数器", !Config.Instance.HideOpponentFatigueCount,
-						                                                    value => Config.Instance.HideOpponentFatigueCount = !value, false));
+					case Enums.DeckPanel.CardCounter:
+						ElementSorterOpponent.AddItem(new ElementSorterItem(panel, !Config.Instance.HideOpponentCardCount,
+																			value => Config.Instance.HideOpponentCardCount = !value, false));
 						break;
-					case "抽牌几率":
-						ElementSorterOpponent.AddItem(new ElementSorterItem("抽牌几率", !Config.Instance.HideOpponentDrawChances,
-						                                                    value => Config.Instance.HideOpponentDrawChances = !value, false));
+					case Enums.DeckPanel.DrawChances:
+						ElementSorterOpponent.AddItem(new ElementSorterItem(panel, !Config.Instance.HideOpponentDrawChances,
+																			value => Config.Instance.HideOpponentDrawChances = !value, false));
 						break;
-					case "胜率":
-						ElementSorterOpponent.AddItem(new ElementSorterItem("胜率", Config.Instance.ShowWinRateAgainst,
-						                                                    value => Config.Instance.ShowWinRateAgainst = value, false));
+					case Enums.DeckPanel.Fatigue:
+						ElementSorterOpponent.AddItem(new ElementSorterItem(panel, !Config.Instance.HideOpponentFatigueCount,
+																			value => Config.Instance.HideOpponentFatigueCount = !value, false));
 						break;
 				}
 			}

@@ -35,7 +35,7 @@ namespace Hearthstone_Deck_Tracker.Importing.Websites
 						deck.Class = card.PlayerClass;
 				}
 				if(DeckList.Instance.AllTags.Contains("Arena") || DeckList.Instance.AllTags.Contains("竞技场"))
-					deck.Tags.Add("竞技场");
+					deck.Tags.Add("Arena");
 				deck.Name = Helper.ParseDeckNameTemplate(Config.Instance.ArenaDeckNameTemplate, deck);
 				return deck;
 			}

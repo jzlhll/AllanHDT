@@ -35,10 +35,10 @@ namespace Hearthstone_Deck_Tracker
 				Icon = new Icon(@"Images/HearthstoneDeckTracker16.ico"),
 				Visible = true,
 				ContextMenu = new ContextMenu(),
-				Text = "HDT汉化版 v" + (Helper.GetAllanCurrentVersion() ?? new Version("0.0")).ToVersionString()
+				Text = "HDT高级版 v" + (Helper.GetCurrentVersion() ?? new Version("0.0")).ToVersionString()
 			};
 
-			var startHearthstonMenuItem = new MenuItem("打开launcher/炉石", (sender, args) => Helper.StartHearthstoneAsync().Forget())
+			var startHearthstonMenuItem = new MenuItem("开启Launcher/炉石", (sender, args) => Helper.StartHearthstoneAsync().Forget())
 			{
 				Name = StartHearthstoneMenuItemName
 			};
@@ -98,7 +98,7 @@ namespace Hearthstone_Deck_Tracker
 		private void SortClassCardsFirstContextMenu()
 			=> Core.MainWindow.SortClassCardsFirst(!(bool)GetContextMenuProperty(ClassCardsFirstMenuItemName, CheckedProperty));
 
-		public void ShowMessage(string text, string title = "HDT汉化版", int duration = 5, ToolTipIcon icon = ToolTipIcon.Info)
+		public void ShowMessage(string text, string title = "HDT高级版", int duration = 5, ToolTipIcon icon = ToolTipIcon.Info)
 			=> _notifyIcon.ShowBalloonTip(duration, title, text, icon);
 	}
 }

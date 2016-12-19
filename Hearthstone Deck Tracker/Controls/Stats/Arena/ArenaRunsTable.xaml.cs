@@ -1,4 +1,4 @@
-﻿#region
+#region
 
 using System.Collections.Generic;
 using System.Windows;
@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using Hearthstone_Deck_Tracker.HearthStats.API;
+using Hearthstone_Deck_Tracker.HsReplay;
 using Hearthstone_Deck_Tracker.Replay;
 using Hearthstone_Deck_Tracker.Stats;
 using Hearthstone_Deck_Tracker.Stats.CompiledStats;
@@ -99,12 +100,11 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats.Arena
 			ArenaStats.Instance.UpdateArenaStats();
 		}
 
-		private void ButtonShowReplay_OnClick(object sender, RoutedEventArgs e)
+		private async void ButtonShowReplay_OnClick(object sender, RoutedEventArgs e)
 		{
-			if(SelectedGame == null)
-				return;
-			if(SelectedGame.HasReplayFile)
-				ReplayReader.LaunchReplayViewer(SelectedGame.ReplayFile);
+			var game = SelectedGame;
+			await ReplayLauncher.ShowReplay(game, true);
+			game.UpdateReplayState();
 		}
 
 		private void ButtonShowOppDeck_OnClick(object sender, RoutedEventArgs e)
@@ -119,7 +119,6 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats.Arena
 			else
 			{
 				Core.MainWindow.DeckFlyout.SetDeck(SelectedGame.OpponentCards);
-                Core.MainWindow.FlyoutDeck.Header = "对手";
 				Core.MainWindow.FlyoutDeck.IsOpen = true;
 			}
 		}

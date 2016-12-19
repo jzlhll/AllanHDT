@@ -82,8 +82,9 @@
                                     </StackPanel>
                                 </Button.Content>
                             </Button>
-                            <Button Name="ButtonShowGithub" Content="在GitHub显示releases" Margin="10,0,10,0" Width="160" Height="30" Click="ButtonShowGithub_OnClick" Style="{DynamicResource SquareButtonStyle}"/>
-                            <Button Name="ButtonClose" Content="关闭" Width="160" Height="30" Style="{DynamicResource SquareButtonStyle}" Click="ButtonClose_Click"/>
+                            <Button Name="ButtonClose" Width="160" Height="30"  Margin="10,0,0,0" Style="{DynamicResource SquareButtonStyle}" Click="ButtonClose_Click">
+                                <TextBlock Text="关闭"/>
+                            </Button>
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>

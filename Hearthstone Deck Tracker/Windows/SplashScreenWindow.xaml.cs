@@ -1,10 +1,11 @@
-ï»¿using System.ComponentModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using Hearthstone_Deck_Tracker.Annotations;
+using Hearthstone_Deck_Tracker.Utility;
 using Hearthstone_Deck_Tracker.Utility.Extensions;
 using Hearthstone_Deck_Tracker.Utility.Logging;
 
@@ -12,8 +13,13 @@ namespace Hearthstone_Deck_Tracker.Windows
 {
 	public partial class SplashScreenWindow : INotifyPropertyChanged
 	{
-		private string _loadingString = "åŠ è½½ä¸­...";
-		private string _versionString = Helper.GetAllanCurrentVersion().ToVersionString();
+		private const string LocLoading = "SplashScreen_Text_Loading";
+		private const string LocUpdating = "SplashScreen_Text_Updating";
+		private const string LocInstalling = "SplashScreen_Text_Installing";
+		private readonly string _updating = LocUtil.Get(LocUpdating);
+		private readonly string _installing = LocUtil.Get(LocInstalling);
+		private string _loadingString = LocUtil.Get(LocLoading);
+		private string _versionString = Helper.GetCurrentVersion().ToVersionString();
 		private Visibility _skipVisibility = Visibility.Collapsed;
 		private SolidColorBrush _skipBackground = new SolidColorBrush(Colors.White);
 
@@ -81,7 +87,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 		{
 			if(SkipUpdate)
 				return;
-			LoadingString = "æ›´æ–°ä¸­...";
+			LoadingString = "¸üÐÂÖÐ...";
 			VersionString = percentage + "%";
 		}
 
@@ -89,7 +95,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 		{
 			if(SkipUpdate)
 				return;
-			LoadingString = "å®‰è£…ä¸­...";
+			LoadingString = "°²×°ÖÐ...";
 			VersionString = percentage + "%";
 		}
 

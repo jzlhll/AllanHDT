@@ -71,33 +71,33 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Overlay
 			ComboBoxSpells.SelectedItem = Config.Instance.PlayerSpellsCounter;
 
 			ElementSorterPlayer.IsPlayer = true;
-			foreach(var itemName in Config.Instance.PanelOrderPlayer)
+			foreach(var panel in Config.Instance.DeckPanelOrderPlayer)
 			{
-				switch(itemName)
+				switch(panel)
 				{
-					case "卡组名字":
-						ElementSorterPlayer.AddItem(new ElementSorterItem("卡组名字", Config.Instance.ShowDeckTitle,
-						                                                  value => Config.Instance.ShowDeckTitle = value, true));
+					case Enums.DeckPanel.Cards:
+						ElementSorterPlayer.AddItem(new ElementSorterItem(panel, !Config.Instance.HidePlayerCards,
+																		  value => Config.Instance.HidePlayerCards = !value, true));
 						break;
-					case "卡牌":
-						ElementSorterPlayer.AddItem(new ElementSorterItem("卡牌", !Config.Instance.HidePlayerCards,
-						                                                  value => Config.Instance.HidePlayerCards = !value, true));
+					case Enums.DeckPanel.CardCounter:
+						ElementSorterPlayer.AddItem(new ElementSorterItem(panel, !Config.Instance.HidePlayerCardCount,
+																		  value => Config.Instance.HidePlayerCardCount = !value, true));
 						break;
-					case "卡牌计数器":
-						ElementSorterPlayer.AddItem(new ElementSorterItem("卡牌计数器", !Config.Instance.HidePlayerCardCount,
-						                                                  value => Config.Instance.HidePlayerCardCount = !value, true));
+					case Enums.DeckPanel.DrawChances:
+						ElementSorterPlayer.AddItem(new ElementSorterItem(panel, !Config.Instance.HideDrawChances,
+																		  value => Config.Instance.HideDrawChances = !value, true));
 						break;
-					case "疲劳计数器":
-						ElementSorterPlayer.AddItem(new ElementSorterItem("疲劳计数器", !Config.Instance.HidePlayerFatigueCount,
-						                                                  value => Config.Instance.HidePlayerFatigueCount = !value, true));
+					case Enums.DeckPanel.Fatigue:
+						ElementSorterPlayer.AddItem(new ElementSorterItem(panel, !Config.Instance.HidePlayerFatigueCount,
+																		  value => Config.Instance.HidePlayerFatigueCount = !value, true));
 						break;
-					case "抽牌几率":
-						ElementSorterPlayer.AddItem(new ElementSorterItem("抽牌几率", !Config.Instance.HideDrawChances,
-						                                                  value => Config.Instance.HideDrawChances = !value, true));
+					case Enums.DeckPanel.DeckTitle:
+						ElementSorterPlayer.AddItem(new ElementSorterItem(panel, Config.Instance.ShowDeckTitle,
+																		  value => Config.Instance.ShowDeckTitle = value, true));
 						break;
-					case "胜场":
-						ElementSorterPlayer.AddItem(new ElementSorterItem("胜场", Config.Instance.ShowDeckWins,
-						                                                  value => Config.Instance.ShowDeckWins = value, true));
+					case Enums.DeckPanel.Wins:
+						ElementSorterPlayer.AddItem(new ElementSorterItem(panel, Config.Instance.ShowDeckWins,
+																		  value => Config.Instance.ShowDeckWins = value, true));
 						break;
 				}
 			}

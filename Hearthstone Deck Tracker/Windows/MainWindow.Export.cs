@@ -33,7 +33,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 			ExportDeck(deck);
 		}
 
-        private async void ExportDeck(Deck deck)
+		private async void ExportDeck(Deck deck)
 		{
 			if(Config.Instance.ShowExportingDialog)
 			{
@@ -219,8 +219,9 @@ namespace Hearthstone_Deck_Tracker.Windows
 			var deck = DeckPickerList.SelectedDecks.FirstOrDefault();
 			if(deck == null)
 				return;
-			Clipboard.SetText(Helper.DeckToIdString(deck.GetSelectedDeckVersion()));
-			this.ShowMessage("", "拷贝id字串到剪贴板").Forget();
+			//Clipboard.SetText(Helper.DeckToIdString(deck.GetSelectedDeckVersion()));
+            Clipboard.SetDataObject(Helper.DeckToIdString(deck.GetSelectedDeckVersion()));
+            this.ShowMessage("", "拷贝id字串到剪贴板").Forget();
 			Log.Info("Copied " + deck.GetSelectedDeckVersion().GetDeckInfo() + " to clipboard");
 		}
 
@@ -249,8 +250,9 @@ namespace Hearthstone_Deck_Tracker.Windows
 					    .Cards.ToSortedCardList()
 					    .Select(c => (english ? c.Name : c.LocalizedName) + (c.Count > 1 ? " x " + c.Count : ""))
 					    .Aggregate((c, n) => c + Environment.NewLine + n);
-				Clipboard.SetText(names);
-				this.ShowMessage("", "拷贝名字到剪贴板").Forget();
+                //Clipboard.SetText(names);
+                Clipboard.SetDataObject(names);
+                this.ShowMessage("", "拷贝名字到剪贴板").Forget();
 				Log.Info("Copied " + deck.GetDeckInfo() + " names to clipboard");
 			}
 			catch(Exception ex)

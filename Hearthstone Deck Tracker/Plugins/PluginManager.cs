@@ -15,7 +15,7 @@ namespace Hearthstone_Deck_Tracker.Plugins
 	internal class PluginManager
 	{
 		private const string DefaultPath = "Plugins";
-		private const string NoticeFileName = "查看我.txt";
+		private const string NoticeFileName = "READ THIS.txt";
 		private const string TriggerTypeName = "MergedTrigger";
 		private static PluginManager _instance;
 		private bool _update;
@@ -62,25 +62,20 @@ namespace Hearthstone_Deck_Tracker.Plugins
 			{
 				using(var sw = new StreamWriter(file))
 				{
-					sw.WriteLine("插件安装在这个目录会被干掉!");
+					sw.WriteLine("PLUGINS INSTALLED TO THIS DIRECTORY WILL BE REMOVED!");
 					sw.WriteLine("");
-                    sw.WriteLine("目前Allan已经整合自己安装好了，竞技场插件，卡牌收集插件和亡者归来插件，这三个不用单独下载.");
-                    sw.WriteLine("其他插件请按照如下：");
-                    sw.WriteLine("请安装你的插件到'%AppData%/HearthstoneDeckTracker'.");
-                    sw.WriteLine("[选项] > [跟踪] > [插件] > [插件文件夹] 会帮你打开这个目录.");
-                    sw.WriteLine("dll如果还是不行，需要检查下dll右键解除锁定");
-                }
+					sw.WriteLine("Please install your new plugins to '%AppData%/HearthstoneDeckTracker'.");
+					sw.WriteLine("'options > tracker > plugins > plugins folder' will open that directory for you.");
+				}
 			}
 			catch(Exception ex)
 			{
 				Log.Error(ex);
 			}
 		}
-        
-        //SyncPlugins(PluginDirectory, LocalPluginDirectory, LocalPluginDirectory);
-        private void SyncPlugins(DirectoryInfo sourceDir, DirectoryInfo destDir, DirectoryInfo baseDir)
+
+		private void SyncPlugins(DirectoryInfo sourceDir, DirectoryInfo destDir, DirectoryInfo baseDir)
 		{
-            Log.Debug("syncPlguins sourceDir " + sourceDir + " destDir " + destDir + " baseDir " + baseDir);
 			if(!sourceDir.Exists)
 				return;
 			if(!destDir.Exists)
@@ -258,7 +253,13 @@ namespace Hearthstone_Deck_Tracker.Plugins
 				var settings = XmlManager<List<PluginSettings>>.Load(PluginSettingsFile);
 				foreach(var setting in settings)
 				{
-					var plugin = Plugins.FirstOrDefault(x => x.FileName == setting.FileName && x.Name == setting.Name);
+					var path = setting.FileName;
+					if(Uri.IsWellFormedUriString(path, UriKind.Absolute))
+					{
+						var uri = new Uri(path, UriKind.Absolute);
+						path = string.Join("", uri.Segments.SkipWhile(x => x != "Plugins/"));
+					}
+					var plugin = Plugins.FirstOrDefault(x => x.RelativeFilePath == path && x.Name == setting.Name);
 					if(plugin != null)
 						plugin.IsEnabled = setting.IsEnabled;
 				}

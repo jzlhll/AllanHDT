@@ -135,14 +135,12 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(true)]
 		public bool DeckPickerCaps = true;
 
-		[DefaultValue(true)]
-		public bool AutoSelectDetectedDeck = true;
 
-		[DefaultValue("竞技场 {Date dd-MM hh:mm}")]
-		public string ArenaDeckNameTemplate = "竞技场 {Date dd-MM hh:mm}";
+		[DefaultValue("Arena {Date dd-MM hh:mm}")]
+		public string ArenaDeckNameTemplate = "Arena {Date dd-MM hh:mm}";
 
-		[DefaultValue("乱斗 {Date dd-MM hh:mm}")]
-		public string BrawlDeckNameTemplate = "乱斗 {Date dd-MM hh:mm}";
+		[DefaultValue("Brawl {Date dd-MM hh:mm}")]
+		public string BrawlDeckNameTemplate = "Brawl {Date dd-MM hh:mm}";
 
 		[DefaultValue(false)]
 		public bool BringHsToForeground = false;
@@ -284,6 +282,8 @@ namespace Hearthstone_Deck_Tracker
 
 		[DefaultValue(false)]
 		public bool DiscardZeroTurnGame = false;
+		[DefaultValue(true)]
+		public bool DisplayHsReplayNoteLive = true;
 
 		[DefaultValue(GameMode.All)]
 		public GameMode DisplayedMode = GameMode.All;
@@ -369,7 +369,7 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(true)]
 		public bool ExportSetDeckName = true;
 
-		[DefaultValue(1)]
+		[DefaultValue(5)]
 		public int ExportStartDelay = 5;
 
 		[DefaultValue(true)]
@@ -388,10 +388,10 @@ namespace Hearthstone_Deck_Tracker
 		public bool FlashHsOnTurnStart = true;
 
 		[DefaultValue(false)]
-		public bool ForceMouseHook = false;
+		public bool ForceLocalReplayViewer = false;
 
 		[DefaultValue(false)]
-		public bool GameResultNotificationsUnexpectedOnly = false;
+		public bool ForceMouseHook = false;
 
 		[DefaultValue(0.075)]
 		public double GoldProgessX = 0.76;
@@ -460,7 +460,7 @@ namespace Hearthstone_Deck_Tracker
 		public bool HideDrawChances = true;
 
 		[DefaultValue(false)]
-		public bool HideInBackground = true;
+		public bool HideInBackground = false;
 
 		[DefaultValue(true)]
 		public bool HideInMenu = true;
@@ -468,11 +468,11 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(false)]
 		public bool HideOpponentAttackIcon = false;
 
-		[DefaultValue(DisplayMode.自动)]
-		public DisplayMode OpponentCthunCounter = DisplayMode.自动;
+		[DefaultValue(DisplayMode.Auto)]
+		public DisplayMode OpponentCthunCounter = DisplayMode.Auto;
 
-		[DefaultValue(DisplayMode.从不)]
-		public DisplayMode OpponentSpellsCounter = DisplayMode.从不;
+		[DefaultValue(DisplayMode.Never)]
+		public DisplayMode OpponentSpellsCounter = DisplayMode.Never;
 
 		[DefaultValue(false)]
 		public bool HideOpponentCardAge = false;
@@ -495,17 +495,17 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(false)]
 		public bool HideOverlay = false;
 
-		[DefaultValue(false)]
+		[DefaultValue(true)]
 		public bool HideOverlayInSpectator = true;
 
 		[DefaultValue(false)]
 		public bool HidePlayerAttackIcon = false;
 
-		[DefaultValue(DisplayMode.自动)]
-		public DisplayMode PlayerCthunCounter = DisplayMode.自动;
+		[DefaultValue(DisplayMode.Auto)]
+		public DisplayMode PlayerCthunCounter = DisplayMode.Auto;
 
-		[DefaultValue(DisplayMode.自动)]
-		public DisplayMode PlayerSpellsCounter = DisplayMode.自动;
+		[DefaultValue(DisplayMode.Auto)]
+		public DisplayMode PlayerSpellsCounter = DisplayMode.Auto;
 
 		[DefaultValue(false)]
 		public bool HidePlayerCardCount = false;
@@ -530,6 +530,26 @@ namespace Hearthstone_Deck_Tracker
 
 		[DefaultValue(true)]
 		public bool HighlightLastDrawn = true;
+		[DefaultValue(true)]
+		public bool HsReplayAutoUpload = true;
+		[DefaultValue(true)]
+		public bool HsReplayUploadRanked = true;
+		[DefaultValue(true)]
+		public bool HsReplayUploadCasual = true;
+		[DefaultValue(true)]
+		public bool HsReplayUploadArena = true;
+		[DefaultValue(true)]
+		public bool HsReplayUploadBrawl = true;
+		[DefaultValue(true)]
+		public bool HsReplayUploadFriendly = true;
+		[DefaultValue(true)]
+		public bool HsReplayUploadPractice = true;
+		[DefaultValue(true)]
+		public bool HsReplayUploadSpectator = true;
+		[DefaultValue(null)]
+		public bool? HsReplayUploadPacks = null;
+		[DefaultValue("00000000-0000-0000-0000-000000000000")]
+		public string Id = Guid.Empty.ToString();
 
 		[DefaultValue(-1)]
 		public int IgnoreNewsId = -1;
@@ -552,6 +572,8 @@ namespace Hearthstone_Deck_Tracker
 
 		[DefaultValue(LastPlayedDateFormat.DayMonthYear)]
 		public LastPlayedDateFormat LastPlayedDateFormat = LastPlayedDateFormat.DayMonthYear;
+		[DefaultValue(Language.zhCN)]
+		public Language Localization = Language.zhCN;
 
 		[DefaultValue(false)]
 		public bool LogConfigConsolePrinting = false;
@@ -646,11 +668,17 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(false)]
 		public bool OverlaySecretToolTipsOnly = false;
 
-		[DefaultValue(new[] {"胜率", "卡牌", "卡牌计数器", "抽牌几率", "疲劳计数器"})]
-		public string[] PanelOrderOpponent = { "胜率", "卡牌", "卡牌计数器", "抽牌几率", "疲劳计数器" };
+		[DefaultValue(new[] { DeckPanel.Winrate, DeckPanel.Cards, DeckPanel.CardCounter, DeckPanel.DrawChances, DeckPanel.Fatigue })]
+		public DeckPanel[] DeckPanelOrderOpponent = { DeckPanel.Winrate, DeckPanel.Cards, DeckPanel.CardCounter, DeckPanel.DrawChances, DeckPanel.Fatigue };
 
-		[DefaultValue(new[] {"卡组名字", "胜场", "卡牌", "卡牌计数器", "抽牌几率", "疲劳计数器" })]
-		public string[] PanelOrderPlayer = { "卡组名字", "胜场", "卡牌", "卡牌计数器", "抽牌几率", "疲劳计数器" };
+		[DefaultValue(new[] { DeckPanel.DeckTitle, DeckPanel.Wins, DeckPanel.Cards, DeckPanel.CardCounter, DeckPanel.DrawChances, DeckPanel.Fatigue })]
+		public DeckPanel[] DeckPanelOrderPlayer = { DeckPanel.DeckTitle, DeckPanel.Wins, DeckPanel.Cards, DeckPanel.CardCounter, DeckPanel.DrawChances, DeckPanel.Fatigue };
+
+		[DefaultValue(new[] { "Win Rate", "Cards", "Card Counter", "Draw Chances", "Fatigue Counter" })]
+		public string[] PanelOrderOpponent = { "Win Rate", "Cards", "Card Counter", "Draw Chances", "Fatigue Counter" };
+
+		[DefaultValue(new[] { "Deck Title", "Wins", "Cards", "Card Counter", "Draw Chances", "Fatigue Counter" })]
+		public string[] PanelOrderPlayer = { "Deck Title", "Wins", "Cards", "Card Counter", "Draw Chances", "Fatigue Counter" };
 
 		[DefaultValue(88)]
 		public double PlayerDeckHeight = 88;
@@ -683,6 +711,7 @@ namespace Hearthstone_Deck_Tracker
 
         [DefaultValue(null)]
         public string GraveYardWindowLocation = null;
+
         //<!--allan add for graveryard-->
 
         [DefaultValue(null)]
@@ -690,6 +719,8 @@ namespace Hearthstone_Deck_Tracker
 
 		[DefaultValue(true)]
 		public bool PrioritizeGolden = true;
+		[DefaultValue(ImportingChoice.Manual)]
+		public ImportingChoice PasteImportingChoice = ImportingChoice.Manual;
 
 		[DefaultValue(false)]
 		public bool RarityCardFrames = false;
@@ -766,8 +797,6 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(1250)]
 		public int ReplayWindowWidth = 1250;
 
-		[DefaultValue(false)]
-		public bool ReselectLastDeckUsed = false;
 
 		[DefaultValue(15)]
 		public double SecretsLeft = 15;
@@ -788,10 +817,10 @@ namespace Hearthstone_Deck_Tracker
 		public HeroClassAll[] SelectedDeckPickerClasses = {HeroClassAll.All};
 
 		[DefaultValue("Name")]
-		public string SelectedDeckSorting = "名字";
+		public string SelectedDeckSorting = "Name";
 
 		[DefaultValue("Name")]
-		public string SelectedDeckSortingArena = "名字";
+		public string SelectedDeckSortingArena = "Name";
 
 		[DefaultValue(DeckType.All)]
 		public DeckType SelectedDeckPickerDeckType = DeckType.All;
@@ -813,8 +842,8 @@ namespace Hearthstone_Deck_Tracker
 		[XmlArrayItem(ElementName = "Tag")]
 		public List<string> SelectedTags = new List<string>();
 
-		[DefaultValue("主题")]
-		public string SelectedWindowBackground = "主题";
+		[DefaultValue("Theme")]
+		public string SelectedWindowBackground = "Theme";
 
 		[Obsolete]
 		[DefaultValue(false)]
@@ -838,6 +867,8 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(false)]
 		public bool ShowDeckWins = false;
 
+		[DefaultValue(false)]
+		public bool ShowHearthStatsMenu = false;
 		[DefaultValue(true)]
 		public bool ShowExportingDialog = true;
 
@@ -875,13 +906,13 @@ namespace Hearthstone_Deck_Tracker
 		public bool ShowWinRateAgainst = false;
 
 		[DefaultValue(true)]
+		public bool ShowReplayShareToast = true;
+		[DefaultValue(true)]
 		public bool SortDecksByClass = true;
 
 		[DefaultValue(false)]
 		public bool SortDecksByClassArena = false;
 
-		[DefaultValue(false)]
-		public bool SpectatorUseNoDeck = false;
 
 		[DefaultValue(false)]
 		public bool StartMinimized = false;
@@ -1219,6 +1250,11 @@ namespace Hearthstone_Deck_Tracker
 				}
 			}
 #endif
+			if(Instance.Id == Guid.Empty.ToString())
+			{
+				Instance.Id = Guid.NewGuid().ToString();
+				Save();
+			}
 		}
 
 		public void ResetAll()

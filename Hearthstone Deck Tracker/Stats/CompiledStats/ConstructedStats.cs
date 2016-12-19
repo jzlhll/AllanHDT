@@ -82,7 +82,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 						}
 						break;
 					case DisplayedTimeFrame.ThisWeek:
-						filtered = filtered.Where(g => g.StartTime > DateTime.Today.AddDays(-((int)g.StartTime.DayOfWeek + 1)));
+						filtered = filtered.Where(g => g.StartTime > DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + 1));
 						break;
 					case DisplayedTimeFrame.Today:
 						filtered = filtered.Where(g => g.StartTime > DateTime.Today);
@@ -164,7 +164,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 						 .Select(x =>
 								 new ChartStats
 								 {
-									 Name = AllanAdd.MyUtils.translateClass2CN(x.Key) + " (" + Math.Round(100.0 * x.Count() / games.Count) + "%)",
+									 Name = x.Key + " (" + Math.Round(100.0 * x.Count() / games.Count) + "%)",
 									 Value = x.Count(),
 									 Brush = new SolidColorBrush(Helper.GetClassColor(x.Key, true))
 								 });
@@ -219,7 +219,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 						 .Select(g =>
 								 new ChartStats
 								 {
-									 Name = AllanAdd.MyUtils.translateClass2CN(g.Key) + " (" + Math.Round(100.0 * g.Count() / games.Count) + "%)",
+									 Name = g.Key + " (" + Math.Round(100.0 * g.Count() / games.Count) + "%)",
 									 Value = g.Count(),
 									 Brush = new SolidColorBrush(Helper.GetClassColor(g.Key, true))
 								 });
@@ -235,7 +235,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 					.Select(x =>
 							new ChartStats
 							{
-								Name = AllanAdd.MyUtils.translateClass2CN(x.Key),
+								Name = x.Key,
 								Value = Math.Round(100.0 * x.Count(g => g.Result == GameResult.Win) / x.Count(), 1),
 								Brush = new SolidColorBrush(Helper.GetClassColor(x.Key, true))
 							});
@@ -247,7 +247,7 @@ namespace Hearthstone_Deck_Tracker.Stats.CompiledStats
 					.Select(x =>
 							new ChartStats
 							{
-								Name = AllanAdd.MyUtils.translateClass2CN(x.Key),
+								Name = x.Key,
 								Value = Math.Round(100.0 * x.Count(g => g.Result == GameResult.Win) / x.Count(), 1),
 								Brush = new SolidColorBrush(Helper.GetClassColor(x.Key, true))
 							});

@@ -1,13 +1,51 @@
-## __Unreleased__
+## __Release v1.1.4 - 2016-12-04__
+
+__Changes__:
+- Cards created by Jade Idol and White Eyes are now properly tracked.
+
+__Fixes__:
+- Fixed an issue where the secrets list would not disappear after all secrets were triggered.
+- Fixed an issue where importing decks from the game would not work in some cases.
+- Fixed an issue where the "Minimal" card theme would not display any images.
+- Fixed an issue where creating deck screenshots would crash HDT.
+
+
+## __Release v1.1.2 - 2016-11-30__
+
+__Updated for 7.0.0.15590__
+- Known issue: The "Hidden Cache" Hunter secret does not automatically grey out.
+
+__Changes__:
+- You can now paste (ctrl-v) deck urls directly into HDT, rather than having to use the `IMPORT` menu.
+- The installation and update process should be faster now.
+
+__Fixes__:
+- Fixed an issue where games would not be sorted by duration properly.
+
+
+## __Release v1.1.1 - 2016-10-04__
+
+__Updated for 6.1.3.14830__
+
+__Fixes__:
+- Fixed an issue where the deck builder would not work properly with some UI languages.
+- Minor text changes.
+
+
+## __Release v1.1.0 - 2016-09-21__
 
 __New__:
+- Greatly improved replays! More information after the update notes.
+- HDT is now translated into Chinese and Russian.
+  - You can change the language under `options > tracker > appearance`
+  - Other languages are coming soon! If you want to help with translation, there is a link next to the opion.
 - The (Yogg-Saron) counter `Auto` mode now also works for Arcane Giant.
 
 __Fixes__:
 - Fixed an issue where Competitive Spirit would sometimes incorrectly be greyed out.
 - Fixed an issue where Cat Trick was missing from the secrets list.
 - Fixed an issue where card images were missing occasionally in some cases.
-- Fixed a memory leak.
+- Fixed an issue where HDT would crash during exporting or when opening/closing the friendslist.
 
 __Changes__:
 - Made several further improvemets to auto deck importing.

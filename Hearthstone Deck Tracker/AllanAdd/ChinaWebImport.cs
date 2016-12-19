@@ -1,5 +1,6 @@
 ﻿using Hearthstone_Deck_Tracker;
 using System.Diagnostics;
+using Hearthstone_Deck_Tracker.Utility.Logging;
 namespace AllanPlugins
 {
     class ChinaWebImport
@@ -11,6 +12,7 @@ namespace AllanPlugins
         }
         public static bool import(string deckstr, string deckname)
         {
+           Log.Info("deckstr " +deckstr);
             string converted = "";
             string className = "";
             string[] ss;
@@ -97,7 +99,7 @@ namespace AllanPlugins
         private static string[] import178(string deckstr)
         {
             AllanPlugins.AllanConverter converter = new AllanPlugins.AllanConverter();
-            string[] convertedSS = converter.get178ConvertedToEngNames(deckstr);
+            string[] convertedSS = null;// converter.get178ConvertedToEngNames(deckstr);
             if (convertedSS == null)
             {
                 return null;

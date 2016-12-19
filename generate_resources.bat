@@ -1,0 +1,1 @@
+.\ResourceGenerator\bin\x86\Release\ResourceGenerator.exe .\Resources Tiles

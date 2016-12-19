@@ -106,67 +106,20 @@ namespace Hearthstone_Deck_Tracker
 				instance.AllTags.Add("All");
 				save = true;
 			}
-			if(!instance.AllTags.Contains("偏爱"))
+			if(!instance.AllTags.Contains("Favorite"))
 			{
 				if(instance.AllTags.Count > 1)
-					instance.AllTags.Insert(1, "偏爱");
+					instance.AllTags.Insert(1, "Favorite");
 				else
-					instance.AllTags.Add("偏爱");
+					instance.AllTags.Add("Favorite");
 				save = true;
 			}
-            if (!instance.AllTags.Contains("None"))
-            {
-                instance.AllTags.Add("None");
-                save = true;
-            }
-
-            if (!instance.AllTags.Contains("组合"))
-            {
-                instance.AllTags.Add("组合");
-                save = true;
-            }
-            if (!instance.AllTags.Contains("打脸"))
-            {
-                instance.AllTags.Add("打脸");
-                save = true;
-            }
-            if (!instance.AllTags.Contains("疲劳"))
-            {
-                instance.AllTags.Add("疲劳");
-                save = true;
-            }
-            if (!instance.AllTags.Contains("乱斗"))
-            {
-                instance.AllTags.Add("乱斗");
-                save = true;
-            }
-            if (!instance.AllTags.Contains("中速"))
-            {
-                instance.AllTags.Add("中速");
-                save = true;
-            }
-            if (!instance.AllTags.Contains("动物园"))
-            {
-                instance.AllTags.Add("动物园");
-                save = true;
-            }
-            if (!instance.AllTags.Contains("快攻"))
-            {
-                instance.AllTags.Add("快攻");
-                save = true;
-            }
-            if (!instance.AllTags.Contains("控制"))
-            {
-                instance.AllTags.Add("控制");
-                save = true;
-            }
-            if (!instance.AllTags.Contains("节奏"))
-            {
-                instance.AllTags.Add("节奏");
-                save = true;
-            }
-
-            if (save)
+			if(!instance.AllTags.Contains("None"))
+			{
+				instance.AllTags.Add("None");
+				save = true;
+			}
+			if(save)
 				Save(instance);
 
 			instance.LoadActiveDeck();

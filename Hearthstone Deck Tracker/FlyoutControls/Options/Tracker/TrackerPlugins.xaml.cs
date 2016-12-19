@@ -60,7 +60,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 			}
 			Helper.TryOpenUrl(dir.FullName);
 		}
-
+		//<!-- Allan Add -->
         private async void ButtonTryToClean_OnClick(object sender, RoutedEventArgs e)
         {
             

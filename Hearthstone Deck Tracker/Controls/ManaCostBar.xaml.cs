@@ -1,4 +1,4 @@
-﻿#region
+#region
 
 using System;
 using System.Threading.Tasks;
@@ -37,9 +37,9 @@ namespace Hearthstone_Deck_Tracker
 
 		public void SetTooltipValues(int weapons, int spells, int minions)
 		{
-			McbToolTip.TextblockWeapons.Text = "武器: " + weapons;
-			McbToolTip.TextblockSpells.Text = "法术: " + spells;
-			McbToolTip.TextblockMinions.Text = "随从: " + minions;
+			McbToolTip.TextBlockWeaponsCount.Text = weapons.ToString();
+			McbToolTip.TextBlockSpellsCount.Text = spells.ToString();
+			McbToolTip.TextBlockMinionsCount.Text = minions.ToString();
 		}
 
 		public void SetValues(double weapons, double spells, double minions, int count)

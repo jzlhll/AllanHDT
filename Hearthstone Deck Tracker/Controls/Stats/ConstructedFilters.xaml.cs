@@ -30,36 +30,28 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats
 			InitializeComponent();
 			ComboBoxTimeframe.ItemsSource = Enum.GetValues(typeof(DisplayedTimeFrame));
 			ComboBoxTimeframe.SelectedItem = Config.Instance.ConstructedStatsTimeFrameFilter;
-			ComboBoxClass.ItemsSource = 
-                Enum.GetValues(typeof(HeroClassStatsFilter)).Cast<HeroClassStatsFilter>().Select(x => new HeroClassStatsFilterWrapper(x));
-            
+			ComboBoxClass.ItemsSource =
+				Enum.GetValues(typeof(HeroClassStatsFilter)).Cast<HeroClassStatsFilter>().Select(x => new HeroClassStatsFilterWrapper(x));
 			ComboBoxClass.SelectedItem = new HeroClassStatsFilterWrapper(Config.Instance.ConstructedStatsClassFilter);
 			ComboBoxRegion.ItemsSource = Enum.GetValues(typeof(RegionAll));
 			ComboBoxRegion.SelectedItem = Config.Instance.ConstructedStatsRegionFilter;
 			ComboBoxMode.ItemsSource = new[]
 			{
-                "全部",
-                "天梯",
-                "休闲",
-                "乱斗",
-                "友谊",
-                "练习",
-                "观众"
-				//GameMode.All,
-				//GameMode.Ranked,
-				//GameMode.Casual,
-				//GameMode.Brawl,
-				//GameMode.Friendly,
-				//GameMode.Practice,
-				//GameMode.Spectator
+				GameMode.All,
+				GameMode.Ranked,
+				GameMode.Casual,
+				GameMode.Brawl,
+				GameMode.Friendly,
+				GameMode.Practice,
+				GameMode.Spectator
 			};
-			ComboBoxMode.SelectedItem = GameModeConverter.convert(Config.Instance.ConstructedStatsModeFilter);
+			ComboBoxMode.SelectedItem = Config.Instance.ConstructedStatsModeFilter;
 			ComboBoxFormat.ItemsSource = Enum.GetValues(typeof(Format));
 			ComboBoxFormat.SelectedItem = Config.Instance.ConstructedStatsFormatFilter;
-            ComboBoxCoin.ItemsSource = new[] { "全部", "是", "否"};//Enum.GetValues(typeof(AllYesNo));
-			ComboBoxCoin.SelectedItem = AllYesNoConverter.convert(Config.Instance.ConstructedStatsCoinFilter);
-			ComboBoxResult.ItemsSource = new[] { "全部", "胜利", "败北", "弃局" };  //Enum.GetValues(typeof(GameResultAll));
-			ComboBoxResult.SelectedItem = GameResultAllConverter.convert(Config.Instance.ConstructedStatsResultFilter);
+			ComboBoxCoin.ItemsSource = Enum.GetValues(typeof(AllYesNo));
+			ComboBoxCoin.SelectedItem = Config.Instance.ConstructedStatsCoinFilter;
+			ComboBoxResult.ItemsSource = Enum.GetValues(typeof(GameResultAll));
+			ComboBoxResult.SelectedItem = Config.Instance.ConstructedStatsResultFilter;
 			ComboBoxOpponentClass.ItemsSource =
 				Enum.GetValues(typeof(HeroClassStatsFilter)).Cast<HeroClassStatsFilter>().Select(x => new HeroClassStatsFilterWrapper(x));
 			ComboBoxOpponentClass.SelectedItem = new HeroClassStatsFilterWrapper(Config.Instance.ConstructedStatsOpponentClassFilter);
@@ -81,11 +73,11 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats
 
 		public bool ActiveDeckOnlyIsEnabled => !DeckList.Instance.ActiveDeck?.IsArenaDeck ?? false;
 
-		public string ActiveDeckOnlyToolTip
-			=>DeckList.Instance.ActiveDeck == null
-					? "没有激活的卡组" : (DeckList.Instance.ActiveDeck.IsArenaDeck ? "激活的卡组是个竞技场卡组" : "卡组: " + DeckList.Instance.ActiveDeck.Name);
+        public string ActiveDeckOnlyToolTip
+            => DeckList.Instance.ActiveDeck == null
+                    ? "没有激活的卡组" : (DeckList.Instance.ActiveDeck.IsArenaDeck ? "激活的卡组是个竞技场卡组" : "卡组: " + DeckList.Instance.ActiveDeck.Name);
 
-		public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
 		internal void SetUpdateCallback(Action callback)
 		{
@@ -143,8 +135,7 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats
 		{
 			if(!_initialized)
 				return;
-            
-			Config.Instance.ConstructedStatsModeFilter = GameModeConverter.convert((string)ComboBoxMode.SelectedItem);
+			Config.Instance.ConstructedStatsModeFilter = (GameMode)ComboBoxMode.SelectedItem;
 			Config.Save();
 			_updateCallback?.Invoke();
 			OnPropertyChanged(nameof(RankFilterVisibility));
@@ -155,7 +146,7 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats
 		{
 			if(!_initialized)
 				return;
-			Config.Instance.ConstructedStatsCoinFilter = AllYesNoConverter.convert((string)ComboBoxCoin.SelectedItem);
+			Config.Instance.ConstructedStatsCoinFilter = (AllYesNo)ComboBoxCoin.SelectedItem;
 			Config.Save();
 			_updateCallback?.Invoke();
 		}
@@ -192,7 +183,7 @@ namespace Hearthstone_Deck_Tracker.Controls.Stats
 		{
 			if(!_initialized)
 				return;
-			Config.Instance.ConstructedStatsResultFilter = GameResultAllConverter.convert((string)ComboBoxResult.SelectedItem);
+			Config.Instance.ConstructedStatsResultFilter = (GameResultAll)ComboBoxResult.SelectedItem;
 			Config.Save();
 			_updateCallback?.Invoke();
 		}

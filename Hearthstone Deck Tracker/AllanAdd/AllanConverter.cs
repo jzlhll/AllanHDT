@@ -15,18 +15,17 @@ namespace AllanPlugins
         private int _178heroId;
         private const string XeLi = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_";
         private static char[] charSet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".ToCharArray();
-        private CardTool mCardTool;
 
         public void release()
         {
+            Log.Info("release see");
             duowan_ids = null;
             nums = null;
-            mCardTool.release();
         }
 
         public AllanConverter()
         {
-            mCardTool = new CardTool();
+            
         }
 
         private static string getHeroIdByMyApk(int i) {
@@ -59,9 +58,11 @@ namespace AllanPlugins
             List<string> cards = new List<string>();
             Log.Info("myapkstr " + myapkStr);
             string ret = "";
+            CardTool mCardTool = new CardTool();
             for (int i = 0; i < chs.Length; i += 2) {
                 string ss = ("" + chs[i]) + chs[i + 1];
                 int duowan_id = CardTool._62_to_10(ss);
+               
                 string encard = mCardTool.getCardByDuowanId(duowan_id).enCard;
                 bool isAdd = false;
                 for (int j = 0; j<cards.Count;j++) {
@@ -79,6 +80,8 @@ namespace AllanPlugins
             foreach (string s in cards) {
                 ret += s + "\r\n";
             }
+            mCardTool.release();
+            mCardTool = null;
             return new string[]{ ret , getHeroIdByMyApk(heroId)};
         }
 
@@ -106,47 +109,47 @@ namespace AllanPlugins
                     _178web += ",";
                 }
             }
-           return get178ConvertedToEngNames(_178web);
+            return null;// get178ConvertedToEngNames(_178web);
     }
 
-        public string[] get178ConvertedToEngNames(string _178web)
-        {
-            if (!_178web.Contains("http://db.178.com/hs/deck/#")) {
-                return null;
-            }
-            //http://db.178.com/hs/deck/#3$909896:2,2924878:2,3314238:2,3871714:1,7195615:1,7487906:1,7586559:2,8469073:2
-            _178web = _178web.Replace("http://db.178.com/hs/deck/#", "");
-            //3$909896:2,2924878:2,3314238:2,3871714:1,7195615:1,7487906:1,7586559:2,8469073:2
-            _178heroId = int.Parse(_178web.Substring(0, 1));
-            //909896:2,2924878:2,3314238:2,3871714:1,7195615:1,7487906:1,7586559:2,8469073:2
-            _178web = _178web.Substring(2, _178web.Length - 2);
-            string[] ss = _178web.Split(',');
-            string[] ret = { "", "", "-1" };
-            ret[2] = CardTool.getHeroNameBy178ID(_178heroId);
-            int size = ss.Length;
-            for (int i = 0; i < size; i++)
-            {
-                string s = ss[i];
-                int num = int.Parse(s.Substring(s.Length - 1, 1));
-                int id = int.Parse(s.Substring(0, s.Length - 2));
-                Console.WriteLine("num= " + num + " id= " + id);
-                CardTool.CardSturct cs = mCardTool.getCardBy178Id(id);
-                ret[0] += cs.enCard;
-                ret[1] += cs.cnCard;
-                if (num == 2)
-                {
-                    ret[0] += " x 2";
-                    ret[1] += " x 2";
-                }
-                if (size - 1 != i)
-                {
-                    ret[0] += "\r\n";
-                    ret[1] += "\r\n";
-                }
-            }
+        //public string[] get178ConvertedToEngNames(string _178web)
+        //{
+            //if (!_178web.Contains("http://db.178.com/hs/deck/#")) {
+            //    return null;
+            //}
+            ////http://db.178.com/hs/deck/#3$909896:2,2924878:2,3314238:2,3871714:1,7195615:1,7487906:1,7586559:2,8469073:2
+            //_178web = _178web.Replace("http://db.178.com/hs/deck/#", "");
+            ////3$909896:2,2924878:2,3314238:2,3871714:1,7195615:1,7487906:1,7586559:2,8469073:2
+            //_178heroId = int.Parse(_178web.Substring(0, 1));
+            ////909896:2,2924878:2,3314238:2,3871714:1,7195615:1,7487906:1,7586559:2,8469073:2
+            //_178web = _178web.Substring(2, _178web.Length - 2);
+            //string[] ss = _178web.Split(',');
+            //string[] ret = { "", "", "-1" };
+            //ret[2] = CardTool.getHeroNameBy178ID(_178heroId);
+            //int size = ss.Length;
+            //for (int i = 0; i < size; i++)
+            //{
+            //    string s = ss[i];
+            //    int num = int.Parse(s.Substring(s.Length - 1, 1));
+            //    int id = int.Parse(s.Substring(0, s.Length - 2));
+            //    Console.WriteLine("num= " + num + " id= " + id);
+            //    CardTool.CardSturct cs = mCardTool.getCardBy178Id(id);
+            //    ret[0] += cs.enCard;
+            //    ret[1] += cs.cnCard;
+            //    if (num == 2)
+            //    {
+            //        ret[0] += " x 2";
+            //        ret[1] += " x 2";
+            //    }
+            //    if (size - 1 != i)
+            //    {
+            //        ret[0] += "\r\n";
+            //        ret[1] += "\r\n";
+            //    }
+            //}
 
-            return ret;
-        }
+            //return ret;
+        //}
 
         public string[] getDuowanConvertedToEngNames(string duowanweb)
         {
@@ -205,10 +208,14 @@ namespace AllanPlugins
         {
             string[] ret = new string[] { "", "", "-1" };
             int totalSize = duowan_ids.Length;
+            Log.Info("totaSize " + totalSize);
+            CardTool mCardTool = new CardTool();
             for (int i = 0; i < totalSize; i++)
             {
                 CardTool.CardSturct cs = mCardTool.getCardByDuowanId(duowan_ids[i]);
-                Log.Info("num " + nums[i] + " " + cs.ToStr());
+                if (cs == null) {
+                    continue;
+                }
                 ret[0] += cs.enCard;
                 if (nums[i] == 2) ret[0] += " x 2";
                 if (i != totalSize - 1)
@@ -220,6 +227,8 @@ namespace AllanPlugins
                     ret[1] += "\r\n";
             }
             ret[2] = CardTool.getHeroNameByduowanID(duowanheroId);
+            mCardTool.release();
+            mCardTool = null;
             return ret;
         }
 
@@ -260,13 +269,11 @@ namespace AllanPlugins
 
             Console.WriteLine("duowan2 " + duowan);
             duowanheroId = duowan.ElementAt(0) - '0';
-            Console.WriteLine("duowanheroroId " + duowanheroId + duowan.ElementAt(0));
+            Console.WriteLine("duowanheroroId " + duowanheroId);
             for (int i = 0; i < ids.Length; i++)
             {
                 duowan_ids[i] = int.Parse(ids[i]);
                 nums[i] = int.Parse(orders[i]);
-                //DuowanCard.CardSturct cs = mDuowanCard.getCardById(duowan_ids[i]);
-                //Debug.WriteLine("num " + nums[i] + " " + cs.ToStr());
             }
             return true;
         }
