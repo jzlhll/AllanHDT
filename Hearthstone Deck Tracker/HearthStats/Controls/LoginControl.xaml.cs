@@ -28,6 +28,7 @@ namespace Hearthstone_Deck_Tracker.HearthStats.Controls
 			InitializeComponent();
 			CheckBoxRememberLogin.IsChecked = Config.Instance.RememberHearthStatsLogin;
 			_inizialized = true;
+			sss
 		}
 
 		private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e) => Helper.TryOpenUrl(e.Uri.AbsoluteUri);
@@ -52,10 +53,10 @@ namespace Hearthstone_Deck_Tracker.HearthStats.Controls
 			{
 				Core.MainWindow.EnableHearthStatsMenu(true);
 				Core.MainWindow.FlyoutHearthStatsLogin.IsOpen = false;
-				Core.MainWindow.MenuItemLogin.Visibility = Visibility.Collapsed;
-				Core.MainWindow.MenuItemLogout.Visibility = Visibility.Visible;
-				Core.MainWindow.SeparatorLogout.Visibility = Visibility.Visible;
-				Core.MainWindow.MenuItemLogout.Header = $"登出 ({HearthStatsAPI.LoggedInAs})";
+				//Core.MainWindow.MenuItemLogin.Visibility = Visibility.Collapsed;
+				//Core.MainWindow.MenuItemLogout.Visibility = Visibility.Visible;
+				//Core.MainWindow.SeparatorLogout.Visibility = Visibility.Visible;
+				Core.MainWindow.MenuItemLogout.Header = $"LOGOUT ({HearthStatsAPI.LoggedInAs})";
 
 				var dialogResult =
 					await

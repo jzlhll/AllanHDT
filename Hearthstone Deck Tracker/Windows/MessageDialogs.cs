@@ -297,7 +297,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 				                        AffirmativeAndNegative,
 				                        new MetroDialogSettings {AffirmativeButtonText = "是 (一直)", NegativeButtonText = "不 (从不)"});
 			Config.Instance.HearthStatsAutoDeleteMatches = dialogResult == MessageDialogResult.Affirmative;
-			Core.MainWindow.MenuItemCheckBoxAutoDeleteGames.IsChecked = Config.Instance.HearthStatsAutoDeleteMatches;
+			//Core.MainWindow.MenuItemCheckBoxAutoDeleteGames.IsChecked = Config.Instance.HearthStatsAutoDeleteMatches;
 			Config.Save();
 			return Config.Instance.HearthStatsAutoDeleteMatches != null && Config.Instance.HearthStatsAutoDeleteMatches.Value;
 		}

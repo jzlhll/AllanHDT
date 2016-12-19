@@ -220,25 +220,25 @@ namespace Hearthstone_Deck_Tracker.Windows
 		{
 			if(HearthStatsAPI.IsLoggedIn)
 			{
-				MenuItemLogout.Header = $"登出 ({HearthStatsAPI.LoggedInAs})";
-				MenuItemLogin.Visibility = Collapsed;
-				MenuItemLogout.Visibility = Visible;
-				SeparatorLogout.Visibility = Visible;
+				//MenuItemLogout.Header = $"LOGOUT ({HearthStatsAPI.LoggedInAs})";
+				//MenuItemLogin.Visibility = Collapsed;
+				//MenuItemLogout.Visibility = Visible;
+				//SeparatorLogout.Visibility = Visible;
 			}
 			EnableHearthStatsMenu(HearthStatsAPI.IsLoggedIn);
 		}
 
 		public void EnableHearthStatsMenu(bool enable)
 		{
-			MenuItemCheckBoxAutoSyncBackground.IsEnabled = enable;
-			MenuItemCheckBoxAutoUploadDecks.IsEnabled = enable;
-			MenuItemCheckBoxAutoUploadGames.IsEnabled = enable;
-			MenuItemCheckBoxSyncOnStart.IsEnabled = enable;
-			MenuItemHearthStatsForceFullSync.IsEnabled = enable;
-			MenuItemHearthStatsSync.IsEnabled = enable;
-			MenuItemCheckBoxAutoDeleteDecks.IsEnabled = enable;
-			MenuItemCheckBoxAutoDeleteGames.IsEnabled = enable;
-			MenuItemDeleteHearthStatsDeck.IsEnabled = enable;
+			//MenuItemCheckBoxAutoSyncBackground.IsEnabled = enable;
+			//MenuItemCheckBoxAutoUploadDecks.IsEnabled = enable;
+			//MenuItemCheckBoxAutoUploadGames.IsEnabled = enable;
+			//MenuItemCheckBoxSyncOnStart.IsEnabled = enable;
+			//MenuItemHearthStatsForceFullSync.IsEnabled = enable;
+			//MenuItemHearthStatsSync.IsEnabled = enable;
+			//MenuItemCheckBoxAutoDeleteDecks.IsEnabled = enable;
+			//MenuItemCheckBoxAutoDeleteGames.IsEnabled = enable;
+			//MenuItemDeleteHearthStatsDeck.IsEnabled = enable;
 		}
 
 		private void MenuItemHearthStatsSync_OnClick(object sender, RoutedEventArgs e) => HearthStatsManager.SyncAsync();
@@ -346,7 +346,7 @@ namespace Hearthstone_Deck_Tracker.Windows
 				                      MessageDialogStyle.AffirmativeAndNegative,
 				                      new MessageDialogs.Settings {AffirmativeButtonText = "yes (一直)", NegativeButtonText = "no (永远)"});
 			Config.Instance.HearthStatsAutoDeleteDecks = dialogResult == MessageDialogResult.Affirmative;
-			MenuItemCheckBoxAutoDeleteDecks.IsChecked = Config.Instance.HearthStatsAutoDeleteDecks;
+			//MenuItemCheckBoxAutoDeleteDecks.IsChecked = Config.Instance.HearthStatsAutoDeleteDecks;
 			Config.Save();
 			return Config.Instance.HearthStatsAutoDeleteDecks != null && Config.Instance.HearthStatsAutoDeleteDecks.Value;
 		}
@@ -870,5 +870,13 @@ private async void MenuItemLastGamesReplay_OnClick(object sender, RoutedEventArg
         {
             Process.Start(@"http://bbs.nga.cn/read.php?tid=9444162");
         }
+		
+		private void MenuItemHearthStatsMoreInfo_OnClick(object sender, RoutedEventArgs e)
+		{
+			this.ShowMessage(
+				"HearthStats被禁止",
+				@"HearthStats还没有更新 新卡集,抱歉，体验没做好!"
+			).Forget();
+		}
     }
 }
