@@ -115,7 +115,7 @@
             <controls:Flyout x:Name="FlyoutDeck" Position="Left" Panel.ZIndex="102" Width="250" Header="{lex:Loc MainWindow_Flyout_OpponentDeck_Header}">
                     <flyoutControls:DeckPanel x:Name="DeckFlyout" />
              </controls:Flyout>
-            <controls:Flyout x:Name="FlyoutSortFilter" Header="{lex:Loc MainWindow_Flyout_OpponentDeck_Header}" Position="Right" Width="245" Height="auto" Panel.ZIndex="100">
+            <controls:Flyout x:Name="FlyoutSortFilter" Header="{lex:Loc MainWindow_Flyout_SortFilter_Header}" Position="Right" Width="245" Height="auto" Panel.ZIndex="100">
                 <local:SortFilterDecks Width="auto" Height="auto" x:Name="SortFilterDecksFlyout" />
             </controls:Flyout>
             <controls:Flyout x:Name="FlyoutNotes" Header="{lex:Loc MainWindow_Flyout_Notes_Header}" Position="Right" Width="255" Height="auto"
@@ -590,6 +590,7 @@
                         <RadioButton Name="RadioButtonSet20" Content="{lex:LocTextUpper MainWindow_DeckBuilder_Filter_Set_Loe}" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
                         <RadioButton Name="RadioButtonSet21" Content="{lex:LocTextUpper MainWindow_DeckBuilder_Filter_Set_Wotog}" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
                         <RadioButton Name="RadioButtonSet23" Content="{lex:LocTextUpper MainWindow_DeckBuilder_Filter_Set_Kara}" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
+                        <RadioButton Name="RadioButtonSet25" Content="{lex:LocTextUpper MainWindow_DeckBuilder_Filter_Set_Msg}" Click="BtnFilter_OnClick" Margin="-24,0,0,0" FontSize="14" />
                     </MenuItem>
                 </MenuItem>
             </Menu>
@@ -611,7 +612,7 @@
                      controls:TextBoxHelper.IsWaitingForData="True"/>
                     </Border>
 
-                    <Rectangle Name="DeckNameExistsWarning" Width="16" Height="16" ToolTip="{lex:LocText MainWindow_DeckBuilder_Warning_NameAlreadyExists}" Visibility="Collapsed" Margin="3,0,0,0">
+                    <Rectangle Name="DeckNameExistsWarning" Width="16" Height="16" ToolTip="{lex:LocText MainWindow_DeckBuilder_Warning_ToolTip_NameAlreadyExists}" Visibility="Collapsed" Margin="3,0,0,0">
                         <Rectangle.Fill>
                             <VisualBrush Visual="{StaticResource appbar_warning}" />
                         </Rectangle.Fill>

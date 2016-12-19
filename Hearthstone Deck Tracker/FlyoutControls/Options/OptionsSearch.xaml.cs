@@ -21,6 +21,11 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options
 		{
 			InitializeComponent();
 		}
+		
+		private void TextBoxSearchLoaded(object sender, RoutedEventArgs routedEventArgs)
+		{
+			((TextBox) sender).Focus();
+		}
 
 		private List<CheckBoxWrapper> CheckBoxWrappers => _checkBoxWrappers ?? (_checkBoxWrappers = LoadWrappers());
 
@@ -97,6 +102,13 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options
 
 			public UserControl UserControl { get; set; }
 			public string Name { get; set; }
+		}
+
+		private void TextBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			if (TextBoxSearch.Text.Length < 3)
+				return;
+			UpdateSearchResult(TextBoxSearch.Text);
 		}
 	}
 }

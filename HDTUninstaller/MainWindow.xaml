@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:hdtUninstaller="clr-namespace:HDTUninstaller"
         WindowStyle="ToolWindow"
-        Title="HDT卸载" Height="150" Width="294">
+        Title="HDT Uninstaller" Height="150" Width="294">
     <Grid Margin="2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -14,9 +14,9 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="炉石Logging:" Grid.Row="0" Grid.Column="0" Margin="0,0,5,0" VerticalAlignment="Center" FontWeight="SemiBold"/>
-        <TextBlock Text="HDT数据:" Grid.Row="1" Grid.Column="0" Margin="0,5" VerticalAlignment="Center" FontWeight="SemiBold"/>
-        <TextBlock Text="自动启动项:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" FontWeight="SemiBold"/>
+        <TextBlock Text="Hearthstone Logging:" Grid.Row="0" Grid.Column="0" Margin="0,0,5,0" VerticalAlignment="Center" FontWeight="SemiBold"/>
+        <TextBlock Text="HDT Data:" Grid.Row="1" Grid.Column="0" Margin="0,5" VerticalAlignment="Center" FontWeight="SemiBold"/>
+        <TextBlock Text="Autostart Entry:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" FontWeight="SemiBold"/>
         <Button Content="{Binding TextLogging, RelativeSource={RelativeSource AncestorType=hdtUninstaller:MainWindow}}" Grid.Row="0" Grid.Column="1" Background="{Binding BackgroundLogging, RelativeSource={RelativeSource AncestorType=hdtUninstaller:MainWindow}}" Click="ButtonLogging_Click" FontWeight="SemiBold"/>
         <Button Content="{Binding TextData, RelativeSource={RelativeSource AncestorType=hdtUninstaller:MainWindow}}" Grid.Row="1" Grid.Column="1" Background="{Binding BackgroundData, RelativeSource={RelativeSource AncestorType=hdtUninstaller:MainWindow}}" Click="ButtonData_Click" Margin="0,5" FontWeight="SemiBold"/>
         <Button Content="{Binding TextAutostart, RelativeSource={RelativeSource AncestorType=hdtUninstaller:MainWindow}}" Grid.Row="2" Grid.Column="1" Background="{Binding BackgroundAutostart, RelativeSource={RelativeSource AncestorType=hdtUninstaller:MainWindow}}" Click="ButtonAutostart_Click" FontWeight="SemiBold"/>

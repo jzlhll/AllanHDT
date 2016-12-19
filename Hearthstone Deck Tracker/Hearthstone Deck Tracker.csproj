@@ -266,7 +266,11 @@
       <DependentUpon>ElementSorterItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\DeckPicker\MarginConverter.cs" />
+    <Compile Include="Controls\Information\HearthStatsLogoutInfo.xaml.cs">
+      <DependentUpon>HearthStatsLogoutInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Enums\DeckPanel.cs" />
+    <Compile Include="Enums\ImportingChoice.cs" />
     <Compile Include="Enums\LocDescriptionAttribute.cs" />
     <Compile Include="FlyoutControls\HsReplayInfo.xaml.cs">
       <DependentUpon>HsReplayInfo.xaml</DependentUpon>
@@ -442,6 +446,7 @@
     <Compile Include="Utility\ResourceMonitor.cs" />
     <Compile Include="Utility\Updating\ReleaseUrls.cs" />
     <Compile Include="Utility\Updating\StatusBarHelper.cs" />
+    <Compile Include="Importing\ClipboardImporter.cs" />
     <Compile Include="Windows\CrashDialog.xaml.cs">
       <DependentUpon>CrashDialog.xaml</DependentUpon>
     </Compile>
@@ -486,7 +491,6 @@
     <Compile Include="Importing\Websites\EliteHearthstone.cs" />
     <Compile Include="Importing\Websites\Heartharena.cs" />
     <Compile Include="Importing\Websites\Hearthbuilder.cs" />
-    <Compile Include="Importing\Websites\Hearthhead.cs" />
     <Compile Include="Importing\Websites\HearthnewsFr.cs" />
     <Compile Include="Importing\Websites\Hearthpwn.cs" />
     <Compile Include="Importing\Websites\Hearthstats.cs" />
@@ -638,9 +642,13 @@
     <Compile Include="Controls\DeckView.xaml.cs">
       <DependentUpon>DeckView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ImportingChoiceDialog.xaml.cs">
+      <DependentUpon>ImportingChoiceDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\DeckTypeDialog.xaml.cs">
       <DependentUpon>DeckTypeDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Importing\JsonDeckImporter.cs" />
     <Compile Include="Windows\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -882,6 +890,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Information\HearthStatsLogoutInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="FlyoutControls\HsReplayInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1110,6 +1122,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\ImportingChoiceDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Windows\DeckTypeDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1276,6 +1292,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>Strings.resx</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Strings.pt-PT.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Strings.ru-RU.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Strings.resx</DependentUpon>
@@ -1432,7 +1452,21 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if "$(ConfigurationName)" == "Release" (
+    <PostBuildEvent>if "$(ConfigurationName)" == "Squirrel" (
+    rmdir /S /Q "..\Squirrel-Clean"
+    mkdir "..\SquirrelNu"
+    mkdir "..\Squirrel-Clean"
+    mkdir "..\Squirrel-Clean/Images"
+    xcopy /E /Y /Q "Images\*.*" "..\Squirrel-Clean\Images"
+    for /D %25%25a in (*-*) do (
+        mkdir "..\Squirrel-Clean\%25%25a"
+        xcopy "%25%25a\*.*" "..\Squirrel-Clean\%25%25a"
+    )
+    xcopy /Y "HearthstoneDeckTracker.exe" "..\Squirrel-Clean"
+    xcopy /Y "HearthstoneDeckTracker.exe.config" "..\Squirrel-Clean"
+    xcopy /Y "*.dll" "..\Squirrel-Clean"	
+)
+if "$(ConfigurationName)" == "Release" (
     rmdir /S /Q "..\Hearthstone Deck Tracker"
     mkdir "..\Hearthstone Deck Tracker"
     mkdir "..\Hearthstone Deck Tracker/Images"
@@ -1443,18 +1477,43 @@
     )
     xcopy /Y "HearthstoneDeckTracker.exe" "..\Hearthstone Deck Tracker"
     xcopy /Y "HearthstoneDeckTracker.exe.config" "..\Hearthstone Deck Tracker"
-    ren "..\Hearthstone Deck Tracker\HearthstoneDeckTracker.exe" "hdt_temp.exe"
+    ren "..\Hearthstone Deck Tracker\HearthstoneDeckTracker.exe" "Hearthstone Deck Tracker.exe"
     ren "..\Hearthstone Deck Tracker\HearthstoneDeckTracker.exe.config" "Hearthstone Deck Tracker.exe.config"
     xcopy /Y "*.dll" "..\Hearthstone Deck Tracker"
-    xcopy /E /Y /Q "D:\gitRoot\HDT\AllanReleaseCopyFiles\*.*" "..\Hearthstone Deck Tracker"
-    xcopy /Y "..\..\..\..\HDTUpdate\bin\x86\Release\HDTUpdate.exe" "..\Hearthstone Deck Tracker"
-    xcopy /Y "..\..\..\..\HDTUninstaller\bin\x86\Release\HDTUninstaller.exe" "..\Hearthstone Deck Tracker"
+    xcopy /Y "..\..\..\..\HDTUpdate\bin\Release\HDTUpdate.exe" "..\Hearthstone Deck Tracker"
+    xcopy /Y "..\..\..\..\HDTUninstaller\bin\Release\HDTUninstaller.exe" "..\Hearthstone Deck Tracker"
+    signtool sign /tr http://timestamp.digicert.com /a /f "..\..\..\HearthSimCodeSigningCert.pfx" /p %25HearthSimCert%25 "..\Hearthstone Deck Tracker/\*.exe"
 )</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>mkdir "$(TargetDir)\Images\Bars"
+    <PreBuildEvent>if exist $(SolutionDir)HearthDb (
+  git -C $(SolutionDir)HearthDb fetch
+  git -C $(SolutionDir)HearthDb reset --hard origin/master
+) else (
+  git clone https://github.com/HearthSim/HearthDb.git $(SolutionDir)HearthDb
+)
+if exist $(SolutionDir)HearthMirror (
+  git -C $(SolutionDir)HearthMirror fetch
+  git -C $(SolutionDir)HearthMirror reset --hard origin/master
+) else (
+  git clone https://github.com/HearthSim/HearthMirror.git $(SolutionDir)HearthMirror 
+)
+if exist $(SolutionDir)HSReplay-Api (
+  git -C $(SolutionDir)HSReplay-Api fetch
+  git -C $(SolutionDir)HSReplay-Api reset --hard origin/master
+) else (
+  git clone https://github.com/HearthSim/HSReplay-API-Client.git $(SolutionDir)HSReplay-Api
+)
+if exist $(SolutionDir)HDT-Localization (
+  git -C $(SolutionDir)HDT-Localization fetch
+  git -C $(SolutionDir)HDT-Localization reset --hard origin/master
+) else (
+  git clone https://github.com/HearthSim/HDT-Localization.git $(SolutionDir)HDT-Localization
+)
+xcopy /Y "$(SolutionDir)HDT-Localization\*.resx" "$(ProjectDir)Properties\"
+mkdir "$(TargetDir)\Images\Tiles"
 mkdir "$(TargetDir)\Images\Themes"
-xcopy /E /Y /Q "$(ProjectDir)Images\Bars" "$(TargetDir)\Images\Bars"
+xcopy /E /Y /Q "$(SolutionDir)Resources\Generated\Tiles" "$(TargetDir)\Images\Tiles"
 xcopy /E /Y /Q "$(ProjectDir)Images\Themes" "$(TargetDir)\Images\Themes"
 xcopy /Y /Q "$(SolutionDir)CHANGELOG.md" "$(ProjectDir)Resources"</PreBuildEvent>
   </PropertyGroup>
@@ -1493,5 +1552,6 @@ xcopy /Y /Q "$(SolutionDir)CHANGELOG.md" "$(ProjectDir)Resources"</PreBuildEvent
       <Version>$([System.Text.RegularExpressions.Regex]::Match(%(myAssemblyInfo.Version), $(Regex)))</Version>
     </PropertyGroup>
     <Exec Command="if not exist Releases mkdir Releases" />
+    <Exec Command="cd bin/x86 &amp; zip -9 -r -q ../../Releases/Hearthstone.Deck.Tracker-v$(Version).zip &quot;Hearthstone Deck Tracker&quot;" />
   </Target>
 </Project>

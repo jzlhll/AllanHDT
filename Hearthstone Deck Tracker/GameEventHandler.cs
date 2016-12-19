@@ -221,8 +221,12 @@ namespace Hearthstone_Deck_Tracker
 			if(!Config.Instance.AutoGrayoutSecrets)
 				return;
 
+			//Hidden cache will only trigger if the opponent has a minion in hand. 
+			//We might not know this for certain - requires additional tracking logic.
+			//TODO: _game.OpponentSecrets.SetZero(Hunter.HiddenCache);
 			_game.OpponentSecrets.SetZero(Hunter.Snipe);
 			_game.OpponentSecrets.SetZero(Mage.MirrorEntity);
+			_game.OpponentSecrets.SetZero(Mage.PotionOfPolymorph);
 			_game.OpponentSecrets.SetZero(Paladin.Repentance);
 
 			if(Core.MainWindow != null)
@@ -235,7 +239,10 @@ namespace Hearthstone_Deck_Tracker
 				return;
 
 			if(_game.Opponent.HandCount < 10)
+			{
 				_game.OpponentSecrets.SetZero(Mage.Duplicate);
+				_game.OpponentSecrets.SetZero(Paladin.GetawayKodo);
+			}
 
 			var numDeathrattleMinions = 0;
 
@@ -392,12 +399,8 @@ namespace Hearthstone_Deck_Tracker
 			if(!thaurissans.Any())
 				return;
 
-			foreach(var impFavor in _game.Opponent.Board.Where(x => x.CardId == HearthDb.CardIds.NonCollectible.Neutral.EmperorThaurissan_ImperialFavorEnchantment))
-			{
-				Entity entity;
-				if(_game.Entities.TryGetValue(impFavor.GetTag(ATTACHED), out entity))
-					entity.Info.CostReduction += thaurissans.Count;
-			}
+			foreach(var card in _game.Opponent.Hand)
+				card.Info.CostReduction += thaurissans.Count;
 		}
 
 		public async void HandleAvengeAsync(int deathRattleCount)
@@ -540,6 +543,11 @@ namespace Hearthstone_Deck_Tracker
 					_game.CurrentGameStats.ArenaWins = DeckImporter.ArenaInfoCache?.Wins ?? 0;
 					_game.CurrentGameStats.ArenaLosses = DeckImporter.ArenaInfoCache?.Losses ?? 0;
 				}
+				else if(_game.CurrentGameMode == Brawl && _game.BrawlInfo != null)
+				{
+					_game.CurrentGameStats.BrawlWins = _game.BrawlInfo.Wins;
+					_game.CurrentGameStats.BrawlLosses = _game.BrawlInfo.Losses;
+				}
 				_game.CurrentGameStats.GameType = _game.CurrentGameType;
 				_game.CurrentGameStats.ServerInfo = _game.MetaData.ServerInfo;
 				_game.CurrentGameStats.PlayerCardbackId = _game.MatchInfo?.LocalPlayer.CardBackId ?? 0;
@@ -615,8 +623,12 @@ namespace Hearthstone_Deck_Tracker
 					selectedDeck.DeckStats.AddGameResult(_lastGame);
 
 					if(Config.Instance.ArenaRewardDialog && (selectedDeck.IsArenaRunCompleted ?? false))
-						_arenaRewardDialog = new ArenaRewardDialog(selectedDeck);
+					{
+						if (selectedDeck.ArenaReward.Packs[0] == ArenaRewardPacks.None)
+							selectedDeck.ArenaReward.Packs[0] = Enum.GetValues(typeof(ArenaRewardPacks)).OfType<ArenaRewardPacks>().Max();
 
+						_arenaRewardDialog = new ArenaRewardDialog(selectedDeck);
+					}
 					if(Config.Instance.ShowNoteDialogAfterGame && !Config.Instance.NoteDialogDelayed && !_showedNoteDialog)
 					{
 						_showedNoteDialog = true;

@@ -1,3 +1,10 @@
+## Setup
+1. Download and install [visual studio community](https://www.visualstudio.com/downloads/)
+2. Download and install [Git](https://git-scm.com/download/win) (use git from windows command prompt OR use git and optional unix tools)
+3. Download the latest stable [nuget executable](https://dist.nuget.org/index.html), copy it to the base directory (where bootstrap.bat is)
+4. run bootstrap.bat, preferably from a command window to see any errors.
+5. Open the solution file, do a build to make sure everything is working properly. Restore nuget packages if necessary.
+
 ## Creating Issues
 - Have a look at the [FAQ](https://github.com/HearthSim/Hearthstone-Deck-Tracker/wiki/FAQ).
 - Check if a similar issue already exists (use the search function).
@@ -7,13 +14,14 @@
 
 ### Coding style
 
-1. Always use tabs. 
-2. Always place braces on new lines.
-3. Use [C# 6](https://github.com/dotnet/roslyn/wiki/New-Language-Features-in-C%23-6) whenever possible. 
-4. Follow the [standard MS C# naming conventions](https://msdn.microsoft.com/en-us/library/ms229002(v=vs.110).aspx) 
+1. Always use tabs.
+2. Use LF line endings.
+3. Always place braces on new lines.
+4. Use [C# 6](https://github.com/dotnet/roslyn/wiki/New-Language-Features-in-C%23-6) whenever possible. 
+5. Follow the [standard MS C# naming conventions](https://msdn.microsoft.com/en-us/library/ms229002(v=vs.110).aspx) 
 ([short version](http://programmers.stackexchange.com/a/224910)). 
 Also see: [How to name things in programming](http://www.slideshare.net/pirhilton/how-to-name-things-the-hardest-problem-in-programming)
-5. Know when to make exceptions.
+6. Know when to make exceptions.
 
 ### Commits and Pull Requests
 

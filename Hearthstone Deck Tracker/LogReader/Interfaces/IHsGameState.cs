@@ -18,13 +18,12 @@ namespace Hearthstone_Deck_Tracker.LogReader.Interfaces
 		IGameHandler GameHandler { get; set; }
 		DateTime LastGameStart { get; set; }
 		int LastId { get; set; }
-		int MaxId { get; set; }
 		bool OpponentUsedHeroPower { get; set; }
 		bool PlayerUsedHeroPower { get; set; }
 		ReplayKeyPoint ProposedKeyPoint { get; set; }
 		bool FoundSpectatorStart { get; set; }
 		int JoustReveals { get; set; }
-		Dictionary<int, string> KnownCardIds { get; set; }
+		Dictionary<int, IList<string>> KnownCardIds { get; set; }
 		int LastCardPlayed { get; set; }
 		bool WasInProgress { get; set; }
 		bool SetupDone { get; set; }
@@ -37,5 +36,8 @@ namespace Hearthstone_Deck_Tracker.LogReader.Interfaces
 		void Reset();
 		void SetCurrentEntity(int id);
 		void ResetCurrentEntity();
+		void BlockStart();
+		void BlockEnd();
+		Block CurrentBlock { get; }
 	}
 }

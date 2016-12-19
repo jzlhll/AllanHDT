@@ -65,11 +65,18 @@ namespace HearthDb
 
 		public Locale DefaultLanguage { get; set; } = Locale.enUS;
 
-		public bool Collectible => Convert.ToBoolean(Entity.GetTag(GameTag.Collectible));
+		public bool Collectible => Convert.ToBoolean(Entity.GetTag(COLLECTIBLE));
 
 		public string GetLocName(Locale lang) => Entity.GetLocString(CARDNAME, lang);
 
-		public string GetLocText(Locale lang) => Entity.GetLocString(CARDTEXT_INHAND, lang)?.Replace("_", "\u00A0").Trim();
+		public string GetLocText(Locale lang)
+		{
+			var text = Entity.GetLocString(CARDTEXT_INHAND, lang)?.Replace("_", "\u00A0").Trim();
+			if(text == null)
+				return null;
+			var index = text.IndexOf('@');
+			return index > 0 ? text.Substring(index + 1) : text;
+		}
 
 		public string GetLocFlavorText(Locale lang) => Entity.GetLocString(FLAVORTEXT, lang);
 	}
