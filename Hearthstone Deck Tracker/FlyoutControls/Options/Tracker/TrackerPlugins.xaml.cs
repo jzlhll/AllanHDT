@@ -60,7 +60,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 			}
 			Helper.TryOpenUrl(dir.FullName);
 		}
-		//<!-- Allan Add -->
+
         private async void ButtonTryToClean_OnClick(object sender, RoutedEventArgs e)
         {
             
@@ -75,7 +75,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
 
                 string appDataArena = Path.Combine(Config.AppDataPath, "ArenaHelper");
                 string appDataCollectionTracker = Path.Combine(Config.AppDataPath, "CollectionTracker");
-                string appDataanyfin = Path.Combine(Config.AppDataPath, "anyfin.xml");
+                //string appDataanyfin = Path.Combine(Config.AppDataPath, "anyfin.xml");
 
                 if (Directory.Exists(appDataArena))
                 {
@@ -85,7 +85,7 @@ namespace Hearthstone_Deck_Tracker.FlyoutControls.Options.Tracker
                 {
                     Directory.Delete(appDataCollectionTracker, true);
                 }
-                if (File.Exists(appDataanyfin)) File.Delete(appDataanyfin);
+                //if (File.Exists(appDataanyfin)) File.Delete(appDataanyfin);
 
                 string appDataPluginXml = Path.Combine(Config.AppDataPath, "plugins.xml");
                 if (File.Exists(appDataPluginXml)) File.Delete(appDataPluginXml);

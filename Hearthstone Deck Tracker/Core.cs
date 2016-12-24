@@ -158,27 +158,27 @@ namespace Hearthstone_Deck_Tracker
 			if(Config.Instance.HearthStatsSyncOnStart && HearthStatsAPI.IsLoggedIn)
 				HearthStatsManager.SyncAsync(background: true);
             //allan add for plugins use
-            //if (!Config.Instance.ALLAN_LAST_SAVE_VERSION.Equals(Helper.getAllanCurrentVersionStr())) {
-            //    if (Directory.Exists("AllanPlugins"))
-            //    {
-            //        Log.Debug("Config do it replace plugin.");
-            //        if (Directory.Exists("Plugins")) Directory.Delete("Plugins", true);
-            //        Directory.CreateDirectory("Plugins");
-            //        string appDataPluginDir = Path.Combine(Config.AppDataPath, "Plugins");
-            //        if (!Directory.Exists(appDataPluginDir))
-            //            Directory.CreateDirectory(appDataPluginDir);
+            if (!Config.Instance.ALLAN_LAST_SAVE_VERSION.Equals(Helper.getAllanCurrentVersionStr())) {
+                if (Directory.Exists("AllanPlugins"))
+                {
+                    Log.Debug("Config do it replace plugin.");
+                    if (Directory.Exists("Plugins")) Directory.Delete("Plugins", true);
+                    Directory.CreateDirectory("Plugins");
+                    string appDataPluginDir = Path.Combine(Config.AppDataPath, "Plugins");
+                    if (!Directory.Exists(appDataPluginDir))
+                        Directory.CreateDirectory(appDataPluginDir);
 
-            //        string appDataanyfin = Path.Combine(Config.AppDataPath, "anyfin.xml");
-            //        if (File.Exists(appDataanyfin)) File.Delete(appDataanyfin);
+                    //string appDataanyfin = Path.Combine(Config.AppDataPath, "anyfin.xml");
+                    //if (File.Exists(appDataanyfin)) File.Delete(appDataanyfin);
 
-            //        string appDataPluginXml = Path.Combine(Config.AppDataPath, "plugins.xml");
-            //        if (File.Exists(appDataPluginXml)) File.Delete(appDataPluginXml);
+                    string appDataPluginXml = Path.Combine(Config.AppDataPath, "plugins.xml");
+                    if (File.Exists(appDataPluginXml)) File.Delete(appDataPluginXml);
 
-            //        CopyFolder("AllanPlugins", appDataPluginDir);
-            //        Config.Instance.ALLAN_LAST_SAVE_VERSION = Helper.getAllanCurrentVersionStr();
-            //        Config.Save();
-            //    }
-            //}
+                    CopyFolder("AllanPlugins", appDataPluginDir);
+                    Config.Instance.ALLAN_LAST_SAVE_VERSION = Helper.getAllanCurrentVersionStr();
+                    Config.Save();
+                }
+            }
             //allan add
 			PluginManager.Instance.LoadPlugins();
 			MainWindow.Options.OptionsTrackerPlugins.Load();

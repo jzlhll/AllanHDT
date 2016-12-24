@@ -27,10 +27,11 @@ namespace HDTUpdate
                 Console.ReadLine();
                 return;
             }
+            Console.WriteLine("如果更新慢，可以取消下载，直接去网盘地址 http://pan.baidu.com/s/1nu9kFgd 提取码：xabs");
             try
             {
                 //wait for tracker to shut down
-                Thread.Sleep(1000);
+                Thread.Sleep(1400);
 
                 int procId = int.Parse(args[0]);
                 if (Process.GetProcesses().Any(p => p.Id == procId))
@@ -51,6 +52,7 @@ namespace HDTUpdate
             }
             catch (Exception e)
             {
+                
                 //Console.WriteLine(e);
                 switch (_state)
                 {
@@ -142,7 +144,7 @@ namespace HDTUpdate
                         {
                             Console.CursorLeft = 0;
                             Console.CursorTop = 1;
-                            long prog = e.BytesReceived / (29 * 1024 * 10);
+                            long prog = e.BytesReceived / (22 * 1024 * 10);
                             if (prog > 100)
                             {
                                 prog = 100;
@@ -151,7 +153,7 @@ namespace HDTUpdate
                             for (int i = 0; i < countConsole; i++) {
                                 ss += "\n";
                             }
-                            Console.WriteLine(ss + "正在下载最新版本... 已下载{0}MB,总共大约30MB ({1}%)", e.BytesReceived / (1048576), prog);
+                            Console.WriteLine(ss + "正在下载最新版本... 已下载{0}MB,总共大约22MB ({1}%)", e.BytesReceived / (1048576), prog);
                         }
                     };
                     await wc.DownloadFileTaskAsync(url, filePath);
