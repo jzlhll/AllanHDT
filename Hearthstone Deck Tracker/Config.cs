@@ -762,6 +762,8 @@ namespace Hearthstone_Deck_Tracker
 		[DefaultValue(false)]
 		public bool RemoveCardsFromDeck = false;
 
+		[DefaultValue(false)]
+		public bool RemoveSecretsFromList = false;
 		[DefaultValue(true)]
 		public bool ReplayViewerShowAttack = true;
 

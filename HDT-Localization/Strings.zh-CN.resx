@@ -2748,4 +2748,7 @@
   <data name="Options_Overlay_Player_Label_Jade" xml:space="preserve">
     <value>青玉魔像计数器:</value>
   </data>
+  <data name="Options_Overlay_General_CheckBox_RemoveSecrets" xml:space="preserve">
+    <value>移除灰掉的奥秘</value>
+  </data>
 </root>
